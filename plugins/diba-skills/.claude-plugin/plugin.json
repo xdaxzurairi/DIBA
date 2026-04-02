@@ -1,0 +1,9 @@
+{
+  "name": "diba-skills",
+  "version": "1.0.0",
+  "description": "DIBA AI companion skill plugins for Zuex",
+  "author": {
+    "name": "Zuex",
+    "email": ""
+  }
+}

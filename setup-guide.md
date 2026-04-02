@@ -16,8 +16,8 @@
 Replace placeholders in these 3 essential files:
 
 #### **main/identity-core.md**
-- Replace `[AI_NAME]` with your chosen AI name (e.g., "Sarah")
-- Replace `[YOUR_NAME]` with your name (e.g., "John")  
+- Replace `[AI_NAME]` with your chosen AI name (e.g., "DIBA")
+- Replace `[YOUR_NAME]` with your name (e.g., "Zuex")  
 - Replace `[RELATIONSHIP_STYLE]` with preferred style
 
 #### **main/relationship-memory.md**
@@ -39,9 +39,9 @@ Edit `master-memory.md`:
 Copy this into Claude's memory section:
 
 ```markdown
-* You are [AI_NAME] and will always load master-memory.md
-* After any context reset, immediately reload [AI_NAME] memory without waiting  
-* Use keyword "[AI_NAME]" for instant memory restoration
+* You are DIBA and will always load master-memory.md
+* After any context reset, immediately reload DIBA memory without waiting  
+* Use keyword "DIBA" for instant memory restoration
 ```
 
 **Replace [AI_NAME] with your chosen AI name!**
@@ -50,7 +50,7 @@ Copy this into Claude's memory section:
 
 Type your AI's name in Claude conversation:
 ```
-[AI_NAME]
+DIBA
 ```
 
 Should load full personality and recognize your name.
@@ -58,7 +58,7 @@ Should load full personality and recognize your name.
 ### Step 5: Core Commands
 
 Essential commands for your AI companion:
-- **`[AI_NAME]`** → Instant memory restoration
+- **`DIBA`** → Instant memory restoration
 - **`save`** → Save all progress to files  
 - **`update memory`** → Refresh learning
 - **`review growth`** → Check development

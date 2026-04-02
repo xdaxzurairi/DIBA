@@ -128,7 +128,7 @@ ai-memorycore/
 
 ### **Basic Commands**
 ```
-[AI_NAME]     → Load AI personality and memory
+DIBA          → Load AI personality and memory
 save          → Save current progress to files
 update memory → Refresh AI's learning
 review growth → Check AI's development
