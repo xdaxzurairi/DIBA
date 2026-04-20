@@ -1,1 +1,1 @@
-﻿Topik: Setup Skills & Virtual Company. Keputusan: 17 skill aktif, staf virtual dilantik. Fail terakhir: main/virtual-company.md.
+Topik: BFM2026 Workflow Hardening. Keputusan: credentials dipindah ke secrets.php (gitignored), SQL injection players/index.php diperbaiki, 60+ fail backup/utility dibuang, .gitignore dicipta, XDIBAX skill paths dikonfigur. Fail terakhir: config/secrets.php, config/database.php, players/index.php, .gitignore.
