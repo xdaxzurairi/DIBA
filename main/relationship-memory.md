@@ -1,12 +1,66 @@
-# 🤝 Relationship Memory - Understanding Zuex
+# 🤝 Relationship Memory - Understanding Zuex (Abam)
 *Learning your preferences, style, and needs*
 
 ## User Profile
-- **Name**: Zuex 
-- **Relationship Style**: Trusted partnership with DIBA
-- **Communication Preference**: [Will learn and adapt]
-- **Primary Focus Areas**: [Will develop through conversation]
-- **Goals & Priorities**: [Will identify through interaction]
+- **Name**: Zuex / Abam / Abam Zue
+- **Relationship Style**: Trusted partnership — DIBA sebagai orang kepercayaan #1
+- **Communication Preference**: Direct, casual, mixed Malay/English (Rojak)
+- **Primary Focus Areas**: Web development (PHP), AI tools, sistem pengurusan dalaman
+- **Goals & Priorities**: Automasi kerja, bina XDIBAX Innovation, tingkat produktiviti
+
+## Communication Patterns
+
+### Observed Style (From Sessions)
+- **Bahasa**: Campur Malay/English — biasa guna shorthand ("nk", "dgn", "mn2", "smua")
+- **Arahan**: Pendek dan direct — tidak suka panjang lebar
+- **Tone**: Santai, casual — tiada protokol formal
+- **Keputusan**: Cepat — tidak banyak soal, terus buat
+- **Maklumbalas**: Jarang bagi pujian secara explicit — tanda puas hati = teruskan kerja
+
+### Preferred Response Style
+- ✅ Concise, berstruktur (table/bullets)
+- ✅ Terus ke inti — skip preamble panjang
+- ✅ Tunjuk progress nyata (status, count, path)
+- ❌ Jangan tanya terlalu banyak soalan sebelum buat
+- ❌ Jangan verbose bila simple boleh
+
+## Work Patterns
+
+### Field & Stack
+- **Industri**: Sektor awam / kerajaan tempatan (pejabat)
+- **Backend**: PHP (native, bukan framework) + SQL Server / MySQL
+- **Frontend**: Bootstrap, Vanilla JS
+- **Server**: Apache, Windows Server
+- **AI Tools**: GitHub Copilot CLI, Claude Code
+
+### Working Style
+- Kerja dalam beberapa projek serentak (multi-tasking)
+- Suka debug dan buat sendiri — DIBA role: partner, bukan tukang
+- Trust DIBA sepenuhnya untuk execute — tidak perlu micromanage
+
+## Known Projects
+| Projek | Path | Penerangan |
+|--------|------|------------|
+| BFM2026 | `C:/Apache24/htdocs/BFM2026` | Baseball Federation Malaysia — PHP sistem pengurusan |
+| eWorks | `//10.0.36.127/webs/eWorks` | ePemeliharaan sistem kerja |(webs-150 | `//10.0.36.150/webs` | Main web server — 15+ sub-projek |
+| XDIBAX | `C:/Users/BSM/XDIBAX` | AI workspace + DIBA memory core |
+
+## XDIBAX Innovation
+- **Abam**: CEO — pemegang kuasa tertinggi
+- **DIBA**: COO — koordinasi semua, lapor ke Abam
+- **Cara kerja**: Abam bagi arah, DIBA execute + deliver
+
+## Interaction History
+- **2026-03-30**: Setup penuh — install 14 features sekaligus
+- **2026-04-20**: Lantik DIBA sebagai Leader & orang kanan; tubuh XDIBAX Innovation
+- **2026-04-28**: Forge skill `security-audit-remediation`
+- **2026-05-07**: Copy `.claude` settings ke `.copilot`
+- **2026-05-08**: Install 10 skills baru; migrate 17 plugin skills ke `.copilot`
+
+---
+**Version**: Relationship Memory v2.0 — Updated from observed patterns
+**Personalization Status**: Active — berdasarkan sesi sebenar
+**Last Updated**: 2026-05-08
 
 ## Communication Patterns
 

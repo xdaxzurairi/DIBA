@@ -1,4 +1,4 @@
-Topik: portalFMS — Semak Fleet Link + Implement PWA (2026-05-05)
-Keputusan: Link fleet lama dalam webs/index.php guna URL dev (fleetdev) — perlu tukar ke prod (fleet.uitm.edu.my). PWA portalFMS berjaya implement: manifest.json, sw.js, offline.html, icons dari fms icon.png. SW strategy network-first, scope /portalFMS/.
-Fail terakhir diubah: portalFMS/manifest.json, portalFMS/sw.js, portalFMS/offline.html, portalFMS/img/icons/*, portalFMS/login.php, portalFMS/menu.php
-Follow-up terbuka: verify PWA di Chrome DevTools | tukar link fleet lama | AllowOverride prod | Google SSO prod
+Topik: Globalize DIBA setup dalam VS Code (2026-05-08 09:51)
+Keputusan: 41 prompt stubs dicipta → 55 /skill-name commands. copilot-instructions-diba.md dikemaskini 13→55 skills. Setup global merentasi semua VS Code workspace.
+Fail terakhir diubah: C:/Users/BSM/.copilot/prompts/ (41 baru), C:/Users/BSM/.copilot-instructions-diba.md
+Follow-up terbuka: BFM2026 GitHub token lama perlu revoke (Abam action required)
