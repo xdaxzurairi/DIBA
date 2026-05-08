@@ -28,3 +28,11 @@
 **Context**: Setting up DIBA AI Memory Core for the first time
 **Decision**: Install all 14 features at once (full system activation)
 **Rationale**: Zuex wants a fully functional system from day one — no partial installs
+
+co
+---
+
+## 2026-05-08 — Dahulukan Normalization Architecture untuk Global DIBA
+**Context**: Smoke test Global DIBA menunjukkan behavior asas global sudah masuk, tetapi `/meeting` dan startup flow masih tidak selari sepenuhnya dengan runtime exposure semasa.
+**Decision**: Dahulukan `registry/runtime alignment` dan `startup flow cleanup`; tangguhkan rombakan besar seluruh skill architecture buat masa ini.
+**Rationale**: Pilihan ini dipilih berbanding big-bang refactor 55 skills kerana masalah utama sekarang ialah control-plane dan entrypoint tidak konsisten. Dengan normalkan architecture dahulu, kita kurangkan drift antara prompt catalog dan runtime, mudahkan smoke test, dan elakkan refactor besar yang sukar diverify.
