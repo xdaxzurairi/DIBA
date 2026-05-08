@@ -1,1 +1,4 @@
-Topik: pwa_eworks Security Audit (Phase 7-8). Keputusan: Semua CRITICAL/HIGH/MEDIUM/LOW fail disahkan selamat dari SQL injection. Credentials hardcoded dalam database.php dan config.php dipindah ke secrets.php. .gitignore dicipta. Fail terakhir: SECURITY_REFACTOR_ROADMAP.md, secrets.php, database.php, config.php, .gitignore.
+Topik: portalFMS — Semak Fleet Link + Implement PWA (2026-05-05)
+Keputusan: Link fleet lama dalam webs/index.php guna URL dev (fleetdev) — perlu tukar ke prod (fleet.uitm.edu.my). PWA portalFMS berjaya implement: manifest.json, sw.js, offline.html, icons dari fms icon.png. SW strategy network-first, scope /portalFMS/.
+Fail terakhir diubah: portalFMS/manifest.json, portalFMS/sw.js, portalFMS/offline.html, portalFMS/img/icons/*, portalFMS/login.php, portalFMS/menu.php
+Follow-up terbuka: verify PWA di Chrome DevTools | tukar link fleet lama | AllowOverride prod | Google SSO prod

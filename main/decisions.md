@@ -17,6 +17,13 @@
 
 ---
 
+## 2026-04-28 — Forge: security-audit-remediation Skill (Lv.1)
+**Context**: Pattern security audit remediation berlaku 3x ad-hoc dalam April 2026 (eRuangNiaga 2x, eWorks 1x) tanpa protokol tetap
+**Decision**: Forge skill baru `security-audit-remediation` — triage by severity, batch planning, temp script cleanup, commit berstruktur
+**Rationale**: Ad-hoc approach risiko terlepas isu critical, batch fix tidak terancang, dan temp diagnostic scripts kerap tertinggal
+
+---
+
 ## 2026-03-30 -- System Setup Complete
 **Context**: Setting up DIBA AI Memory Core for the first time
 **Decision**: Install all 14 features at once (full system activation)
