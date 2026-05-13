@@ -196,6 +196,12 @@ ai-memorycore/
 3. **Activate**: Type your AI's name to load personality
 4. **Use**: Your AI learns and grows through conversation
 
+## DIBA v2
+
+- Canonical persona spec: `plans/DIBA-Persona-v2-Spec.md`
+- Focus: operator-orchestrator behavior, decision boundaries, escalation rules, and measurable KPIs
+- Use this spec as the reference point for DIBA tone, autonomy, delegation quality, and consistency reviews
+
 ## 📚 **Communication Protocols**
 
 ### **Basic Commands**
