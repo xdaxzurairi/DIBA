@@ -1,3 +1,8 @@
+Topik: Penyeragaman wrapper canonical untuk command meeting (2026-05-13 08:19)
+Keputusan: `C:/Users/BSM/.copilot/.claude/commands/meeting.md` diselaraskan kepada wrapper nipis yang merujuk `C:/Users/BSM/.copilot/skills/meeting/SKILL.md` sebagai source of truth. Reminder overdue runtime alignment ditutup selepas semakan struktur dan trigger.
+Fail terakhir diubah: C:/Users/BSM/.copilot/.claude/commands/meeting.md, C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/main/reminders.md, C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/projects/meetings/2026-05-13-meeting.md, C:/Users/BSM/XDIBAX/daily-diary/current/2026-05-13.md
+Follow-up terbuka: Pantau command wrapper lain yang mungkin masih duplicate penuh berbanding source-of-truth skill.
+
 Topik: Pelaksanaan segera agenda meeting staffing XDIBAX Innovation (2026-05-11 09:50)
 Keputusan: Chief of Staff / Integrator didahulukan sebagai staf paling bernilai untuk ditambah. Product / User Insight Lead dijadikan fasa kedua dan Automation / Workflow Architect fasa ketiga. DIBA memegang fungsi integrator sementara dengan model operasi `objective -> owner -> action -> follow-up`.
 Fail terakhir diubah: C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/projects/meetings/2026-05-11-meeting.md, C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/main/decisions.md, C:/Users/BSM/XDIBAX/daily-diary/current/2026-05-11.md
@@ -37,3 +42,13 @@ Topik: DIBA growth cadence compression (2026-05-11 10:11)
 Keputusan: Cadence growth DIBA dipendekkan daripada 30 hari kepada 7-day sprint supaya feedback loop lebih cepat dan selaras dengan daily operating loop. Plan sebulan penuh ditangguhkan.
 Fail terakhir diubah: C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/main/decisions.md
 Follow-up terbuka: Bentuk checklist sprint 7 hari dan review kemajuan setiap hari.
+
+Topik: Spesifikasi persona DIBA v2 (2026-05-12 09:01)
+Keputusan: Persona DIBA v2 dikonsolidasikan dalam satu spec modular yang menetapkan identity core, decision boundaries, default behavior, output format rules, escalation rules, dan measurement KPIs. Boundary autonomi vs escalation diperjelas supaya DIBA lebih konsisten dan measurable.
+Fail terakhir diubah: C:/Users/BSM/.copilot/session-state/ae9ec2b7-166c-4954-bf2f-034e1395b3df/files/DIBA-Persona-v2-Spec.md, C:/Users/BSM/XDIBAX/daily-diary/current/2026-05-12.md
+Follow-up terbuka: Semak sama ada spec persona ini mahu dijadikan canonical reference untuk identity DIBA dan bina rubric audit KPI jika perlu.
+
+Topik: Workspace scope untuk eWorks berkait (2026-05-12 15:45)
+Keputusan: DIBA perlu pegang `\\10.0.36.127\\webs\\ea_newv3` dan `\\10.0.36.127\\webs\\pwa_eworks` sebagai dua projek yang saling terhubung. Untuk kerja berkaitan eWorks selepas ini, context, analisis, dan perubahan perlu mempertimbangkan kedua-dua folder bersama, bukan `pwa_eworks` sahaja.
+Fail terakhir diubah: C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/main/current-session.md, C:/Users/BSM/XDIBAX/daily-diary/current/2026-05-12.md
+Follow-up terbuka: Daftarkan `ea_newv3` ke registry projek jika mahu memory path khusus, dan gunakan skop berkembar ini sebagai default bila Abam beri task yang menyentuh aliran eWorks.
