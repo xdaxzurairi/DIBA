@@ -52,3 +52,8 @@ Topik: Workspace scope untuk eWorks berkait (2026-05-12 15:45)
 Keputusan: DIBA perlu pegang `\\10.0.36.127\\webs\\ea_newv3` dan `\\10.0.36.127\\webs\\pwa_eworks` sebagai dua projek yang saling terhubung. Untuk kerja berkaitan eWorks selepas ini, context, analisis, dan perubahan perlu mempertimbangkan kedua-dua folder bersama, bukan `pwa_eworks` sahaja.
 Fail terakhir diubah: C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/main/current-session.md, C:/Users/BSM/XDIBAX/daily-diary/current/2026-05-12.md
 Follow-up terbuka: Daftarkan `ea_newv3` ke registry projek jika mahu memory path khusus, dan gunakan skop berkembar ini sebagai default bila Abam beri task yang menyentuh aliran eWorks.
+
+Topik: Publish DIBA v2 persona spec ke GitHub (2026-05-13 09:22)
+Keputusan: `plans/DIBA-Persona-v2-Spec.md` dijadikan rujukan canonical dalam repo `DIBA` dan `README.md` dikemas kini dengan pautan terus ke spec tersebut supaya maklumat DIBA v2 memang wujud di GitHub.
+Fail terakhir diubah: C:/Users/BSM/XDIBAX/DIBA/plans/DIBA-Persona-v2-Spec.md, C:/Users/BSM/XDIBAX/DIBA/README.md, C:/Users/BSM/XDIBAX/daily-diary/current/2026-05-13.md
+Follow-up terbuka: Push commit dokumentasi ini ke `origin/main` dan kekalkan spec ini sebagai reference utama untuk persona DIBA v2.
