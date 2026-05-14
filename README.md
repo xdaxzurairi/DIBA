@@ -326,6 +326,8 @@ Features are organized into **tiers** based on dependencies. Install Tier 1 firs
 | 📋 [Work Plan Execution](Feature/Work-Plan-Execution/) | Plan-to-execution tracking with per-task commits — *best with Auto-Commit* | `"Load work-plan"` |
 | 📚 [Library](Feature/Library-System/) | Reusable knowledge library with 8 format templates — *best with Auto-Commit* | `"Load library"` |
 | 🗓️ [Meeting System](Feature/Meeting-System/) | Virtual team meetings with role-based agents, chair summary, and auto-saved minutes — *enhanced by Decision-Log + LRU + Reminders* | `"Load meeting"` |
+| ✏️ [Code-Sharp System](Feature/Code-Sharp-System/) | Fast, clean, consistent, precise code generation standard — auto-triggers before every edit | `"Load code-sharp"` |
+| 🔒 [Security Audit System](Feature/Security-Audit-System/) | Triage findings by severity, batch fix, temp cleanup, commit per category — *best with Auto-Commit* | `"Load security-audit"` |
 
 ---
 
@@ -336,13 +338,20 @@ Features are organized into **tiers** based on dependencies. Install Tier 1 firs
 | 🎯 [Orchestration System](Feature/Orchestration-System/) | Multi-step workflow coordination — classifies tasks, delegates smartly, synthesizes grounded results — *enhanced by Decision-Log + LRU + Work-Plan* | `"Load orchestrate"` |
 | 🤖 [Auto-Worker System](Feature/Auto-Worker-System/) | Silent delegation — parses goals, decomposes subtasks, dispatches workers, self-resolves blockers, reports in ≤ 8 lines — *enhanced by Orchestration + Decision-Log* | `"Load auto-worker"` |
 | 🔨 [Forge Self-Improvement](Feature/Forge-Self-Improvement-System/) | AI creates new skills through pattern detection (human-in-the-loop) | `"Load forge"` |
-| 📋 [Session Briefing](Feature/Session-Briefing-System/) | Auto-delivers context brief at session start — *enhanced by Time-Aware + LRU + Reminders* | `"Load session-briefing"` |
+| 📋 [Session Briefing](Feature/Session-Briefing-System/) | Auto-delivers context brief at session start — *enhanced by Time-Aware + LRU + Reminders + Inbox* | `"Load session-briefing"` |
 | 🔥 [Post-Mortem](Feature/Post-Mortem-System/) | Failure learning log — auto-detects mistakes, records prevention actions | `"Load post-mortem"` |
 | 👁️ [Observation](Feature/Observation-System/) | 4-tier code awareness — Survey, Investigate, Refine, Audit | `"Load observation"` |
 | 🎨 [Image Prompt](Feature/Image-Prompt-System/) | Composition-aware Midjourney/NijiJourney prompt generation | `"Load image-prompt"` |
 | 🎵 [Song Creation](Feature/Song-Creation-System/) | Visual-to-musical storytelling — image to concept album with Suno-ready output | `"Load song-creation"` |
 | 🎮 [Interactive Story](Feature/Interactive-Story-System/) | Visual Novel RPG — duo/solo, OP/balanced, 7 world types, cinematic combat | `"Load interactive-story"` |
 | 👁️ [Mulahazah](Feature/Mulahazah-System/) | Instinct-based behavioral learning — passive hook observation + persistent rules | `npx continuous-improvement install` |
+| 🔋 [Token Guard System](Feature/Token-Guard-System/) | Compact mode, smart tool rules, session checkpoints — prevents context overflow | `"Load token-guard"` |
+| ⚖️ [Discipline System](Feature/Discipline-System/) | 7 laws behavioral standard — red flag detection, pre-done self-check | `"Load discipline"` |
+| 📈 [Continuous Improvement System](Feature/Continuous-Improvement-System/) | Session reflection + instinct building from observed patterns | `"Load continuous-improvement"` |
+| 💭 [Dream Ideas System](Feature/Dream-Ideas-System/) | Workspace-aware creative ideation — 3–5 tailored ideas on demand | `"Load dream-ideas"` |
+| 🌿 [Break Reminder System](Feature/Break-Reminder-System/) | Wellness reminders with session duration probe and auto-nudge | `"Load break-reminder"` |
+| 💾 [Save Memory System](Feature/Save-Memory-System/) | Persistent memory — command save, auto-detect, staleness audit | `"Load save-memory"` |
+| 🔍 [DIBA Recall System](Feature/DIBA-Recall-System/) | On-demand workspace recall — project registry + session state + reminders | `"Load diba-recall"` |
 
 > Each feature has a detailed README inside its folder. Click the feature name to learn more.
 
@@ -356,13 +365,13 @@ Features are organized into **tiers** based on dependencies. Install Tier 1 firs
 | 2 | [logando-al](https://github.com/logando-al) | Session Briefing System, Post-Mortem System |
 | 3 | [SherlockianAsh](https://github.com/SherlockianAsh) | Observation System |
 | 4 | [naimkatiman](https://github.com/naimkatiman) | Mulahazah System |
-| 5 | [xdaxzurairi](https://github.com/xdaxzurairi) | Meeting System, Orchestration System, Auto-Worker System |
+| 5 | [xdaxzurairi](https://github.com/xdaxzurairi) | Meeting System, Orchestration System, Auto-Worker System, Code-Sharp System, Token Guard System, Discipline System, Continuous Improvement System, Security Audit System, Dream Ideas System, Break Reminder System, Save Memory System, DIBA Recall System |
 
 > Want to contribute? Fork the repo, create a feature in `Feature/[Your-Feature]/`, and submit a PR!
 
 ---
 
-**Version**: 4.5 - Added Auto-Worker System (Tier 4)
+**Version**: 5.0 - Added 9 new features by xdaxzurairi (Tier 3 & 4)
 **Created by**: Kiyoraka Ken & Alice
 **License**: Open Source Community Project
 **Last Updated**: May 14, 2026
