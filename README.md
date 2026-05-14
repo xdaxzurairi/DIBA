@@ -355,7 +355,7 @@ Features are organized into **tiers** based on dependencies. Install Tier 1 firs
 | 2 | [logando-al](https://github.com/logando-al) | Session Briefing System, Post-Mortem System |
 | 3 | [SherlockianAsh](https://github.com/SherlockianAsh) | Observation System |
 | 4 | [naimkatiman](https://github.com/naimkatiman) | Mulahazah System |
-| 5 | [nnkmz](https://github.com/nnkmz) | Meeting System, Orchestration System |
+| 5 | [xdaxzurairi](https://github.com/xdaxzurairi) | Meeting System, Orchestration System |
 
 > Want to contribute? Fork the repo, create a feature in `Feature/[Your-Feature]/`, and submit a PR!
 
