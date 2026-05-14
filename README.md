@@ -325,6 +325,7 @@ Features are organized into **tiers** based on dependencies. Install Tier 1 firs
 | 🔒 [Auto-Commit](Feature/Auto-Commit-System/) | Structured git commits with session context and vigilant mode | `"Load auto-commit"` |
 | 📋 [Work Plan Execution](Feature/Work-Plan-Execution/) | Plan-to-execution tracking with per-task commits — *best with Auto-Commit* | `"Load work-plan"` |
 | 📚 [Library](Feature/Library-System/) | Reusable knowledge library with 8 format templates — *best with Auto-Commit* | `"Load library"` |
+| 🗓️ [Meeting System](Feature/Meeting-System/) | Virtual team meetings with role-based agents, chair summary, and auto-saved minutes — *enhanced by Decision-Log + LRU + Reminders* | `"Load meeting"` |
 
 ---
 
@@ -353,15 +354,16 @@ Features are organized into **tiers** based on dependencies. Install Tier 1 firs
 | 2 | [logando-al](https://github.com/logando-al) | Session Briefing System, Post-Mortem System |
 | 3 | [SherlockianAsh](https://github.com/SherlockianAsh) | Observation System |
 | 4 | [naimkatiman](https://github.com/naimkatiman) | Mulahazah System |
+| 5 | [nnkmz](https://github.com/nnkmz) | Meeting System |
 
 > Want to contribute? Fork the repo, create a feature in `Feature/[Your-Feature]/`, and submit a PR!
 
 ---
 
-**Version**: 4.2 - Compact feature tables with contributor credits
+**Version**: 4.3 - Added Meeting System (Tier 3)
 **Created by**: Kiyoraka Ken & Alice
 **License**: Open Source Community Project
-**Last Updated**: April 8, 2026
+**Last Updated**: May 14, 2026
 **Purpose**: Simple, effective AI memory for everyone
 
 *Transform basic AI conversations into meaningful, growing relationships*
