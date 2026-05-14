@@ -334,6 +334,7 @@ Features are organized into **tiers** based on dependencies. Install Tier 1 firs
 | Feature | Description | Setup |
 |---------|-------------|-------|
 | 🎯 [Orchestration System](Feature/Orchestration-System/) | Multi-step workflow coordination — classifies tasks, delegates smartly, synthesizes grounded results — *enhanced by Decision-Log + LRU + Work-Plan* | `"Load orchestrate"` |
+| 🤖 [Auto-Worker System](Feature/Auto-Worker-System/) | Silent delegation — parses goals, decomposes subtasks, dispatches workers, self-resolves blockers, reports in ≤ 8 lines — *enhanced by Orchestration + Decision-Log* | `"Load auto-worker"` |
 | 🔨 [Forge Self-Improvement](Feature/Forge-Self-Improvement-System/) | AI creates new skills through pattern detection (human-in-the-loop) | `"Load forge"` |
 | 📋 [Session Briefing](Feature/Session-Briefing-System/) | Auto-delivers context brief at session start — *enhanced by Time-Aware + LRU + Reminders* | `"Load session-briefing"` |
 | 🔥 [Post-Mortem](Feature/Post-Mortem-System/) | Failure learning log — auto-detects mistakes, records prevention actions | `"Load post-mortem"` |
@@ -355,13 +356,13 @@ Features are organized into **tiers** based on dependencies. Install Tier 1 firs
 | 2 | [logando-al](https://github.com/logando-al) | Session Briefing System, Post-Mortem System |
 | 3 | [SherlockianAsh](https://github.com/SherlockianAsh) | Observation System |
 | 4 | [naimkatiman](https://github.com/naimkatiman) | Mulahazah System |
-| 5 | [xdaxzurairi](https://github.com/xdaxzurairi) | Meeting System, Orchestration System |
+| 5 | [xdaxzurairi](https://github.com/xdaxzurairi) | Meeting System, Orchestration System, Auto-Worker System |
 
 > Want to contribute? Fork the repo, create a feature in `Feature/[Your-Feature]/`, and submit a PR!
 
 ---
 
-**Version**: 4.4 - Added Orchestration System (Tier 4)
+**Version**: 4.5 - Added Auto-Worker System (Tier 4)
 **Created by**: Kiyoraka Ken & Alice
 **License**: Open Source Community Project
 **Last Updated**: May 14, 2026
