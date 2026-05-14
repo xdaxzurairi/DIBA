@@ -352,6 +352,7 @@ Features are organized into **tiers** based on dependencies. Install Tier 1 firs
 | 🌿 [Break Reminder System](Feature/Break-Reminder-System/) | Wellness reminders with session duration probe and auto-nudge | `"Load break-reminder"` |
 | 💾 [Save Memory System](Feature/Save-Memory-System/) | Persistent memory — command save, auto-detect, staleness audit | `"Load save-memory"` |
 | 🔍 [DIBA Recall System](Feature/DIBA-Recall-System/) | On-demand workspace recall — project registry + session state + reminders | `"Load diba-recall"` |
+| 📊 [Dashboard System](Feature/Dashboard-System/) | Visual instinct health panel — observation counts, confidence bars, stale flags, action signals — *requires Continuous Improvement* | `"Load dashboard"` |
 
 > Each feature has a detailed README inside its folder. Click the feature name to learn more.
 
@@ -365,13 +366,13 @@ Features are organized into **tiers** based on dependencies. Install Tier 1 firs
 | 2 | [logando-al](https://github.com/logando-al) | Session Briefing System, Post-Mortem System |
 | 3 | [SherlockianAsh](https://github.com/SherlockianAsh) | Observation System |
 | 4 | [naimkatiman](https://github.com/naimkatiman) | Mulahazah System |
-| 5 | [xdaxzurairi](https://github.com/xdaxzurairi) | Meeting System, Orchestration System, Auto-Worker System, Code-Sharp System, Token Guard System, Discipline System, Continuous Improvement System, Security Audit System, Dream Ideas System, Break Reminder System, Save Memory System, DIBA Recall System |
+| 5 | [xdaxzurairi](https://github.com/xdaxzurairi) | Meeting System, Orchestration System, Auto-Worker System, Code-Sharp System, Token Guard System, Discipline System, Continuous Improvement System, Security Audit System, Dream Ideas System, Break Reminder System, Save Memory System, DIBA Recall System, Dashboard System |
 
 > Want to contribute? Fork the repo, create a feature in `Feature/[Your-Feature]/`, and submit a PR!
 
 ---
 
-**Version**: 5.0 - Added 9 new features by xdaxzurairi (Tier 3 & 4)
+**Version**: 5.1 - Added Dashboard System by xdaxzurairi (Tier 4)
 **Created by**: Kiyoraka Ken & Alice
 **License**: Open Source Community Project
 **Last Updated**: May 14, 2026
