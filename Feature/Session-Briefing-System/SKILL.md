@@ -21,7 +21,14 @@ Fires automatically at the start of every new conversation session, before proce
 2. Read `main/reminders.md` — count open items (skip section if none)
 3. Read project list — identify active project + 🔴/🟡 health flags (if LRU System installed)
 4. Check current time — determine time period (if Time-based-Aware System installed)
-5. Compose and deliver brief (max 12 lines) before responding to user
+5. Read `diba-hub/data/inbox.json` — surface queued tasks if present; ask user which to tackle first (Lv.4)
+6. Compose and deliver brief (max 12 lines) before responding to user
+
+## Ownership Boundaries (Lv.4)
+- `session-briefing` owns the automatic startup brief
+- `diba-recall` handles on-demand or deep workspace recall only
+- `check-reminders` handles reminder-specific operations only
+- `session-briefing` does not orchestrate inbox tasks — surfaces them and asks user to pick
 
 ## Output Rules
 - Maximum 12 lines total
@@ -38,3 +45,4 @@ Fires automatically at the start of every new conversation session, before proce
 - **Lv.1** — Base: session recap + time suggestion
 - **Lv.2** — Reminders integration (requires Reminders-System)
 - **Lv.3** — Project health flags (requires LRU-Project-Management-System)
+- **Lv.4** — Inbox integration: reads `diba-hub/data/inbox.json` and surfaces queued tasks in brief — asks user which to tackle first. Ownership boundaries clarified: session-briefing owns startup brief, diba-recall owns on-demand recall, check-reminders owns reminder operations. (Origin: XDIBAX operator workflow, xdaxzurairi)
