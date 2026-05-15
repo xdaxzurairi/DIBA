@@ -12,6 +12,25 @@ Three steps run in sequence after significant work:
 2. **Analyze Observations** — reads the observations log; detects patterns across 20+ observations and creates/updates instinct files
 3. **Show Status** — displays all instincts for the current project and globally with confidence levels
 
+### Bootstrap Rule
+
+Jika observations sudah banyak tetapi project masih tiada instinct `*.yaml`, DIBA boleh bootstrap starter set yang konservatif untuk menghidupkan learning layer. Starter set yang dibenarkan:
+
+- `orchestrate-objective-owner-action`
+- `preserve-session-context`
+- `triage-highest-value-first`
+- `close-follow-ups-explicitly`
+- `log-non-obvious-decisions`
+- `verify-before-reporting`
+- `prefer-batched-tooling`
+- `record-bottleneck-and-next-step`
+
+Guardrails bootstrap:
+- gunakan schema sedia ada sahaja: `id`, `domain`, `description`, `confidence`, `observations`, `rule`, `created`, `updated`
+- mulakan confidence dalam julat `0.62-0.69`
+- jangan cipta instinct global secara default untuk bootstrap ini
+- jika repo ada `instinct-packs/`, anggap `orchestration-core`, `execution-discipline`, dan `memory-ops` sebagai reusable pack baseline
+
 ---
 
 ## Instinct Confidence Levels

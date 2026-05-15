@@ -38,6 +38,20 @@ For each instinct, extract: id, domain, confidence, last updated.
 ### Step 4 — Check Instinct Packs
 Check `instinct-packs/` for any available packs not yet loaded.
 
+### Bootstrap Defaults
+
+- Jika project sudah ada observations yang tinggi tetapi instinct layer kosong, anggap bootstrap starter set berikut sebagai baseline yang valid untuk DIBA:
+  - orchestration
+  - memory retention
+  - prioritization
+  - follow-up closure
+  - decision logging
+  - verification discipline
+  - batched tooling
+  - bottleneck recording
+- Confidence bootstrap default patut kekal dalam julat `0.62-0.69` supaya dashboard memaparkan signal **suggest** tanpa auto-apply palsu.
+- Jika `instinct-packs/` wujud, utamakan paparan pack families `orchestration-core`, `execution-discipline`, dan `memory-ops` sebelum pack lain.
+
 ### Step 5 — Render Dashboard
 
 ```
@@ -78,6 +92,7 @@ After displaying dashboard:
 - If stale instincts > 0 → suggest reviewing them
 - If unprocessed observations > 20 → suggest running `/continuous-improvement`
 - If no instincts exist → explain auto-leveling timeline (20+ observations needed)
+- If bootstrap instincts exist → call out the top IDs explicitly so user nampak capability yang sedang aktif
 - If instinct packs available → list packs not yet loaded
 
 ## Level Thresholds

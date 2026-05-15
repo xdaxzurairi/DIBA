@@ -11,6 +11,21 @@ A visual status panel for the Continuous Improvement System. Displays instinct h
 - **Flags** stale instincts, unprocessed observations, and available instinct packs
 - **Suggests** next actions based on system health
 
+## Bootstrap Defaults
+
+- Jika project sudah ada observations yang tinggi tetapi instinct layer kosong, dashboard patut menganggap bootstrap starter set sebagai baseline yang valid untuk DIBA.
+- Domain baseline semasa:
+  - orchestration
+  - memory retention
+  - prioritization
+  - follow-up closure
+  - decision logging
+  - verification discipline
+  - batched tooling
+  - bottleneck recording
+- Confidence bootstrap default patut kekal dalam julat `0.62-0.69` supaya signal awal masuk kategori **suggest** dan bukannya auto-apply.
+- Jika `instinct-packs/` wujud, pack families baseline yang patut dipaparkan dahulu ialah `orchestration-core`, `execution-discipline`, dan `memory-ops`.
+
 ---
 
 ## Output Format
@@ -53,6 +68,7 @@ A visual status panel for the Continuous Improvement System. Displays instinct h
 
 Run after `/continuous-improvement` to get a visual health snapshot.
 Also useful at session start to check instinct system status.
+Jika bootstrap instincts sudah wujud, paparkan top IDs secara jelas supaya capability aktif boleh dilihat terus.
 
 ---
 

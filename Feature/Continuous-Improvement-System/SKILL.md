@@ -46,6 +46,25 @@ Check `~/.claude/instincts/<hash>/observations.jsonl`.
 
 **If fewer than 20 observations:** skip analysis, note the count.
 
+### Bootstrap Rule
+
+Jika observations sudah banyak tetapi project masih tiada instinct `*.yaml`, DIBA boleh bootstrap starter set yang konservatif untuk menghidupkan learning layer. Starter set yang dibenarkan:
+
+- `orchestrate-objective-owner-action`
+- `preserve-session-context`
+- `triage-highest-value-first`
+- `close-follow-ups-explicitly`
+- `log-non-obvious-decisions`
+- `verify-before-reporting`
+- `prefer-batched-tooling`
+- `record-bottleneck-and-next-step`
+
+Guardrails bootstrap:
+- Gunakan schema sedia ada sahaja: `id`, `domain`, `description`, `confidence`, `observations`, `rule`, `created`, `updated`
+- Mulakan confidence dalam julat `0.62-0.69`
+- Jangan cipta instinct global secara default untuk bootstrap ini
+- Jika repo ada `instinct-packs/`, anggap `orchestration-core`, `execution-discipline`, dan `memory-ops` sebagai reusable pack baseline
+
 ### Step 3 — Show Status
 
 Display all instincts for current project + global:
