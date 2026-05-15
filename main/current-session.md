@@ -3,6 +3,11 @@ Keputusan: Dashboard System ditulis dalam format Kiyo dan di-push (v5.1). Resear
 Fail terakhir diubah: DIBA/Feature/Dashboard-System/, DIBA/README.md, daily-diary/current/2026-05-14.md
 Follow-up terbuka: Bila repo terindeks, pertimbangkan submit ke awesome-claude-skills untuk promote 4 skill unik.
 
+Topik: ruangniaga — Design sistem cabutan tapak konvo (2026-05-14)
+Keputusan: Workflow 7 fasa dikunci. Schema final 3 table (+31 columns baru). Flowchart Mermaid siap di docs/. Tunggu folder upload path sebelum SQL migration ditulis.
+Fail terakhir diubah: daily-diary/current/2026-05-14.md, docs/FLOWCHART_CABUTAN_TAPAK_KONVO.md, projects/project-list.md
+Follow-up terbuka: Tunggu folder upload dari abam → tulis SQL migration → implementation borang + backend
+
 Topik: Pelaksanaan segera agenda meeting staffing XDIBAX Innovation (2026-05-11 09:50)
 Keputusan: Chief of Staff / Integrator didahulukan sebagai staf paling bernilai untuk ditambah. Product / User Insight Lead dijadikan fasa kedua dan Automation / Workflow Architect fasa ketiga. DIBA memegang fungsi integrator sementara dengan model operasi `objective -> owner -> action -> follow-up`.
 Fail terakhir diubah: C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/projects/meetings/2026-05-11-meeting.md, C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/main/decisions.md, C:/Users/BSM/XDIBAX/daily-diary/current/2026-05-11.md
