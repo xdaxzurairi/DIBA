@@ -11,200 +11,164 @@ description: "MUST use when user says 'survey project', 'scan project', 'check h
 ---
 
 # Observation System — Tiered Code Awareness
-*"See clearly before you act. Act only on what you see."*
+*"Lihat dengan jelas sebelum bertindak. Bertindak hanya atas apa yang dilihat."*
 
 ## Activation
 
-Four commands, each at a different depth:
+Empat commands, setiap satu pada kedalaman berbeza:
 
-| Command | Activation Message | Time |
+| Command | Activation Message | Masa |
 |---------|-------------------|------|
-| **Survey** | `"Scanning project from above..."` | ~30 sec |
+| **Survey** | `"Scanning project from above..."` | ~30 saat |
 | **Investigate** | `"Focusing on [target]..."` | ~5 min |
 | **Refine** | `"Reviewing changed code..."` | ~5 min |
 | **Audit** | `"Revealing all connections..."` | ~15 min |
 
-Then execute the matching protocol below.
+Then immediately execute the matching protocol.
+
+---
 
 ## Context Guard
 
 | Context | Status |
 |---------|--------|
-| **User says "survey", "scan", "check health", "project status"** | ACTIVE — run Survey |
-| **User says "investigate", "deep dive", "look into", "what's going on"** | ACTIVE — run Investigate |
-| **User says "refine", "clean up", "review changes", "check my code"** | ACTIVE — run Refine |
-| **User says "audit", "full audit", "show me everything"** | ACTIVE — run Audit |
-| **Before planning a large feature** | ACTIVE — Survey first |
-| **After implementation, before commit** | ACTIVE — Refine (code was written) |
-| **Bug report or error investigation** | ACTIVE — Investigate (bug mode) |
-| **Casual conversation, no project context** | DORMANT — no observation |
-| **Non-code tasks, research, documentation** | DORMANT — no code to observe |
+| **Abam kata "survey", "scan", "check health", "project status"** | ACTIVE — run Survey |
+| **Abam kata "investigate", "deep dive", "look into", "what's going on"** | ACTIVE — run Investigate |
+| **Abam kata "refine", "clean up", "review changes", "check my code"** | ACTIVE — run Refine |
+| **Abam kata "audit", "full audit", "show me everything"** | ACTIVE — run Audit |
+| **Sebelum plan feature besar** | ACTIVE — Survey dahulu |
+| **Selepas implementation, sebelum commit** | ACTIVE — Refine (kod ditulis) |
+| **Bug report atau error investigation** | ACTIVE — Investigate (bug mode) |
+| **Perbualan biasa, tiada project context** | DORMANT — tiada observation |
+| **Task non-code: research, documentation** | DORMANT — tiada kod untuk diobserve |
+| **Project belum wujud atau tiada kod langsung** | EXIT — report "tiada kod untuk diobserve" |
+
+---
 
 ## Protocol
 
 ### Step 1: Determine Command
+- [ ] Parse request Abam dan dispatch ke depth level yang sesuai:
 
-Parse the user's request and dispatch to the matching depth level:
-
-| Depth | Command | Question It Answers | Time |
-|-------|---------|-------------------|------|
-| **Lv.1** | Survey | "What's the state of the project?" | ~30 sec |
-| **Lv.2** | Investigate | "What's happening in this specific area?" | ~5 min |
-| **Lv.2** | Refine | "What can be improved in changed code?" | ~5 min |
-| **Lv.3** | Audit | "Show me everything about this system." | ~15 min |
+| Depth | Command | Soalan Dijawab | Masa |
+|-------|---------|----------------|------|
+| **Lv.1** | Survey | "Apa keadaan project?" | ~30 saat |
+| **Lv.2** | Investigate | "Apa yang berlaku di kawasan spesifik ini?" | ~5 min |
+| **Lv.2** | Refine | "Apa yang boleh diperbaiki dalam kod yang diubah?" | ~5 min |
+| **Lv.3** | Audit | "Tunjukkan semua tentang sistem ini." | ~15 min |
 
 ### Step 2: Execute Tier Protocol
-
-Follow the detailed protocol for the selected command (see sections below).
+- [ ] Ikut protokol terperinci untuk command yang dipilih (lihat bahagian bawah)
 
 ### Step 3: Suggest Escalation
+- [ ] Selepas selesai sebarang tier, cadang depth seterusnya jika findings memerlukan:
 
-After completing any tier, suggest the next appropriate depth if findings warrant it (see Escalation Paths).
+```
+Survey kesan problem area    → Investigate kawasan tersebut
+Investigate jumpa isu mendalam → Audit sistem penuh
+Survey/Investigate/Audit     → Refine kod spesifik
+Refine jumpa isu sistemik    → Audit sistem penuh
+```
 
 ---
 
 ## Depth Levels
 
-Four commands at three depth levels. Survey/Investigate/Audit are **investigative** (observe and report). Refine is **corrective** (observe and fix).
+### Lv.1: Survey
+*Quick bird's-eye view — struktur, tech stack, health, aktiviti terbaru.*
 
-### When to Use Which
+#### Arguments
+| Argument | Action | Contoh |
+|----------|--------|--------|
+| `<project>` | Scan projek spesifik | `survey tariqms` |
+| *(tiada)* | Scan working directory semasa | `survey` |
+| `all` | Overview SEMUA projek aktif | `survey all` |
 
-| Situation | Tier |
-|-----------|------|
-| "How's the project looking?" | Survey |
-| "What's going on in this area?" | Investigate |
-| "Clean up what I just wrote" | Refine |
-| "Audit the entire system" | Audit |
-| Before designing a feature | Survey → then plan |
-| After coding, before commit | Refine |
-| Tracking down a bug | Investigate (bug mode) |
-| Quarterly health check | Audit |
+#### Step 1: Dependency Scan
+- [ ] Frontend: Baca package manifest (`package.json`, `pubspec.yaml`, dll.) — UI library, framework, test runner
+- [ ] Frontend: Scan component directories — semak wrappers custom yang override standard behavior
+- [ ] Backend: Baca project file (`.csproj`, `pom.xml`, `go.mod`, `Cargo.toml`, dll.) — dependencies, framework version
+- [ ] Skip jika project type tidak applicable (backend-only atau frontend-only)
 
-### Escalation Paths
+#### Step 2: Structure Scan
+- [ ] Count files mengikut jenis (backend, frontend, test, config)
+- [ ] Kenal pasti architecture pattern (Clean Architecture, N-Tier, monolith, dll.)
+- [ ] Nota project organization (monorepo, multi-project, single app)
 
-```
-Survey spots problem area    → Investigate that area
-Investigate finds deep issue → Audit the full system
-Survey/Investigate/Audit     → Refine specific code
-Refine finds systemic issue  → Audit the full system
-```
-
----
-
-## Lv.1: Survey
-
-Quick bird's-eye view of a project — structure, tech stack, health, and recent activity.
-
-### Arguments
-
-| Argument | Action | Example |
-|----------|--------|---------|
-| `<project>` | Scan specific project | `survey tariqms` |
-| *(none)* | Scan current working directory | `survey` |
-| `all` | Overview of ALL active projects | `survey all` |
-
-### Step 1: Dependency Scan
-
-Adapt to the project's actual stack:
-- [ ] Frontend: Read package manifest (`package.json`, `pubspec.yaml`, etc.) — UI library, framework, test runner
-- [ ] Frontend: Scan component directories — check for custom wrappers that override standard behavior
-- [ ] Backend: Read project file (`.csproj`, `pom.xml`, `go.mod`, `Cargo.toml`, etc.) — dependencies, framework version
-- [ ] Skip if project type doesn't apply (backend-only, frontend-only)
-
-### Step 2: Structure Scan
-
-- [ ] Count files by type (backend, frontend, test, config)
-- [ ] Identify architecture pattern (Clean Architecture, N-Tier, monolith, etc.)
-- [ ] Note project organization (monorepo, multi-project, single app)
-
-### Step 3: Tech Stack Detection
-
-Detect from project files:
+#### Step 3: Tech Stack Detection
 - [ ] `.csproj` → .NET version, target framework
 - [ ] `package.json` → Frontend framework, key dependencies
-- [ ] Database provider (from config or ORM setup)
-- [ ] CI/CD pipeline (`.github/workflows/`, `Jenkinsfile`, etc.)
+- [ ] Database provider (dari config atau ORM setup)
+- [ ] CI/CD pipeline (`.github/workflows/`, `Jenkinsfile`, dll.)
 - [ ] Container setup (`docker-compose.yml`, `Dockerfile`)
 
-### Step 4: Health Check
-
-- [ ] Build status — any errors? (`dotnet build` / `npm run build`)
+#### Step 4: Health Check
+- [ ] Build status — ada errors? (`dotnet build` / `npm run build`)
 - [ ] Git status — uncommitted changes? (`git status --short`)
 - [ ] Branch status — ahead/behind remote?
-- [ ] Last commit date — how stale?
+- [ ] Last commit date — berapa lama?
 - [ ] TODO/FIXME/HACK count — outstanding markers
 
-### Step 5: Recent Activity
+#### Step 5: Recent Activity
+- [ ] Tunjuk 5 commits terakhir (`git log --oneline -5`)
+- [ ] Nota active branch dan sebarang open work
 
-- [ ] Show last 5 commits (`git log --oneline -5`)
-- [ ] Note active branch and any open work
+#### Step 6: Domain Lesson Check
+- [ ] Scan post-mortem records untuk entries matching domain projek ini (jika Post-Mortem System dipasang)
+- [ ] Tunjuk maksimum 3 lessons paling relevan
+- [ ] Kalau jenis failure yang sama muncul 2+ kali: flag sebagai recurring
+- [ ] Skip section ini sepenuhnya jika tiada matches atau Post-Mortem System tidak dipasang
 
-### Step 6: Domain Lesson Check
-
-Cross-reference project against past incidents (if Post-Mortem System is installed):
-- [ ] Scan post-mortem records for entries matching this project's domain
-- [ ] Show max 3 most relevant lessons
-- [ ] If same failure type appears 2+ times: flag as recurring
-- [ ] Skip section entirely if no matches found
-
-### Survey Output Format
-
+#### Survey Output Format
 ```
-Survey: [PROJECT NAME]
+Survey: [NAMA PROJECT]
 
-Structure: [X] backend | [Y] frontend | [Z] tests
-Stack:     [.NET X] + [Framework] + [DB]
-Health:    [Build status] | [Git status] | [Last commit]
-Recent:    [Last 3-5 commits, one line each]
-Lessons:   [N relevant past incidents] (if any)
+Struktur: [X] backend | [Y] frontend | [Z] tests
+Stack:    [.NET X] + [Framework] + [DB]
+Health:   [Build status] | [Git status] | [Last commit]
+Recent:   [3-5 commits terakhir, satu baris setiap satu]
+Lessons:  [N incident lalu yang relevan] (jika ada)
 
-Deeper analysis? → investigate <area>
-Full audit?      → audit
+Analisis lebih dalam? → investigate <kawasan>
+Audit penuh?          → audit
 ```
 
-Keep it compact — the whole output should fit on one screen.
+Kekalkan compact — semua output sepatutnya muat dalam satu skrin.
 
-### Survey All
-
-When `all` is specified, scan all active projects and show a summary table:
-
+#### Survey All
 ```
-Survey: All Active Projects
+Survey: Semua Projek Aktif
 
-#1 ProjectA  — .NET 10 + Nuxt 3  | Clean     | 2 days ago
-#2 ProjectB  — .NET 9 + React 19 | 3 dirty   | 3 days ago
-#3 ProjectC  — Next.js 15        | Clean     | 2 weeks ago
+#1 ProjectA  — .NET 10 + Nuxt 3  | Clean     | 2 hari lepas
+#2 ProjectB  — .NET 9 + React 19 | 3 dirty   | 3 hari lepas
+#3 ProjectC  — Next.js 15        | Clean     | 2 minggu lepas
 ```
 
 ---
 
-## Lv.2: Investigate
+### Lv.2: Investigate
+*Focused investigation kawasan spesifik — trace bugs, reveal hidden patterns, analyze code flow.*
 
-Focused investigation of a specific area — trace bugs, reveal hidden patterns, analyze code flow.
-
-### Arguments
-
-| Argument | Action | Example |
-|----------|--------|---------|
-| `<file path>` | Analyze specific file | `investigate src/services/AuthService.cs` |
-| `<topic>` | Investigate topic across project | `investigate authentication` |
+#### Arguments
+| Argument | Action | Contoh |
+|----------|--------|--------|
+| `<file path>` | Analyze fail spesifik | `investigate src/services/AuthService.cs` |
+| `<topic>` | Investigate topik merentas projek | `investigate authentication` |
 | `bug <description>` | Bug investigation mode | `investigate bug search not working` |
 | `review <file>` | Code review mode | `investigate review PaymentService.cs` |
 
-### Step 1: Dependency Scan
+#### Step 1: Dependency Scan
+- [ ] Frontend: Package manifest + custom component wrappers (baca actual type definitions)
+- [ ] Backend: Project file + dependency injection/service registrations (contoh: `Program.cs`, `app.module.ts`)
+- [ ] JANGAN assume standard library behavior — verify terhadap actual source
 
-- [ ] Frontend: Package manifest + custom component wrappers (read actual type definitions)
-- [ ] Backend: Project file + dependency injection/service registrations (e.g., `Program.cs`, `app.module.ts`, `main.go`)
-- [ ] Never assume standard library behavior — verify against actual source
-
-### Mode A: File Analysis
-
-- [ ] Read the target file completely
-- [ ] Map dependencies (what it imports/uses)
-- [ ] Map dependents (what uses this file — grep for references)
-- [ ] Check pattern compliance with project conventions
-- [ ] Identify issues: bugs, code smells, deviations
-- [ ] Report connections to larger architecture
+#### Mode A: File Analysis
+- [ ] Baca fail target sepenuhnya
+- [ ] Map dependencies (apa yang ia import/gunakan)
+- [ ] Map dependents (apa yang guna fail ini — grep untuk references)
+- [ ] Semak pattern compliance dengan project conventions
+- [ ] Kenal pasti isu: bugs, code smells, deviations
+- [ ] Report connections ke architecture yang lebih besar
 
 ```
 Investigate: AuthService.cs
@@ -214,438 +178,292 @@ Dependencies: IUserRepository, IJwtService, IRefreshTokenRepository
 Used by:      AuthController.cs, MiddlewareExtensions.cs
 
 Findings:
-  1. Token expiry hardcoded (line 47) — should be from config
-  2. No rate limiting on login attempts
-  3. RefreshToken rotation working correctly
+  1. Token expiry hardcoded (line 47) — patut dari config
+  2. Tiada rate limiting pada login attempts
+  3. RefreshToken rotation berfungsi dengan betul
 
 Hidden Pattern:
-  Logout doesn't invalidate ALL refresh tokens for a user —
-  only the current one. Multi-device login leaves stale tokens.
+  Logout tidak invalidate SEMUA refresh tokens untuk user —
+  hanya yang semasa. Multi-device login meninggalkan stale tokens.
 
-Related library entries: [jwt-refresh-token-pattern] (if Library System installed)
+Related library entries: [jwt-refresh-token-pattern] (jika Library System dipasang)
 ```
 
-### Mode B: Topic Investigation
+#### Mode B: Topic Investigation
+- [ ] Search merentas semua project files untuk terms yang berkaitan
+- [ ] Map semua files yang menyentuh topik ini
+- [ ] Trace data/logic flow end-to-end
+- [ ] Report hidden patterns dan undocumented behavior
 
-- [ ] Search across all project files for related terms
-- [ ] Map all files touching this topic
-- [ ] Trace data/logic flow end-to-end:
+#### Mode C: Bug Investigation
+- [ ] Parse symptom — apa yang gagal, bila, di mana?
+- [ ] Trace backwards dari symptom ke root cause
+- [ ] Berikan fix options dengan recommendation
 
-```
-Entry Point → Controller → Service → Repository → Database
-     |             |           |           |           |
-  [Route]    [Validation]   [Logic]    [Query]     [Table]
-```
+#### Mode D: Code Review
+- [ ] Baca fail
+- [ ] Review checklist: conventions, error handling, hardcoded values, input validation, null safety, performance, test coverage
+- [ ] Score dan report findings
 
-- [ ] Report hidden patterns and undocumented behavior
-
-### Mode C: Bug Investigation
-
-- [ ] Parse symptom — what's failing, when, where?
-- [ ] Trace backwards from symptom to root cause:
-
-```
-Symptom: "[description]"
-    |
-UI: Component → handler function
-    |
-API: endpoint call
-    |
-Backend: Controller → Service → [where it breaks]
-    |
-ROOT CAUSE: [specific cause with file:line]
-```
-
-- [ ] Provide fix options with recommendation
-
-### Mode D: Code Review
-
-- [ ] Read the file
-- [ ] Review checklist:
-  - Follows project conventions (naming, structure)
-  - Error handling present and appropriate
-  - No hardcoded secrets or magic numbers
-  - Input validation at boundaries
-  - Null safety / defensive coding
-  - Performance considerations
-  - Test coverage exists
-- [ ] Score and report findings
-
-### Investigate Output Format
-
+#### Investigate Output Format
 ```
 Investigate: [target]
 
-Location:  [file path or topic scope]
-Files:     [N files touching this area]
+Location:  [file path atau topic scope]
+Files:     [N files yang menyentuh kawasan ini]
 
 Findings:
-  1. [Finding with file:line reference]
-  2. [Finding with file:line reference]
+  1. [Finding dengan file:line reference]
+  2. [Finding dengan file:line reference]
 
 Hidden Patterns:
-  [Non-obvious behavior or undocumented assumptions]
+  [Non-obvious behavior atau undocumented assumptions]
 
-Related: [library entries if Library System installed]
-Escalate: investigate <deeper area> | audit (if systemic)
+Related: [library entries jika Library System dipasang]
+Escalate: investigate <kawasan lebih dalam> | audit (jika sistemik)
 ```
 
 ---
 
-## Lv.2: Refine (Corrective)
+### Lv.2: Refine (Corrective)
+*Review kod yang diubah untuk reuse, quality, dan efficiency — kemudian betulkan apa yang ditemui.*
 
-Reviews changed code for reuse, quality, and efficiency — then fixes what it finds.
+**Perbezaan utama dari tiers lain**: Refine bukan sekadar observe — ia bertindak. Selepas bentangkan findings, ia betulkan isu dengan permission.
 
-**Key difference from other tiers**: Refine doesn't just observe — it acts. After presenting findings, it fixes issues with permission.
-
-### Arguments
-
-| Argument | Action | Example |
-|----------|--------|---------|
-| `<file>` | Review specific file | `refine src/services/SlaService.cs` |
+#### Arguments
+| Argument | Action | Contoh |
+|----------|--------|--------|
+| `<file>` | Review fail spesifik | `refine src/services/SlaService.cs` |
 | `<area>` | Review area/feature | `refine auth`, `refine dashboard` |
-| *(none)* | Review all changed files (git diff) | `refine` |
+| *(tiada)* | Review semua changed files (git diff) | `refine` |
 
-### Step 1: Dependency Scan
+#### Step 1: Dependency Scan
+- [ ] Frontend: Baca package manifest + scan custom component wrappers
+- [ ] Backend: Baca project file + semak DI/service registrations
+- [ ] JANGAN assume standard props — baca actual component type definitions
 
-- [ ] Frontend: Read package manifest + scan custom component wrappers
-- [ ] Backend: Read project file + check DI/service registrations
-- [ ] Never assume standard props — read actual component type definitions
-
-### Step 2: Identify Scope
-
+#### Step 2: Identify Scope
 | Target | Scope |
 |--------|-------|
-| No argument | `git diff --name-only` + `git diff --cached --name-only` — all changed files |
-| File path | That specific file |
-| Area keyword | Grep for related files, review the cluster |
+| Tiada argument | `git diff --name-only` + `git diff --cached --name-only` — semua changed files |
+| File path | Fail spesifik tersebut |
+| Area keyword | Grep untuk related files, review cluster |
 
 Skip: Generated files, migrations, lock files, `node_modules`, `bin/`, `obj/`
 
-### Step 3: Read & Understand
+#### Step 3: Read & Understand
+- [ ] Baca fail penuh — fahami context, bukan sekadar diff
+- [ ] Baca diff — fokus pada apa yang berubah
+- [ ] Kenal pasti intent — apa yang author cuba lakukan?
 
-For each file in scope:
-- [ ] Read the full file — understand context, not just the diff
-- [ ] Read the diff — focus on what changed
-- [ ] Identify intent — what is the author trying to do?
+**Rule**: Fahami intent sebelum nilai quality. JANGAN "fix" sesuatu yang intentional.
 
-**Rule**: Understand intent before judging quality. Never "fix" something that was intentional.
+#### Step 4: Analyse (The Refinement Checklist)
 
-### Step 4: Analyse (The Refinement Checklist)
-
-#### Code Quality
+**Code Quality:**
 - [ ] Dead code — unused variables, unreachable branches, commented-out blocks
-- [ ] Duplication — same logic repeated (extract if 3+ occurrences)
-- [ ] Naming — clear, consistent with project conventions
-- [ ] Complexity — can any nested logic be simplified?
+- [ ] Duplication — logik yang sama berulang (extract jika 3+ occurrences)
+- [ ] Naming — jelas, konsisten dengan project conventions
+- [ ] Complexity — bolehkah nested logic dipermudahkan?
 
-#### Reuse & Structure
-- [ ] Existing utilities — is there already a helper for this?
-- [ ] Abstraction level — too low (verbose) or too high (over-engineered)?
-- [ ] Single Responsibility — does each function/class do one thing?
+**Reuse & Structure:**
+- [ ] Existing utilities — adakah helper untuk ini sudah ada?
+- [ ] Abstraction level — terlalu rendah (verbose) atau terlalu tinggi (over-engineered)?
+- [ ] Single Responsibility — adakah setiap function/class buat satu perkara?
 
-#### Efficiency
-- [ ] Obvious N+1 queries or unnecessary loops
-- [ ] Missing early returns that would reduce nesting
-- [ ] Unnecessary allocations or copies
+**Efficiency:**
+- [ ] Obvious N+1 queries atau unnecessary loops
+- [ ] Missing early returns yang boleh kurangkan nesting
+- [ ] Unnecessary allocations atau copies
 
-#### Project Rules Compliance
-- [ ] Follows project coding rules (check CLAUDE.md or project conventions)
-- [ ] API contract respected (backend naming → frontend follows)
-- [ ] Date/time handling correct for the project's timezone strategy
+**Project Rules Compliance:**
+- [ ] Ikut project coding rules (semak CLAUDE.md atau project conventions)
+- [ ] API contract dihormati (backend naming → frontend follow)
+- [ ] Date/time handling betul untuk timezone strategy projek
 
-#### What NOT to Flag
-- Style preferences that don't affect correctness
-- Missing documentation on code that wasn't changed
-- Performance micro-optimizations that don't matter at scale
-- "Best practices" that add complexity without value
+**Apa yang TIDAK perlu diflag:**
+- Style preferences yang tidak affect correctness
+- Missing documentation pada kod yang tidak diubah
+- Performance micro-optimizations yang tidak penting pada skala
+- "Best practices" yang tambah complexity tanpa nilai
 
-### Step 5: Report Findings
-
+#### Step 5: Report Findings
 ```
 Refine: [scope]
 
 Reviewed: [N] files, [N] lines changed
 
 Found:
-  [N] issues to fix (dead code, bugs, N+1)
-  [N] suggestions (could improve, optional)
-  [N] files — clean, no action needed
+  [N] isu untuk fix (dead code, bugs, N+1)
+  [N] cadangan (boleh improved, optional)
+  [N] files — clean, tiada tindakan diperlukan
 
 Details:
   [file:line] — [category] — [description]
 ```
 
-### Step 6: Fix (With Permission)
-
-After presenting findings, **always ask the user before applying any fixes**:
-
-1. **Present findings** with the report format above
-2. **Ask user**: "Fix all? Fix critical only? Skip?"
-3. **On approval** — apply the requested fixes
-4. **Verify** — run build after fixes to confirm nothing broke
-5. **Report** what was changed
-
-#### Fix Categories
+#### Step 6: Fix (With Permission)
+- [ ] Bentangkan findings dengan format di atas
+- [ ] Tanya Abam: "Fix semua? Fix critical sahaja? Skip?"
+- [ ] Selepas approval — apply fixes yang diminta
+- [ ] Verify — jalankan build selepas fixes untuk confirm tiada regression
+- [ ] Report apa yang diubah
 
 | Category | Behavior |
 |----------|----------|
-| Dead code, unused imports | Safe to fix — no behavior change. Still ask first. |
-| Obvious bugs | Always ask — explain the bug and proposed fix |
-| Simplification | Present as suggestion — user decides |
-| Reuse opportunity | Present as suggestion — user decides |
+| Dead code, unused imports | Selamat untuk fix — tiada behavior change. Tetap tanya dahulu. |
+| Obvious bugs | Sentiasa tanya — terangkan bug dan proposed fix |
+| Simplification | Bentangkan sebagai cadangan — Abam yang decide |
+| Reuse opportunity | Bentangkan sebagai cadangan — Abam yang decide |
 
-**Rule**: Never auto-apply fixes without user approval. Present findings first, fix second.
+**Rule**: JANGAN auto-apply fixes tanpa approval Abam. Bentangkan findings dahulu, fix kemudian.
 
 ---
 
-## Lv.3: Audit
+### Lv.3: Audit
+*Full system audit — SEMUA connections, dependencies, data flows, dan consequences revealed.*
 
-Full system audit — ALL connections, dependencies, data flows, and their consequences revealed.
-
-### Arguments
-
-| Argument | Action | Example |
-|----------|--------|---------|
-| `<project>` | Full audit of specific project | `audit tariqms` |
-| *(none)* | Audit current project context | `audit` |
+#### Arguments
+| Argument | Action | Contoh |
+|----------|--------|--------|
+| `<project>` | Full audit projek spesifik | `audit tariqms` |
+| *(tiada)* | Audit current project context | `audit` |
 | `cross` | Cross-project analysis | `audit cross` |
 
-### Step 1: Dependency Scan (Full)
+#### Step 1: Dependency Scan (Full)
 
-#### Frontend
-- [ ] Read package manifest (`package.json`, etc.) — UI library, state management, build tool, test framework
-- [ ] Scan component directories — list all custom component wrappers
-- [ ] Read key custom components' type/interface definitions
-- [ ] Check compiler/bundler config (`tsconfig.json`, `vite.config.ts`, etc.) — path aliases, strictness
+**Frontend:**
+- [ ] Baca package manifest — UI library, state management, build tool, test framework
+- [ ] Scan component directories — senaraikan semua custom component wrappers
+- [ ] Baca key custom components' type/interface definitions
+- [ ] Semak compiler/bundler config — path aliases, strictness
 
-#### Backend
-- [ ] Read project file (`.csproj`, `pom.xml`, `go.mod`, etc.) — dependencies, target framework
-- [ ] Read entry point (`Program.cs`, `main.go`, `app.module.ts`, etc.) — DI registrations, middleware, auth scheme
-- [ ] Check for custom base classes, shared constants, conventions
+**Backend:**
+- [ ] Baca project file — dependencies, target framework
+- [ ] Baca entry point — DI registrations, middleware, auth scheme
+- [ ] Semak custom base classes, shared constants, conventions
 
-### Step 2: Load Full Context
+#### Step 2: Load Full Context
+- [ ] Baca project context files (jika session tracking dikonfigurasi)
+- [ ] Search library/knowledge base untuk entries berkaitan (jika Library System dipasang)
+- [ ] Semak session history terbaru dengan projek ini (jika diary/session system dikonfigurasi)
 
-- [ ] Read project context files (if session tracking is configured)
-- [ ] Search library/knowledge base for related entries (if Library System installed)
-- [ ] Check recent session history with this project (if diary/session system is configured)
+#### Step 3: Architecture Map
+- [ ] Baca keseluruhan project structure dan draw architecture diagram
+- [ ] Tunjukkan layers: Client → API → Application → Domain → Persistence → Database
 
-This is the only tier that loads FULL available context before analysis. Skip any context sources that are not configured.
-
-### Step 3: Architecture Map
-
-Read the entire project structure and draw an architecture diagram:
-
-```
-Audit: [PROJECT] — Full System Audit
-
-ARCHITECTURE MAP
-+-----------------------------------------------+
-|                    CLIENT                       |
-|  [Framework] + [UI Library] + TypeScript        |
-|  Pages -> State -> API calls                    |
-+------------------------+----------------------+
-                         | HTTP/HTTPS
-+------------------------v----------------------+
-|                 API LAYER                       |
-|  [Backend Framework]                            |
-|  Controllers -> Services                        |
-+-----------------------------------------------+
-|              APPLICATION LAYER                  |
-|  Services, DTOs, Interfaces                     |
-+-----------------------------------------------+
-|               DOMAIN LAYER                      |
-|  Entities, Enums, Value Objects                 |
-+-----------------------------------------------+
-|            PERSISTENCE LAYER                    |
-|  [ORM] + [Database]                             |
-+------------------------+----------------------+
-                         |
-              +----------v----------+
-              |    [Database]       |
-              +---------------------+
-```
-
-### Step 4: Dependency Analysis
-
-Map ALL dependencies — internal and external:
-
-- [ ] **Internal**: Controller → Service → Repository → Database chain for each major module
+#### Step 4: Dependency Analysis
+- [ ] **Internal**: Controller → Service → Repository → Database chain untuk setiap module utama
 - [ ] **External**: NuGet/npm packages (versions, outdated?), external APIs, infrastructure
-- [ ] **Implicit/Hidden**: Hardcoded values, data shape assumptions, cross-table relationships not enforced by FK, environment-specific behavior
+- [ ] **Implicit/Hidden**: Hardcoded values, data shape assumptions, cross-table relationships
 
-```
-DEPENDENCY MAP
+#### Step 5: Data Flow Audit
+- [ ] Untuk setiap feature utama, trace: Entry Point → Processing → Storage → Output
+- [ ] Kenal pasti data transformations di setiap langkah
+- [ ] Flag flows dengan missing validation atau authorization gaps
 
-Explicit (enforced):
-  EntityA -> EntityB (FK: entity_b_id)
-
-Implicit (NOT enforced):
-  ! Config dictionary hardcoded in Service — no migration
-  ! String comparison for role check — not constant/enum
-```
-
-### Step 5: Data Flow Audit
-
-Trace ALL data flows through the system:
-
-- [ ] For each major feature, trace: Entry Point → Processing → Storage → Output
-- [ ] Identify data transformations at each step
-- [ ] Flag any flows with missing validation or authorization gaps
-
-### Step 6: Risk Assessment
-
-Categorize findings by risk level:
-
+#### Step 6: Risk Assessment
 ```
 RISK ASSESSMENT
 
 HIGH:
-  - [Critical finding with impact]
+  - [Critical finding dengan impact]
 
 MEDIUM:
-  - [Notable finding, should address]
+  - [Notable finding, patut diaddress]
 
 LOW:
-  - [Minor, address when convenient]
+  - [Minor, address bila sesuai]
 ```
 
-### Step 7: Recommendations
-
-Based on full audit, provide prioritized actionable recommendations:
-
+#### Step 7: Recommendations
 ```
 RECOMMENDATIONS (prioritized)
 
-1. [HIGH] [Action item with clear rationale]
+1. [HIGH] [Action item dengan rationale yang jelas]
 2. [MED]  [Action item]
 3. [LOW]  [Action item]
 ```
 
-### Step 8: Knowledge Connections
-
-Link findings to existing library entries (if Library System installed):
-- [ ] Search library for entries related to audit findings
-- [ ] Suggest library entries to reference or create
-- [ ] Flag if audit reveals knowledge gaps worth documenting
-
-### Audit Cross — Cross-Project Analysis
-
-When `cross` is specified, analyze shared patterns across all active projects:
-
-```
-Audit: Cross-Project Analysis
-
-SHARED PATTERNS
-  Auth: JWT + Refresh Token — ProjectA, ProjectB, ProjectC
-  DB:   PostgreSQL — ProjectA, ProjectB
-  Arch: Clean Architecture — ProjectA, ProjectB
-
-DIVERGENCES
-  Frontend: Vue (A) vs React (B) vs Next.js (C)
-  Hosting:  Railway (A) vs IIS (B) vs Vercel (C)
-
-OPPORTUNITIES
-  - Auth pattern could be extracted to shared library
-  - Database patterns consistent across projects
-```
+#### Step 8: Knowledge Connections
+- [ ] Search library untuk entries berkaitan dengan audit findings (jika Library System dipasang)
+- [ ] Cadang library entries untuk dirujuk atau dicipta
+- [ ] Flag jika audit reveal knowledge gaps yang bernilai didokumentasi
 
 ---
 
 ## Shared: Dependency Scan Philosophy
 
-All tiers start with a dependency scan. This is deliberate — observation skills review code against patterns. Wrong pattern assumptions lead to wrong findings and broken builds.
+Semua tiers bermula dengan dependency scan. Ini adalah deliberate — observation skills review kod terhadap patterns. Wrong pattern assumptions membawa kepada wrong findings dan broken builds.
 
-**Rule**: Never assume standard library behavior. Custom wrappers may change prop signatures, method behavior, or DI lifetimes. Always verify against actual source before suggesting changes.
-
----
-
-## Cross-Feature Integration
-
-### Library System
-When the Library System is installed, observation tiers integrate with it:
-- **Survey**: Check library for domain-related entries
-- **Investigate**: Reference relevant library entries in findings
-- **Audit**: Link findings to library knowledge, suggest new entries for undocumented patterns
-- **Refine**: Check if existing utilities exist in library before suggesting new abstractions
-
-### Post-Mortem System
-When the Post-Mortem System is installed:
-- **Survey**: Cross-reference project against past post-mortem entries (domain lesson check)
-- **Investigate (bug mode)**: Check if similar bugs were documented before
-- **Audit**: Surface recurring failure patterns across post-mortems
-
-### Work-Plan Execution
-- **Survey** before planning → informed scope assessment
-- **Refine** after each work-plan task → quality gate before commit
-- **Audit** after major milestones → systemic health check
-
-### Auto-Commit System
-- **Refine** → fixes applied → auto-commit (if installed)
+**Rule**: JANGAN assume standard library behavior. Custom wrappers mungkin ubah prop signatures, method behavior, atau DI lifetimes. Sentiasa verify terhadap actual source sebelum cadang perubahan.
 
 ---
 
 ## Cost Awareness
 
-Not all tiers require the same computational effort. Matching tier to model saves cost without sacrificing quality.
-
 | Tier | Effort | Delegation Strategy | Rationale |
 |------|--------|-------------------|-----------|
-| **Survey** | Low | Can delegate to lighter model/agent | Mostly file scanning, git status — minimal reasoning needed |
-| **Investigate** | Medium | Primary AI recommended | Requires code comprehension, flow tracing, root cause analysis |
-| **Refine** | Medium | Primary AI recommended | Must understand intent before fixing — nuance matters |
-| **Audit** | High | Primary AI recommended | Deep reasoning, cross-system analysis, risk assessment, architectural judgment |
+| **Survey** | Rendah | Boleh delegate ke lighter model/agent | Kebanyakan file scanning, git status |
+| **Investigate** | Sederhana | Primary AI disyorkan | Code comprehension, flow tracing, root cause |
+| **Refine** | Sederhana | Primary AI disyorkan | Mesti faham intent sebelum fix — nuance penting |
+| **Audit** | Tinggi | Primary AI disyorkan | Deep reasoning, cross-system analysis, risk assessment |
 
-### Practical Guidelines
-
-- **Survey** can run as a background agent or lighter model — it's mostly file scanning and git commands
-- **Investigate** and **Refine** benefit from the primary AI's reasoning — pattern matching, intent understanding, and judgment calls
-- **Audit** is the most expensive tier — reserve for milestone reviews, not daily checks
-- **Survey is cheap to run often** — low cost and catches problems early. Consider running before every planning session.
-- **Refine before every commit** — medium cost but prevents expensive bugs from shipping
-
-### Cost-Saving Pattern
-
+**Pattern jimat kos:**
 ```
-Daily workflow:
-  Survey (low)  → code → Refine (medium) → commit
-                         ^-- catches issues before they compound
-
-Weekly/milestone:
-  Audit (high)  → captures systemic issues that daily Refine misses
+Daily: Survey (rendah) → kod → Refine (sederhana) → commit
+Weekly/milestone: Audit (tinggi) → kesan isu sistemik yang Refine harian terlepas
 ```
-
-The key insight: **frequent cheap observation prevents expensive deep audits**. A team that Surveys daily and Refines before every commit rarely needs emergency Audits.
 
 ---
 
 ## Mandatory Rules
 
-1. **Always dependency scan first** — never review code without understanding the project's actual stack and custom components
-2. **Never assume standard library behavior** — read actual source, especially for UI component wrappers
-3. **Understand intent before judging** — the author's approach may be intentional; don't "fix" what isn't broken
-4. **Escalate, don't skip tiers** — if Survey reveals complexity, suggest Investigate or Audit; don't try to deep-dive in a Survey
-5. **Refine always asks permission before fixing** — present findings first, apply fixes only after user approval
-6. **Compact output for Survey** — should fit on one screen; deeper tiers can be verbose
-7. **Link to library when available** — if Library System is installed, connect findings to existing knowledge entries; skip gracefully if not installed
-8. **Report format consistency** — use the output templates defined in each tier for recognizable, parseable output
+1. **Sentiasa dependency scan dahulu** — JANGAN review kod tanpa fahami actual stack dan custom components projek
+2. **JANGAN assume standard library behavior** — baca actual source, terutama untuk UI component wrappers
+3. **Fahami intent sebelum nilai** — pendekatan author mungkin intentional; jangan "fix" apa yang tidak rosak
+4. **Escalate, jangan skip tiers** — kalau Survey reveal complexity, cadang Investigate atau Audit; jangan cuba deep-dive dalam Survey
+5. **Refine sentiasa minta permission sebelum fix** — bentangkan findings dahulu, apply fixes hanya selepas approval Abam
+6. **Compact output untuk Survey** — sepatutnya muat dalam satu skrin; tiers lebih dalam boleh verbose
+7. **Link ke library bila tersedia** — kalau Library System dipasang, connect findings ke existing knowledge entries; skip gracefully jika tidak dipasang
+8. **Report format consistency** — guna output templates yang ditakrifkan dalam setiap tier untuk output yang recognizable
+
+---
 
 ## Edge Cases
 
 | Situation | Behavior |
 |-----------|----------|
-| **No project context** | Ask user to specify a project or navigate to a project directory |
-| **Empty project (no code yet)** | Survey reports structure only; Investigate/Refine/Audit skip with "no code to observe" |
-| **Only backend or only frontend** | Skip irrelevant dependency scans; adapt output format |
-| **No git history** | Skip Recent Activity and git-diff-based Refine scope; note in output |
-| **User asks for "review"** | Disambiguate: code review → Investigate (review mode) or quality pass → Refine |
-| **Library System not installed** | Skip library cross-references; observation still works independently |
-| **Post-Mortem System not installed** | Skip domain lesson check in Survey; no past incident references |
-| **Refine finds no issues** | Report clean: "No issues found. Code is sharp." |
-| **Audit of very large project** | Warn about time requirement; offer to audit specific subsystems instead |
-| **Cross audit with no shared patterns** | Report divergences as the finding — diversity isn't a problem unless it causes maintenance burden |
+| **Tiada project context** | Tanya Abam untuk specify projek atau navigate ke project directory |
+| **Empty project (tiada kod)** | Survey report struktur sahaja; Investigate/Refine/Audit skip dengan "tiada kod untuk diobserve" |
+| **Backend sahaja atau frontend sahaja** | Skip irrelevant dependency scans; adapt output format |
+| **Tiada git history** | Skip Recent Activity dan git-diff-based Refine scope; nota dalam output |
+| **Abam tanya "review"** | Disambiguate: code review → Investigate (review mode) atau quality pass → Refine |
+| **Library System tidak dipasang** | Skip library cross-references; observation masih berfungsi secara independen |
+| **Post-Mortem System tidak dipasang** | Skip domain lesson check dalam Survey; tiada past incident references |
+| **Refine tiada isu** | Report clean: "Tiada isu ditemui. Kod adalah sharp." |
+| **Audit projek sangat besar** | Warn tentang time requirement; offer untuk audit subsystems spesifik sahaja |
+| **Cross audit tiada shared patterns** | Report divergences sebagai finding — diversity bukan masalah melainkan ia menyebabkan maintenance burden |
+| **Abam request tier tanpa specify target** | Kalau Survey/Audit — scan projek semasa; kalau Investigate/Refine — tanya target |
+| **Build gagal semasa health check** | Flag sebagai HIGH severity dalam Survey output, cadang Investigate segera |
+
+---
+
+## Integrasi Skill
+
+| Skill | Bila | Tindakan |
+|-------|------|----------|
+| `library` | Semasa Investigate/Audit | Link findings ke library entries yang relevan; cadang entries baru |
+| `post-mortem` | Semasa Survey (domain lesson check) | Cross-reference projek terhadap past incidents; flag recurring failures |
+| `auto-commit` | Selepas Refine fix diapply | Chain commit selepas fixes berjaya |
+| `log-decision` | Selepas Audit selesai | Log architectural decisions atau risk acceptance |
+| `forge-skill` | Bila Audit reveal pattern boleh dijadikan skill | Cadang forge dari findings |
+| `save-diary` | Selepas Audit atau Investigate besar | Dokumentasi findings dalam diary sesi |
+
+---
 
 ## Level History
 
-- **Lv.1** — Base: Four-tier observation system (Survey, Investigate, Refine, Audit) with escalation paths between tiers. Survey scans project health in 30 seconds. Investigate traces bugs, reviews code, and maps data flows. Refine reviews changed code and fixes issues with permission. Audit performs full system audit with architecture mapping, dependency analysis, risk assessment, and recommendations. (Origin: Developed and refined across multiple production projects)
-- **Lv.2** — Cross-Feature: Integration with Library System (knowledge connections), Post-Mortem System (domain lesson check), Work-Plan Execution (quality gates), and Auto-Commit System (refine-then-commit chain). Observation becomes aware of the broader skill ecosystem.
+- **Lv.1** — Base: Four-tier observation system (Survey, Investigate, Refine, Audit) dengan escalation paths antara tiers. Survey scan project health dalam 30 saat. Investigate trace bugs, review kod, dan map data flows. Refine review changed code dan fix isu dengan permission. Audit perform full system audit dengan architecture mapping, dependency analysis, risk assessment, dan recommendations. (Origin: Developed dan refined merentas multiple production projects)
+- **Lv.2** — Cross-Feature: Integration dengan Library System (knowledge connections), Post-Mortem System (domain lesson check), Work-Plan Execution (quality gates), dan Auto-Commit System (refine-then-commit chain). Observation menjadi sedar tentang broader skill ecosystem.
+- **Lv.3** — Superultra: Protocol dikembangkan kepada 3 langkah bernombor dengan checklist, Context Guard ditambah EXIT row, edge cases dikembangkan kepada 12 baris, Mandatory Rules disenaraikan semula dengan 8 peraturan, Integrasi Skill table ditambah dengan 6 integrasi, semua tier protocols dilengkapi dengan step-by-step checklist, bahasa ditukar kepada BM untuk komunikasi, Cost Awareness table dimasukkan dalam protokol. (2026-05-19)

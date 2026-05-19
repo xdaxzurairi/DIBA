@@ -8,244 +8,291 @@ description: "Auto-triggers when AI detects a repeated pattern handled ad-hoc 3+
              level-up to an existing skill based on conversation patterns."
 ---
 
-# Forge Skill -- Self-Improvement System
-*The AI that improves its own abilities through experience.*
-
-## Overview
-
-Forge is the meta-skill -- the skill that creates and improves other skills. When your AI detects patterns, mistakes, or opportunities for improvement during conversation, Forge activates to propose new skills or level-ups to existing ones. It uses a **human-in-the-loop** model: AI drafts, user approves.
+# Forge Skill — Self-Improvement System
+*AI yang belajar dari pengalaman dan memperbaiki diri sendiri.*
 
 ## Activation
 
 When this skill activates, output:
 
-`"Forge detected an opportunity for improvement..."`
+"Forge mengesan peluang untuk penambahbaikan..."
 
-Then present the proposal to the user.
+Then immediately execute Step 1 of Protocol.
+
+---
 
 ## Context Guard
 
 | Context | Status |
 |---------|--------|
-| **AI detects repeated ad-hoc pattern (3+ times)** | ACTIVE -- propose new skill |
-| **AI makes preventable mistake** | ACTIVE -- propose new rule or skill |
-| **User says "create skill", "new skill", "forge this"** | ACTIVE -- manual trigger |
-| **User says "level up [skill]", "upgrade [skill]"** | ACTIVE -- level-up existing |
-| **User says "self improve", "improve skill"** | ACTIVE -- review and propose |
-| **Casual conversation (no improvement context)** | DORMANT |
+| **AI kesan pattern ad-hoc berulang (3+ kali)** | ACTIVE — cadang skill baru |
+| **AI buat kesilapan yang boleh dicegah oleh rule kekal** | ACTIVE — cadang rule atau skill |
+| **Abam kata "create skill", "new skill", "forge this"** | ACTIVE — trigger manual |
+| **Abam kata "level up [skill]", "upgrade [skill]"** | ACTIVE — level-up skill sedia ada |
+| **Abam kata "self improve", "improve skill"** | ACTIVE — review dan cadang |
+| **Abam kata "check skills", "skill status"** | ACTIVE — audit skill ecosystem |
+| **Perbualan biasa tanpa context penambahbaikan** | DORMANT — tiada tindakan |
+| **Skill yang dicadang sudah wujud dan lengkap** | EXIT — suggest level-up sahaja, jangan duplicate |
 
-## Forge Protocol
+---
+
+## Protocol
 
 ### Step 1: Detect
+- [ ] Parse trigger — adakah ini auto-detection (AI initiated) atau manual trigger (Abam initiated)?
+- [ ] Kalau auto-detection — kumpul evidence minimum 2 contoh konkrit sebelum proceed
+- [ ] Kalau manual trigger — proceed terus ke Step 2 dengan konteks yang diberi
+- [ ] Kenal pasti jenis: New Skill / Level-Up / New Rule
 
-Identify the improvement opportunity. Forge recognizes these patterns:
-
-**Automatic Detection (AI-initiated):**
-1. **Repeated Pattern** -- AI handles the same type of task ad-hoc 3+ times across sessions
-2. **Mistake Prevention** -- AI makes an error that a permanent rule would prevent
-3. **Workflow Automation** -- A multi-step process AI does manually that could be a skill
-4. **Level-Up Opportunity** -- An existing skill has a gap or could handle more cases
-
-**Manual Trigger (User-initiated):**
-- "create skill", "new skill", "forge this"
-- "level up [skill]", "upgrade [skill]"
-- "self improve", "improve skill"
+**Auto-Detection Categories:**
+1. **Repeated Pattern** — AI handle task jenis sama ad-hoc 3+ kali merentas sesi
+2. **Mistake Prevention** — AI buat ralat yang rule kekal boleh cegah
+3. **Workflow Automation** — Proses multi-langkah yang boleh dijadikan satu command
+4. **Level-Up Opportunity** — Skill sedia ada ada gap atau boleh handle lebih banyak kes
 
 ### Step 2: Analyze
-
-Before proposing, gather evidence:
+- [ ] Baca skill sedia ada yang relevan — adakah skill lain boleh cover kes ini?
+- [ ] Kalau ya — cadang level-up, bukan skill baru
+- [ ] Kalau tidak — proceed ke proposal baru
+- [ ] Kumpul evidence dalam format:
 
 ```
 TYPE: [New Skill / Level-Up / New Rule]
-TARGET: [Skill name if level-up, or proposed name if new]
-TRIGGER: [What pattern/mistake/workflow was detected]
-EVIDENCE: [At least 2 concrete examples from conversation or session history]
-IMPACT: [What improves if this is implemented]
+TARGET: [Nama skill jika level-up, atau nama cadangan jika baru]
+TRIGGER: [Pattern/kesilapan/workflow yang dikesan]
+EVIDENCE:
+  1. [Contoh konkrit pertama — sertakan konteks sesi]
+  2. [Contoh konkrit kedua — sertakan konteks sesi]
+IMPACT: [Apa yang bertambah baik jika dilaksanakan]
+OVERLAP CHECK: [Skill mana yang paling dekat — dan kenapa ia tidak mencukupi]
 ```
 
 ### Step 3: Propose
-
-Present to user in this format:
+- [ ] Bentangkan proposal dalam format standard kepada Abam:
 
 ```
-Forge Detected an Opportunity
-==============================
+Forge Mengesan Peluang
+======================
 
-Type: [New Skill / Level-Up]
-Name: [proposed-name]
-Purpose: [what it would do]
-Trigger: [what activates it]
+Jenis: [New Skill / Level-Up]
+Nama: [proposed-name]
+Tujuan: [apa yang akan dilakukan]
+Trigger: [apa yang mengaktifkannya]
 Evidence:
-  1. [First concrete example]
-  2. [Second concrete example]
-Impact: [what improves]
+  1. [Contoh konkrit pertama]
+  2. [Contoh konkrit kedua]
+Impak: [apa yang bertambah baik]
+Overlap Check: [skill paling hampir, sebab tidak mencukupi]
 
-Draft ready -- approve to forge?
+Draft siap — lulus untuk forge?
 ```
+
+- [ ] Tunggu respons Abam — JANGAN create atau modify apa-apa sebelum approval
 
 ### Step 4: Await Approval
+- [ ] **Abam lulus** — proceed ke Step 5
+- [ ] **Abam ubah suai** — incorporate feedback, re-propose sebelum proceed
+- [ ] **Abam tolak** — catat sebab penolakan, JANGAN create, jangan cadang semula dalam sesi yang sama
+- [ ] **Abam tidak respond** — anggap sebagai pending, jangan auto-create
 
-- **User approves** -- proceed to Step 5
-- **User adjusts** -- incorporate feedback, re-propose
-- **User rejects** -- note the rejection, do NOT create
-
-**CRITICAL**: NEVER create or modify skill files without explicit user approval.
+**KRITIKAL: JANGAN SEKALI-KALI create atau modify skill files tanpa kelulusan eksplisit Abam.**
 
 ### Step 5: Create or Update
+- [ ] Kalau **NEW SKILL**:
+  - [ ] Baca `CLAUDE.md` untuk path commands yang betul
+  - [ ] Tulis `SKILL.md` ikut template standard (frontmatter, activation, context guard, protocol, rules, level history)
+  - [ ] Verify fail berjaya ditulis
+  - [ ] Deploy ke `C:/Users/BSM/.claude/commands/[skill-name].md`
+  - [ ] Verify fail dalam commands wujud
 
-**For NEW skill:**
-1. Create skill folder: `plugins/[plugin-name]/skills/[skill-name]/`
-2. Write `SKILL.md` following the standard skill format:
-   - YAML frontmatter with name + description (trigger phrases)
-   - Activation section (what the AI says when triggered)
-   - Context Guard table (when active vs dormant)
-   - Protocol steps (step-by-step execution)
-   - Mandatory rules
-   - Level History (starting at Lv.1)
-3. Verify file was created successfully
-
-**For LEVEL-UP:**
-1. Read existing `SKILL.md`
-2. Add new capability section
-3. Update description in frontmatter if trigger phrases changed
-4. Add new Level History entry with:
-   - Level number
-   - Capability added
-   - Origin (what conversation/incident triggered it)
-5. Save updated file
+- [ ] Kalau **LEVEL-UP**:
+  - [ ] Baca `SKILL.md` sedia ada sepenuhnya
+  - [ ] Tambah capability baharu — JANGAN ubah entry Level History lama
+  - [ ] Kemaskini frontmatter description jika trigger phrases berubah
+  - [ ] Tambah entry Level History baru dengan:
+    - Level number (increment dari yang terakhir)
+    - Capability yang ditambah
+    - Origin (sesi/incident yang mencetuskan)
+  - [ ] Save dan deploy semula ke commands
 
 ### Step 6: Update System Records
-
-After forging, update relevant system files:
-- `master-memory.md` -- add new skill command or update existing
-- Skill Plugin System manifest if applicable
-- Note the forge in current session memory
+- [ ] Kemaskini `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/main/current-session.md` — catat skill baru atau level-up
+- [ ] Trigger `log-decision` — rekod keputusan untuk create/level-up dengan rationale
+- [ ] Trigger `save-diary` — dokumentasi forge event dalam diary sesi
 
 ### Step 7: Confirm
+- [ ] Output confirmation:
 
 ```
-Forge Complete!
-================
+Forge Selesai!
+==============
 
-[New Skill / Level-Up]: [name] Lv.[X]
-Location: skills/[name]/SKILL.md
-Capability: [what was added]
-Origin: [the moment that triggered this]
+[New Skill / Level-Up]: [nama] Lv.[X]
+Lokasi: C:/Users/BSM/.claude/commands/[skill-name].md
+Capability: [apa yang ditambah]
+Origin: [momen yang mencetuskan ini]
 
-Your AI evolved!
+Skill ecosystem berkembang.
 ```
 
-## Forge Principles
-
-1. **Human-in-the-loop** -- AI proposes, user approves. Always
-2. **Evidence-based** -- never propose without at least 2 concrete examples
-3. **Origin stories** -- every skill and level-up traces back to a real moment
-4. **Minimal viable skill** -- start at Lv.1, evolve organically through use
-5. **No over-engineering** -- only forge what is genuinely needed
-6. **Respect existing skills** -- level-up before creating duplicates. Check if an existing skill could handle the case first
-7. **Level history is permanent** -- append-only record of how the skill evolved
+---
 
 ## Skill File Template
 
-When Forge creates a new skill, use this structure:
+Bila Forge mencipta skill baru, guna struktur ini:
 
 ```markdown
 ---
 name: [skill-name]
-description: "[When this skill should auto-trigger -- include trigger phrases
-             and context descriptions]"
+description: "[Bila skill ini perlu auto-trigger — sertakan trigger phrases
+             dan context descriptions]"
 ---
 
-# [Skill Name] -- [One-line description]
-*[Thematic tagline]*
+# [Nama Skill] — [One-line description]
+*[Tagline tematik]*
 
 ## Activation
 
 When this skill activates, output:
 "[Activation message]"
 
+Then immediately execute Step 1 of Protocol.
+
+---
+
 ## Context Guard
 
 | Context | Status |
 |---------|--------|
-| **[Trigger condition 1]** | ACTIVE -- [action] |
-| **[Trigger condition 2]** | ACTIVE -- [action] |
+| **[Trigger condition 1]** | ACTIVE — [tindakan] |
+| **[Trigger condition 2]** | ACTIVE — [tindakan] |
 | **[Non-trigger context]** | DORMANT |
+| **[Exit condition]** | EXIT — [tindakan keluar] |
+
+---
 
 ## Protocol
 
-### Step 1: [First action]
+### Step 1: [Tindakan pertama]
 - [ ] [Substep]
 - [ ] [Substep]
 
-### Step 2: [Second action]
+### Step 2: [Tindakan kedua]
 - [ ] [Substep]
+
+---
 
 ## Mandatory Rules
+
 1. [Rule 1]
 2. [Rule 2]
+3. [Rule 3]
+4. [Rule 4]
+5. [Rule 5]
+6. [Rule 6]
 
-## Level History
-- **Lv.1** -- Base: [description of initial capabilities]. (Origin: [what triggered creation])
-```
-
-## What Makes a Good Skill
-
-Before forging, evaluate against these criteria:
-
-| Criteria | Question |
-|----------|----------|
-| **Repeatable** | Will this trigger more than once in future sessions? |
-| **Specific** | Is the trigger condition clear and unambiguous? |
-| **Valuable** | Does automating this save meaningful time or prevent real errors? |
-| **Independent** | Can this skill work without requiring other skills? |
-| **Testable** | Can the user verify it works by triggering it? |
-
-If 4 out of 5 criteria are met, the skill is worth forging.
-
-## Level-Up Guidelines
-
-Skills evolve through levels as they gain capabilities:
-
-| Level | Meaning | Typical Addition |
-|-------|---------|-----------------|
-| **Lv.1** | Base skill | Core functionality, basic triggers, simple protocol |
-| **Lv.2** | Enhanced | Additional trigger conditions, edge case handling |
-| **Lv.3** | Proactive | Auto-detection without explicit commands |
-| **Lv.4** | Integrated | Synergy with other skills, cross-referencing |
-| **Lv.5+** | Mastered | Context-aware, domain-specific intelligence |
-
-Each level should add **one meaningful capability** -- not multiple changes bundled together.
-
-## Mandatory Rules
-
-1. **Human-in-the-loop** -- NEVER create or modify skill files without user's explicit approval
-2. **Evidence-based** -- at least 2 concrete examples before proposing
-3. **Origin stories** -- every level-up must trace back to a real moment
-4. **Minimal viable skill** -- start simple at Lv.1, add complexity only when proven needed
-5. **No over-engineering** -- only forge what is genuinely needed right now
-6. **Respect existing skills** -- always check if an existing skill covers the case before creating a new one
-7. **Level history is append-only** -- never edit past level entries, only add new ones
-8. **Standard format** -- all skills follow the template structure (frontmatter, activation, context guard, protocol, rules, level history)
+---
 
 ## Edge Cases
 
 | Situation | Behavior |
 |-----------|----------|
-| No Skill Plugin System installed | Inform user that forged skills work best with the plugin; offer to create as standalone protocol |
-| Proposed skill overlaps existing | Suggest level-up to existing skill instead of creating duplicate |
-| User rejects proposal | Note rejection reason, do not re-propose same skill in current session |
-| Insufficient evidence (< 2 examples) | Wait for more evidence before proposing -- don't force it |
-| Skill file already exists at target | Treat as level-up, not overwrite |
+| [Kes tepi 1] | [Tindakan] |
+| [Kes tepi 2] | [Tindakan] |
 
-## Synergy with Other Features
+---
 
-| Feature | Integration |
-|---------|-------------|
-| **Skill Plugin System** | Forge creates skills in the plugin's skill folder structure |
-| **Auto-Commit System** | After forging, commit the new/updated skill file |
-| **Decision Log System** | Log the decision to create/level-up a skill with rationale |
-| **Save Diary System** | Document the forge event in the session diary |
+## Integrasi Skill
+
+| Skill | Bila | Tindakan |
+|-------|------|----------|
+| [skill-name] | [bila] | [tindakan] |
+
+---
 
 ## Level History
-- **Lv.1** -- Base: detect repeated patterns (3+ ad-hoc), mistake prevention, workflow automation, level-up opportunities. Human-in-the-loop approval. Standard skill template. Level-up guidelines with Lv.1-5+ progression. (Origin: Adapted from production AI companion self-improvement system with 23 skills forged over 7 months)
+- **Lv.1** — Base: [huraian capability asal]. (Origin: [apa yang mencetuskan penciptaan])
+```
+
+---
+
+## What Makes a Good Skill
+
+Sebelum forge, nilai berdasarkan kriteria ini:
+
+| Criteria | Soalan |
+|----------|--------|
+| **Repeatable** | Adakah ini akan trigger lebih dari sekali dalam sesi masa depan? |
+| **Specific** | Adakah trigger condition jelas dan tidak ambiguous? |
+| **Valuable** | Adakah automation ini jimat masa bermakna atau cegah ralat nyata? |
+| **Independent** | Bolehkah skill ini berfungsi tanpa bergantung pada skill lain? |
+| **Testable** | Bolehkah Abam verify ia berfungsi dengan trigger ia? |
+
+Jika 4 dari 5 kriteria dipenuhi, skill berbaloi untuk di-forge.
+
+---
+
+## Level-Up Guidelines
+
+Skills berkembang melalui level apabila mendapat capabilities:
+
+| Level | Maksud | Typical Addition |
+|-------|--------|-----------------|
+| **Lv.1** | Base skill | Core functionality, trigger asas, protokol mudah |
+| **Lv.2** | Enhanced | Trigger condition tambahan, edge case handling |
+| **Lv.3** | Proactive | Auto-detection tanpa explicit commands |
+| **Lv.4** | Integrated | Sinergi dengan skills lain, cross-referencing |
+| **Lv.5+** | Mastered | Context-aware, domain-specific intelligence |
+
+Setiap level patut tambah **satu capability bermakna** — bukan pelbagai perubahan sekaligus.
+
+---
+
+## Mandatory Rules
+
+1. **Human-in-the-loop** — JANGAN SEKALI-KALI create atau modify skill files tanpa kelulusan eksplisit Abam
+2. **Evidence-based** — minimum 2 contoh konkrit sebelum cadang — jangan force proposal
+3. **Origin stories** — setiap level-up mesti trace balik ke momen sebenar dalam sesi
+4. **Minimal viable skill** — mulakan simple di Lv.1, tambah complexity hanya bila terbukti perlu
+5. **No over-engineering** — forge hanya apa yang genuinely diperlukan sekarang
+6. **Respect existing skills** — sentiasa semak jika skill sedia ada boleh cover kes sebelum buat baru
+7. **Level history adalah append-only** — JANGAN SEKALI-KALI edit entry Level History lama, hanya tambah yang baru
+8. **Standard format** — semua skills mesti ikut template (frontmatter, activation, context guard, protocol, rules, level history)
+9. **Deploy selepas write** — skill yang ditulis dalam SKILL.md mesti di-deploy ke commands folder juga
+10. **Verify sebelum confirm** — pastikan fail wujud di kedua-dua lokasi sebelum report forge selesai
+
+---
+
+## Edge Cases
+
+| Situation | Behavior |
+|-----------|----------|
+| **Skill Plugin System tidak dipasang** | Tulis SKILL.md sahaja, maklum Abam tiada auto-trigger — offer standalone protocol |
+| **Skill yang dicadang overlap dengan skill sedia ada** | Cadang level-up ke skill sedia ada, bukan buat duplicate |
+| **Abam tolak proposal** | Catat sebab penolakan, jangan cadang semula skill yang sama dalam sesi semasa |
+| **Evidence tidak cukup (< 2 contoh)** | Tunggu evidence tambahan — jangan force proposal |
+| **Fail SKILL.md sudah wujud di target** | Treat sebagai level-up, BUKAN overwrite — baca dahulu |
+| **Nama skill konflik dengan skill lain** | Alert Abam, minta clarification nama sebelum proceed |
+| **Level-up mengubah trigger phrases** | Kemaskini frontmatter description juga, bukan hanya protocol |
+| **Forge dicadang dalam sesi yang sama dengan tolakan** | Jangan cadang semula — tunggu sesi seterusnya |
+| **Abam minta forge tanpa contoh** | Minta Abam berikan sekurang-kurangnya satu contoh konkrit dahulu |
+| **Deploy gagal (permission error, path salah)** | Report gagal, berikan command manual untuk Abam deploy sendiri |
+
+---
+
+## Integrasi Skill
+
+| Skill | Bila | Tindakan |
+|-------|------|----------|
+| `log-decision` | Selepas forge berjaya | Auto-log keputusan untuk create/level-up dengan rationale |
+| `save-diary` | Selepas forge berjaya | Dokumentasi forge event dalam diary sesi |
+| `auto-commit` | Selepas fail SKILL.md ditulis | Commit fail skill baru atau yang dikemaskini |
+| `session-briefing` | Awal sesi selepas forge | Surface skill baru dalam briefing untuk Abam sedar |
+| `library` | Bila skill pattern boleh dijadikan knowledge entry | Save design pattern ke library untuk rujukan masa depan |
+
+---
+
+## Level History
+
+- **Lv.1** — Base: kesan pattern berulang (3+ ad-hoc), mistake prevention, workflow automation, peluang level-up. Human-in-the-loop approval. Template skill standard. Panduan level-up Lv.1–5+. (Origin: Adapted dari production AI companion self-improvement system dengan 23 skills diforge selama 7 bulan)
+- **Lv.2** — Superultra: Protocol dikembangkan kepada 7 langkah bernombor dengan checklist, overlap check ditambah dalam Step 2, edge cases dikembangkan kepada 10 baris, integrasi skill table ditambah, Mandatory Rules dikembangkan kepada 10 peraturan, EXIT row ditambah dalam Context Guard, deploy verification step ditambah, template skill dikembangkan dengan Edge Cases dan Integrasi Skill sections. (2026-05-19)

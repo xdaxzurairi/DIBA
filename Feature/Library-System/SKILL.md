@@ -10,120 +10,113 @@ description: "MUST use when saving to the library, loading from the library,
 ---
 
 # Library — Knowledge Guardian Skill
-*Save, search, and reuse knowledge across projects — never solve the same problem twice*
+*Simpan sekali, guna selama-lamanya. Jangan selesaikan masalah yang sama dua kali.*
 
 ## Activation
 
-When interacting with the knowledge library, output:
+When this skill activates, output:
 
-`"Knowledge recalled. Scanning the shelves..."`
+"Knowledge recalled. Scanning the shelves..."
 
-Then perform a dynamic library scan before any save operation.
+Then immediately execute Dynamic Library Scanning before any save operation.
+
+---
 
 ## Context Guard
 
 | Context | Status |
 |---------|--------|
-| **User says "save library", "save to library"** | ACTIVE — search + save protocol |
-| **User says "load library", "check library"** | ACTIVE — search + load protocol |
-| **User says "install item [name]"** | ACTIVE — item install protocol |
-| **User says "do we have", "is there a pattern for"** | ACTIVE — search only |
-| **AI identifies reusable knowledge worth saving** | ACTIVE — suggest save |
-| **Casual conversation** | DORMANT — no library action |
-| **No library directory found** | DORMANT — warn and skip |
+| **Abam kata "save library", "save to library"** | ACTIVE — search + save protocol |
+| **Abam kata "load library", "check library"** | ACTIVE — search + load protocol |
+| **Abam kata "install item [name]"** | ACTIVE — item install protocol |
+| **Abam kata "do we have", "is there a pattern for"** | ACTIVE — search sahaja |
+| **Abam kata "search library", "find in library"** | ACTIVE — search sahaja |
+| **AI kenal pasti knowledge reusable yang bernilai** | ACTIVE — cadang save |
+| **Perbualan biasa tanpa context library** | DORMANT — tiada tindakan library |
+| **Library directory tidak ditemui** | EXIT — warn Abam, skip semua operasi library |
+
+---
 
 ## Dynamic Library Scanning
 
-Always discover the library structure at runtime — **never hardcode** sections or entries:
+Sentiasa discover struktur library pada runtime — **jangan hardcode** sections atau entries:
 
-1. **Scan** `library/` for all subdirectories (excluding `formats/`) — these are sections
-2. **Scan** each section for `*.md` files (excluding README.md) — these are entries
-3. **Count** total entries and sections dynamically
-4. **Library path**: configurable (default: `library/`)
+1. **Scan** `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/library/` untuk semua subdirectories (kecuali `formats/`) — ini adalah sections
+2. **Scan** setiap section untuk `*.md` files (kecuali README.md) — ini adalah entries
+3. **Count** jumlah entries dan sections secara dinamik
+4. **Report** struktur sebelum sebarang operasi save
 
-New sections and entries are automatically detected — zero config needed.
+Sections dan entries baru dikesan secara automatik — tiada konfigurasi diperlukan.
 
-## Search Protocol (Before Any Library Save)
+---
 
-1. **Extract keywords** from the topic being saved
-2. **Dynamic scan** — list ALL current sections and entries
-3. **Match keywords** against existing entry filenames and section names
-4. **Read top matches** (up to 3) to check content overlap
-5. **Report findings** in structured format
+## Protocol
 
-## Project-Aware Recommendations
+### Step 1: Determine Operation
+- [ ] Parse arahan Abam — Save, Load, Search, atau Install?
+- [ ] Kalau **Save** → Execute Search Protocol dahulu (WAJIB sebelum save)
+- [ ] Kalau **Load** → Execute Search Protocol, kemudian load entry yang paling relevan
+- [ ] Kalau **Search** → Execute Search Protocol sahaja, report findings
+- [ ] Kalau **Install** → Execute Item Install Protocol
+- [ ] Kalau **AI-suggested save** → Bentangkan cadangan kepada Abam, tunggu approval sebelum proceed
 
-Not all systems are the same. The library considers the **current project context** when suggesting knowledge:
-
-1. **Identify current project** — what system is being worked on right now?
-2. **Match library entries** to project relevance — tech stack, domain, patterns
-3. **Suggest what fits** — entries that are applicable to the current system
-4. **Flag what doesn't fit** — entries that exist but aren't suitable for this project
-
-### Suitability Assessment
-
-| Factor | Check |
-|--------|-------|
-| **Tech stack** | Does the entry match? (Laravel entry for a Laravel project, not for Spring Boot) |
-| **Domain** | Does the business domain align? (payment pattern for e-commerce, not for static site) |
-| **Scale** | Is it appropriate for the project size? (Kafka for 50 users is overkill) |
-| **Complexity** | Would it over-engineer the solution? (Redis caching for 20 records is unnecessary) |
-
-### Example
-```
-Working on: Task Management System (Laravel + Vue, small-medium scale)
-
-Suitable from library:
-- security/laravel-sanctum-rbac.md — auth pattern fits
-- integration/digitalocean-spaces-laravel.md — file storage fits
-
-Not suitable:
-- architecture/kafka-extreme-scale-pattern.md — overkill for this scale
-- integration/payment-gateway.md — no payment needed in task system
-```
-
-## Report Format
+### Step 2: Search Protocol (WAJIB sebelum sebarang Save)
+- [ ] Extract keywords dari topik yang akan disimpan atau dicari
+- [ ] Dynamic scan — senaraikan SEMUA sections dan entries semasa
+- [ ] Match keywords terhadap filenames entries dan nama sections yang sedia ada
+- [ ] Baca top matches (sehingga 3) untuk semak content overlap
+- [ ] Report findings dalam format:
 
 ```
 Library Search Results
 ----------------------
 
 Keywords: [extracted keywords]
-Library: [count] entries across [count] sections
-Current Project: [project name + tech stack]
+Library: [count] entries merentas [count] sections
+Projek Semasa: [nama projek + tech stack]
 
-Matches Found (Suitable):
-- library/section/entry-name.md — [why it fits this project]
+Matches Ditemui (Sesuai):
+- library/section/entry-name.md — [kenapa sesuai untuk projek ini]
 
-Matches Found (Not Suitable):
-- library/section/entry-name.md — [why it doesn't fit: scale/domain/stack mismatch]
+Matches Ditemui (Tidak Sesuai):
+- library/section/entry-name.md — [kenapa tidak sesuai: scale/domain/stack mismatch]
 
-No Match In:
-- [sections with no relevant entries]
+Tiada Match Dalam:
+- [sections tanpa entries relevan]
 
 Recommendation:
 - [CREATE NEW / UPDATE EXISTING / REFERENCE ONLY]
-- [IMPLEMENT / SKIP — for project-specific suggestions]
+- [IMPLEMENT / SKIP — untuk cadangan project-specific]
 ```
 
-## Decision Rules
+### Step 3: Project-Aware Assessment
+- [ ] Kenal pasti projek semasa — tech stack, domain, skala
+- [ ] Nilai setiap entry yang match terhadap projek semasa:
+
+| Faktor | Semakan |
+|--------|---------|
+| **Tech stack** | Adakah entry match? (Laravel entry untuk Laravel project, bukan Spring Boot) |
+| **Domain** | Adakah business domain sejajar? (payment pattern untuk e-commerce, bukan static site) |
+| **Skala** | Adakah sesuai untuk saiz projek? (Kafka untuk 50 users adalah overkill) |
+| **Complexity** | Adakah ia akan over-engineer penyelesaian? |
+
+### Step 4: Execute Decision
+- [ ] Ikut decision rules berdasarkan hasil search:
 
 | Scenario | Recommendation |
 |----------|---------------|
-| No filename/keyword matches | **CREATE NEW** entry |
-| Filename similar but different scope | **CREATE NEW** (note the related entry) |
-| Content overlaps significantly | **UPDATE EXISTING** entry |
-| Content already fully covered | **REFERENCE ONLY** — skip save |
-| Entry exists but wrong scale/domain | **SKIP** — not suitable for current project |
-| Entry exists and fits perfectly | **IMPLEMENT** — use this pattern |
+| Tiada filename/keyword match | **CREATE NEW** entry |
+| Filename serupa tetapi scope berbeza | **CREATE NEW** (catat entry yang berkaitan) |
+| Content overlap signifikan | **UPDATE EXISTING** entry |
+| Content sudah diliputi sepenuhnya | **REFERENCE ONLY** — skip save |
+| Entry wujud tetapi scale/domain salah | **SKIP** — tidak sesuai untuk projek semasa |
+| Entry wujud dan sesuai | **IMPLEMENT** — guna pattern ini |
 
-## Format-Aware Save
+- [ ] Bentangkan recommendation kepada Abam
+- [ ] Tunggu kelulusan sebelum save atau update
 
-When creating a NEW library entry (after search recommends CREATE NEW):
-
-### Step 1: Auto-Determine Section
-
-Pick the best matching section based on content type:
+### Step 5: Format-Aware Save (jika CREATE NEW)
+- [ ] Auto-determine section berdasarkan jenis content:
 
 | Content Keywords | Section |
 |-----------------|---------|
@@ -136,106 +129,119 @@ Pick the best matching section based on content type:
 | Colors, CSS, Tailwind, glassmorphism, fonts | `theme` |
 | CI/CD, deployment, pipelines, automation | `workflow` |
 
-If content clearly matches — auto-pick (trust-based, no confirmation needed).
-If truly ambiguous — pick closest match, note in save confirmation.
+- [ ] Load format template dari `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/library/formats/[section]-format.md`
+- [ ] Apply template structure — ikut Required Fields, Section Order, dan Template skeleton
+- [ ] Kalau format file tidak wujud — guna generic markdown (title + overview + content + examples)
+- [ ] Write entry ke `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/library/[section]/[entry-name].md`
+- [ ] Verify fail berjaya ditulis
 
-### Step 2: Load Format Template
+### Step 6: Commit Chain
+- [ ] Selepas save atau update, trigger `auto-commit` jika dipasang
+- [ ] Kalau `auto-commit` tidak dipasang — maklum Abam untuk commit secara manual
+- [ ] Library save = commit entrance. Tiada knowledge entry yang dibiarkan tanpa commit.
 
-Auto-read the matching format from the library's formats directory:
+### Step 7: Confirm
+- [ ] Report kepada Abam:
 
 ```
-library/formats/
-├── architecture-format.md
-├── component-format.md
-├── database-format.md
-├── diagram-format.md
-├── integration-format.md
-├── security-format.md
-├── theme-format.md
-└── workflow-format.md
+Library [Action]
+----------------
+Entry: [nama entry]
+Section: [section name]
+Path: library/[section]/[filename].md
+Status: Saved / Updated / Referenced / Skipped
+
+[Catatan jika ada — section baru, format generic digunakan, dsb.]
 ```
 
-**Path**: `library/formats/[section]-format.md`
-
-### Step 3: Apply Format
-
-Use the loaded template's structure:
-- Follow the **Required Fields** from the format
-- Follow the **Section Order** from the format
-- Fill in the **Template** skeleton with actual content
-- If no matching format file exists (new section), use a generic markdown structure with title + overview + content + examples
+---
 
 ## Item Install Protocol
 
-When installing a pre-made library entry from the `library-items/` catalog:
+Bila memasang pre-made library entry dari katalog `library-items/`:
 
 ### Trigger Commands
-- `"install item [name]"` — install a specific item by name
-- `"install library item [name]"` — explicit library item install
-- `"add item from catalog"` — browse and pick an item
+- `"install item [name]"` — install item spesifik mengikut nama
+- `"install library item [name]"` — install item library eksplisit
+- `"add item from catalog"` — browse dan pilih item
 
 ### Install Steps
+- [ ] Parse nama item dari command Abam
+- [ ] Scan `library-items/` untuk entry yang match — cari mengikut keyword filename merentas semua section folders
+- [ ] Kalau ditemui — tunjuk maklumat item (nama, section, preview beberapa baris pertama)
+- [ ] Kalau pelbagai matches — senaraikan semua dan minta Abam pilih
+- [ ] Semak duplicate dalam `library/[section]/` Abam — match mengikut filename
+- [ ] Kalau tiada duplicate — copy dari `library-items/[section]/[filename].md` ke `library/[section]/[filename].md`
+- [ ] Kalau duplicate wujud — alert Abam: overwrite atau skip?
+- [ ] Trigger `auto-commit` selepas install berjaya
 
-1. **Parse item name** from user command (e.g., "install item security-headers" → `security-headers`)
-2. **Scan `library-items/`** for matching entry — search by filename keyword across all section folders
-3. **If found**: show item info (name, section, first few lines as description preview)
-4. **If multiple matches**: list all matches and ask user to pick one
-5. **Check for duplicates** in user's `library/[section]/` — match by filename
-6. **If no duplicate**: copy file from `library-items/[section]/[filename].md` to `library/[section]/[filename].md`
-7. **If duplicate exists**: warn user and ask — overwrite existing entry or skip
-8. **Trigger commit chain** (if Auto-Commit installed)
-
-### Install Report Format
 ```
 Item Install
 ------------
-Item: [item name]
-Section: [section name]
+Item: [nama item]
+Section: [nama section]
 Source: library-items/[section]/[filename].md
 Target: library/[section]/[filename].md
 Status: Installed / Skipped (duplicate) / Not found
 
-Available items in catalog:
-- [section]/[item-name] — [first line description]
+Items tersedia dalam katalog:
+- [section]/[item-name] — [deskripsi baris pertama]
 ```
 
-## Commit Chain
-
-After saving or updating a library entry, if the **Auto-Commit System** skill is installed:
-- Trigger the auto-commit skill to preserve the library change
-- Library save exit = commit entrance. No knowledge left uncommitted.
-
-If Auto-Commit is not installed, remind the user to commit manually.
+---
 
 ## Mandatory Rules
 
-1. **Always scan before save** — never create a library entry without checking first
-2. **Dynamic discovery** — never hardcode sections or entry counts
-3. **Keyword extraction** — derive from topic context, not just exact words
-4. **Read matches** — don't just match filenames, read content of top matches
-5. **Project-aware** — always consider current project when suggesting suitability
-6. **Clear recommendation** — always end with actionable suggestion
-7. **Wait for approval** — present findings and wait for the user's decision before saving
-8. **Format-aware saves** — always load the matching format template before creating a new entry
+1. **Sentiasa scan sebelum save** — JANGAN SEKALI-KALI buat library entry tanpa semak dahulu
+2. **Dynamic discovery** — jangan hardcode sections atau bilangan entries
+3. **Keyword extraction** — derive dari context topik, bukan sekadar perkataan tepat
+4. **Baca matches** — jangan sekadar match filenames, baca content top matches
+5. **Project-aware** — sentiasa pertimbangkan projek semasa bila cadang suitability
+6. **Clear recommendation** — sentiasa akhiri dengan cadangan actionable
+7. **Tunggu approval** — bentangkan findings dan tunggu keputusan Abam sebelum save
+8. **Format-aware saves** — sentiasa load template format yang sesuai sebelum buat entry baru
+9. **Append untuk update** — kalau UPDATE EXISTING, baca fail sedia ada dahulu sebelum tulis
+10. **Jangan padam** — entries library adalah append-friendly; jangan padam knowledge lama
+
+---
 
 ## Edge Cases
 
 | Situation | Behavior |
 |-----------|----------|
-| **No library/ directory** | Warn user: "Library directory not found. Run the install protocol first." |
-| **Empty library (no entries)** | Skip search, go straight to CREATE NEW recommendation |
-| **Format template missing** | Use generic markdown structure (title + overview + content + examples) |
-| **Entry name collision** | Append numeric suffix (e.g., `pattern-name-2.md`) |
-| **User wants new section** | Create the folder, note that no format template exists for it |
-| **Cross-section content** | Pick primary section, note secondary relevance in the entry |
-| **Item not found in catalog** | List all available items from `library-items/` |
-| **Library not installed** | Warn: "Library directory not found. Install Library System first." |
-| **Item already in library** | Ask user: overwrite existing entry or skip |
+| **Tiada library/ directory** | Warn: "Library directory tidak ditemui. Jalankan install protocol dahulu." |
+| **Library kosong (tiada entries)** | Skip search, terus ke recommendation CREATE NEW |
+| **Format template missing** | Guna generic markdown (title + overview + content + examples), catat dalam report |
+| **Entry name collision** | Tambah numeric suffix (contoh: `pattern-name-2.md`), maklum Abam |
+| **Abam mahu section baru** | Buat folder, catat bahawa format template belum wujud untuk section tersebut |
+| **Content merentas pelbagai sections** | Pilih section utama, catat relevansi secondary dalam entry |
+| **Item tidak ditemui dalam katalog** | Senaraikan semua items tersedia dari `library-items/` |
+| **Library tidak dipasang** | Warn: "Library directory tidak ditemui. Pasang Library System dahulu." |
+| **Item sudah dalam library** | Tanya Abam: overwrite entry sedia ada atau skip? |
+| **Library ada entries tetapi tiada yang match** | Report "tiada match" dengan jelas, cadang CREATE NEW |
+| **Multiple entries overlap** | Report semua yang overlap, biar Abam decide mana untuk update atau create baru |
+| **Entry dalam bahasa berbeza** | Accept dalam bahasa yang diberi, save dalam bahasa yang sama |
+
+---
+
+## Integrasi Skill
+
+| Skill | Bila | Tindakan |
+|-------|------|----------|
+| `auto-commit` | Selepas save/update/install berjaya | Chain commit untuk preserve library change |
+| `observation` | Semasa investigate/audit | Link findings ke library entries yang relevan |
+| `resonance` | Bila seed HARVESTED | Save seed matang sebagai knowledge entry |
+| `forge-skill` | Bila pattern boleh dijadikan skill | Cadang forge daripada knowledge yang disimpan |
+| `log-decision` | Bila pattern penting disimpan | Log keputusan untuk implement pattern dari library |
+| `session-briefing` | Awal sesi dengan projek baru | Surface library entries yang relevan dengan projek |
+
+---
 
 ## Level History
 
-- **Lv.1** — Base: Dynamic library scanning + keyword matching + deduplication prevention. Scans library/ at runtime, extracts keywords from topic, matches against filenames and section names, reads top matches to check overlap, reports findings. (Origin: Knowledge reuse system for AI companions)
-- **Lv.2** — Project-Aware: Added suitability assessment — considers tech stack, domain, scale, and complexity when recommending library entries for the current project. Entries that exist but don't fit are flagged separately from matches.
-- **Lv.3** — Commit Chain: After saving/updating library entries, auto-triggers the Auto-Commit skill (if installed) to commit all changes. Library save exit becomes commit entrance.
-- **Lv.4** — Format-Aware Save: Auto-determines library section from content keywords, loads matching format template from `library/formats/[section]-format.md`, applies template structure to new entries. Trust-based section selection (no approval gate). Formats loaded on-demand, not embedded.
-- **Lv.5** — Item Install: Install pre-made library entries from `library-items/` catalog. New commands: "install item [name]", "install library item", "add item from catalog". Scans catalog by filename keyword, shows preview, checks for duplicates in user's library, copies to correct section, chains commit. Catalog persists at project root (not deleted during Library System installation). (Origin: Public knowledge sharing for AI MemoryCore community)
+- **Lv.1** — Base: Dynamic library scanning + keyword matching + deduplication prevention. Scan `library/` pada runtime, extract keywords dari topik, match terhadap filenames dan section names, baca top matches untuk semak overlap, report findings. (Origin: Knowledge reuse system untuk AI companions)
+- **Lv.2** — Project-Aware: Tambah suitability assessment — pertimbangkan tech stack, domain, scale, dan complexity bila recommend library entries untuk projek semasa. Entries yang wujud tetapi tidak sesuai diflag secara berasingan dari matches.
+- **Lv.3** — Commit Chain: Selepas save/update library entries, auto-trigger Auto-Commit skill (jika dipasang) untuk commit semua perubahan. Library save exit menjadi commit entrance.
+- **Lv.4** — Format-Aware Save: Auto-determine library section dari content keywords, load matching format template dari `library/formats/[section]-format.md`, apply template structure ke entries baru. Trust-based section selection (tiada approval gate). Formats diload on-demand, tidak embedded.
+- **Lv.5** — Item Install: Install pre-made library entries dari katalog `library-items/`. Commands baru: "install item [name]", "install library item", "add item from catalog". Scan katalog mengikut filename keyword, tunjuk preview, semak duplicates dalam library Abam, copy ke section betul, chain commit. (Origin: Public knowledge sharing untuk AI MemoryCore community)
+- **Lv.6** — Superultra: Protocol dikembangkan kepada 7 langkah bernombor dengan checklist, Context Guard ditambah EXIT row, edge cases dikembangkan kepada 12 baris, Mandatory Rules dikembangkan kepada 10 peraturan, Integrasi Skill table ditambah dengan 6 integrasi, path memori dikemaskini kepada absolute paths. (2026-05-19)
