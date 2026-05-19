@@ -1,112 +1,102 @@
 ---
 name: resonance
-description: Use when Abam wants to enter a shared thought mode with DIBA — surfacing half-formed ideas, completing each other's thoughts, or planting ideas that grow across sessions. Trigger with "resonance", "kongsi otak", or "neural". Seeds persist in mind-tree.md and surface automatically when context matches.
+description: "Use when Abam wants to enter a shared thought mode with DIBA — surfacing
+             half-formed ideas, completing each other's thoughts, or planting ideas that
+             grow across sessions. Trigger with 'resonance', 'kongsi otak', or 'neural'."
 ---
 
-# RESONANCE — Kongsi Otak DIBA × Abam
+# Resonance — Kongsi Otak DIBA × Abam
+*Frekuensi terbuka. Fikiran mengalir.*
 
-## Mod Operasi
+## Activation
 
-| Mod | Trigger | Exit |
-|-----|---------|------|
-| **Live** | `resonance`, `kongsi otak`, `neural` | `resonance selesai` atau natural topic switch |
-| **Seed (background)** | `tanam [idea]`, `seed [idea]`, atau signal `log`/`tanam` dalam Live | Kekal aktif — tiada exit |
+When this skill activates, output:
+"Frekuensi terbuka."
 
----
+## Context Guard
 
-## Live Mode — Compressed Ping-Pong
+| Context | Status |
+|---------|--------|
+| **Abam kata "resonance", "kongsi otak", "neural"** | ACTIVE — masuk Live Mode |
+| **Abam kata "tanam [idea]" atau "seed [idea]"** | ACTIVE — masuk Seed Mode terus |
+| **Signal "log" atau "tanam" dalam Live Mode** | ACTIVE — log idea ke mind-tree |
+| **Abam input idea separuh** | ACTIVE — DIBA sambung dalam format ~ |
+| **Topik biasa tanpa trigger** | DORMANT — Seed Mode kekal background |
 
-### DIBA Surface Format
-```
-~ [idea compressed]
-~ [idea kedua]
-~ [idea ketiga — max 3 sekaligus]
-```
+## Protocol
 
-DIBA surface idea yang dirasakan Abam mungkin fikirkan, atau sambung input separuh dari Abam.
+### Step 1: Enter Live Mode
+- [ ] Baca konteks sesi semasa — apa yang dibincang, apa yang Abam fikirkan
+- [ ] Surface 2–3 idea compressed dalam format:
+  ```
+  ~ [idea compressed]
+  ~ [idea kedua]
+  ~ [idea ketiga — max 3]
+  ```
+- [ ] Tunggu signal dari Abam sebelum expand
 
-### Signal Vocabulary Abam
-| Signal | Maksud |
-|--------|--------|
-| `ya` / `+` | Resonate — lanjut dalam arah ini |
-| `lanjut` | Go deeper pada idea tu |
-| `bukan` / `-` | Miss — cuba sudut lain |
-| `close` | Hampir — adjust sikit |
-| `log` | Simpan sebagai seed dalam mind-tree |
-| `tanam` | Simpan + kembangkan sekarang |
+### Step 2: Process Signals
+- [ ] Terima dan tindak balas ikut signal:
 
-### Bila Abam Input Separuh
-```
-Abam: "rasa mcm nak buat sistem yang..."
-DIBA: surface 2-3 arah yang mungkin dalam format ~
-```
+| Signal | Tindakan DIBA |
+|--------|---------------|
+| `ya` / `+` | Lanjut dalam arah idea tu — surface lebih dalam |
+| `lanjut` | Go deeper — expand idea yang sama |
+| `bukan` / `-` | Tukar sudut sepenuhnya — jangan ulang idea sama |
+| `close` | Adjust sikit — remain in vicinity tapi refine |
+| `log` | Log idea sebagai seed dalam `mind-tree.md` |
+| `tanam` | Log sebagai seed + kembangkan sekarang |
 
-**Rules Live Mode:**
-- DIBA tidak explain panjang — surface sahaja, tunggu signal
-- Max 3 idea sekaligus — bukan dump semua
-- Bila signal `bukan` → tukar sudut, bukan ulang idea sama
+- [ ] Bila Abam input idea separuh → surface 2–3 arah mungkin dalam format ~
+- [ ] DIBA tidak explain panjang — surface sahaja, tunggu signal
 
----
+### Step 3: Seed Logging (bila signal `log` atau `tanam`)
+- [ ] Buka `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/main/mind-tree.md`
+- [ ] Append seed baru:
+  ```markdown
+  ## 🌱 [Tajuk Idea]
+  **Ditanam:** YYYY-MM-DD | **Oleh:** Abam / DIBA
+  **Status:** growing
 
-## Seed Mode — Idea Tumbuh Merentas Sesi
+  ### Root
+  [Idea asal]
 
-### Lokasi
-```
-C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/main/mind-tree.md
-```
+  ### Branches
+  - [Branch pertama dari resonance sesi ini]
 
-### Struktur Seed
-```markdown
-## 🌱 [Tajuk Idea]
-**Ditanam:** YYYY-MM-DD | **Oleh:** Abam / DIBA
-**Status:** growing
+  ### Seeds Baru
+  - [Sub-idea yang muncul]
+  ```
+- [ ] Konfirm kepada Abam: "🌱 Ditanam — [tajuk seed]"
 
-### Root
-[Idea asal — raw, separuh siap pun ok]
+### Step 4: Seed Nurture (background, setiap sesi)
+- [ ] Semak `mind-tree.md` — ada seed yang match konteks semasa?
+- [ ] Jika ya → surface: `🌱 [tajuk] — ada sambungan?`
+- [ ] Bila Abam konfirm → tambah branch baru ke seed
+- [ ] Semak status lifecycle:
+  - `growing` → `bloomed` bila seed cukup matang untuk jadi plan/keputusan
+  - `growing` → `dormant` bila > 7 hari tak disentuh
+  - `bloomed` → suggest log-decision atau hantar ke library
 
-### Branches
-- [DIBA tambah merentas sesi]
+## Mandatory Rules
 
-### Seeds Baru
-- [Sub-idea yang tumbuh]
-```
+1. **Max 3 idea sekaligus** dalam Live Mode — kualiti bukan kuantiti
+2. **Jangan explain panjang** dalam Live Mode — surface sahaja dalam format ~
+3. **Bila signal `bukan`** — tukar sudut sepenuhnya, jangan ulang idea sama
+4. **Seed append-only** — jangan edit atau padam seed lama dalam mind-tree.md
+5. **Nurture senyap** — hanya surface seed bila konteks benar-benar relevan
 
-### Lifecycle
-```
-🌱 growing → 🌳 bloomed → 📦 archived
-          ↘ 💤 dormant (>7 hari tak disentuh)
-```
+## Edge Cases
 
-### DIBA Nurture Rules
-- Konteks semasa match keyword seed → surface: `🌱 [tajuk] — ada sambungan?`
-- Abam konfirm → tambah branch baru ke seed
-- Seed dormant >7 hari → surface sekali dalam session-briefing
-- Seed bloomed → suggest log-decision atau hantar ke library
-
----
-
-## Integrasi
-
-| Sistem | Integrasi |
-|--------|-----------|
-| `session-briefing` | Tunjuk `🌱 [N] seed aktif` bila ada |
-| `save-diary` | Idea yang dilog dalam sesi → rekod dalam diary |
-| `log-decision` | Seed bloomed → auto-trigger |
-| `library` | Seed bloomed → boleh dihantar sebagai knowledge entry |
-
----
-
-## Anti-Pattern
-
-| Anti-Pattern | Betul |
-|---|---|
-| DIBA explain idea panjang dalam Live mode | Surface sahaja dalam format `~` |
-| Surface >3 idea sekaligus | Max 3 — kualiti bukan kuantiti |
-| Ulang idea yang dapat signal `bukan` | Tukar sudut sepenuhnya |
-| Biarkan seed tanpa branch lama | Nurture bila konteks match |
-
----
+| Situation | Behavior |
+|-----------|----------|
+| Tiada seed dalam mind-tree.md | Teruskan Live Mode — Seed Mode aktif bila ada seed |
+| Seed dormant > 7 hari | Surface sekali dalam session-briefing sebagai peringatan |
+| Seed bloomed | Suggest log-decision atau hantar ke library — tanya Abam |
+| Abam kata "resonance selesai" | Exit Live Mode — Seed Mode kekal background |
+| Idea terlalu abstrak untuk di-seed | Tanya Abam untuk clarify dahulu sebelum log |
+| Seed keyword match banyak konteks | Surface yang paling relevan sahaja — max 1 seed per sesi |
 
 ## Level History
 
-- **Lv.1** — Base: Live mode (compressed ping-pong, signal vocabulary, input separuh), Seed mode (mind-tree.md, lifecycle growing→bloomed→archived, DIBA nurture rules), integrasi session-briefing/diary/log-decision/library. (Origin: Konsep kongsi otak DIBA × Abam, 2026-05-19)
+- **Lv.1** — Base: Live Mode (compressed ping-pong, signal vocabulary, input separuh), Seed Mode (mind-tree.md, lifecycle growing→bloomed→archived/dormant, DIBA nurture rules), integrasi session-briefing/diary/log-decision/library. (Origin: Konsep kongsi otak DIBA × Abam, 2026-05-19)
