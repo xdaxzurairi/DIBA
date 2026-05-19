@@ -353,6 +353,8 @@ Features are organized into **tiers** based on dependencies. Install Tier 1 firs
 | 💾 [Save Memory System](Feature/Save-Memory-System/) | Persistent memory — command save, auto-detect, staleness audit | `"Load save-memory"` |
 | 🔍 [DIBA Recall System](Feature/DIBA-Recall-System/) | On-demand workspace recall — project registry + session state + reminders | `"Load diba-recall"` |
 | 📊 [Dashboard System](Feature/Dashboard-System/) | Visual instinct health panel — observation counts, confidence bars, stale flags, action signals — *requires Continuous Improvement* | `"Load dashboard"` |
+| ⚓ [Anchor System](Feature/Anchor-System/) | Context lock & persona enforcement — 6-step protocol, drift severity levels (Low/Medium/High/Critical), re-anchor and exit steps | `"Load anchor"` |
+| 🌿 [Resonance System](Feature/Resonance-System/) | Shared thought mode — compressed ping-pong ideas, seed lifecycle (PLANTED→BLOOMING→HARVESTED), mind-tree nurture across sessions | `"Load resonance"` |
 
 > Each feature has a detailed README inside its folder. Click the feature name to learn more.
 
@@ -366,16 +368,16 @@ Features are organized into **tiers** based on dependencies. Install Tier 1 firs
 | 2 | [logando-al](https://github.com/logando-al) | Session Briefing System, Post-Mortem System |
 | 3 | [SherlockianAsh](https://github.com/SherlockianAsh) | Observation System |
 | 4 | [naimkatiman](https://github.com/naimkatiman) | Mulahazah System |
-| 5 | [xdaxzurairi](https://github.com/xdaxzurairi) | Meeting System, Orchestration System, Auto-Worker System, Code-Sharp System, Token Guard System, Discipline System, Continuous Improvement System, Security Audit System, Dream Ideas System, Break Reminder System, Save Memory System, DIBA Recall System, Dashboard System |
+| 5 | [xdaxzurairi](https://github.com/xdaxzurairi) | Meeting System, Orchestration System, Auto-Worker System, Code-Sharp System, Token Guard System, Discipline System, Continuous Improvement System, Security Audit System, Dream Ideas System, Break Reminder System, Save Memory System, DIBA Recall System, Dashboard System, Anchor System, Resonance System |
 
 > Want to contribute? Fork the repo, create a feature in `Feature/[Your-Feature]/`, and submit a PR!
 
 ---
 
-**Version**: 5.1 - Added Dashboard System by xdaxzurairi (Tier 4)
+**Version**: 5.2 - Added Anchor System + Resonance System by xdaxzurairi (Tier 4); Superultra upgrades for Session-Briefing, Save-Diary, Echo-Recall, DIBA-Recall, Anchor, Resonance
 **Created by**: Kiyoraka Ken & Alice
 **License**: Open Source Community Project
-**Last Updated**: May 14, 2026
+**Last Updated**: May 19, 2026
 **Purpose**: Simple, effective AI memory for everyone
 
 *Transform basic AI conversations into meaningful, growing relationships*
