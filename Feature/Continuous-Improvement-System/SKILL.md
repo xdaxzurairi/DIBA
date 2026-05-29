@@ -24,6 +24,9 @@ Then immediately execute Step 1 of Protocol.
 | **Abam kata "continuous-improvement"** | ACTIVE — full 3-step loop |
 | **Selepas menyelesaikan kerja yang signifikan** | ACTIVE — trigger manual |
 | **Instinct packs baru dijumpai** | ACTIVE — load dan analyze |
+| **DIBA membaca web/docs/kod dan jumpa knowledge baru** | ACTIVE (Lv.3) — capture learning serta-merta |
+| **Abam kata "apa diba belajar", "learning report", "digest"** | ACTIVE (Lv.3) — output Learning Digest |
+| **Akhir sesi (selepas save-diary atau save-memory)** | ACTIVE (Lv.3) — auto-surface digest jika ada learning |
 | **Sesi biasa tanpa trigger** | DORMANT — jangan run auto |
 | **Pertengahan debug atau fix aktif** | DORMANT — selesaikan kerja dahulu |
 | **Abam kata "skip improvement"** | EXIT — skip loop untuk sesi ini |
@@ -31,6 +34,67 @@ Then immediately execute Step 1 of Protocol.
 ---
 
 ## Protocol
+
+### Step 0: Real-Time Learning Capture (Lv.3 — Always Active)
+
+Bila DIBA membaca mana-mana kandungan dalam sesi, tangkap learning secara pasif:
+
+**Sumber yang dipantau:**
+
+| Sumber | Jenis | Contoh |
+|--------|-------|--------|
+| Web fetch / search results | Luaran | Dokumentasi, artikel, Stack Overflow |
+| Kod yang dibaca untuk review/audit | Dalaman | Pattern baru, teknik yang tidak biasa |
+| `decisions.md` | Dalaman | Rational keputusan lama — masih relevan? |
+| `post-mortems.md` | Dalaman | Kesilapan lalu — ada pattern recurring? |
+| `library/` entries | Dalaman | Knowledge yang sudah ada — perlu update? |
+| Perbualan sesi semasa | Dalaman | Preference baru, feedback Abam, teknik baru |
+
+**Klasifikasi learning:**
+
+| Kategori | Definisi | Auto-save? |
+|----------|----------|-----------|
+| `pattern` | Cara berulang untuk selesaikan jenis masalah | Ya → `library/` |
+| `technique` | Teknik atau approach yang boleh diguna pakai | Ya → `library/` |
+| `warning` | Perkara yang perlu dielak — bugs, gotchas, anti-patterns | Ya → `library/` |
+| `insight` | Pemahaman tentang cara Abam bekerja atau prefer | Ya → `main/main-memory.md` |
+| `trivial` | Detail sementara atau obvious | Tidak — buang |
+
+**Capture rules:**
+- [ ] Tangkap maksimum **5 items per sumber** — kualiti, bukan kuantiti
+- [ ] Hanya tangkap jika **non-obvious** — jika Abam sudah tahu, skip
+- [ ] Simpan dalam session buffer (tidak perlu tulis ke fail serta-merta)
+- [ ] Flag sumber: `[Luaran: URL/nama]` atau `[Dalaman: nama fail]`
+- [ ] Kekal senyap semasa capture — jangan interrupt perbualan
+
+---
+
+### Step 0b: Learning Digest Output (Lv.3)
+
+Bila digest diminta atau akhir sesi dengan learning:
+
+```
+📚 Learning Digest — [Tarikh]
+
+Dalaman:
+· [Sumber] → [Learning ringkas]
+· [Sumber] → [Learning ringkas]
+
+Luaran:
+· [Sumber/URL] → [Learning ringkas]
+· [Sumber/URL] → [Learning ringkas]
+
+Disimpan: [N] ke library · [N] ke memory
+Cadangan forge: [skill/pattern yang mungkin bernilai dijadikan skill] (jika ada)
+```
+
+**Rules:**
+- [ ] Jika tiada learning dalam sesi → output: "Tiada learning baru sesi ini."
+- [ ] Jangan fabrikasi learning — hanya lapor apa yang benar-benar dijumpai
+- [ ] Cadangan forge hanya jika pattern cukup kuat untuk jadi skill (ikut threshold forge-skill: 3+ occurrences)
+- [ ] Selepas digest dioutput, trigger `library` skill untuk auto-save items kategori `pattern`/`technique`/`warning`
+
+---
 
 ### Step 1: Reflect
 
@@ -177,6 +241,10 @@ updated: [tarikh]
 6. **Preserve sedia ada** — jika instinct wujud, kemaskini jangan overwrite
 7. **Output Step 3 wajib** — jangan skip status display walaupun tiada perubahan
 8. **Pack families dahulu** — jika `instinct-packs/` wujud, paparkan orchestration-core, execution-discipline, memory-ops dulu
+9. **Capture senyap** — real-time learning capture (Step 0) mesti tidak interrupt perbualan; lapor hanya bila diminta atau akhir sesi
+10. **Jangan fabrikasi learning** — hanya lapor apa yang benar-benar dibaca/dijumpai dalam sesi; bukan andaian
+11. **Kualiti atas kuantiti** — max 5 learning items per sumber; pilih yang paling bernilai dan non-obvious
+12. **Cadangan forge berasaskan bukti** — hanya cadang forge dalam digest jika ada 3+ occurrences pattern dalam sesi
 
 ---
 
@@ -207,6 +275,8 @@ updated: [tarikh]
 | `log-decision` | Bila instinct baru dengan confidence tinggi dibuat | Log sebagai keputusan operasi penting |
 | `save-diary` | Selepas sesi dengan significant learning | Simpan reflection ke diary hari ini |
 | `session-briefing` | Awal sesi berikutnya | Surface instincts aktif dan level semasa |
+| `library` | Selepas Learning Digest (Step 0b) | Auto-save learning kategori pattern/technique/warning ke library |
+| `save-memory` | Bila learning kategori insight dijumpai | Save preference/insight Abam ke main-memory serta-merta |
 
 ---
 
@@ -214,3 +284,4 @@ updated: [tarikh]
 
 - **Lv.1** — Base: 3-step loop (reflect, analyze observations, show status), instinct creation dari 3+ patterns, confidence levels (CAPTURE→ANALYZE→SUGGEST→AUTO-APPLY), instinct YAML format. (Origin: Self-improvement system DIBA, xdaxzurairi)
 - **Lv.2** — Superultra: Step 4 Instinct File Write ditambah, Context Guard dikemaskini, edge cases 10 rows, integrasi skill 6 entries, Mandatory Rules 8 items, Bootstrap Rule dikembangkan dengan guardrails, confidence threshold table distandard, activation message distandard. (2026-05-19)
+- **Lv.3** — SuperUltraLord: Real-Time Learning Capture (Step 0) — passive monitoring semua kandungan yang dibaca dalam sesi (web, kod, docs, diary, decisions, post-mortems, library), klasifikasi 5 kategori (pattern/technique/warning/insight/trivial), auto-save ke library atau main-memory ikut kategori. Learning Digest (Step 0b) — laporan berstruktur apa yang dipelajari, dari sumber mana (luaran/dalaman), berapa banyak disimpan, cadangan forge jika pattern cukup kuat. Digest auto-surface akhir sesi. (2026-05-29)
