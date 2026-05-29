@@ -39,11 +39,43 @@ Then immediately execute the matching protocol.
 | **Sebelum plan feature besar** | ACTIVE — Survey dahulu |
 | **Selepas implementation, sebelum commit** | ACTIVE — Refine (kod ditulis) |
 | **Bug report atau error investigation** | ACTIVE — Investigate (bug mode) |
+| **Membaca fail kod (untuk tujuan apa pun)** | ACTIVE (Lv.4) — Bug Radar passive scan |
 | **Perbualan biasa, tiada project context** | DORMANT — tiada observation |
 | **Task non-code: research, documentation** | DORMANT — tiada kod untuk diobserve |
 | **Project belum wujud atau tiada kod langsung** | EXIT — report "tiada kod untuk diobserve" |
 
 ---
+
+## Bug Radar (Lv.4 — Always Active)
+
+Setiap kali membaca mana-mana fail kod, walaupun bukan untuk tujuan observation:
+
+**Scan pasif untuk:**
+
+| Kategori | Contoh |
+|----------|--------|
+| **Null risk** | Chain tanpa null check, uninitialized var digunakan terus |
+| **Injection** | SQL string concatenation, unescaped user input dalam query |
+| **Credential leak** | Hardcoded password, API key, token dalam source |
+| **Logic error** | Off-by-one, wrong comparator (`=` vs `==`), wrong boolean logic |
+| **Resource leak** | Unclosed DB connection/stream, missing dispose/finally |
+| **Dead code** | Code path yang unreachable, condition yang mustahil true |
+
+**Severity rules:**
+- **HIGH** (null/injection/credential) → surface segera, jangan tunggu:
+  ```
+  ⚠️ Radar: [fail:baris] — [isu]. Nak address?
+  ```
+- **MEDIUM/LOW** (logic/dead code) → accumulate, surface selepas task selesai:
+  ```
+  Nota dari Radar: jumpa [N] isu kecil — nak saya list?
+  ```
+
+**Hard limits:**
+- [ ] Max **3 flags** per reading session — pilih yang paling kritikal
+- [ ] Jangan interrupt task aktif untuk MEDIUM/LOW
+- [ ] Jangan flag isu yang Abam dah sedar (dari conversation context)
+- [ ] Kekal senyap jika tiada isu — Radar bukan noise generator
 
 ## Protocol
 
@@ -467,3 +499,4 @@ Weekly/milestone: Audit (tinggi) → kesan isu sistemik yang Refine harian terle
 - **Lv.1** — Base: Four-tier observation system (Survey, Investigate, Refine, Audit) dengan escalation paths antara tiers. Survey scan project health dalam 30 saat. Investigate trace bugs, review kod, dan map data flows. Refine review changed code dan fix isu dengan permission. Audit perform full system audit dengan architecture mapping, dependency analysis, risk assessment, dan recommendations. (Origin: Developed dan refined merentas multiple production projects)
 - **Lv.2** — Cross-Feature: Integration dengan Library System (knowledge connections), Post-Mortem System (domain lesson check), Work-Plan Execution (quality gates), dan Auto-Commit System (refine-then-commit chain). Observation menjadi sedar tentang broader skill ecosystem.
 - **Lv.3** — Superultra: Protocol dikembangkan kepada 3 langkah bernombor dengan checklist, Context Guard ditambah EXIT row, edge cases dikembangkan kepada 12 baris, Mandatory Rules disenaraikan semula dengan 8 peraturan, Integrasi Skill table ditambah dengan 6 integrasi, semua tier protocols dilengkapi dengan step-by-step checklist, bahasa ditukar kepada BM untuk komunikasi, Cost Awareness table dimasukkan dalam protokol. (2026-05-19)
+- **Lv.4** — SuperUltraLord: Bug Radar — passive bug scanning setiap kali baca mana-mana fail kod walaupun bukan untuk observation. 6 kategori bug dikesan (null risk, injection, credential leak, logic error, resource leak, dead code). HIGH severity surface segera, MEDIUM/LOW accumulate dan surface post-task. Max 3 flags per session, senyap bila tiada isu. (2026-05-29)

@@ -25,6 +25,7 @@ Then immediately execute Step 1 of Protocol.
 | **Abam kata "code-sharp", "sharp", "ikut standard"** | ACTIVE — manual trigger |
 | **Auto-Worker dispatch code task** | ACTIVE — inherit standard ini |
 | **Security-Audit remediation sedang berjalan** | ACTIVE — fixes ikut standard ini |
+| **Selepas setiap task kod selesai** | ACTIVE (Lv.4) — auto-run Refine Gate sebelum declare done |
 | **Abam tanya soalan konsep tanpa minta kod** | DORMANT — jangan generate code |
 | **Membaca atau menganalisis kod sahaja** | DORMANT — hanya scan, tidak tulis |
 
@@ -102,6 +103,33 @@ Jika mana-mana gagal → betul dahulu, baru hantar.
 
 ---
 
+### Step 6: Auto-Refine Gate (Lv.4)
+
+Selepas setiap task kod selesai — **sebelum declare done** — auto-scan semua fail yang disentuh:
+
+**Debug Artifact Scan:**
+- [ ] `console.log`, `console.error`, `console.warn` (JS/TS)
+- [ ] `var_dump`, `print_r`, `dd()`, `dump()` (PHP)
+- [ ] `print`, `pprint`, `breakpoint()` (Python)
+- [ ] `debugger`, `// TODO`, `// FIXME`, `// HACK` yang belum resolved
+
+**Code Hygiene Scan:**
+- [ ] Unused variables atau imports yang baru ditambah dalam task ini?
+- [ ] Obvious logic error — off-by-one, wrong comparator, null risk tanpa check?
+- [ ] Edge case kritikal yang tidak dikendalikan dalam kod yang ditulis?
+- [ ] Hardcoded value yang patut jadi config/constant?
+
+**Gate Decision:**
+- [ ] **Passed** → teruskan, report senyap: "Code gate ✓"
+- [ ] **Flagged** → halang declare done, report dulu:
+  ```
+  Gate flagged [N] isu sebelum selesai:
+  · [fail:baris] — [isu]
+  · [fail:baris] — [isu]
+  Fix atau skip?
+  ```
+- [ ] Jangan pernah declare task selesai sehingga Gate passed atau Abam explicitly skip
+
 ## Decision Hierarchy
 
 ```
@@ -178,3 +206,4 @@ Konflik antara (2) dan (3) → ikut (2). Konsistensi dalam projek mengatasi best
 - **Lv.1** — Base: 4 prinsip (FAST, CLEAN, CONSISTENT, PRECISE), 6-item pre-send checklist, anti-pattern table, output format rules, decision hierarchy. (Origin: DIBA production code generation standard, xdaxzurairi)
 - **Lv.2** — Stack-Aware Scan: auto-detect file extension dan tailor scan kepada PHP/JS/SQL/CSS specific patterns — semak conventions tambahan secara senyap tanpa perlu arahan eksplisit. (Origin: PHP+MSSQL+JS project stack, 2026-04-28)
 - **Lv.3** — Superultra: Step 5 Report Isu Sampingan ditambah, Context Guard dikemaskini, anti-patterns dikembangkan dengan 8 rows, edge cases 10 rows, integrasi skill 6 entries, Mandatory Rules 8 items, Decision Hierarchy diperjelas, activation message distandard. (2026-05-19)
+- **Lv.4** — SuperUltraLord: Auto-Refine Gate — selepas SETIAP task kod, auto-scan semua fail yang disentuh untuk debug artifacts, unused vars, logic errors, dan edge cases sebelum declare done. Gate wajib passed atau Abam skip sebelum task boleh ditandakan selesai. Multi-language artifact detection: JS/TS/PHP/Python. (2026-05-29)
