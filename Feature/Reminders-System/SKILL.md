@@ -31,7 +31,8 @@ When this skill activates, silently read `C:/Users/BSM/XDIBAX/Project-AI-MemoryC
 | **Task selesai yang match open reminder** | ACTIVE — move to Completed |
 | **User sebut deadline atau tarikh** | ACTIVE — parse dan save sebagai reminder |
 | **Session end** | ACTIVE — review dan update |
-| **Mid-conversation (tiada reminder context)** | DORMANT |
+| **Topik perbualan match open reminder** | ACTIVE (Lv.3) — surface secara natural mid-session |
+| **Mid-conversation (tiada topik berkaitan reminder)** | DORMANT |
 | **User kata "clear reminders" / "padam"** | EXIT — minta confirm dulu sebelum clear |
 
 ---
@@ -74,6 +75,24 @@ When this skill activates, silently read `C:/Users/BSM/XDIBAX/Project-AI-MemoryC
 - [ ] Jika completion partial — update description dalam Open, jangan move ke Completed
 
 ---
+
+### On Mid-Session Topic Match (Lv.3)
+
+Monitor perbualan secara pasif untuk topik yang match open reminders:
+
+- [ ] Bila Abam hantar message baru, scan topik utama message tersebut
+- [ ] Bandingkan dengan Open reminders dalam `main/reminders.md` (baca dari cache sesi — bukan baca fail semula setiap kali)
+- [ ] Jika topik match reminder yang open: surface secara natural dalam respons:
+  ```
+  (Sambil tu — ada reminder berkaitan: [tajuk reminder]. Masih relevant?)
+  ```
+- [ ] **Rules ketat:**
+  - Maksimum **1 surface per reminder** dalam satu sesi
+  - Jangan surface reminder yang sama dua kali
+  - Jangan interrupt mid-task — surface selepas task selesai
+  - Jika reminder sudah overdue > 7 hari: surface dengan lebih urgen
+- [ ] Jika Abam balas "done" atau selesai → offer to move reminder ke Completed
+- [ ] Jika Abam ignore → jangan follow-up lagi untuk reminder yang sama dalam sesi ini
 
 ### On Session End
 
@@ -138,3 +157,4 @@ When this skill activates, silently read `C:/Users/BSM/XDIBAX/Project-AI-MemoryC
 
 - **Lv.1** — Base: session start/end lifecycle, natural language detection, deadline tracking, append-only Open section, move-to-Completed pattern. (Origin: Production companion system)
 - **Lv.2** — Superultra: Frontmatter dikemaskini, activation message ditambah, Context Guard dikembangkan dengan deadline trigger, "clear reminders" EXIT row, dan "next session" trigger; Protocol dipecah kepada 4 bahagian (session start/add/complete/end), deadline conversion rules diperkukuh dengan contoh spesifik, partial completion handling ditambah, overdue handling diexplicit, edge cases dikembangkan kepada 12 rows, integrasi skill table ditambah, Mandatory Rules dikembangkan kepada 10 rules. (2026-05-19)
+- **Lv.3** — SuperUltraLord: Mid-Session Topic Match — passive monitoring setiap message Abam, bandingkan topik dengan open reminders, surface secara natural bila match, max 1 surface per reminder per sesi, jangan interrupt mid-task, overdue >7 hari diescalate dengan lebih urgen, auto-offer Complete bila Abam confirm selesai. (2026-05-29)

@@ -33,6 +33,7 @@ Output bila log berjaya:
 | **Session end dengan unlogged decisions** | ACTIVE — prompt to log |
 | **auto-worker membuat autonomous decision** | ACTIVE — auto-log tanpa tanya |
 | **User kata "reverse [decision]" atau "kita tukar"** | ACTIVE — append reversal entry |
+| **Decision strategic/uncertain yang perlu revisit** | ACTIVE (Lv.3) — cadang reminder revisit |
 | **Mid-conversation (tiada decision context)** | DORMANT |
 | **Trivial/obvious choices (pakai git, formatting)** | DORMANT — skip |
 
@@ -96,6 +97,28 @@ Output bila log berjaya:
 
 ---
 
+### On Project Linkage (Lv.3)
+
+Bila log decision, auto-link ke projek aktif semasa:
+
+- [ ] Baca active project dari `projects/project-list.md` (baris paling atas = LRU #1)
+- [ ] Tambah field `**Project**` dalam entry jika projek wujud:
+
+  ```markdown
+  ## YYYY-MM-DD — [Domain]: Short title
+  **Project**: [nama projek aktif]
+  **Context**: ...
+  **Decision**: ...
+  **Rationale**: ...
+  ```
+
+- [ ] Jika tiada projek aktif → skip field Project, teruskan log seperti biasa
+- [ ] Jika decision **strategic** atau ada nota "perlu revisit": cadangkan reminder kepada Abam:
+  ```
+  Decision ini nampak strategic — nak set reminder untuk revisit dalam [7/14/30] hari?
+  ```
+- [ ] Jangan auto-set reminder tanpa Abam setuju
+
 ### On Session End
 
 - [ ] Semak sama ada ada keputusan penting dalam sesi yang belum dilog
@@ -155,3 +178,4 @@ Output bila log berjaya:
 
 - **Lv.1** — Base: decision detection, append-only logging, Context+Decision+Rationale format, search, reversal tracking. (Origin: Production companion system)
 - **Lv.2** — Superultra: Frontmatter dikemaskini, activation message ditambah, Context Guard dikembangkan dengan auto-worker trigger dan reversal trigger, Protocol dipecah kepada 5 bahagian (detect/log/search/reverse/session-end), domain prefix distandard dalam tajuk, absolute path diexplicit, edge cases dikembangkan kepada 12 rows, integrasi skill table ditambah, Mandatory Rules dikembangkan kepada 10 rules. (2026-05-19)
+- **Lv.3** — SuperUltraLord: Project Linkage — auto-link keputusan ke projek aktif semasa (LRU #1), field Project ditambah dalam entry format, Revisit Scheduling — decisions strategic/uncertain dicadang reminder revisit, jangan auto-set tanpa kebenaran Abam. (2026-05-29)

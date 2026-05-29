@@ -24,7 +24,8 @@ When this skill activates, output nothing — terus execute protocol.
 | **"Recall..." / "What did we decide about..."** | ACTIVE — full recall search |
 | **"Last time we..." / "Earlier you said..."** | ACTIVE — full recall search |
 | **"check our history" / "cari dalam diary"** | ACTIVE — full recall search |
-| **Mid-conversation tanpa trigger** | DORMANT — tiada recall action |
+| **Perbualan menyentuh topik yang mungkin ada rekod diary** | ACTIVE-PROBE — hint ada memory (Lv.3) |
+| **Mid-conversation tanpa topik berkaitan** | DORMANT — tiada recall action |
 
 ---
 
@@ -122,6 +123,25 @@ Bila soalan terlalu kabur atau tiada hasil langsung:
 
 ---
 
+### Step 3.5: Proactive Echo (Lv.3)
+
+Bila perbualan menyentuh topik yang mungkin ada rekod — tanpa trigger eksplisit:
+
+- [ ] Kenal pasti topik utama yang sedang dibincangkan
+- [ ] Quick-scan keyword dalam `daily-diary/current/` (max 3 fail terkini sahaja — jangan full scan)
+- [ ] Jika ada match: hint secara natural, jangan interrupt:
+  ```
+  Topik ni ada kaitan dengan sesi [tarikh] — nak saya recall detail?
+  ```
+- [ ] Jika tiada match dalam 3 fail: kekal senyap — jangan disturb perbualan
+- [ ] **Maksimum 1 hint per topik** dalam satu sesi — jangan repeat
+- [ ] Confidence gauge sebelum hint:
+  | Confidence | Syarat | Output |
+  |------------|--------|--------|
+  | Tinggi | Exact keyword match dalam tajuk atau summary | Hint terus |
+  | Sederhana | Keyword match dalam body text | Hint dengan "mungkin berkaitan" |
+  | Rendah | Vague match sahaja | Kekal senyap — jangan disturb |
+
 ### Step 6: Post-Recall Follow-Up
 
 Selepas recall berjaya:
@@ -187,3 +207,4 @@ Selepas recall berjaya:
 
 - **Lv.1** — Base: Three-level recall (search+narrate, uncertainty guard, ask-user fallback), keyword search merentasi current/ dan archived/, narrative output, jangan fabricate. (Origin: Echo Memory Recall System, DIBA)
 - **Lv.2** — Superultra: Step 1 keyword extraction explicit, Step 2 search priority table dengan decisions.md dan current-session.md, Step 6 Post-Recall Follow-Up (seed link + follow-up surface), output quality table (lemah vs kuat), edge cases tambahan, integrasi skill lengkap, mandatory rules dikembangkan, search stop condition. (2026-05-19)
+- **Lv.3** — SuperUltraLord: Step 3.5 Proactive Echo — passive topic monitoring mid-conversation, quick-scan 3 fail terkini tanpa explicit trigger, confidence gauge (Tinggi/Sederhana/Rendah) sebelum hint, max 1 hint per topik per sesi, kekal senyap untuk confidence rendah. (2026-05-29)

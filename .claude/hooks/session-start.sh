@@ -18,16 +18,16 @@ install_skill() {
     cp "$skill_md" "$SKILLS_DIR/$skill_name/SKILL.md"
 }
 
-# Layer 1: Feature skills (base)
-for skill_md in \
-    "$DIBA_DIR/Feature/"*/SKILL.md \
-    "$DIBA_DIR/Feature/Skill-Plugin-System/skills/"*/SKILL.md; do
+# Layer 1: Plugin skills (base)
+for skill_md in "$DIBA_DIR/plugins/diba-skills/skills/"*/SKILL.md; do
     [ -f "$skill_md" ] || continue
     install_skill "$skill_md"
 done
 
-# Layer 2: Plugin skills override (newer versions)
-for skill_md in "$DIBA_DIR/plugins/diba-skills/skills/"*/SKILL.md; do
+# Layer 2: Feature skills override (authoritative — always higher level)
+for skill_md in \
+    "$DIBA_DIR/Feature/"*/SKILL.md \
+    "$DIBA_DIR/Feature/Skill-Plugin-System/skills/"*/SKILL.md; do
     [ -f "$skill_md" ] || continue
     install_skill "$skill_md"
 done
