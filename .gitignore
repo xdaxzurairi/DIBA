@@ -4,3 +4,5 @@
 
 # Claude Code settings
 .claude/settings.local.json
+# Semantic search index (auto-rebuilt each session)
+.diba-search/index/

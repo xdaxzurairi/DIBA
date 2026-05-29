@@ -43,22 +43,31 @@ When this skill activates, output nothing — terus execute protocol.
 
 ---
 
-### Step 2: Search Diary (Priority Order)
+### Step 2: Search Diary (Semantic — Lv.4)
 
-Cari dalam urutan berikut:
+Guna semantic search sebagai kaedah utama:
+
+```bash
+python3 /home/user/DIBA/.diba-search/search.py "[keywords]" --top 5
+```
+
+Jika index tidak wujud atau gagal → fallback ke grep (Priority Order asal):
 
 | Priority | Lokasi | Sebab |
 |----------|--------|-------|
-| 1 | `C:/Users/BSM/XDIBAX/daily-diary/current/*.md` | Entry terkini — paling relevan |
-| 2 | `C:/Users/BSM/XDIBAX/daily-diary/archived/YYYY-MM/*.md` | Bulan-bulan lepas |
-| 3 | `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/main/decisions.md` | Keputusan penting yang dilog |
-| 4 | `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/main/current-session.md` | Recap sesi terkini |
+| 1 | `daily-diary/current/*.md` | Entry terkini — paling relevan |
+| 2 | `daily-diary/archived/YYYY-MM/*.md` | Bulan-bulan lepas |
+| 3 | `main/decisions.md` | Keputusan penting yang dilog |
+| 4 | `main/current-session.md` | Recap sesi terkini |
 
-**Cara carian:**
-- [ ] Grep keyword dalam fail — cari dalam `### Session summary`, `### Key decisions`, `### Tags`
-- [ ] Jika jumpa match → extract tarikh, tajuk sesi, summary, dan keputusan berkaitan
-- [ ] Jika keyword pertama tiada hasil → cuba keyword lebih umum
-- [ ] Stop bila jumpa 3 match yang relevan — jangan teruskan carian tanpa had
+**Cara guna semantic search:**
+- [ ] Extract 2–4 keywords utama dari soalan Abam (nama projek, topik, tindakan)
+- [ ] Run: `python3 /home/user/DIBA/.diba-search/search.py "[keywords]" --top 5`
+- [ ] Baca output — setiap result ada `[score] source:line` dan excerpt
+- [ ] Hanya guna results dengan score ≥ 0.05 — buang yang lebih rendah
+- [ ] Jika soalan tentang keputusan: tambah `--source decisions`
+- [ ] Jika soalan tentang diary spesifik: tambah `--source diary`
+- [ ] Stop bila jumpa 3 hasil yang relevan — jangan teruskan tanpa had
 
 ---
 
@@ -208,3 +217,4 @@ Selepas recall berjaya:
 - **Lv.1** — Base: Three-level recall (search+narrate, uncertainty guard, ask-user fallback), keyword search merentasi current/ dan archived/, narrative output, jangan fabricate. (Origin: Echo Memory Recall System, DIBA)
 - **Lv.2** — Superultra: Step 1 keyword extraction explicit, Step 2 search priority table dengan decisions.md dan current-session.md, Step 6 Post-Recall Follow-Up (seed link + follow-up surface), output quality table (lemah vs kuat), edge cases tambahan, integrasi skill lengkap, mandatory rules dikembangkan, search stop condition. (2026-05-19)
 - **Lv.3** — SuperUltraLord: Step 3.5 Proactive Echo — passive topic monitoring mid-conversation, quick-scan 3 fail terkini tanpa explicit trigger, confidence gauge (Tinggi/Sederhana/Rendah) sebelum hint, max 1 hint per topik per sesi, kekal senyap untuk confidence rendah. (2026-05-29)
+- **Lv.4** — Semantic Search: Step 2 dikemaskini — guna TF-IDF semantic search (`python3 .diba-search/search.py`) sebagai kaedah utama menggantikan grep. Faham maksud query, bukan sekadar keyword exact. Grep kekal sebagai fallback jika index tidak wujud. Source filter tersedia (`--source diary`, `--source decisions`). Score threshold 0.05 untuk tapis hasil tidak relevan. (2026-05-29)

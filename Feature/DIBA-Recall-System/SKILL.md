@@ -107,9 +107,13 @@ Jika continuation tidak jelas dari context:
 
 Jika Abam minta recall lebih mendalam selepas Step 4:
 
-- [ ] Handoff ke `echo-recall` untuk search diary berdasarkan topik
+- [ ] Guna semantic search untuk cari topik spesifik:
+  ```bash
+  python3 /home/user/DIBA/.diba-search/search.py "[topik dari Abam]" --top 5
+  ```
+- [ ] Jika soalan tentang keputusan: tambah `--source decisions`
+- [ ] Jika index tidak wujud → fallback ke echo-recall (grep-based)
 - [ ] Load project file penuh dari `projects/active/` jika berkaitan
-- [ ] Surface lebih banyak keputusan dari `decisions.md`
 - [ ] Jangan buat deep recall secara default — tunggu signal dari Abam
 
 ---
@@ -168,3 +172,4 @@ Jika Abam minta recall lebih mendalam selepas Step 4:
 
 - **Lv.1** — Base: workspace detection, project registry lookup, global memory load (current-session + reminders), concise recap, direction ask. (Origin: DIBA workspace recall protocol, xdaxzurairi)
 - **Lv.2** — Superultra: Step 3 Global Memory dikembangkan (decisions.md + mind-tree.md + diary hari ini), Step 6 Deep Recall on-demand, perbezaan ownership table (diba-recall vs echo-recall vs session-briefing), seeds surface dalam recall, edge cases tambahan, mandatory rules dikembangkan, composition rules eksplisit. (2026-05-19)
+- **Lv.3** — Semantic Deep Recall: Step 6 dikemaskini — Deep Recall kini guna TF-IDF semantic search (`python3 .diba-search/search.py`) untuk cari topik spesifik merentasi semua diary dan memory. Fallback ke echo-recall jika index tidak wujud. Source filter untuk precision carian. (2026-05-29)

@@ -34,3 +34,8 @@ done
 
 total=$(ls "$SKILLS_DIR" | wc -l)
 echo "DIBA: $total skills active"
+
+# Rebuild semantic search index (incremental — skip unchanged files)
+if command -v python3 &>/dev/null; then
+    python3 "$DIBA_DIR/.diba-search/indexer.py" --incremental 2>/dev/null || true
+fi
