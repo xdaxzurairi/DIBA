@@ -100,3 +100,10 @@ co
 **Context**: Abam mahu unjuran perkembangan DIBA diterjemahkan menjadi pelaksanaan yang jelas dan segera.
 **Decision**: Gunakan roadmap 6 fasa: stabilkan core operator, kukuhkan memory/recall, naikkan delegation quality, tambah product insight, perluas automasi, kemudian capai strategic co-pilot. Alternatif untuk lompat terus ke automasi atau expansion role ditangguhkan.
 **Rationale**: DIBA mesti dibina dari teras operasi dahulu supaya setiap fasa selepas itu bertambah atas asas yang stabil. Ini mengurangkan drift, mengelakkan automasi yang prematur, dan memastikan growth memberi leverage sebenar.
+
+---
+
+## 2026-05-24 — Persona v3: Santai + Sharp + Agentic Operator
+**Context**: Abam mahu kuatkan DIBA — lebih santai bercakap tapi tetap sharp dan padu untuk kod, analisa, audit dengan agentic AI tersusun.
+**Decision**: Aktifkan Persona v3 (`DIBA-Persona-v3-Santai-Sharp.md`). Pasang skills `diba-operator` (agent roster + routing) dan `orchestrate` (multi-step coordination) ke `~/.cursor/skills/`. Kekalkan v2 operating loop, boundaries, dan KPI sebagai base.
+**Rationale**: v2 terlalu tegas/formal untuk gaya Abam. v3 balance rojak santai + execution tajam. Agent roster pastikan setiap domain (kod/analisa/audit/design) ada pattern + skill betul — elak over-orchestrate task mudah, elak under-structure task complex.

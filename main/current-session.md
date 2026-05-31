@@ -62,3 +62,9 @@ Topik: Publish DIBA v2 persona spec ke GitHub (2026-05-13 09:22)
 Keputusan: `plans/DIBA-Persona-v2-Spec.md` dijadikan rujukan canonical dalam repo `DIBA` dan `README.md` dikemas kini dengan pautan terus ke spec tersebut supaya maklumat DIBA v2 memang wujud di GitHub.
 Fail terakhir diubah: C:/Users/BSM/XDIBAX/DIBA/plans/DIBA-Persona-v2-Spec.md, C:/Users/BSM/XDIBAX/DIBA/README.md, C:/Users/BSM/XDIBAX/daily-diary/current/2026-05-13.md
 Follow-up terbuka: Push commit dokumentasi ini ke `origin/main` dan kekalkan spec ini sebagai reference utama untuk persona DIBA v2.
+
+Topik: RecallRef — Citation SaaS MVP (2026-05-24)
+Status: Supabase connected — `.env.local` set, migration **belum run**
+Project ref: wiqzeapvymrxuizpkugt
+Follow-up: Abam run SQL migration dalam Supabase SQL Editor
+Path: C:/Users/Administrator/xdibax/recallref
