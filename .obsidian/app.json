@@ -1,0 +1,15 @@
+{
+  "useTab": false,
+  "lineLength": 0,
+  "strictLineBreaks": false,
+  "showFrontmatter": false,
+  "showLineNumber": true,
+  "useMarkdownLinks": true,
+  "alwaysUpdateLinks": true,
+  "newFileLocation": "root",
+  "newLinkFormat": "shortest",
+  "spellcheck": false,
+  "defaultViewMode": "source",
+  "foldHeading": false,
+  "foldIndent": false
+}
