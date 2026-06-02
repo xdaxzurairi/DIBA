@@ -4,20 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "49c6a999499e1416",
+        "id": "f004d47a3c868e8a",
         "type": "tabs",
         "children": [
           {
-            "id": "3948804db3b774ea",
+            "id": "5cf6f8424a5b7f2d",
             "type": "leaf",
             "state": {
-              "type": "bases",
+              "type": "markdown",
               "state": {
-                "file": "Untitled 1.base",
-                "viewName": "Table"
+                "file": "main/main-memory.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-table",
-              "title": "Untitled 1"
+              "icon": "lucide-file",
+              "title": "main-memory"
             }
           }
         ]
@@ -132,7 +133,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 200
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -144,8 +145,15 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "3948804db3b774ea",
+  "active": "5cf6f8424a5b7f2d",
   "lastOpenFiles": [
+    "plans/DIBA-Persona-v3-Santai-Sharp.md",
+    "main/main-memory.md.tmp.12740.2a33a5f97524",
+    "HOME.md.tmp.12740.b1ba89348278",
+    "Feature/INDEX.md",
+    "Feature/INDEX.md.tmp.12740.aec5bf8e5628",
+    "Feature/Library-System/formats/component-format.md",
+    "company/staff/ORACLE.md",
     "Untitled.base",
     "Untitled 1.base",
     "HOME.md",
