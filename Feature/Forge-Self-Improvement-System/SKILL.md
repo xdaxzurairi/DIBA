@@ -296,3 +296,7 @@ Setiap level patut tambah **satu capability bermakna** — bukan pelbagai peruba
 
 - **Lv.1** — Base: kesan pattern berulang (3+ ad-hoc), mistake prevention, workflow automation, peluang level-up. Human-in-the-loop approval. Template skill standard. Panduan level-up Lv.1–5+. (Origin: Adapted dari production AI companion self-improvement system dengan 23 skills diforge selama 7 bulan)
 - **Lv.2** — Superultra: Protocol dikembangkan kepada 7 langkah bernombor dengan checklist, overlap check ditambah dalam Step 2, edge cases dikembangkan kepada 10 baris, integrasi skill table ditambah, Mandatory Rules dikembangkan kepada 10 peraturan, EXIT row ditambah dalam Context Guard, deploy verification step ditambah, template skill dikembangkan dengan Edge Cases dan Integrasi Skill sections. (2026-05-19)
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

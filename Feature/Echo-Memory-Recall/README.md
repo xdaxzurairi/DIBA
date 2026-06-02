@@ -121,3 +121,7 @@ Tak jumpa catatan tentang itu. Ingat projek mana atau kira-kira bila?
 1. Salin `SKILL.md` ke `~/.claude/commands/echo-recall.md`
 2. Pastikan `daily-diary/` ada dengan entry bertarikh
 3. Verify: tanya "Do you remember..." — DIBA patut search diary sebelum jawab
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

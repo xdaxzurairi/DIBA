@@ -106,3 +106,7 @@ Maksimum 10 baris. Skip bahagian kosong.
 1. Salin `SKILL.md` ke `~/.claude/commands/diba-recall.md`
 2. Pastikan `main/current-session.md` wujud
 3. Verify: taip `recall` — DIBA patut output "Ingatan dimuat." dan deliver recap
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

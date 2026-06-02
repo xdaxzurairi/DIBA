@@ -408,3 +408,7 @@ Total:                    ~$150-550/month (can be optimized)
 ---
 
 *"Infrastructure quality = uptime + visibility. When you can't see it, you can't fix it."* — GRID
+
+
+---
+*See also: [[projects/active/ruangniaga|ruangniaga]] · [[company/staff/GRID|GRID]] · [[main/decisions|decisions]]*

@@ -83,3 +83,7 @@ Also activates proactively via early warning detection (Lv.2).
 ## Installation
 
 See `install-token-guard.md` for setup steps.
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

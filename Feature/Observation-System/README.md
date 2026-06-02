@@ -89,3 +89,7 @@ Developed and refined across multiple production projects. Every protocol step e
 ---
 
 *Observation System v1.0*
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

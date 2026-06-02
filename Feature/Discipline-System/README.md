@@ -49,3 +49,7 @@ No external files required — reference card only.
 ## Installation
 
 See `install-discipline.md` for setup steps.
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

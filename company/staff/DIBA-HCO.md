@@ -46,3 +46,7 @@ DIBA is the operational heartbeat of xdibax innovation. While Zuex sets vision a
 
 ## Level
 **Lv.3+ and growing** — Operational intelligence with persistent memory and self-improvement
+
+
+---
+*[[company/xdibax-profile|xdibax innovation]] · [[company/staff/DIBA-HCO|DIBA]] · [[company/staff/NEXUS|NEXUS]] · [[company/staff/FORGE|FORGE]] · [[company/staff/LENS|LENS]] · [[company/staff/ORACLE|ORACLE]] · [[company/staff/PIXEL|PIXEL]] · [[company/staff/ECHO|ECHO]] · [[company/staff/CIPHER|CIPHER]] · [[company/staff/GRID|GRID]] · [[company/staff/PULSE|PULSE]] · [[company/staff/SAGE|SAGE]]*

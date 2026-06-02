@@ -120,3 +120,7 @@ Based on Alice's successful memory consolidation:
 ---
 
 *Load `consolidation-core.md` to upgrade to unified memory, then `Load patch-system` to fix stale references!*
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

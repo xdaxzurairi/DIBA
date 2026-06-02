@@ -59,3 +59,7 @@ A persistent memory management layer that saves important information across ses
 ## Installation
 
 See `install-save-memory.md` for setup steps.
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

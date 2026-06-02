@@ -93,3 +93,7 @@ Jika bootstrap instincts sudah wujud, paparkan top IDs secara jelas supaya capab
 ## Installation
 
 See `install-dashboard.md` for setup steps.
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

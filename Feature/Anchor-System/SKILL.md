@@ -177,3 +177,7 @@ Bila Abam kata `anchor selesai` atau declare task baru secara eksplisit:
 
 - **Lv.1** — Base: 3-step lock (declare context, scope boundary, persona assert), drift signal table, code boundary, anti-pattern table, hierarki anchor. (Origin: Gap analysis — mid-session persona drift dan scope creep dalam sesi panjang, 2026-05-19)
 - **Lv.2** — Superultra: Step 5 Re-Anchor dan Step 6 Exit Anchor ditambah, drift severity levels (Low/Medium/High/Critical), signal table dikembangkan dengan tindakan per-signal, edge cases tambahan, integrasi skill dikemaskini dengan resonance/log-decision/verify-before-completion, Mandatory Rules dikembangkan, Context Guard tambah re-anchor dan exit triggers. (2026-05-19)
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

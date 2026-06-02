@@ -199,3 +199,7 @@ Commit created: [yes / pending]
 - **Lv.1** — Base: triage mengikut severity (Critical/High/Medium/Low), batch planning untuk same-type issues, temp script cleanup, commit per kategori, post-fix summary. (Origin: Pattern berulang 3× dalam April 2026 — eRuangNiaga security cleanup, full remediation, eWorks security hardening, xdaxzurairi)
 - **Lv.2** — Reference Docs: folder `references/` dengan PHP security patterns dan mass fix checklist — knowledge base diasingkan dari protocol supaya skill file kekal lean. (Origin: aitmpl.com template research, 2026-04-28)
 - **Lv.3** — Superultra: Frontmatter ditambah, activation message, Context Guard table dengan EXIT row, Protocol restructured kepada full checklist steps, Mandatory Rules dikembangkan kepada 8 peraturan, Edge Cases table 10 baris, Integrasi Skill table 6 baris, larangan semasa fix diexplicitkan. (2026-05-19)
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

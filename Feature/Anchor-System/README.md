@@ -115,3 +115,7 @@ DIBA:  Anchor dilepas. Teruskan.
 
 1. Salin `SKILL.md` ke `~/.claude/commands/anchor.md`
 2. Verify dengan taip `anchor` — DIBA patut balas "Skop dikunci. Persona diperkukuh. Teruskan."
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

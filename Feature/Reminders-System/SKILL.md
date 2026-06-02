@@ -138,3 +138,7 @@ When this skill activates, silently read `C:/Users/BSM/XDIBAX/Project-AI-MemoryC
 
 - **Lv.1** — Base: session start/end lifecycle, natural language detection, deadline tracking, append-only Open section, move-to-Completed pattern. (Origin: Production companion system)
 - **Lv.2** — Superultra: Frontmatter dikemaskini, activation message ditambah, Context Guard dikembangkan dengan deadline trigger, "clear reminders" EXIT row, dan "next session" trigger; Protocol dipecah kepada 4 bahagian (session start/add/complete/end), deadline conversion rules diperkukuh dengan contoh spesifik, partial completion handling ditambah, overdue handling diexplicit, edge cases dikembangkan kepada 12 rows, integrasi skill table ditambah, Mandatory Rules dikembangkan kepada 10 rules. (2026-05-19)
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

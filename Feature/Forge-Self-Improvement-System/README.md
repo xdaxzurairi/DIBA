@@ -134,3 +134,7 @@ Based on production AI companion self-improvement:
 ---
 
 *Your AI companion evolves through experience -- one skill at a time*
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

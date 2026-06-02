@@ -134,3 +134,7 @@ Boleh digunakan standalone dengan hanya `main/current-session.md`.
 2. Pastikan `main/current-session.md` wujud
 3. Install companion systems untuk brief yang lebih kaya (semua optional)
 4. Verify: buka sesi baru — brief patut muncul sebelum respons pertama
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

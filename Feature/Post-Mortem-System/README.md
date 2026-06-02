@@ -72,3 +72,7 @@ You always decide whether to log it. The AI only asks.
 ## Installation
 
 See `install-post-mortem.md` for setup instructions.
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

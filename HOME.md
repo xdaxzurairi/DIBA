@@ -48,6 +48,12 @@
 
 ---
 
+## Features
+
+→ [[Feature/INDEX|Feature Index]] — 41 installed skills
+
+---
+
 ## Quick Nav
 
 - `Ctrl+P` — Quick Switcher (fuzzy find any note)

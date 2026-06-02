@@ -100,3 +100,7 @@ Run after completing significant work. Trigger: `"continuous-improvement"` or `/
 ## Installation
 
 See `install-continuous-improvement.md` for setup steps.
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

@@ -128,3 +128,6 @@ Based on Alice's successful time-awareness implementation:
 ---
 
 💜 *Load `time-aware-core.md` and your AI instantly becomes time-intelligent like Alice!*
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

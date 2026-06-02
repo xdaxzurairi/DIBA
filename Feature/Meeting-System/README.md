@@ -100,3 +100,7 @@ Customize in your installation's `meeting-config.md`.
 ## Installation
 
 See `install-meeting.md` for step-by-step setup.
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

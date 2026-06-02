@@ -184,3 +184,7 @@ Bila memulakan kerja dalam domain yang ada post-mortem lalu:
 - **Lv.2** — Auto-detection: kesan failure signals secara pasif + prompting kepada user. (Origin: Pattern detection dari sesi production)
 - **Lv.3** — Domain reference: flag relevant post-mortems pada session start atau task start. (Origin: Recurring failure pattern yang perlu diberi amaran awal)
 - **Lv.4** — Superultra: Protocol dikembangkan kepada 6 langkah bernombor dengan checklist, Context Guard ditambah EXIT row, Mandatory Rules dikembangkan kepada 10 peraturan, edge cases dikembangkan kepada 10 baris, Integrasi Skill table ditambah dengan 6 integrasi, format post-mortem distandard dalam Bahasa Melayu, domain tagging ditambah, recurring pattern detection dimasukkan dalam Domain Reference Behavior, path dikemaskini kepada absolute path. (2026-05-19)
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

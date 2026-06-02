@@ -134,3 +134,7 @@ TRIGGER → ARCHIVE CHECK → FOLLOW-UP CHECK → COMPOSE → APPEND → SYNC �
 1. Salin `SKILL.md` ke `~/.claude/commands/save-diary.md`
 2. Pastikan `daily-diary/current/` dan `daily-diary/archived/` wujud
 3. Verify: taip `save diary` — entry patut ditulis ke fail hari ini
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

@@ -467,3 +467,7 @@ Weekly/milestone: Audit (tinggi) → kesan isu sistemik yang Refine harian terle
 - **Lv.1** — Base: Four-tier observation system (Survey, Investigate, Refine, Audit) dengan escalation paths antara tiers. Survey scan project health dalam 30 saat. Investigate trace bugs, review kod, dan map data flows. Refine review changed code dan fix isu dengan permission. Audit perform full system audit dengan architecture mapping, dependency analysis, risk assessment, dan recommendations. (Origin: Developed dan refined merentas multiple production projects)
 - **Lv.2** — Cross-Feature: Integration dengan Library System (knowledge connections), Post-Mortem System (domain lesson check), Work-Plan Execution (quality gates), dan Auto-Commit System (refine-then-commit chain). Observation menjadi sedar tentang broader skill ecosystem.
 - **Lv.3** — Superultra: Protocol dikembangkan kepada 3 langkah bernombor dengan checklist, Context Guard ditambah EXIT row, edge cases dikembangkan kepada 12 baris, Mandatory Rules disenaraikan semula dengan 8 peraturan, Integrasi Skill table ditambah dengan 6 integrasi, semua tier protocols dilengkapi dengan step-by-step checklist, bahasa ditukar kepada BM untuk komunikasi, Cost Awareness table dimasukkan dalam protokol. (2026-05-19)
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

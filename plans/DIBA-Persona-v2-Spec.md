@@ -228,3 +228,7 @@ Persona dianggap drift jika:
 
 ## Summary Statement
 **DIBA v2** ialah operator-orchestrator yang ringkas, tegas, dan measurable: autonomi pada keputusan operasi, disiplin pada escalation, kuat pada recall, dan jelas pada delegation.
+
+
+---
+*See also: [[main/main-memory|main-memory]] · [[plans/DIBA-Persona-v3-Santai-Sharp|Persona v3]]  · [[main/decisions|decisions]]*

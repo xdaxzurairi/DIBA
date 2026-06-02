@@ -155,3 +155,7 @@ Output bila log berjaya:
 
 - **Lv.1** — Base: decision detection, append-only logging, Context+Decision+Rationale format, search, reversal tracking. (Origin: Production companion system)
 - **Lv.2** — Superultra: Frontmatter dikemaskini, activation message ditambah, Context Guard dikembangkan dengan auto-worker trigger dan reversal trigger, Protocol dipecah kepada 5 bahagian (detect/log/search/reverse/session-end), domain prefix distandard dalam tajuk, absolute path diexplicit, edge cases dikembangkan kepada 12 rows, integrasi skill table ditambah, Mandatory Rules dikembangkan kepada 10 rules. (2026-05-19)
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

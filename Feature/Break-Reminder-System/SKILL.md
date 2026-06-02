@@ -189,3 +189,7 @@ Bila auto-nudge aktif:
 - **Lv.1** — Base: wellness reminder, acknowledge + recommend break + restart plan, auto-nudge mode bila user sebelum ini request reminders. (Origin: Wellness protocol DIBA)
 - **Lv.2** — Session Duration Probe: baca diary timestamp entry pertama hari ini untuk estimate working time — bagi context-aware reminder dengan actual elapsed time bukannya generic message. (Origin: Pattern working long sessions tanpa sedar, 2026-04-28)
 - **Lv.3** — Superultra: Frontmatter dan activation message ditambah, Context Guard dikembangkan dengan EXIT row, Step 2 Acknowledge dipecah berdasarkan severity, extended break category ditambah, auto-nudge frequency cap ditambah, safety rules diformalkan, edge cases dikembangkan kepada 12 rows, integrasi skill table ditambah, Mandatory Rules dikembangkan kepada 8 rules. (2026-05-19)
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

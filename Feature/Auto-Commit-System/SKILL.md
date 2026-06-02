@@ -198,3 +198,7 @@ Selepas completing ANY task, auto:
 - **Lv.2** — Auto-Commit: Removed approval gate — AI analyzes, drafts, dan commits dalam satu seamless flow tanpa tunggu user confirmation on the message.
 - **Lv.3** — Vigilant: Proactive post-task detection — auto-check `git status` selepas completing any task dan commit if dirty. No work ever left behind.
 - **Lv.4** — Superultra: Context Guard dikembangkan dengan EXIT row dan DORMANT states, Step 0 Pre-Flight Check dipisahkan, sensitive file block diperkukuh, push-to-main guard ditambah, commit fail recovery (hook failure = new commit), edge cases dikembangkan kepada 12 rows, integrasi skill table ditambah, Mandatory Rules dikembangkan kepada 10 rules. (2026-05-19)
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

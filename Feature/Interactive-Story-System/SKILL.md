@@ -475,3 +475,7 @@ These features enhance the adventure when installed. All are optional.
 13. **1K line rotation** — create story-(N+1).md when story-N.md exceeds 1000 lines
 14. **Session memory persistence** — active adventure state in session memory for compact recovery
 15. **Full story preservation** — on save/end, write ALL scenes as complete prose to story files. Never skip or summarize
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

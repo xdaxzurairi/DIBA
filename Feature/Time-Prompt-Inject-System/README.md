@@ -138,3 +138,7 @@ The order is whatever filesystem enumeration returns (typically alphabetical: `m
 ---
 
 *Type `"Load time-prompt-inject"` to wire time + period awareness into every prompt your AI sees.*
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

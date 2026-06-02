@@ -169,3 +169,7 @@ Jika ada law yang dilanggar → flag dalam continuous-improvement reflection.
 
 - **Lv.1** — Base: 7 laws dengan check questions dan red flags, execution loop, pre-done self-check, red flag detection table. (Origin: AI agent discipline framework, xdaxzurairi)
 - **Lv.2** — Superultra: Step 4 Red Flag Detection dikembangkan dengan tindakan per-frasa dan 3 frasa tambahan, Step 5 Post-Session Self-Audit ditambah, Discipline Violation Severity table ditambah, Context Guard dikemaskini, edge cases 10 rows, integrasi skill 6 entries, Mandatory Rules 8 items, activation message distandard. (2026-05-19)
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

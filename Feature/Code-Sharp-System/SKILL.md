@@ -178,3 +178,7 @@ Konflik antara (2) dan (3) → ikut (2). Konsistensi dalam projek mengatasi best
 - **Lv.1** — Base: 4 prinsip (FAST, CLEAN, CONSISTENT, PRECISE), 6-item pre-send checklist, anti-pattern table, output format rules, decision hierarchy. (Origin: DIBA production code generation standard, xdaxzurairi)
 - **Lv.2** — Stack-Aware Scan: auto-detect file extension dan tailor scan kepada PHP/JS/SQL/CSS specific patterns — semak conventions tambahan secara senyap tanpa perlu arahan eksplisit. (Origin: PHP+MSSQL+JS project stack, 2026-04-28)
 - **Lv.3** — Superultra: Step 5 Report Isu Sampingan ditambah, Context Guard dikemaskini, anti-patterns dikembangkan dengan 8 rows, edge cases 10 rows, integrasi skill 6 entries, Mandatory Rules 8 items, Decision Hierarchy diperjelas, activation message distandard. (2026-05-19)
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

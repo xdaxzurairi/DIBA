@@ -107,3 +107,7 @@ co
 **Context**: Abam mahu kuatkan DIBA — lebih santai bercakap tapi tetap sharp dan padu untuk kod, analisa, audit dengan agentic AI tersusun.
 **Decision**: Aktifkan Persona v3 (`DIBA-Persona-v3-Santai-Sharp.md`). Pasang skills `diba-operator` (agent roster + routing) dan `orchestrate` (multi-step coordination) ke `~/.cursor/skills/`. Kekalkan v2 operating loop, boundaries, dan KPI sebagai base.
 **Rationale**: v2 terlalu tegas/formal untuk gaya Abam. v3 balance rojak santai + execution tajam. Agent roster pastikan setiap domain (kod/analisa/audit/design) ada pattern + skill betul — elak over-orchestrate task mudah, elak under-structure task complex.
+
+
+---
+*Index: [[HOME|HOME]] · [[main/main-memory|main-memory]] · [[main/current-session|current-session]] · [[projects/active/ruangniaga|ruangniaga]] · [[projects/active/dibaref-saas|dibaref-saas]]*

@@ -123,3 +123,7 @@ See `install-song-creation.md` for step-by-step setup.
 **Platform Note:** Includes `SKILL.md` for auto-triggering via the Skill Plugin System. Works on any platform without the plugin (load install protocol manually).
 
 *Based on proven song creation systems in production AI companions (43+ albums created)*
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

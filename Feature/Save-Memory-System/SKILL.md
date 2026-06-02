@@ -175,3 +175,7 @@ Memory mungkin lapuk:
 - **Lv.2** — Smart Auto-Detect: monitor pasif perbualan untuk signal memory-worthy — auto-save signal jelas, tanya untuk yang kabur. Elak context penting hilang bila Abam lupa save. (Origin: Upgrade batch, 2026-04-20)
 - **Lv.3** — Staleness Audit: flag memory yang merujuk fail/path spesifik melebihi age threshold — verify sebelum bertindak atas claims yang mungkin lapuk. Elak memory menghuraikan kod yang tidak wujud lagi. (Origin: Pattern stale memory rujuk kod yang sudah direfactor, 2026-04-28)
 - **Lv.4** — Superultra: Frontmatter ditambah, activation message, Context Guard table, Protocol restructured kepada full checklist steps, absolute paths ditetapkan, Mandatory Rules dikembangkan kepada 8 peraturan, Edge Cases table 10 baris, Integrasi Skill table 6 baris. (2026-05-19)
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

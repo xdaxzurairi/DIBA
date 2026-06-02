@@ -224,3 +224,7 @@ Jika Auto-Commit System tidak dipasang, execution loop masih berjalan:
 - **Lv.1** — Base: Three commands (copy/append/resume) + shared execution loop + per-todo commit chain + line rotation + recovery mechanism + checkpoint saves. (Origin: Production AI companion plan execution workflow)
 - **Lv.2** — Wave Execution: Dependency-aware wave grouping — independent tasks within a phase can be executed in parallel via sub-agents, with wave barriers enforcing order between dependent groups.
 - **Lv.3** — Superultra: Frontmatter dikemaskini dengan description lengkap, activation messages per command, Context Guard table dengan EXIT row, Protocol restructured kepada full checklist steps bernombor, Mandatory Rules dikembangkan kepada 8 peraturan, Edge Cases table dikembangkan kepada 10 baris, Integrasi Skill table 6 baris ditambah. (2026-05-19)
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

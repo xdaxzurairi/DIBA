@@ -245,3 +245,7 @@ Items tersedia dalam katalog:
 - **Lv.4** — Format-Aware Save: Auto-determine library section dari content keywords, load matching format template dari `library/formats/[section]-format.md`, apply template structure ke entries baru. Trust-based section selection (tiada approval gate). Formats diload on-demand, tidak embedded.
 - **Lv.5** — Item Install: Install pre-made library entries dari katalog `library-items/`. Commands baru: "install item [name]", "install library item", "add item from catalog". Scan katalog mengikut filename keyword, tunjuk preview, semak duplicates dalam library Abam, copy ke section betul, chain commit. (Origin: Public knowledge sharing untuk AI MemoryCore community)
 - **Lv.6** — Superultra: Protocol dikembangkan kepada 7 langkah bernombor dengan checklist, Context Guard ditambah EXIT row, edge cases dikembangkan kepada 12 baris, Mandatory Rules dikembangkan kepada 10 peraturan, Integrasi Skill table ditambah dengan 6 integrasi, path memori dikemaskini kepada absolute paths. (2026-05-19)
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

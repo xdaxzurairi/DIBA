@@ -177,3 +177,7 @@ DIBA:  Seed ditanam: Predictive Memory Layer
 1. Salin `SKILL.md` ke `~/.claude/commands/resonance.md`
 2. Pastikan `mind-tree.md` wujud di `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/main/`
 3. Verify dengan taip `resonance` — DIBA patut balas "Frekuensi terbuka."
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

@@ -56,3 +56,7 @@ Aktifkan skill ini apabila:
 
 ## ⚡ Mod Pantas (Jika Projek Kecil < 10 Fail)
 - Lihat semua fail, baca fail utama sekaligus, ringkaskan dapatan, teruskan perubahan
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

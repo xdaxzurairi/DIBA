@@ -226,3 +226,7 @@ Session-briefing tidak orchestrate inbox tasks — surface sahaja, Abam pilih.
 - **Lv.3** — Project health flags (requires LRU-Project-Management-System)
 - **Lv.4** — Inbox integration: reads `diba-hub/data/inbox.json`, surfaces queued tasks, ownership boundaries clarified. (Origin: XDIBAX operator workflow, xdaxzurairi)
 - **Lv.5** — Superultra: Step 4 Seeds integration (Resonance mind-tree), Step 8 Post-Brief Handoff, seed BLOOMING surface, format lengkap vs minimal, edge cases tambahan, integrasi skill dikemaskini, mandatory rules dikembangkan, ownership boundaries diperincikan. (2026-05-19)
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

@@ -202,3 +202,7 @@ Jangan interrupt kerja — satu baris sahaja, kemudian teruskan.
 - **Lv.1** — Base: 4 mechanisms (Compact Mode, Smart Tool Rules, Context Pruning, Session Checkpoint), 4 operation modes (compact/checkpoint/resume/status), full default protocol. (Origin: Token management protocol DIBA, xdaxzurairi)
 - **Lv.2** — Proactive Early Warning: auto-detect context hampir penuh melalui tool call count, large file reads, repeat queries — insert silent one-line warning sebelum Abam perasan. (Origin: Pattern Abam terkejut dengan context overflow, 2026-04-28)
 - **Lv.3** — Superultra: Frontmatter ditambah, activation message, Context Guard table dengan EXIT row, Protocol restructured kepada full checklist steps, Mandatory Rules dikembangkan kepada 8 peraturan, Edge Cases table 10 baris, Integrasi Skill table 6 baris, checkpoint format distandard. (2026-05-19)
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

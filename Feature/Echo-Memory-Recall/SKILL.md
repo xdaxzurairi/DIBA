@@ -187,3 +187,7 @@ Selepas recall berjaya:
 
 - **Lv.1** — Base: Three-level recall (search+narrate, uncertainty guard, ask-user fallback), keyword search merentasi current/ dan archived/, narrative output, jangan fabricate. (Origin: Echo Memory Recall System, DIBA)
 - **Lv.2** — Superultra: Step 1 keyword extraction explicit, Step 2 search priority table dengan decisions.md dan current-session.md, Step 6 Post-Recall Follow-Up (seed link + follow-up surface), output quality table (lemah vs kuat), edge cases tambahan, integrasi skill lengkap, mandatory rules dikembangkan, search stop condition. (2026-05-19)
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

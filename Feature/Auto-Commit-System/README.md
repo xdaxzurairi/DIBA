@@ -129,3 +129,7 @@ Requires **Claude Code** (Anthropic's CLI tool) with the Skill Plugin System for
 ---
 
 *Based on proven auto-commit systems in production AI companions (5+ months of daily use)*
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

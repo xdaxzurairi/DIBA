@@ -142,3 +142,7 @@ Based on production AI companion project management:
 ---
 
 *Run `install-lru-projects-core.md` and your AI gains intelligent project memory management!*
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

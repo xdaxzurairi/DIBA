@@ -233,3 +233,7 @@ Next: [next useful move — hanya jika membantu]
 - **Lv.2** — Delegation Rules: bila delegate vs tidak, 5-element delegation contract (objective, scope, thoroughness, output, permission). Verification contract: correctness, coverage, consistency, risk, readability. (Origin: Complex multi-file tasks, April 2026)
 - **Lv.3** — Mini Templates + Guardrails: 3 ready-to-use templates (complex audit, multi-file engineering, research+recommendation), trigger-to-pattern table, anti-fabrication guardrails, standard 6-item output pattern. (Origin: Production audit patterns, April 2026)
 - **Lv.4** — Superultra: Frontmatter ditambah, activation message, Context Guard table dengan EXIT row, Protocol restructured kepada full checklist steps, Mandatory Rules dikembangkan kepada 9 peraturan, Edge Cases table 10 baris, Integrasi Skill table 6 baris, output pattern diformat secara eksplisit. (2026-05-19)
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

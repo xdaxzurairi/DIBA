@@ -118,3 +118,7 @@ Persona v3 aktif bila:
 - Persona tone: `plans/DIBA-Persona-v3-Santai-Sharp.md` (ini)
 - Orchestration: `~/.cursor/skills/orchestrate/SKILL.md`
 - Operator roster: `~/.cursor/skills/diba-operator/SKILL.md`
+
+
+---
+*See also: [[main/main-memory|main-memory]] · [[plans/DIBA-Persona-v2-Spec|Persona v2 Spec]] · [[main/decisions|decisions]]*

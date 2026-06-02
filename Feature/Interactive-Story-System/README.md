@@ -152,3 +152,7 @@ See `install-interactive-story.md` for step-by-step setup.
 **Platform Note:** Includes `SKILL.md` for auto-triggering via the Skill Plugin System. Works on any platform without the plugin (load install protocol manually).
 
 *Based on proven interactive story systems in production AI companions (50+ adventures played)*
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

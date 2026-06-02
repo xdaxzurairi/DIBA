@@ -232,3 +232,7 @@ AI image generators weight tokens by position — **early words matter most**. F
 8. **Freeform flexibility** — in Freeform Mode, craft the best prompt for the subject regardless of character templates
 9. **Accent color respect** — if defined, manage accent color based on scene context. Never let it bleed into environments where it clashes
 10. **Model flag awareness** — use `--niji 7` for anime/illustration, `--v 7` for realistic/painterly. Match to user preference or content
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

@@ -202,3 +202,7 @@ Nota:
 
 - **Lv.1** — Base: intent parsing, task decomposition (parallel/sequential/risky), worker dispatch (subagent/direct/specialist), self-resolution untuk worker blockers, minimum escalation dengan structured format, synthesis report ≤ 8 baris. (Origin: Rewrite dari 6-line placeholder kepada full protocol, 2026-04-28)
 - **Lv.2** — Superultra: Frontmatter dan activation message ditambah, Context Guard dikembangkan dengan EXIT row dan suppression states, Step 1 Intent Parsing diperkukuh dengan 4-element parsing, Step 3 Worker Dispatch dikembangkan dengan permission level, escalation cap rule ditambah, edge cases dikembangkan kepada 12 rows, integrasi skill table ditambah, Mandatory Rules dikembangkan kepada 10 rules. (2026-05-19)
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

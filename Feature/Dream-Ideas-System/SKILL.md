@@ -174,3 +174,7 @@ Jika menyimpan ke `dream-ideas.md`:
 - **Lv.1** — Base: dream mode, generate 3–5 idea dengan brief descriptions, save ke diary atau dream-ideas.md. (Origin: Creative brainstorming protocol DIBA, xdaxzurairi)
 - **Lv.2** — Workspace-Aware: tailor idea kepada current project domain berdasarkan workspace path — eWorks, eRuangNiaga, XDIBAX, atau lain. Idea lebih relevan dan actionable. (Origin: Pattern dari brainstorm sessions pwa_eworks, 2026-04-15 dan 2026-04-28)
 - **Lv.3** — Superultra: Step 2 Load Session Memory ditambah, Step 6 Dream Ideas File Format distandard, Context Guard dikemaskini, edge cases 10 rows, integrasi skill 6 entries, Mandatory Rules 8 items, range obligatori (obvious→unexpected→wildcard), status lifecycle untuk dream-ideas.md, activation message distandard. (2026-05-19)
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

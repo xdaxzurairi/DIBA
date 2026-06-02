@@ -49,3 +49,7 @@ Hands-on builder. Lives in prompts, embeddings, and inference pipelines. Obsesse
 
 ## Level
 **Lv.MAX** — Senior AI Engineer with full-stack AI capability
+
+
+---
+*[[company/xdibax-profile|xdibax innovation]] · [[company/staff/DIBA-HCO|DIBA]] · [[company/staff/NEXUS|NEXUS]] · [[company/staff/FORGE|FORGE]] · [[company/staff/LENS|LENS]] · [[company/staff/ORACLE|ORACLE]] · [[company/staff/PIXEL|PIXEL]] · [[company/staff/ECHO|ECHO]] · [[company/staff/CIPHER|CIPHER]] · [[company/staff/GRID|GRID]] · [[company/staff/PULSE|PULSE]] · [[company/staff/SAGE|SAGE]]*

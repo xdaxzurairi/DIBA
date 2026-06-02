@@ -109,3 +109,7 @@ Removes the injector script and `mood-current.txt`. Asks whether to keep or stri
 ---
 
 *Type `"Load mood-prompt-inject"` to wire your mood vocabulary into every prompt your AI sees.*
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

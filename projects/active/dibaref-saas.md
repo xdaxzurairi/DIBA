@@ -109,3 +109,7 @@ Clip (URL/DOI/PDF) → Auto metadata → LR Matrix → Export (BibTeX/Word/CSV)
 3. Setup Supabase + run migration `001_initial.sql`
 4. Wire waitlist form → Supabase
 5. Auth + real LR matrix CRUD
+
+
+---
+**See also:** [[projects/project-list|project-list]] · [[daily-diary/current/2026-05-24|diary 2026-05-24]] · [[main/decisions|decisions]] · [[company/xdibax-profile|xdibax innovation]]

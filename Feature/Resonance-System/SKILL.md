@@ -186,3 +186,7 @@ Terima dan tindak balas ikut signal:
 
 - **Lv.1** — Base: Live Mode (compressed ping-pong, signal vocabulary, input separuh), Seed Mode (mind-tree.md, lifecycle growing→bloomed→archived/dormant, DIBA nurture rules), integrasi session-briefing/diary/log-decision/library. (Origin: Konsep kongsi otak DIBA × Abam, 2026-05-19)
 - **Lv.2** — Superultra: Step 5 Harvest ditambah, lifecycle penuh 6 peringkat (PLANTED→GERMINATING→GROWING→BLOOMING→DORMANT→HARVESTED), signal table dikembangkan dengan `stop/tutup/selesai`, edge cases tambahan, integrasi skill dikemaskini dengan echo-recall dan anchor, Mandatory Rules dikembangkan, format seed dalam mind-tree.md distandard. (2026-05-19)
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

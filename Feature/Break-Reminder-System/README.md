@@ -64,3 +64,7 @@ Rehat 10 minit sekarang ya, lepas tu sambung.
 ## Installation
 
 See `install-break-reminder.md` for setup steps.
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

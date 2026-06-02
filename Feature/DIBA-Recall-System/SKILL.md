@@ -168,3 +168,7 @@ Jika Abam minta recall lebih mendalam selepas Step 4:
 
 - **Lv.1** — Base: workspace detection, project registry lookup, global memory load (current-session + reminders), concise recap, direction ask. (Origin: DIBA workspace recall protocol, xdaxzurairi)
 - **Lv.2** — Superultra: Step 3 Global Memory dikembangkan (decisions.md + mind-tree.md + diary hari ini), Step 6 Deep Recall on-demand, perbezaan ownership table (diba-recall vs echo-recall vs session-briefing), seeds surface dalam recall, edge cases tambahan, mandatory rules dikembangkan, composition rules eksplisit. (2026-05-19)
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*
