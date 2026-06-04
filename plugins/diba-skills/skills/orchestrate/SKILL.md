@@ -291,3 +291,14 @@ Skill ini dianggap berjaya bila Diba:
 - memberi progress yang jelas
 - menghasilkan output yang grounded
 - menutup task dengan hasil yang boleh terus digunakan pengguna
+
+## External Collaborator Mode (Lv.2)
+
+Bila user sebut Codex, Gemini, second opinion, atau kerja-berasingan agent lain:
+1. Tentukan **owner** per subtask (DIBA vs external)
+2. DIBA fokus struktur/refactor/verify; external fokus runtime edge-case jika sesuai
+3. Dokumentasikan siapa commit apa dalam save-diary (contoh: eWorks map 2026-05-21)
+
+## Level History
+- **Lv.1** — Base: pattern selection, decompose, ground claims, synthesis, success signals.
+- **Lv.2** — External Collaborator: routing owner DIBA vs agent luar + log kolaborasi. (Origin: 2026-05-21 eWorks + Codex, 2026-05-22 batch)

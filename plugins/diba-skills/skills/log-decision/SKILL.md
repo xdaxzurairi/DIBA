@@ -81,5 +81,12 @@ When this skill activates, silently read `main/decisions.md`.
 | Multiple related decisions | Log each as a separate entry with cross-references |
 | Reversal of past decision | Append new entry with "Reversed:" prefix, never edit original |
 
+### Proactive Offer (Lv.2)
+
+Bila perbualan ada **2+ alternatif** dan user pilih satu (atau kata "guna A", "ok proceed"):
+- Tawar ringkas: "Nak log keputusan ni ke `decisions.md`?"
+- Jika user setuju atau senyap selepas pilih — log serta-merta tanpa tunggu arahan eksplisit
+
 ## Level History
 - **Lv.1** -- Base: decision detection, append-only logging, Context+Decision+Rationale format, search, reversal tracking.
+- **Lv.2** -- Proactive Offer: auto-tawar log selepas trade-off diselesaikan. (Origin: 2026-05-22 — naikkan skill batch)

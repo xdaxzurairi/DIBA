@@ -3,6 +3,23 @@
 
 ## Open
 
+### [2026-05-25 Isnin] Drop table PWA dari FMSPROD — migrate ke Archibius dulu
+
+Table-table ini dah wujud terus dalam FMSPROD (dibuat inline oleh PHP) — perlu di-drop dan dicipta semula dengan betul melalui Archibius.
+
+**Checklist:**
+- [ ] Drop `PUSH_SUBSCRIPTIONS`
+- [ ] Drop `USER_NOTIFICATIONS`
+- [ ] Drop `APP_DEVICES`
+- [ ] Drop `APP_INSTALLATIONS`
+- [ ] Drop `PUSH_NOTIFICATION_LOG`
+- [ ] Drop `LOGIN_ATTEMPTS`
+- [ ] Drop `RATE_LIMIT_EVENTS`
+- [ ] Buat semula semua table di atas melalui Archibius
+- [ ] Transfer/sync ke MSSQL FMSPROD selepas siap
+- [ ] `PASSWORD_RESET_TOKENS` — belum wujud, cipta terus melalui Archibius
+
+**Nota:** Definisi schema ada dalam `pwa_eworks` — rujuk fail `setup_push_notifications.sql` dan inline CREATE TABLE dalam PHP masing-masing.
 
 ## Completed
 

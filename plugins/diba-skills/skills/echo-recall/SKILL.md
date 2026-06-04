@@ -38,3 +38,16 @@ Aktifkan bila pengguna kata: "Do you remember...", "When did we...", "Recall..."
 - Bulan semasa: `daily-diary/current/*.md`
 - Arkib: `daily-diary/archived/YYYY-MM/*.md`
 - Protokol rujukan: `daily-diary/daily-diary-protocol.md`
+
+## Multi-Source Recall (Lv.2)
+
+Jika carian diari tidak mencukupi, cari juga (ikut urutan):
+1. `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/main/current-session.md`
+2. `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/main/decisions.md`
+3. `projects/registry.md` → memory projek aktif (jika workspace dikenal pasti)
+
+Gabungkan bukti ke dalam satu naratif; nyatakan sumber (diari vs keputusan vs sesi semasa).
+
+## Level History
+- **Lv.1** — Base: three-level recall (search+narrative, uncertainty guard, ask-user).
+- **Lv.2** — Multi-Source: carian merentas diari + current-session + decisions + registry projek. (Origin: 2026-05-22 — naikkan skill batch)

@@ -93,14 +93,15 @@ Setiap entry MESTI ada:
 
 Bila fail melebihi **1000 baris**, arkibkan ke `daily-diary/archived/YYYY-MM/` dan mulakan fail baru.
 
-### Langkah 3: Kemaskini Session Memory
+### Langkah 3: Kemaskini Session Memory (Lv.2 — wajib)
 
-Selepas tulis entry, kemaskini memori sesi (`/memories/session/`) dengan **recap** ringkas:
-- Topik terakhir
-- Keputusan terakhir
-- Fail terakhir diubah
+Selepas tulis entry, kemaskini `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/main/current-session.md` dengan **recap** ringkas:
+- **Topik:** satu baris
+- **Keputusan:** bullet ringkas
+- **Fail terakhir diubah:** senarai path
+- **Follow-up terbuka:** item belum selesai (jika ada)
 
-Supaya turn seterusnya boleh rujuk tanpa baca semula diari penuh.
+Supaya `session-briefing`, `diba?`, dan `echo-recall` boleh rujuk tanpa baca diari penuh.
 
 ## Peraturan
 
@@ -109,3 +110,7 @@ Supaya turn seterusnya boleh rujuk tanpa baca semula diari penuh.
 - Entry ringkas: 50–150 baris per sesi
 - Guna Bahasa Melayu dengan istilah teknikal Inggeris
 - Cipta fail/folder automatik jika belum wujud
+
+## Level History
+- **Lv.1** — Base: auto/manual trigger, monthly archive, structured diary entry, append-only.
+- **Lv.2** — Session Sync: Langkah 3 wajib kemaskini `main/current-session.md` selepas setiap entry. (Origin: 2026-05-22 — naikkan skill batch)

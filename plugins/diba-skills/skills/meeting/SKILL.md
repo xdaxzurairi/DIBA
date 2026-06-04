@@ -71,3 +71,7 @@ Simpan ke: `C:/Users/Administrator/xdibax/DIBA/projects/meetings/YYYY-MM-DD-meet
 - DIBA merumuskan semua input sebagai satu suara yang jelas
 - Jangan fabricate kerja agent; jika tiada input munasabah, nyatakan terus
 - Keputusan besar, budget, atau hala tuju — escalate ke Zuex
+
+## Level History
+- **Lv.1** — Base: roster 10 agent, format 6 langkah, simpan minit meeting.
+- **Lv.2** — Diary Chain: selepas minit disimpan, append ringkasan ke daily-diary + current-session follow-up. (Origin: 2026-05-22 — naikkan skill batch)

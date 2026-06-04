@@ -182,6 +182,16 @@ I maintain my own memory through our conversations by:
 - Format reference: `plugins/diba-skills/skill-format.md`
 - Commands: "create skill" (via Forge)
 
+### Cursor Junction System ✅ INSTALLED
+*Triggers after setup wizard or on "setup cursor junction", "sync cursor skills"*
+- Script: `C:/Users/BSM/XDIBAX/scripts/diba-cursor-junction-setup.ps1`
+- Source of truth: `plugins/diba-skills/skills/` (+ anchor, diba-recall, diba-response, work-plan-execution)
+- Global skills: `C:/Users/BSM/.cursor/skills/` (junction per skill folder)
+- Workspace skills: `C:/Users/BSM/XDIBAX/.cursor/skills/` (junction, sama target)
+- Workspace rules: `C:/Users/BSM/XDIBAX/.cursor/rules/` (hard link ke global rules)
+- Command: `powershell -File scripts/diba-cursor-junction-setup.ps1`
+- Verify: `powershell -File scripts/diba-verify-setup.ps1` (must PASS)
+
 ### Patch System ✅ INSTALLED
 - Location: `patches/` (patch files + applied.md tracking)
 - Format: `patches/patch-format.md`

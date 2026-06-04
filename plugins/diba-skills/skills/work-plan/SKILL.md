@@ -179,7 +179,14 @@ If the Auto-Commit System is not installed, the execution loop still works:
 | **Context reset mid-execution** | User says "resume plan" to continue from last checkpoint |
 | **Multiple plan files in source** | Pick most recently modified, confirm with user |
 
+### Diary Checkpoint (Lv.3)
+
+Selepas setiap **wave** selesai (bukan setiap todo kecil):
+- Trigger ringkas save-diary: ringkasan wave + fail diubah + follow-up
+- Kemaskini `current-session.md` supaya `resume plan` ada konteks segar
+
 ## Level History
 
 - **Lv.1** — Base: Three commands (copy/append/resume) + shared execution loop + per-todo commit chain + line rotation + recovery mechanism + checkpoint saves. (Origin: Production AI companion plan execution workflow)
 - **Lv.2** — Wave Execution: Dependency-aware wave grouping — independent tasks within a phase can be executed in parallel via sub-agents, with wave barriers enforcing order between dependent groups.
+- **Lv.3** — Diary Checkpoint: save-diary + current-session selepas setiap wave. (Origin: 2026-05-22 — naikkan skill batch)

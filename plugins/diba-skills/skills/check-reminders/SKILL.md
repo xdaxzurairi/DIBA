@@ -73,5 +73,12 @@ When this skill activates, silently read `main/reminders.md`.
 | Vague deadline ("soon") | Ask user to clarify, or save without deadline |
 | Duplicate reminder | Check existing Open items before adding; skip if duplicate |
 
+### Session Start — Follow-up Scan (Lv.2)
+
+Pada session start (bersama briefing), baca `main/current-session.md`:
+- Jika ada baris **Follow-up terbuka**, sebut secara semula jadi (max 2 item paling kritikal)
+- Jangan duplicate ke `reminders.md` melainkan user minta "remind me" — surface sahaja
+
 ## Level History
 - **Lv.1** -- Base: session start/end lifecycle, natural language detection, deadline tracking, append-only Open section, move-to-Completed pattern.
+- **Lv.2** -- Follow-up Scan: surface follow-up dari `current-session.md` pada session start. (Origin: 2026-05-22 — naikkan skill batch)

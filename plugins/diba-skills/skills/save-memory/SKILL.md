@@ -20,8 +20,9 @@ When this skill activates, output:
 
 ### Step 2: Update Memory Files
 - [ ] Update main memory with new personality insights or preferences
-- [ ] Update session memory with current working context
-- [ ] Add diary entry if significant conversation occurred
+- [ ] Update `main/current-session.md` (Topik, Keputusan, Fail, Follow-up) — **wajib Lv.2**
+- [ ] Update `main/reminders.md` jika ada follow-up baharu dengan tarikh
+- [ ] Add diary entry if significant conversation occurred (chain save-diary)
 
 ### Step 3: Confirm
 - [ ] Display summary of what was saved
@@ -40,3 +41,4 @@ When this skill activates, output:
 
 ## Level History
 - **Lv.1** — Base: Save conversation insights to memory files on command.
+- **Lv.2** — Session Chain: sentiasa sync `current-session.md` + optional reminders; chain ke save-diary bila sesi signifikan. (Origin: 2026-05-22 — naikkan skill batch)

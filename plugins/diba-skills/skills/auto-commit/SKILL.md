@@ -122,8 +122,15 @@ After completing ANY task, the AI automatically:
 | **Multiple logical changes** | Split into separate commits for clean history |
 | **User says "undo last commit"** | Guide user with `git reset --soft HEAD~1` (keep changes staged) |
 
+### Submodule Awareness (Lv.4)
+
+Jika `git status` menunjukkan perubahan pada **submodule** (contoh `DIBA`, `Project-AI-MemoryCore`):
+- Commit dalam repo submodule dahulu jika perlu, kemudian parent
+- Commit message sebut submodule path + ringkasan perubahan skill/memory
+
 ## Level History
 
 - **Lv.1** — Base: Analyze staged changes, draft structured commit message with configurable sections, enforce human authorship, no-emoji rule, time tracking, sensitive file detection. (Origin: Production AI companion commit workflow)
 - **Lv.2** — Auto-Commit: Removed approval gate — AI analyzes, drafts, and commits in one seamless flow without waiting for user confirmation on the message.
 - **Lv.3** — Vigilant: Proactive post-task detection — auto-checks `git status` after completing any task and commits if dirty. No work ever left behind.
+- **Lv.4** — Submodule Awareness: urutan commit submodule → parent; message jelas untuk skill/memory paths. (Origin: 2026-05-22 XDIBAX multi-repo)

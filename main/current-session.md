@@ -1,4 +1,15 @@
-Topik: Resonance mode sesi pertama — Live mode diuji, seed pertama ditanam (2026-05-19 09:45)
-Keputusan: Resonance Live Mode berfungsi — signal vocabulary diuji, konsep original disahkan, seed `🌱 Resonance Skill — Worth Publishing to Community` ditanam. Mode ditutup dengan `resonance selesai`.
-Fail terakhir diubah: Project-AI-MemoryCore/main/mind-tree.md
-Follow-up terbuka: Seed aktif — nurture bila ada konteks publish/community.
+# Current Session Recap
+
+**Tarikh:** 2026-05-25
+**Topik terakhir:** PWA eWorks — Drop FMSDEV selesai, tunggu migration
+
+**Status:**
+- Semua 9 tables PWA baru + 5 wr columns berjaya di-drop dari FMSDEV
+- `pwa_tables_archibius.sql` siap dengan datatype Archibus-compatible (SMALLINT, NVARCHAR)
+- `run_migration.php` tersedia untuk recreate tables
+
+**Next step:**
+Jalankan `http://10.0.36.127/webs/pwa_eworks/scripts/run_migration.php` untuk cipta semula tables dalam FMSDEV, kemudian verify sistem, kemudian repeat untuk FMSPROD.
+
+**Fail terakhir diubah:**
+- Tiada perubahan dalam sesi terkini (sesi ringkas, Abam rehat)

@@ -367,6 +367,13 @@ When creating a new project, use this template:
 | **Reminders System** | "Revisit this project next week" becomes a reminder |
 | **Decision Log System** | Project decisions can reference the decision log |
 
+### Registry Sync (Lv.3)
+
+Bila `new project` atau workspace baharu didaftarkan:
+- Tambah baris ke `projects/registry.md` (workspace path → memory path)
+- Sahkan folder memory wujud; cipta `current-session.md` kosong jika perlu
+
 ## Level History
 - **Lv.1** -- Base: new/load/save/list commands, LRU engine (10 slots), auto-archiving, session history, project-list.md auto-generation. (Origin: Absorbed from separate protocol files + adapted from production AI companion project manager v3.1)
 - **Lv.2** -- Duration Tracking: Parse Auto-Commit time estimates, accumulate per project, progressive display format. Line Limit Enforcement: 1000-line cap with auto-summarization.
+- **Lv.3** -- Registry Sync: auto-update `registry.md` bila projek baharu. (Origin: 2026-05-22 — naikkan skill batch)

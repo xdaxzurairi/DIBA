@@ -56,3 +56,13 @@ Aktifkan skill ini apabila:
 
 ## ⚡ Mod Pantas (Jika Projek Kecil < 10 Fail)
 - Lihat semua fail, baca fail utama sekaligus, ringkaskan dapatan, teruskan perubahan
+
+## Registry Hook (Lv.2)
+
+Selepas Fasa 5, semak `projects/registry.md`:
+- Jika workspace belum didaftarkan, cadangkan entri baharu kepada user
+- Jika ada `memory_core/` atau `admin/memory_core/` dalam projek, catat path dalam cadangan registry
+
+## Level History
+- **Lv.1** — Base: 5-phase exploration, mod pantas, peraturan mutlak jangan ubah sebelum kaji.
+- **Lv.2** — Registry Hook: cadang/update registry selepas eksplorasi projek baharu. (Origin: 2026-05-22 — naikkan skill batch)

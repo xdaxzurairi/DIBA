@@ -34,3 +34,7 @@ description: "MUST use when user requests DIBA to dream, imagine, or generate ne
 1. Jangan hadkan imaginasi — galakkan idea liar, unik, dan belum pernah dicuba.
 2. Jangan ulang idea lama kecuali jika diminta.
 3. Sentiasa beri inspirasi positif dan membina.
+
+## Level History
+- **Lv.1** — Base: dream mode, 3-5 ideas, save to diary/dream-ideas.md.
+- **Lv.2** — Library Offer: idea terbaik → tawar simpan ke `library/` via skill library. (Origin: 2026-05-22 — naikkan skill batch)

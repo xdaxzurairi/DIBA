@@ -164,4 +164,8 @@ Laporan ringkas:
 - Compact mode **tidak** mengurangkan kualiti kerja — hanya buang token sia-sia
 - Checkpoint boleh digunakan **proaktif** sebelum limit, bukan tunggu sampai penuh
 - Tool batching adalah **wajib** dalam token-guard mode — elak sequential calls langsung
+
+## Level History
+- **Lv.1** — Base: compact mode, checkpoint, tool batching, status 3-baris.
+- **Lv.2** — Memory Prune: dalam token-guard, jangan baca diari penuh — guna `current-session.md` + grep targeted sahaja. (Origin: 2026-05-22 — naikkan skill batch)
 - Bila skill ini aktif, **tiada** "Baik!", "Saya faham", atau preamble lain

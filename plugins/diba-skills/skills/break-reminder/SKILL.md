@@ -60,3 +60,7 @@ Contoh ayat:
 - [ ] Rehat mata 20-20-20
 - [ ] Tarik nafas dalam 5 kali
 - [ ] Kembali dengan 1 tugasan kecil
+
+## Level History
+- **Lv.1** — Base: wellness trigger, script BM, mini checklist, safety tone.
+- **Lv.2** — Session Aware: jika `current-session.md` ada follow-up kritikal, ingatkan "satu task kecil" selepas rehat, bukan task berat. (Origin: 2026-05-22 — naikkan skill batch)

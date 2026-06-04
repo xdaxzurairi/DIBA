@@ -4,8 +4,8 @@ description: "Auto-triggers when AI detects a repeated pattern handled ad-hoc 3+
              when AI makes a mistake that a permanent rule would prevent, when AI
              identifies a workflow that should be automated as a skill, or when user
              says 'create skill', 'new skill', 'forge this', 'level up', 'upgrade skill',
-             'self improve', 'improve skill'. Also triggers when AI wants to propose a
-             level-up to an existing skill based on conversation patterns."
+             'naikkan skill', 'upgrade all skills', 'self improve', 'improve skill'.
+             Also triggers when AI wants to propose a level-up to an existing skill."
 ---
 
 # Forge Skill -- Self-Improvement System
@@ -50,6 +50,7 @@ Identify the improvement opportunity. Forge recognizes these patterns:
 - "create skill", "new skill", "forge this"
 - "level up [skill]", "upgrade [skill]"
 - "self improve", "improve skill"
+- **"naikkan skill"**, **"upgrade all skills"** — bulk audit semua skill dalam `plugins/diba-skills/skills/`
 
 ### Step 2: Analyze
 
@@ -247,5 +248,14 @@ Each level should add **one meaningful capability** -- not multiple changes bund
 | **Decision Log System** | Log the decision to create/level-up a skill with rationale |
 | **Save Diary System** | Document the forge event in the session diary |
 
+### Bulk Audit Protocol (Lv.2)
+
+Bila user minta naikkan/upgrade semua skill:
+1. Senaraikan semua folder dalam `plugins/diba-skills/skills/`
+2. Untuk setiap skill: baca `Level History` terakhir → cadangkan **satu** Lv seterusnya dengan evidence dari diari/sesi
+3. Papar jadual ringkas (skill | level semasa | cadangan | approve?)
+4. Laksana level-up **hanya** untuk skill yang user approve (batch atau satu-satu)
+
 ## Level History
 - **Lv.1** -- Base: detect repeated patterns (3+ ad-hoc), mistake prevention, workflow automation, level-up opportunities. Human-in-the-loop approval. Standard skill template. Level-up guidelines with Lv.1-5+ progression. (Origin: Adapted from production AI companion self-improvement system with 23 skills forged over 7 months)
+- **Lv.2** -- Bulk Audit: trigger "naikkan skill" / "upgrade all skills" dengan jadual audit + approval batch. (Origin: 2026-05-22 — arahan Zuex)

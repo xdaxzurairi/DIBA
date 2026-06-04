@@ -1,3 +1,8 @@
+---
+name: post-mortem
+description: "Auto-detects failure signals and triggers on 'post-mortem', 'postmortem', 'log this failure', 'write a post-mortem', or 'what went wrong'. Appends analysis to main/post-mortems.md."
+---
+
 # 🔥 Post-Mortem — Skill Plugin
 
 ## Skill Name
@@ -41,7 +46,15 @@ When starting work in a domain that has a past post-mortem:
 - Check `main/post-mortems.md` for relevant entries
 - Flag: "⚠️ Reminder: [lesson] — see post-mortem [date]"
 
+### Regression Link (Lv.4)
+
+Bila failure sama domain muncul semula:
+- Cari entry lama dalam `main/post-mortems.md` dengan kata kunci domain/fail
+- Jika jumpa: sebut "regression vs [date]" dan lesson yang terlepas
+- Tawar update entry lama atau post-mortem baharu
+
 ## Level History
 - **Lv.1** — Base: manual trigger + append to log
 - **Lv.2** — Auto-detection of failure signals + passive prompting
 - **Lv.3** — Domain reference: flag relevant post-mortems at session start or task start
+- **Lv.4** — Regression Link: kait kegagalan semula dengan post-mortem sedia ada. (Origin: 2026-05-22 — naikkan skill batch)

@@ -9,6 +9,8 @@
 | `C:/Apache24/htdocs/BFM2026` | `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/projects/active/bfm2026/` |
 | `//10.0.36.150/webs` | `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/projects/active/webs-150/` |
 | `//10.0.36.127/webs/eWorks` | `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/projects/active/eworks/` |
+| `C:/Apache24/htdocs/ruangniaga` | `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/projects/active/ruangniaga/` |
+| `//10.0.36.127/webs/ea_newv3` | `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/projects/active/ea_newv3/` |
 
 ## Cara Tambah Projek Baru
 
