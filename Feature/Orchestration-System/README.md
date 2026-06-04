@@ -94,3 +94,7 @@ Next: [next useful move, if applicable]
 ## Installation
 
 See `install-orchestration.md` for setup steps.
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

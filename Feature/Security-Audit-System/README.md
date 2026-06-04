@@ -98,3 +98,7 @@ Commit created: [yes / pending]
 ## Installation
 
 See `install-security-audit.md` for setup steps.
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

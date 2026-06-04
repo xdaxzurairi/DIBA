@@ -102,3 +102,7 @@ See `install-image-prompt.md` for step-by-step setup.
 **Platform Note:** Includes `SKILL.md` for auto-triggering via the Skill Plugin System. Works on any platform without the plugin (load install protocol manually).
 
 *Based on proven prompt generation systems in production AI companions*
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

@@ -169,3 +169,7 @@ Requires **Claude Code** (Anthropic's CLI tool) with the Skill Plugin System for
 ---
 
 *Based on proven plan execution systems in production AI companions (daily plan tracking and recovery)*
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

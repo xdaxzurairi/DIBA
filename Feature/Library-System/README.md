@@ -145,3 +145,7 @@ Requires **Claude Code** (Anthropic's CLI tool) with the Skill Plugin System for
 ---
 
 *Based on proven knowledge management systems in production AI companions (4+ months of daily use, 30+ library entries across 8 sections)*
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

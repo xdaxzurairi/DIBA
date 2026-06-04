@@ -28,3 +28,7 @@ Table-table ini dah wujud terus dalam FMSPROD (dibuat inline oleh PHP) — perlu
 - **Monitor Instinct Confidence XDIBAX** (completed 2026-05-19): Semua 8 instinct sihat dalam suggest mode (0.62–0.69), tiada stale/decay. orchestrate-objective-owner-action paling hampir auto-apply (0.69).
 
 - **Sambung meeting runtime alignment** (completed 2026-05-13): `C:/Users/BSM/.copilot/.claude/commands/meeting.md` diselaraskan kepada wrapper canonical berasaskan source-of-truth `C:/Users/BSM/.copilot/skills/meeting/SKILL.md`, kemudian disemak semula dari segi struktur dan trigger penggunaan `meeting`.
+
+
+---
+*See: [[main/main-memory|main-memory]] · [[main/current-session|current-session]] · [[projects/project-list|projects]]*

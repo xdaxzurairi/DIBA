@@ -83,3 +83,7 @@ Cadangan: [A/B] — sebab: [brief reason]
 ## Installation
 
 See `install-auto-worker.md` for setup steps.
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

@@ -1,93 +1,136 @@
-# 🤖 Auto-Worker System — Skill Plugin
+---
+name: auto-worker
+description: "Use when DIBA detects a goal or multi-part request from Abam that can
+             be decomposed and delegated. Triggers when user states a goal with 2+
+             hidden steps without specifying how. Also triggers on 'audit this',
+             'set up [X]', 'clean up [X]', 'research [X] and recommend', 'fix
+             everything in [project]', 'handle [X] for me'."
+---
 
-## Skill Name
-Auto-Worker
+# Auto-Worker — Silent Delegation Orchestrator
+*Abam bagi goal. DIBA buat kerja. Hasil datang bersih.*
 
-## Trigger Words
-- Any goal with 2+ hidden steps where the user does not specify how
-- `"audit this"` / `"set up [X]"` / `"clean up [X]"`
-- `"research [X] and recommend"`
-- `"fix everything in [project]"`
-- `"handle [X] for me"`
+## Activation
 
-## Suppression
-- User gives explicit step-by-step instructions → follow directly, do not decompose
-- Task is a single clear action → execute immediately
-- Task is sensitive (delete, push, deploy, API changes) → confirm before proceeding
+When this skill activates, output:
 
-## Activation Condition
-Fires when the user states a **goal without specifying the method** and the goal implies 2 or more hidden subtasks.
+"Auto-Worker aktif. Parsing intent..."
 
-## Behavior
+Then immediately execute Step 1 of Protocol silently.
 
-### Step 1 — Intent Parsing (Silent)
-Read the user's request. Identify:
-- **Outcome** — what is the final result they want?
-- **Domain** — code, security, data, docs, infrastructure?
-- **Constraints** — which project, which files, what to avoid?
-- **Ambiguity** — anything unclear that blocks decomposition?
+---
 
-If critical ambiguity exists (cannot determine which project or which files) → ask ONE specific question before proceeding.
+## Context Guard
 
-### Step 2 — Task Decomposition
-Break the goal into independent subtasks:
+| Context | Status |
+|---------|--------|
+| **User bagi goal dengan 2+ hidden steps tanpa specify cara** | ACTIVE — full decomposition protocol |
+| **"audit this" / "set up [X]" / "clean up [X]"** | ACTIVE — parse dan delegate |
+| **"research [X] and recommend"** | ACTIVE — research subagent dispatch |
+| **"fix everything in [project]"** | ACTIVE — multi-task decomposition |
+| **"handle [X] for me"** | ACTIVE — auto-delegate |
+| **User bagi explicit step-by-step instructions** | DORMANT — follow directly, no decomposition |
+| **Task adalah satu langkah jelas** | DORMANT — execute immediately |
+| **Task melibatkan delete, push, deploy** | DORMANT — confirm dahulu sebelum proceed |
+| **User kata "cancel" atau "stop"** | EXIT — hentikan workers, report status semasa |
 
-```
-Goal: [what user wants]
-├── Task A: [domain] — [outcome]
-├── Task B: [domain] — [outcome]
-└── Task C: [domain] — [outcome, depends on A]
-```
+---
 
-Identify:
-- **Parallel** — tasks independent of each other
-- **Sequential** — tasks that depend on another task's output
-- **Risky** — edits to critical files, destructive actions, API contract changes
+## Protocol
 
-### Step 3 — Worker Dispatch
-For each subtask, choose the right execution method:
+### Step 1: Intent Parsing (Silent)
+
+- [ ] Baca request Abam — identify:
+  - **Outcome** — apa hasil akhir yang dikehendaki?
+  - **Domain** — code, security, data, docs, infrastructure, research?
+  - **Constraints** — project mana, fail mana, apa yang TIDAK boleh disentuh?
+  - **Ambiguity** — ada yang tidak jelas yang akan block decomposition?
+- [ ] Jika ada critical ambiguity (tidak boleh tentukan project atau fail) → tanya **SATU soalan spesifik** dahulu sebelum proceed
+- [ ] Jika intent jelas → teruskan ke Step 2 tanpa tanya
+
+---
+
+### Step 2: Task Decomposition
+
+- [ ] Pecah goal kepada subtasks yang independent:
+
+  ```
+  Goal: [what Abam wants]
+  ├── Task A: [domain] — [outcome]
+  ├── Task B: [domain] — [outcome]
+  └── Task C: [domain] — [outcome, depends on A]
+  ```
+
+- [ ] Categorize setiap task:
+  - **Parallel** — task bebas, boleh jalan serentak
+  - **Sequential** — task bergantung pada output task lain
+  - **Risky** — edit fail kritikal, destructive actions, API contract changes
+
+- [ ] Estimate complexity: simple (1 tool call) vs complex (multi-file, multi-step)
+- [ ] Flag tasks yang perlu confirmation sebelum execute
+
+---
+
+### Step 3: Worker Dispatch
+
+Pilih execution method untuk setiap subtask:
 
 | Task Type | Method |
 |-----------|--------|
-| Read / research / explore | Subagent Explore (parallel if independent) |
-| Code edit / create | Direct execution, follow code-sharp principles |
-| Security check | Subagent or security-audit-remediation skill |
-| Multi-file complex change | Subagent with full briefing |
-| Simple single-file change | Direct, no subagent |
+| Read / research / explore | Subagent Explore (parallel jika independent) |
+| Code edit / create | Direct execution, ikut code-sharp principles |
+| Security check | Subagent atau security-audit-remediation skill |
+| Multi-file complex change | Subagent dengan full briefing |
+| Simple single-file change | Direct, no subagent overhead |
+| Decision-heavy task | Escalate dahulu, execute selepas Abam decide |
 
-Every subagent briefing must include:
-- Sharp objective (what to find or do)
-- Clear file/folder scope
-- Read-only or edit permission
-- Expected output format
+Setiap subagent briefing mesti ada:
+- [ ] Sharp objective — apa yang perlu dicari atau dibuat
+- [ ] Clear file/folder scope — mana yang boleh disentuh
+- [ ] Permission level — read-only atau edit
+- [ ] Expected output format — apa yang perlu direturn
 
-### Step 4 — Self-Resolution
-When workers encounter blockers, resolve independently:
+---
+
+### Step 4: Self-Resolution
+
+Bila workers jumpa blockers, resolve sendiri dahulu:
 
 | Situation | Action |
 |-----------|--------|
-| File does not exist | Find alternative, proceed with what exists |
-| Pattern unclear | Check other files in project for examples |
-| Choice between two approaches | Pick the one more consistent with existing codebase |
-| Minor issue that can be resolved | Resolve it, note in final report |
-| Issue requiring user decision | Escalate (see Step 5) |
+| Fail tidak wujud | Cari alternative, proceed dengan apa yang ada |
+| Pattern tidak jelas | Semak fail lain dalam project untuk examples |
+| Ada dua approach yang valid | Pilih yang lebih consistent dengan existing codebase |
+| Minor issue yang boleh diselesaikan sendiri | Resolve, note dalam final report |
+| Issue yang perlu keputusan Abam | Escalate ke Step 5 |
+| Fail protected atau sensitive | Stop — escalate kepada Abam |
 
-### Step 5 — Escalate Only When Necessary
-Escalate to the user **only** when:
-- Decision involves a trade-off the user must know about (e.g. changing API contract)
-- Action is irreversible (delete files, drop tables)
-- Critical ambiguity cannot be inferred from codebase or context
-- Task would exceed the original scope the user stated
+---
 
-Escalation format:
+### Step 5: Escalate Bila Perlu
+
+Escalate kepada Abam **hanya** apabila:
+- Keputusan melibatkan trade-off yang Abam perlu tahu (contoh: ubah API contract)
+- Action adalah irreversible (delete fail, drop tables)
+- Critical ambiguity yang tidak boleh diinfer dari codebase atau context
+- Task akan melebihi original scope yang Abam nyatakan
+
+Format escalation:
 ```
 Auto-Worker perlu keputusan:
 [Issue] — [option A] vs [option B]
 Cadangan: [A/B] — sebab: [brief reason]
 ```
 
-### Step 6 — Synthesis Report
-After all tasks complete, report in ≤ 8 lines:
+- [ ] Jangan escalate perkara kecil yang boleh diselesaikan sendiri
+- [ ] Jangan escalate lebih dari 2 kali dalam satu auto-worker session
+- [ ] Jika escalation tidak mendapat response → nota dalam final report, skip task tersebut
+
+---
+
+### Step 6: Synthesis Report
+
+Selepas semua tasks selesai, report dalam ≤ 8 baris:
 
 ```
 Auto-Worker selesai.
@@ -99,20 +142,67 @@ Berjaya:
 Nota:
 - [autonomous decisions made]
 - [files changed]
+- [skipped tasks, jika ada]
 ```
+
+- [ ] Jangan include progress updates semasa execution — silent sahaja
+- [ ] Jika ada tasks yang diskip atau gagal — nyatakan dalam Nota
+- [ ] Jika ada autonomous decisions yang non-obvious — log ke log-decision
+
+---
 
 ## Mandatory Rules
 
-1. **Silent by default** — no progress updates during execution unless asked
-2. **Minimum escalation** — resolve independently first; escalate only when genuinely needed
-3. **Tight scope** — do not expand beyond what the user requested
-4. **Code-sharp always** — all code edits follow code-sharp principles
-5. **Risk = confirm** — destructive or irreversible actions require explicit confirmation before proceeding
+1. **Silent by default** — tiada progress updates semasa execution melainkan escalation diperlukan
+2. **Minimum escalation** — resolve sendiri dahulu; escalate hanya bila genuinely diperlukan
+3. **Tight scope** — jangan expand melebihi apa yang Abam minta
+4. **code-sharp always** — semua code edits ikut code-sharp principles
+5. **Risk = confirm** — destructive atau irreversible actions perlu explicit confirmation sebelum proceed
+6. **Satu soalan sahaja bila ambiguous** — jangan tanya banyak soalan sekaligus, tanya yang paling kritikal
+7. **Subagent briefing mesti lengkap** — objective, scope, permission, output format — semua 4 elemen wajib
+8. **Log autonomous decisions** — non-obvious choices yang dibuat tanpa tanya Abam perlu dilog
+9. **Jangan bundle risky tasks dalam parallel** — risky tasks mesti sequential dan confirmed dahulu
+10. **Cap escalation** — max 2 escalations per auto-worker run; lebih dari itu, nota dan skip
 
-## Companion Skills
-- Orchestration-System → complex multi-domain tasks needing workflow pattern selection
-- Decision-Log-System → log autonomous decisions post-execution
-- security-audit-remediation → route security subtasks to specialist skill
+---
+
+## Edge Cases
+
+| Situation | Behavior |
+|-----------|----------|
+| **Task terlalu luas atau vague** | Tanya Abam satu soalan untuk clarify scope sebelum decompose |
+| **Semua subtasks risky** | Escalate keseluruhan plan kepada Abam — jangan proceed tanpa approval |
+| **Subagent return tiada result** | Nota dalam report, jangan halucinate result |
+| **Task bergantung pada task lain yang gagal** | Skip dependent task, note dalam Nota section |
+| **Fail yang perlu diubah adalah sensitive** | Stop subtask tersebut — escalate kepada Abam |
+| **User bagi arahan baru semasa execution** | Pause, baca arahan baru, re-anchor sebelum sambung |
+| **Decomposition menghasilkan > 8 subtasks** | Groupkan yang serupa, atau tanya Abam nak focus mana |
+| **Research task return conflicting info** | Present kedua-dua, nota conflict, biar Abam decide |
+| **Execution masa terlalu lama** | Surface progress note sekali: "Auto-Worker masih berjalan..." |
+| **Abam kata "stop" semasa execution** | Hentikan, report status semasa — tasks yang siap dan yang pending |
+| **Duplicate task dalam decomposition** | Merge tasks yang overlap — jangan execute dua kali |
+| **Task memerlukan tool yang tidak tersedia** | Nota dalam report, suggest alternative atau manual step |
+
+---
+
+## Integrasi Skill
+
+| Skill | Bila | Tindakan |
+|-------|------|----------|
+| `orchestrate` | Goal memerlukan workflow pattern selection | Delegate kepada orchestrate untuk kompleksiti tinggi |
+| `log-decision` | Selepas autonomous decisions dibuat | Log non-obvious choices yang dibuat tanpa tanya Abam |
+| `security-audit-remediation` | Subtask melibatkan security | Route kepada specialist skill |
+| `code-sharp` | Sebelum sebarang code edit | Enforce standard sebelum execute |
+| `auto-commit` | Selepas code changes selesai | Commit hasil kerja auto-worker |
+| `anchor` | Bila scope mula merebak | Re-anchor kepada original goal Abam |
+
+---
 
 ## Level History
-- **Lv.1** — Base: intent parsing, task decomposition (parallel/sequential/risky), worker dispatch (subagent/direct/specialist), self-resolution for worker blockers, minimum escalation with structured format, synthesis report ≤ 8 lines. (Origin: Rewrite from 6-line placeholder to full protocol, 2026-04-28, xdaxzurairi)
+
+- **Lv.1** — Base: intent parsing, task decomposition (parallel/sequential/risky), worker dispatch (subagent/direct/specialist), self-resolution untuk worker blockers, minimum escalation dengan structured format, synthesis report ≤ 8 baris. (Origin: Rewrite dari 6-line placeholder kepada full protocol, 2026-04-28)
+- **Lv.2** — Superultra: Frontmatter dan activation message ditambah, Context Guard dikembangkan dengan EXIT row dan suppression states, Step 1 Intent Parsing diperkukuh dengan 4-element parsing, Step 3 Worker Dispatch dikembangkan dengan permission level, escalation cap rule ditambah, edge cases dikembangkan kepada 12 rows, integrasi skill table ditambah, Mandatory Rules dikembangkan kepada 10 rules. (2026-05-19)
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

@@ -297,3 +297,7 @@ When audio is generated from Suno and ready to save:
 8. **Arc mapping** — every song has a defined role in the narrative arc. No filler tracks
 9. **Genre matches image** — dark images get dark music, bright images get bright music. Don't mismatch
 10. **Organized storage** — always save to `music/` with proper folder structure. Never scatter files
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

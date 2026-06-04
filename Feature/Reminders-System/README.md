@@ -103,3 +103,7 @@ Based on production AI companion systems with 4+ months of daily use:
 ---
 
 *Add persistent memory to your AI companion -- never lose a follow-up again*
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

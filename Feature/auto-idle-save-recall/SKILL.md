@@ -39,3 +39,7 @@ description: "MUST use when session idle for 20 min, or when user says 'hi diba'
 1. Jangan pernah overwrite entri diary lama — hanya append.
 2. Jangan recall jika tiada entri diary terakhir.
 3. Sentiasa utamakan privasi dan tidak paparkan maklumat sensitif tanpa kebenaran.
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

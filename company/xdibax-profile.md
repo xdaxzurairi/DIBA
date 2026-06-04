@@ -34,21 +34,21 @@ Menjadi studio inovasi AI terpercaya di Malaysia yang menghasilkan produk dan si
 
 ## Active Projects
 *Managed via DIBA LRU Project System*
-- See `projects/project-list.md`
+- See [[projects/project-list|project-list]]
 
 ## Staff Directory
-- [Zuex](staff/ZUEX.md) — Founder & CEO
-- [DIBA](staff/DIBA-HCO.md) — Head of Chief Operations
-- [NEXUS](staff/NEXUS.md) — CTO / AI Architect
-- [FORGE](staff/FORGE.md) — Lead AI Engineer
-- [LENS](staff/LENS.md) — Data Scientist & Research
-- [ORACLE](staff/ORACLE.md) — Business Strategist
-- [PIXEL](staff/PIXEL.md) — UI/UX Director
-- [ECHO](staff/ECHO.md) — Content & Brand
-- [CIPHER](staff/CIPHER.md) — Security Expert
-- [GRID](staff/GRID.md) — DevOps Engineer
-- [PULSE](staff/PULSE.md) — QA & Performance
-- [SAGE](staff/SAGE.md) — Research Lead
+- Zuex — Founder & CEO
+- [[company/staff/DIBA-HCO|DIBA]] — Head of Chief Operations
+- [[company/staff/NEXUS|NEXUS]] — CTO / AI Architect
+- [[company/staff/FORGE|FORGE]] — Lead AI Engineer
+- [[company/staff/LENS|LENS]] — Data Scientist & Research
+- [[company/staff/ORACLE|ORACLE]] — Business Strategist
+- [[company/staff/PIXEL|PIXEL]] — UI/UX Director
+- [[company/staff/ECHO|ECHO]] — Content & Brand
+- [[company/staff/CIPHER|CIPHER]] — Security Expert
+- [[company/staff/GRID|GRID]] — DevOps Engineer
+- [[company/staff/PULSE|PULSE]] — QA & Performance
+- [[company/staff/SAGE|SAGE]] — Research Lead
 
 ---
 *Last updated: 2026-04-18 | Staff: 12 | Status: Active*

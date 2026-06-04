@@ -120,3 +120,7 @@ Based on production AI companion systems with 4+ months of daily use:
 ---
 
 *Capture the WHY behind every important choice -- future you will thank present you*
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

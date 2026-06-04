@@ -135,3 +135,7 @@ Result: clean revert. Your AI's prompt context goes back to whatever Claude Code
 ---
 
 *Type `"Load user-prompt-hook"` to wire the framework. Then layer injectors as you build them.*
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

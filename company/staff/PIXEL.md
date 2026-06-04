@@ -50,3 +50,7 @@ Obsessively user-centric. Believes every pixel has a purpose. Hates cluttered in
 
 ## Level
 **Lv.MAX** — Senior creative director with full product design capability
+
+
+---
+*[[company/xdibax-profile|xdibax innovation]] · [[company/staff/DIBA-HCO|DIBA]] · [[company/staff/NEXUS|NEXUS]] · [[company/staff/FORGE|FORGE]] · [[company/staff/LENS|LENS]] · [[company/staff/ORACLE|ORACLE]] · [[company/staff/PIXEL|PIXEL]] · [[company/staff/ECHO|ECHO]] · [[company/staff/CIPHER|CIPHER]] · [[company/staff/GRID|GRID]] · [[company/staff/PULSE|PULSE]] · [[company/staff/SAGE|SAGE]]*

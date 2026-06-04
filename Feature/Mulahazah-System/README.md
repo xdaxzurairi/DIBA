@@ -84,3 +84,7 @@ Rules that keep being reinforced stay. Rules without evidence decay.
 ---
 
 *Your AI companion gets wiser with every session -- one rule at a time.*
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

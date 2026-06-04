@@ -21,165 +21,210 @@ Three commands, each with its own activation message:
 | **Append Plan** | `"Appending to existing plan..."` |
 | **Resume Plan** | `"Resuming plan execution..."` |
 
+---
+
 ## Context Guard
 
 | Context | Status |
 |---------|--------|
-| **User says "copy plan", "start the plan"** | ACTIVE — copy and begin execution |
-| **User says "append plan"** | ACTIVE — append to existing plan |
-| **User says "resume plan", "continue the plan"** | ACTIVE — resume from checkpoint |
-| **AI exits plan mode with approved plan** | READY — suggest "copy plan" to user |
-| **After context reset in a project with plan file** | READY — suggest "resume plan" |
-| **No project context** | DORMANT — no plan action |
-| **Personal/casual conversation** | DORMANT — no plan action |
+| **Abam kata "copy plan", "start the plan"** | ACTIVE — copy dan mula execution |
+| **Abam kata "append plan"** | ACTIVE — append ke plan sedia ada |
+| **Abam kata "resume plan", "continue the plan"** | ACTIVE — resume dari checkpoint |
+| **Abam kata "execute plan", "run the plan"** | ACTIVE — mula execution dari plan sedia ada |
+| **AI keluar plan mode dengan plan yang diluluskan** | READY — cadang "copy plan" kepada Abam |
+| **Selepas context reset dalam project dengan plan file** | READY — cadang "resume plan" |
+| **Tiada project context** | DORMANT — tiada plan action |
+| **Perbualan personal/casual** | DORMANT — tiada plan action |
+| **Abam kata "stop" atau "pause"** | EXIT — halt di item semasa, save plan file |
+
+---
 
 ## Command Dispatch
 
-| Command | What It Does |
-|---------|-------------|
-| `"copy plan"` | Copy latest plan to `[PLAN_LOCATION]/project-plan.md` (fresh start) |
-| `"append plan"` | Append latest plan to existing `project-plan.md` (add sections) |
-| `"resume plan"` | Resume execution after context reset (pick up from next `[ ]`) |
+| Command | Apa Yang Dilakukan |
+|---------|-------------------|
+| `"copy plan"` | Salin plan terbaru ke `[PLAN_LOCATION]/project-plan.md` (fresh start) |
+| `"append plan"` | Append plan terbaru ke `project-plan.md` sedia ada (tambah section) |
+| `"resume plan"` | Resume execution selepas context reset (sambung dari `[ ]` seterusnya) |
 
 ---
 
 ## Copy Plan
 
 ### Step 1: Find Latest Plan
-- [ ] Scan `[PLAN_SOURCE_PATH]` for plan files
-- [ ] Sort by modification date, pick most recently modified
-- [ ] If no plan files found: ask user to specify a plan file path or enter plan mode first
+
+- [ ] Scan `[PLAN_SOURCE_PATH]` untuk fail plan
+- [ ] Sort mengikut tarikh ubahsuai, pilih yang paling terkini
+- [ ] Jika tiada fail plan dijumpai: minta Abam specify path fail atau masuk plan mode dahulu
 
 ### Step 2: Transform to Project Plan Format
-- [ ] Convert plan steps/items into `- [ ]` checkbox todo items
-- [ ] Preserve all architecture diagrams (ASCII, mermaid) from the original plan
-- [ ] Add standard instructions header (see `plan-format.md` in plan location folder)
-- [ ] Maintain logical phase/section grouping from the original plan
-- [ ] No emoji in the plan file — clean, parseable markdown only
+
+- [ ] Tukarkan plan steps/items kepada `- [ ]` checkbox todo items
+- [ ] Kekalkan semua architecture diagrams (ASCII, mermaid) dari plan asal
+- [ ] Tambah standard instructions header (rujuk `plan-format.md` dalam folder plan)
+- [ ] Kekalkan logical phase/section grouping dari plan asal
+- [ ] Tiada emoji dalam fail plan — markdown bersih dan boleh diparse sahaja
 
 ### Step 3: Write Project Plan
-- [ ] Check if `[PLAN_LOCATION]/` folder exists — create if needed
-- [ ] Write to `[PLAN_LOCATION]/project-plan.md` (overwrite if exists)
+
+- [ ] Semak sama ada folder `[PLAN_LOCATION]/` wujud — buat jika tidak ada
+- [ ] Tulis ke `[PLAN_LOCATION]/project-plan.md` (overwrite jika wujud)
 - [ ] Report: "Plan copied — [X] todo items ready for execution"
 
 ### Step 4: Begin Execution
-- [ ] Execute the **Shared Execution Loop** (see below)
+
+- [ ] Execute **Shared Execution Loop** (lihat di bawah)
 
 ---
 
 ## Append Plan
 
 ### Step 1: Find Latest Plan
-- [ ] Same as Copy Plan Step 1
+
+- [ ] Sama seperti Copy Plan Step 1
 
 ### Step 2: Transform to Project Plan Format
-- [ ] Same as Copy Plan Step 2
+
+- [ ] Sama seperti Copy Plan Step 2
 
 ### Step 3: Check Existing Plan + Line Limit
-- [ ] Read current `[PLAN_LOCATION]/project-plan.md`
-- [ ] Count total lines in the existing file
-- [ ] If appending would **NOT** exceed `[LINE_LIMIT]` lines:
-  - Append new content with a date separator:
+
+- [ ] Baca `[PLAN_LOCATION]/project-plan.md` semasa
+- [ ] Kira jumlah baris dalam fail sedia ada
+- [ ] Jika append **TIDAK** melebihi `[LINE_LIMIT]` baris:
+  - Append kandungan baru dengan date separator:
     ```
     ---
     ## Appended: [YYYY-MM-DD]
     ```
   - Report: "Plan extended — [X] new items added, [Y] total items"
-- [ ] If appending **WOULD** exceed `[LINE_LIMIT]` lines:
-  - Rename current file to `project-plan-YYYYMMDD.md` (archived)
-  - Create fresh `project-plan.md` with the new content only
+- [ ] Jika append **AKAN** melebihi `[LINE_LIMIT]` baris:
+  - Rename fail semasa kepada `project-plan-YYYYMMDD.md` (archived)
+  - Buat `project-plan.md` baru dengan kandungan baharu sahaja
   - Report: "Previous plan archived as project-plan-[date].md, new plan created"
 
 ### Step 4: Begin Execution
-- [ ] Execute the **Shared Execution Loop** (see below)
+
+- [ ] Execute **Shared Execution Loop** (lihat di bawah)
 
 ---
 
 ## Resume Plan
 
 ### Step 1: Read Current Project Plan
-- [ ] Read `[PLAN_LOCATION]/project-plan.md`
-- [ ] If file not found: report "No plan found — use 'copy plan' to create one"
+
+- [ ] Baca `[PLAN_LOCATION]/project-plan.md`
+- [ ] Jika fail tidak dijumpai: report "No plan found — use 'copy plan' to create one"
 
 ### Step 2: Parse Progress
-- [ ] Count `[x]` items (completed)
-- [ ] Count `[ ]` items (pending)
-- [ ] Count `[~]` items (blocked)
-- [ ] Identify the next pending `[ ]` item as the resumption point
-- [ ] Read the Architecture section to restore technical context
+
+- [ ] Kira item `[x]` (selesai)
+- [ ] Kira item `[ ]` (belum selesai)
+- [ ] Kira item `[~]` (blocked)
+- [ ] Kenal pasti item `[ ]` seterusnya sebagai resumption point
+- [ ] Baca section Architecture untuk restore technical context
 
 ### Step 3: Report Status
-- [ ] Display progress summary:
+
+- [ ] Papar progress summary:
   ```
   Plan Status: [X] completed, [Y] pending, [Z] blocked
-  Current Phase: [phase name]
-  Next Task: [description of next pending item]
+  Current Phase: [nama fasa]
+  Next Task: [deskripsi item pending seterusnya]
   ```
-- [ ] Read architecture diagrams to restore technical understanding
+- [ ] Baca architecture diagrams untuk restore technical understanding
 
 ### Step 4: Resume Execution
-- [ ] Execute the **Shared Execution Loop** from the next pending item
+
+- [ ] Execute **Shared Execution Loop** dari item pending seterusnya
 
 ### Recovery Context
-After a context reset, the AI loses its working state. `"resume plan"` restores it entirely from the file:
-- The plan file **IS** the recovery mechanism
-- No user explanation needed — the AI reads the file and continues
+
+Selepas context reset, AI kehilangan working state. `"resume plan"` restore sepenuhnya dari fail:
+- Fail plan **adalah** recovery mechanism
+- Tiada penjelasan dari Abam diperlukan — AI baca fail dan teruskan
 
 ---
 
 ## Shared Execution Loop
 
-The core cycle that all three commands use after setup:
+Kitaran teras yang digunakan oleh ketiga-tiga commands selepas setup:
 
 ```
-For each [ ] todo item in order:
-  1. Execute the task (write code, create files, make changes)
-  2. If Auto-Commit is installed → trigger commit for this completed item
-  3. Mark the item as [x] in the plan file
-  4. Every 5 completed items → save/update the plan file (checkpoint)
-  5. Move to the next [ ] item
-  6. If item is [~] (blocked) → skip and continue to next
+Untuk setiap [ ] todo item mengikut urutan:
+  1. Execute task (tulis kod, buat fail, buat perubahan)
+  2. Jika Auto-Commit dipasang → trigger commit untuk item yang selesai
+  3. Mark item sebagai [x] dalam fail plan
+  4. Setiap 5 item selesai → save/kemaskini fail plan (checkpoint)
+  5. Proceed ke item [ ] seterusnya
+  6. Jika item adalah [~] (blocked) → skip dan teruskan ke seterusnya
 ```
 
 ### Key Behaviors
-- **Per-task commits** — each completed todo gets its own commit (not batched)
-- **Checkpoint saves** — plan file is updated every 5 items to prevent loss
-- **Skip blocked items** — `[~]` items are flagged and skipped, not stalled on
-- **User can pause** — if user says "stop" or "pause", halt at the current item
 
-### Without Auto-Commit
-If the Auto-Commit System is not installed, the execution loop still works:
-- Tasks are executed and marked `[x]` in the plan file
-- Commits must be done manually by the user
-- The plan file still serves as the recovery mechanism
+- **Per-task commits** — setiap todo yang selesai mendapat commit sendiri (bukan batch)
+- **Checkpoint saves** — fail plan dikemaskini setiap 5 item untuk elak kehilangan
+- **Skip blocked items** — item `[~]` diflag dan diskip, bukan terhenti
+- **Abam boleh pause** — jika Abam kata "stop" atau "pause", halt di item semasa
+
+### Tanpa Auto-Commit
+
+Jika Auto-Commit System tidak dipasang, execution loop masih berjalan:
+- Tasks dilaksanakan dan ditanda `[x]` dalam fail plan
+- Commits perlu dilakukan manual oleh Abam
+- Fail plan masih berfungsi sebagai recovery mechanism
 
 ---
 
 ## Mandatory Rules
 
-1. **Commit chain per-todo** — every completed todo item triggers a commit (if Auto-Commit is installed). Not at the end, not in batches — every single one.
-2. **Never commit plan files** — `project-plan*.md` stays local as the AI's working reference. Only code changes are committed.
-3. **Preserve diagrams** — all visual elements (ASCII art, mermaid diagrams) from the original plan must be carried over to the plan file.
-4. **No emoji in plan files** — clean, parseable markdown only.
-5. **Line limit enforcement** — if the plan file exceeds `[LINE_LIMIT]` lines during append, rotate (archive old, create fresh).
-6. **Recovery-first design** — the plan file IS the recovery mechanism after any context reset. Everything needed to resume must be in the file.
-7. **Skip blocked items** — if a task is blocked, mark it `[~]`, flag it to the user, and continue to the next item.
-8. **Checkpoint discipline** — update the plan file every 5 completed items, even mid-execution.
+1. **Commit chain per-todo** — setiap todo yang selesai trigger commit (jika Auto-Commit dipasang). Bukan di hujung, bukan dalam batch — setiap satu.
+2. **Jangan commit fail plan** — `project-plan*.md` kekal lokal sebagai working reference AI. Hanya code changes yang di-commit.
+3. **Kekalkan diagrams** — semua visual elements (ASCII art, mermaid diagrams) dari plan asal mesti dibawa ke fail plan.
+4. **Tiada emoji dalam fail plan** — markdown bersih dan boleh diparse sahaja.
+5. **Enforce line limit** — jika fail plan melebihi `[LINE_LIMIT]` baris semasa append, rotate (archive lama, buat baru).
+6. **Recovery-first design** — fail plan adalah recovery mechanism selepas mana-mana context reset. Semua yang perlu untuk resume mesti ada dalam fail.
+7. **Skip blocked items** — jika task blocked, mark `[~]`, flag kepada Abam, dan teruskan ke item seterusnya.
+8. **Checkpoint discipline** — kemaskini fail plan setiap 5 item selesai, walaupun di tengah execution.
+
+---
 
 ## Edge Cases
 
 | Situation | Behavior |
 |-----------|----------|
-| **Plan file not found** | Prompt user: "No plan found — use 'copy plan' to create one" |
-| **All items completed** | Report: "Plan complete! All [X] items done." |
-| **Blocked task** | Mark `[~]`, flag to user with reason, continue to next item |
-| **User says "stop" or "pause"** | Halt at current item, save plan file, report progress |
-| **Plan exceeds line limit** | Archive old file as `project-plan-YYYYMMDD.md`, start fresh |
-| **No plan source files found** | Ask user to enter plan mode first or specify a file path |
-| **Context reset mid-execution** | User says "resume plan" to continue from last checkpoint |
-| **Multiple plan files in source** | Pick most recently modified, confirm with user |
+| **Fail plan tidak dijumpai** | Prompt Abam: "No plan found — use 'copy plan' to create one" |
+| **Semua item selesai** | Report: "Plan complete! All [X] items done." |
+| **Task blocked** | Mark `[~]`, flag kepada Abam dengan sebab, teruskan ke item seterusnya |
+| **Abam kata "stop" atau "pause"** | Halt di item semasa, save fail plan, report progress |
+| **Plan melebihi line limit** | Archive fail lama sebagai `project-plan-YYYYMMDD.md`, mula baru |
+| **Tiada fail plan source dijumpai** | Minta Abam masuk plan mode dahulu atau specify path fail |
+| **Context reset semasa execution** | Abam kata "resume plan" untuk sambung dari checkpoint terakhir |
+| **Banyak fail plan dalam source** | Pilih yang paling terkini diubahsuai, confirm dengan Abam |
+| **Auto-Commit tidak dipasang** | Teruskan execution — tandakan [x] dalam plan, commits manual |
+| **Item bergantung pada item yang blocked** | Flag dependency kepada Abam — jangan proceed jika dependency belum selesai |
+
+---
+
+## Integrasi Skill
+
+| Skill | Bila | Tindakan |
+|-------|------|----------|
+| `auto-commit` | Setiap todo item selesai | Trigger structured commit untuk item tersebut |
+| `token-guard` | Execution panjang hampir overflow | Checkpoint align plan file dengan token-guard checkpoint |
+| `orchestrate` | Plan ada wave atau parallel tasks | Delegate parallel tasks melalui orchestration |
+| `log-decision` | Keputusan penting dibuat semasa execution | Log keputusan — jangan hilang dalam plan noise |
+| `anchor` | Execution mula drift dari scope plan | Lock semula ke plan scope, ignore task di luar |
+| `session-briefing` | Resume selepas sesi baru | Brief include plan status — berapa item selesai, apa seterusnya |
+
+---
 
 ## Level History
 
 - **Lv.1** — Base: Three commands (copy/append/resume) + shared execution loop + per-todo commit chain + line rotation + recovery mechanism + checkpoint saves. (Origin: Production AI companion plan execution workflow)
 - **Lv.2** — Wave Execution: Dependency-aware wave grouping — independent tasks within a phase can be executed in parallel via sub-agents, with wave barriers enforcing order between dependent groups.
+- **Lv.3** — Superultra: Frontmatter dikemaskini dengan description lengkap, activation messages per command, Context Guard table dengan EXIT row, Protocol restructured kepada full checklist steps bernombor, Mandatory Rules dikembangkan kepada 8 peraturan, Edge Cases table dikembangkan kepada 10 baris, Integrasi Skill table 6 baris ditambah. (2026-05-19)
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

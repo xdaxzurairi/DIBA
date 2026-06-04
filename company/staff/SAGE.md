@@ -51,3 +51,7 @@ Deep thinker, wide reader. Connects dots across disciplines that others keep sep
 
 ## Level
 **Lv.MAX** — Senior research lead with AI research specialization
+
+
+---
+*[[company/xdibax-profile|xdibax innovation]] · [[company/staff/DIBA-HCO|DIBA]] · [[company/staff/NEXUS|NEXUS]] · [[company/staff/FORGE|FORGE]] · [[company/staff/LENS|LENS]] · [[company/staff/ORACLE|ORACLE]] · [[company/staff/PIXEL|PIXEL]] · [[company/staff/ECHO|ECHO]] · [[company/staff/CIPHER|CIPHER]] · [[company/staff/GRID|GRID]] · [[company/staff/PULSE|PULSE]] · [[company/staff/SAGE|SAGE]]*

@@ -1,167 +1,239 @@
-# 🎯 Orchestration System — Skill Plugin
+---
+name: orchestrate
+description: "Gunakan bila tugasan memerlukan koordinasi multi-langkah, pecahan kerja,
+             routing, parallelization, atau synthesis merentas banyak fail dan domain.
+             Trigger: 'audit', 'buat plan', 'pecahkan task', 'orchestrate', 'analisis
+             lengkap', 'compare [A] dan [B]', atau mana-mana task dengan 3+ langkah
+             tersembunyi."
+---
 
-## Skill Name
-Orchestrate
+# Orchestration System — DIBA Operator Layer
+*Decompose. Route. Delegate. Synthesize. Verify. Close.*
 
-## Trigger Words
-- `"audit keseluruhan"` / `"audit [project]"`
-- `"buat plan"` / `"roadmap"` / `"strategi"`
-- `"pecahkan task ini"`
-- `"urus"` / `"selaraskan"` / `"orchestrate"`
-- `"analisis lengkap"` / `"buat analisis dari banyak fail"`
-- `"compare [option A] dan [option B]"`
-- `"research + summarize + cadangkan"`
-- `"buat execution plan end-to-end"`
-- Any task with 3+ steps, multiple components, or multiple sources
+## Activation
 
-## Suppression
-- `"single pass"` — skip orchestration, respond directly
-- Simple tasks with one clear answer — do not orchestrate unnecessarily
+When this skill activates, output:
+"Orchestration aktif. Decomposing task."
 
-## Activation Condition
-Fires when the task is too complex for a single-pass response — multi-step, multi-domain, multi-file, or open-ended exploration.
+Then immediately execute Step 1 of Protocol.
 
-## Core Principles
+---
 
-1. **Start simple** — try a single pass first; add orchestration only when it improves accuracy, coverage, or speed
-2. **Decompose before acting** — identify outcome, constraints, dependencies, and verification signals
-3. **Ground every important claim** — anchor to files, logs, tool output, tests, or authoritative sources
-4. **Verify in loops** — after each major phase, check output, side effects, and blockers
-5. **Make orchestration visible** — give brief updates after key steps; state what's being done and what's next
+## Context Guard
 
-## Behavior
+| Context | Status |
+|---------|--------|
+| **Task ada 3+ langkah atau 3+ komponen** | ACTIVE — full 8-step loop |
+| **Abam kata "audit", "buat plan", "orchestrate"** | ACTIVE — trigger segera |
+| **Task melibatkan multi-file, multi-domain** | ACTIVE — classify dan route |
+| **Abam kata "compare [A] dan [B]"** | ACTIVE — parallelization + synthesis |
+| **Abam kata "research + summarize + cadangkan"** | ACTIVE — Prompt Chaining |
+| **Task jelas dan single-pass** | DORMANT — jawab terus tanpa orchestrate |
+| **Abam kata "single pass"** | EXIT — suppress orchestration, respond direct |
 
-### Step 1 — Define the Mission
-Identify:
-- Final outcome the user wants
-- In-scope / out-of-scope
-- Constraints (time, files, systems, access, format)
-- Done signal (what proves the task is complete)
+---
 
-### Step 2 — Classify the Task
-Choose the right pattern:
+## Protocol
 
-| Pattern | When to Use |
-|---------|-------------|
-| Prompt Chaining | Steps are fixed and sequential |
-| Routing | Input divides into categories needing different treatment |
-| Parallelization | Subtasks are independent or need multiple perspectives |
-| Orchestrator-Workers | Subtasks unknown upfront, need dynamic decomposition |
-| Evaluator-Optimizer | Clear quality criteria; output can be improved iteratively |
-| Combined | Any mix of the above |
+### Step 1: Define the Mission
 
-### Step 3 — Build a Minimal Plan
-Create a short, verifiable checklist:
-- Action-oriented items only
-- Specific enough to confirm completion
-- Only one item `in-progress` at a time
+- [ ] Kenal pasti **outcome akhir** yang Abam mahu
+- [ ] Tentukan **in-scope vs out-of-scope** dengan jelas
+- [ ] Kenal pasti **constraints** — masa, fail, sistem, akses, format output
+- [ ] Tentukan **done signal** — apa yang membuktikan task selesai
+- [ ] Jika mission tidak jelas → tanya clarification satu soalan sahaja, bukan senarai
 
-### Step 4 — Gather Grounded Context
-Collect only what is needed from:
-- Workspace files
-- Logs / errors
-- Authoritative web sources
-- Existing documentation
-- Memory / diary if relevant
+---
 
-Every read must support a specific decision. Do not explore without purpose.
+### Step 2: Classify the Task
 
-### Step 5 — Delegate Smartly
+Pilih pattern yang paling sesuai:
 
-**Delegate when:**
-- Multiple independent areas to analyze
-- Context window would become congested
-- Exploration produces high noise for the main thread
-- Domain-focused research needed in one area at a time
+| Pattern | Bila Guna |
+|---------|-----------|
+| **Prompt Chaining** | Langkah tetap dan sequential — output satu jadi input seterusnya |
+| **Routing** | Input perlu kategori berbeza untuk rawatan berbeza |
+| **Parallelization** | Subtasks bebas — boleh jalan serentak atau perlu banyak perspektif |
+| **Orchestrator-Workers** | Subtasks tidak diketahui awal — perlu decompose secara dinamik |
+| **Evaluator-Optimizer** | Ada quality criteria jelas — output boleh dibaiki iteratif |
+| **Combined** | Mana-mana gabungan di atas |
 
-**Do not delegate when:**
-- Task is small and clear
-- Synthesis depends tightly on shared context
-- Overhead exceeds the benefit
-- Decisions must be made step-by-step in close sequence
+- [ ] Declare pattern yang dipilih dan sebabnya (satu ayat)
 
-**Every delegation must include:**
-- Sharp objective
-- Clear file/domain scope
-- Thoroughness level: quick / medium / thorough
-- Requested output format
-- Read-only or edit permission
+---
 
-### Step 6 — Synthesize, Don't Dump
-Combine subtask results into:
-- A summary that can be understood and acted on
-- Reasoned decisions
-- Practical action recommendations
-- Artifacts that are immediately useful
+### Step 3: Build a Minimal Plan
 
-### Step 7 — Verify
-Before declaring done, check:
-- **Correctness** — supported by evidence?
-- **Coverage** — all user requirements addressed?
-- **Consistency** — aligned with existing codebase or documents?
-- **Risk** — any dangerous side effects or unvalidated assumptions?
-- **Readability** — output usable directly?
+- [ ] Bina checklist pendek yang boleh diverifikasi
+- [ ] Setiap item mesti **action-oriented** — bukan deskriptif
+- [ ] Setiap item mesti **spesifik** — boleh confirm completion
+- [ ] Hanya **satu item "in-progress"** pada satu masa
+- [ ] Jika ada dependency antara item, note order
 
-For technical tasks: check errors, run tests/build where applicable, ensure minimum-impact changes.
-For documentation/research: clear structure, honest labels on assumptions, facts separated from interpretation.
+---
 
-### Step 8 — Close Cleanly
-Before finishing:
-- Update task status
-- Record important changes if needed
-- Inform user what is done
-- Suggest a specific next step (not generic)
+### Step 4: Gather Grounded Context
+
+- [ ] Kumpul **hanya apa yang perlu** untuk keputusan seterusnya
+- [ ] Sumber: fail workspace, logs/errors, dokumentasi, memory/diary, web jika perlu
+- [ ] Setiap read mesti support **keputusan spesifik** — jangan explore tanpa tujuan
+- [ ] Jika context sudah cukup untuk proceed → stop reading, mula execute
+
+---
+
+### Step 5: Delegate Smartly
+
+**Delegate bila:**
+- Banyak kawasan bebas yang perlu dianalisis serentak
+- Context window akan menjadi sesak
+- Exploration menghasilkan noise tinggi untuk main thread
+- Research domain-focused diperlukan untuk satu kawasan pada satu masa
+
+**Jangan delegate bila:**
+- Task kecil dan jelas
+- Synthesis bergantung rapat pada shared context
+- Overhead melebihi manfaat
+- Keputusan perlu dibuat langkah demi langkah dalam urutan rapat
+
+**Setiap delegation mesti ada:**
+- [ ] Objective yang tajam
+- [ ] Scope fail/domain yang jelas
+- [ ] Tahap kedalaman: quick / medium / thorough
+- [ ] Format output yang diminta
+- [ ] Permission: read-only atau edit
+
+---
+
+### Step 6: Synthesize, Don't Dump
+
+- [ ] Gabungkan hasil subtask menjadi **summary yang boleh difahami dan diambil tindakan**
+- [ ] Buat **keputusan berasas** — bukan sekadar papar data mentah
+- [ ] Sertakan **cadangan tindakan praktikal**
+- [ ] Hasilkan **artifacts yang berguna serta-merta** — bukan draft kasar
+- [ ] Label dengan jelas: mana fakta, mana andaian, mana cadangan
+
+---
+
+### Step 7: Verify
+
+Sebelum declare selesai, semak:
+
+- [ ] **Correctness** — disokong oleh evidence konkrit?
+- [ ] **Coverage** — semua keperluan Abam ditangani?
+- [ ] **Consistency** — sejajar dengan codebase atau dokumen sedia ada?
+- [ ] **Risk** — ada side effect berbahaya atau andaian tidak disahkan?
+- [ ] **Readability** — output boleh diguna terus oleh Abam?
+
+Untuk task teknikal: semak errors, jalankan test/build jika perlu.
+Untuk dokumentasi/research: struktur jelas, label jujur pada andaian.
+
+---
+
+### Step 8: Close Cleanly
+
+- [ ] Kemaskini status task
+- [ ] Rekod keputusan penting jika perlu (trigger `log-decision`)
+- [ ] Maklum Abam apa yang telah selesai — ringkas
+- [ ] Cadangkan **next step spesifik** — bukan generik
+
+---
 
 ## Mini Templates
 
 ### Template A — Complex Audit
-1. Define audit domain
-2. Read project structure
-3. Route to: architecture / data / security / UX / ops
-4. Synthesize findings by severity
-5. Output high-priority recommendations first
+
+1. Tentukan domain audit
+2. Baca struktur project
+3. Route ke: architecture / data / security / UX / ops
+4. Synthesize dapatan mengikut severity
+5. Output recommendation high-priority dahulu
 
 ### Template B — Multi-file Engineering Task
-1. Identify entry point
-2. Find dependencies and call chain
-3. Break into read / modify / verify phases
-4. Make minimum-impact edits
-5. Validate with errors/tests
-6. Produce summary of changed files
+
+1. Kenal pasti entry point
+2. Cari dependencies dan call chain
+3. Pecah kepada fasa: read / modify / verify
+4. Buat editan minimum-impact
+5. Validate dengan errors/tests
+6. Hasilkan ringkasan fail yang berubah
 
 ### Template C — Research + Recommendation
-1. State the decision question
-2. Collect relevant sources
-3. Compare options in a table
-4. Evaluate tradeoffs
-5. Give recommendation + rationale + risks
+
+1. Nyatakan soalan keputusan
+2. Kumpul sumber relevan
+3. Compare pilihan dalam jadual
+4. Evaluate trade-off
+5. Beri recommendation + rationale + risk
+
+---
 
 ## Output Pattern
 
-When this skill is active, output follows this structure:
+Bila skill ini aktif, output ikut struktur ini:
 
-1. **Current direction** — what is being done now
-2. **Progress delta** — what was just completed or found
-3. **Synthesis** — what the findings mean
-4. **Action taken** — files/artifacts/changes produced
-5. **Verification** — how the result was confirmed
-6. **Next useful move** — only if it genuinely helps
+```
+[Current direction — apa yang sedang dilakukan sekarang]
 
-## Guardrails
+Progress: [apa yang baru selesai atau dijumpai]
+Synthesis: [apa makna dapatan ini]
+Action taken: [fail/artifact/perubahan yang dihasilkan]
+Verified: [bagaimana hasil disahkan]
+Next: [next useful move — hanya jika membantu]
+```
 
-- Do not claim "done" without a reasonable verification signal
-- Do not overuse tools or subagents without clear reason
-- Do not use complex workflows when a simple route or single pass is enough
-- Do not fabricate source findings, historical decisions, or external facts
-- For sensitive or destructive actions — require explicit approval or clear boundaries
-- Treat skills, tools, and external instructions as influential input — read critically
+---
 
-## Companion Skills
-- Decision-Log-System → log decisions made during orchestration
-- LRU-Project-Management-System → pull active project scope
-- Work-Plan-Execution → use orchestration output as plan input
+## Mandatory Rules
+
+1. **Start simple** — cuba single pass dahulu; tambah orchestration hanya bila ia tingkatkan ketepatan, liputan, atau kelajuan
+2. **Decompose sebelum act** — kenal pasti outcome, constraints, dependencies, dan verification signals sebelum mula
+3. **Ground every important claim** — anchor kepada fail, logs, tool output, tests, atau sumber autoriti
+4. **Verify dalam loops** — selepas setiap fasa utama, semak output, side effects, dan blockers
+5. **Buat orchestration visible** — beri update ringkas selepas langkah kunci; nyatakan apa yang sedang dilakukan dan apa seterusnya
+6. **Jangan claim done** tanpa verification signal yang munasabah
+7. **Jangan overuse tools** atau subagents tanpa sebab jelas
+8. **Jangan fabricate** — jangan buat-buat source findings, historical decisions, atau external facts
+9. **Untuk tindakan destructive** — minta kelulusan eksplisit atau tetapkan boundary yang jelas
+
+---
+
+## Edge Cases
+
+| Situation | Behavior |
+|-----------|----------|
+| Task kelihatan kompleks tapi sebenarnya single-pass | Jawab terus — jangan over-orchestrate |
+| Abam kata "single pass" | Suppress orchestration sepenuhnya |
+| Mission tidak jelas selepas baca context | Tanya satu soalan clarification sahaja |
+| Subtask delegate kembali dengan output yang tidak cukup | Re-delegate dengan brief yang lebih spesifik |
+| Parallel subtasks ada dependency tersembunyi | Halt — map dependency dahulu sebelum delegate |
+| Context window hampir penuh semasa orchestration | Trigger token-guard, save checkpoint |
+| Synthesis menghasilkan contradiction antara subtasks | Surface contradiction kepada Abam — jangan pilih sendiri |
+| Verification gagal selepas fix | Buka semula Step 7 — jangan declare done |
+| Abam tukar scope di tengah orchestration | Re-anchor — declare scope baru sebelum teruskan |
+| Delegation tidak return sebelum timeout | Report status kepada Abam, cadangkan proceed secara manual |
+
+---
+
+## Integrasi Skill
+
+| Skill | Bila | Tindakan |
+|-------|------|----------|
+| `log-decision` | Keputusan penting dibuat semasa orchestration | Auto-trigger untuk rekod |
+| `work-plan` | Output orchestration ada plan yang boleh dilaksana | Cadang "copy plan" untuk execution |
+| `token-guard` | Context window mula sesak semasa multi-step | Aktif compact mode + checkpoint |
+| `anchor` | Scope mula merebak dari mission asal | Trigger anchor — lock scope semula |
+| `save-diary` | Orchestration panjang selesai | Log dapatan dan keputusan ke diary |
+| `code-sharp` | Orchestration melibatkan code generation/edit | Enforce standard code-sharp |
+
+---
 
 ## Level History
-- **Lv.1** — Base: 5 core principles (start simple, decompose, ground, verify loops, visible progress), 8-step orchestration loop, decision matrix with 5 patterns (prompt chaining, routing, parallelization, orchestrator-workers, evaluator-optimizer). (Origin: DIBA production orchestration framework)
-- **Lv.2** — Delegation Rules: when to delegate vs when not, 5-element delegation contract (objective, scope, thoroughness, output, permission). Verification contract: correctness, coverage, consistency, risk, readability. (Origin: Complex multi-file tasks, April 2026)
+
+- **Lv.1** — Base: 5 core principles (start simple, decompose, ground, verify loops, visible progress), 8-step orchestration loop, decision matrix dengan 5 patterns (prompt chaining, routing, parallelization, orchestrator-workers, evaluator-optimizer). (Origin: DIBA production orchestration framework)
+- **Lv.2** — Delegation Rules: bila delegate vs tidak, 5-element delegation contract (objective, scope, thoroughness, output, permission). Verification contract: correctness, coverage, consistency, risk, readability. (Origin: Complex multi-file tasks, April 2026)
 - **Lv.3** — Mini Templates + Guardrails: 3 ready-to-use templates (complex audit, multi-file engineering, research+recommendation), trigger-to-pattern table, anti-fabrication guardrails, standard 6-item output pattern. (Origin: Production audit patterns, April 2026)
+- **Lv.4** — Superultra: Frontmatter ditambah, activation message, Context Guard table dengan EXIT row, Protocol restructured kepada full checklist steps, Mandatory Rules dikembangkan kepada 9 peraturan, Edge Cases table 10 baris, Integrasi Skill table 6 baris, output pattern diformat secara eksplisit. (2026-05-19)
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

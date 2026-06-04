@@ -68,3 +68,7 @@ Ideas are tailored to the detected workspace:
 ## Installation
 
 See `install-dream-ideas.md` for setup steps.
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

@@ -130,3 +130,7 @@ This feature lives in **Tier 1 — Foundation** alongside Memory Consolidation, 
 ---
 
 *Type `"Load auto-load-hook"` to never type your AI's name on startup again.*
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

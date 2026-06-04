@@ -78,3 +78,7 @@ If (2) conflicts with (3), follow (2) — consistency within the project outweig
 ## Installation
 
 See `install-code-sharp.md` for setup steps.
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

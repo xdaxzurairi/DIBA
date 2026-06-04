@@ -72,3 +72,7 @@ When this skill activates, output:
 
 ## Level History
 - **Lv.1** — Base: Protocol for plugin folder structure, auto-discovery, skill creation, leveling, troubleshooting, and edge cases. (Origin: Initial implementation for Claude Code Skill Plugin System)
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

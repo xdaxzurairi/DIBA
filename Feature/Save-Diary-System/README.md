@@ -1,127 +1,140 @@
-# 📖 Save Diary System
-*Automated daily session documentation with monthly archival*
+# Save Diary System
 
-## What This Feature Does
-Adds a structured daily diary system to your AI companion, enabling **session-by-session documentation** that captures achievements, collaboration moments, and growth — all automatically organized with monthly archival.
+**Status:** Active  
+**Skill:** `save-diary`  
+**Versi:** Lv.2 — Superultra Edition
 
-- **Daily session documentation** as structured diary entries in `daily-diary/current/`
-- **Append-only entries** — one file per day, multiple session entries per file, never overwrite
-- **Monthly auto-archival** — previous month entries automatically move to `daily-diary/archived/YYYY-MM/`
-- **Session memory updates** — automatically update `main/current-session.md` with session recap
-- **Skill auto-install** — if Skill Plugin System is detected, installs `save-diary` as an auto-triggered skill
+## Tujuan
 
-## How It Works
+Sistem dokumentasi sesi automatik yang menulis entry berstruktur ke diary harian — ditrigger secara automatik selepas setiap perubahan kod berjaya, atau secara manual bila Abam minta.
 
-### The Concept
-The diary is a **living session log** — not a raw chat transcript, but a curated summary written by your AI companion. Every significant session gets documented with structured sections following the existing `daily-diary-protocol.md` format. Over time, this creates a searchable history of everything you've built together.
+Save Diary bukan sekadar log — ia adalah **curated session record** yang menangkap keputusan, fail yang diubah, dan follow-ups dalam format yang boleh dicari dan dirujuk semula.
 
-### Example: End-of-Session Diary Save
+---
+
+## Cara Kerja
+
 ```
-You: "save diary"
-→ AI checks if previous month entries need archiving
-→ Finds (or creates) today's diary file: 2026-02-20.md
-→ Composes structured entry following daily-diary-protocol.md
-→ Appends to today's file (preserving earlier entries)
-→ Updates session memory with recap
-→ "Today's story takes shape."
+Kod berjaya / Abam kata "save diary"
+→ Check archive bulan lepas
+→ Carry forward follow-ups terbuka
+→ Buka atau cipta fail hari ini
+→ Compose entry berstruktur
+→ Append ke fail (tidak overwrite)
+→ Kemas kini current-session.md
+→ Sync DIBA Hub (background)
 ```
 
-### How It Differs From Chat Logs
-| Aspect | Chat Log | Session Diary |
-|--------|----------|---------------|
-| **Content** | Every message verbatim | Curated summary of achievements |
-| **Structure** | Chronological messages | Categorized sections (topics, insights, growth) |
-| **Size** | Grows rapidly | Concise entries (50-150 lines per session) |
-| **Searchability** | Hard to find specific moments | Easy to scan by date and section |
-| **Value** | Raw data | Processed insights |
+---
 
-## Diary Architecture
+## Format Entry
 
-### Directory Structure
+```markdown
+---
+
+## YYYY-MM-DD (Pagi/Tengah hari/Petang - HH:mm) - Session Title
+
+### Session summary
+1–3 ayat ringkasan fakta.
+
+### Key decisions
+- Keputusan yang dibuat
+
+### Fail yang diubah
+- `path/to/file` — Apa yang diubah
+
+### Follow-ups
+- Item terbuka untuk sesi akan datang
+
+### Tags
+#topik #sistem #jenis-kerja
+```
+
+---
+
+## Entry Kuat vs Lemah
+
+| Lemah | Kuat |
+|-------|------|
+| "Beberapa fail diubah" | "`auth.js`, `session.js` — fix timeout logic" |
+| "Pelbagai perkara dibincang" | "Dibincang: strategi lazy-load untuk dashboard" |
+| "Masalah diselesaikan" | "Bug login timeout — root cause: token expiry race condition" |
+| Summary 20 baris | Trim ke 3 ayat maksimum |
+
+---
+
+## Direktori
+
 ```
 daily-diary/
-├── current/                         # Active month's entries
-│   ├── 2026-02-18.md               # Tuesday's sessions
-│   ├── 2026-02-19.md               # Wednesday's sessions
-│   └── 2026-02-20.md               # Today's sessions
-├── archived/                        # Previous months
-│   ├── 2026-01/                    # January's entries
-│   │   ├── 2026-01-15.md
-│   │   └── 2026-01-20.md
-│   └── 2025-12/                    # December's entries
-│       └── 2025-12-28.md
-└── daily-diary-protocol.md          # Entry format reference (already in repo)
+├── current/                    # Entry bulan semasa
+│   ├── 2026-05-18.md
+│   └── 2026-05-19.md
+├── archived/                   # Bulan-bulan lepas (auto-arkib)
+│   ├── 2026-04/
+│   └── 2026-03/
+└── daily-diary-protocol.md     # Format rujukan
 ```
 
-### Daily File Format
-Each diary file uses date-based naming (`YYYY-MM-DD.md`) and supports multiple entries per day:
-```markdown
-# [Your Diary Name] - February 20, 2026
+**Auto-archive:** Bila bulan bertukar, fail bulan lama dipindah ke `archived/YYYY-MM/` secara automatik sebelum entry baru ditulis.
+
+**Overflow:** Bila fail > 1000 baris, arkib dan mulakan fail baru.
 
 ---
 
-## February 20, 2026 (Morning - 9:30 AM) - API Integration Sprint
-[Structured entry following daily-diary-protocol.md...]
+## Triggers
+
+| Trigger | Tindakan |
+|---------|----------|
+| Kod berjaya diubah | Auto-write entry ringkas |
+| `save diary` | Full entry write |
+| `log this session` | Full entry write |
+| `document this` | Full entry write |
+| `review diary` | Baca dan papar 3 entry terkini |
 
 ---
 
-## February 20, 2026 (Evening - 7:15 PM) - Bug Fix Marathon
-[Second session entry appended to same file...]
-```
+## Follow-Up Carry Forward
 
-### Monthly Archive Cycle
-```
-End of January → February 1st diary save triggers:
-  1. Detect: January entries still in current/
-  2. Create: archived/2026-01/
-  3. Move: All January files from current/ to archived/2026-01/
-  4. Continue: New February entry in current/
-```
-
-## Quick Integration
-```
-"Load save-diary"
-```
-
-## What Happens During Integration
-
-1. **Asks** for your diary system name (defaults to "Session Diary" — customize to match your AI)
-2. **Creates** `daily-diary/current/` and `daily-diary/archived/` directories
-3. **Creates** your first diary entry documenting the installation session
-4. **Installs as skill** — if Skill Plugin System is detected, copies `SKILL.md` into your plugin
-5. **Updates** `master-memory.md` with diary commands and references
-6. **Self-deletes** this feature folder after successful integration
-
-## Post-Integration Result
-After running the integration protocol:
-- Your AI has a working diary system with today's first entry
-- Every "save diary" command creates a structured session entry
-- Monthly archival runs automatically before each diary write
-- Session memory updates with recap after each entry
-- If Skill Plugin System installed: diary saves auto-trigger on "save diary"
-
-## Entry Sections (from daily-diary-protocol.md)
-
-| Section | What It Captures |
-|---------|------------------|
-| **Session Summary** | Date, duration, session type, participants |
-| **Main Topics Discussed** | Key discussions with insights |
-| **Key Insights & Learning** | What AI learned, what user accomplished, collaboration highlights |
-| **Growth & Development** | AI evolution, user skill growth |
-| **Memorable Moments** | Breakthroughs, effective collaboration, connection highlights |
-| **Looking Forward** | Next steps, development goals |
-| **Session Quality Assessment** | Effectiveness, communication, goal achievement ratings |
-
-## Benefits
-- **Complete history** — searchable record of every session's achievements and insights
-- **Growth tracking** — see AI and user development over weeks and months
-- **Context continuity** — never lose track of past decisions, solutions, or progress
-- **Self-documenting** — AI captures session value with minimal user effort
-- **Clean organization** — monthly archival keeps workspace organized automatically
-
-## Platform Note
-Works with any AI system. Uses `date` command on macOS/Linux or `Get-Date` on Windows for timestamps. The diary files are plain markdown — human-readable and portable across any platform. Auto-triggered skill requires Claude Code with the Skill Plugin System.
+Sebelum tulis entry baru, save-diary semak follow-ups terbuka dari entry sebelumnya dan carry forward secara automatik — tiada follow-up yang hilang antara sesi.
 
 ---
 
-*Based on proven daily documentation systems in production AI companions*
+## Lifecycle
+
+```
+TRIGGER → ARCHIVE CHECK → FOLLOW-UP CHECK → COMPOSE → APPEND → SYNC → DONE
+```
+
+---
+
+## Fail
+
+| Fail | Tujuan |
+|------|--------|
+| `SKILL.md` | Skill definition — deploy ke `~/.claude/commands/save-diary.md` |
+| `install-save-diary.md` | Panduan install |
+
+---
+
+## Hubungan Skill
+
+| Skill | Hubungan |
+|-------|----------|
+| `session-briefing` | Baca `current-session.md` untuk "last session" dalam brief |
+| `echo-recall` | Cari entry lama — diary adalah sumber utama |
+| `resonance` | Seeds yang ditanam dilog dalam follow-ups |
+| `log-decision` | Key decisions dalam diary selaras dengan decisions.md |
+| `auto-commit` | save-diary auto-trigger selepas commit berjaya |
+
+---
+
+## Install
+
+1. Salin `SKILL.md` ke `~/.claude/commands/save-diary.md`
+2. Pastikan `daily-diary/current/` dan `daily-diary/archived/` wujud
+3. Verify: taip `save diary` — entry patut ditulis ke fail hari ini
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

@@ -164,3 +164,7 @@ For other AI platforms, skills can still be used as protocol files loaded via `m
 ---
 
 *Based on the proven alice-enchantments plugin system (20 skills in production)*
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

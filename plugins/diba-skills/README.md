@@ -28,3 +28,7 @@
 - Semua skill dalam folder `skills/[skill-name]/SKILL.md` akan dikesan secara automatik oleh sistem plugin.
 - Tiada pendaftaran manual diperlukan; struktur folder ialah konfigurasi utama.
 - `README.md` ini hanyalah rujukan manusia dan **bukan** fail indeks wajib untuk plugin.
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

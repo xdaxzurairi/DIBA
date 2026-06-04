@@ -109,3 +109,7 @@ Removes the injector script and `tone-current.txt`. Asks whether to keep or stri
 ---
 
 *Type `"Load tone-prompt-inject"` to wire your tone vocabulary into every prompt your AI sees.*
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

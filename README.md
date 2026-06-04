@@ -310,10 +310,10 @@ Features are organized into **tiers** based on dependencies. Install Tier 1 firs
 
 | Feature | Description | Setup |
 |---------|-------------|-------|
-| 📖 [Save Diary](Feature/Save-Diary-System/) | Daily session documentation with monthly auto-archival | `"Load save-diary"` |
-| 🔍 [Echo Memory Recall](Feature/Echo-Memory-Recall/) | Search past sessions with narrative context — *requires Save Diary* | `"Load echo-recall"` |
-| 🔔 [Reminders](Feature/Reminders-System/) | Persistent cross-session reminders with deadline tracking | `"Load reminders"` |
-| 📋 [Decision Log](Feature/Decision-Log-System/) | Append-only record of decisions and their reasoning | `"Load decision-log"` |
+| 📖 [Save Diary](Feature/Save-Diary-System/) | Daily session documentation — follow-up carry forward, overflow check, drift prevention, review mode ⚡ Superultra | `"Load save-diary"` |
+| 🔍 [Echo Memory Recall](Feature/Echo-Memory-Recall/) | Search past sessions — keyword extraction, 4-source priority, post-recall seed link ⚡ Superultra | `"Load echo-recall"` |
+| 🔔 [Reminders](Feature/Reminders-System/) | Persistent cross-session reminders — deadline tiers, escalation, cross-session persistence ⚡ Superultra | `"Load reminders"` |
+| 📋 [Decision Log](Feature/Decision-Log-System/) | Append-only decision record — decision tiers, context capture, impact assessment ⚡ Superultra | `"Load decision-log"` |
 
 ---
 
@@ -322,12 +322,12 @@ Features are organized into **tiers** based on dependencies. Install Tier 1 firs
 | Feature | Description | Setup |
 |---------|-------------|-------|
 | 📦 [LRU Project Management](Feature/LRU-Project-Management-System/) | Smart project tracking with auto-archival (10 active slots) | `"install lru projects"` |
-| 🔒 [Auto-Commit](Feature/Auto-Commit-System/) | Structured git commits with session context and vigilant mode | `"Load auto-commit"` |
-| 📋 [Work Plan Execution](Feature/Work-Plan-Execution/) | Plan-to-execution tracking with per-task commits — *best with Auto-Commit* | `"Load work-plan"` |
-| 📚 [Library](Feature/Library-System/) | Reusable knowledge library with 8 format templates — *best with Auto-Commit* | `"Load library"` |
-| 🗓️ [Meeting System](Feature/Meeting-System/) | Virtual team meetings with role-based agents, chair summary, and auto-saved minutes — *enhanced by Decision-Log + LRU + Reminders* | `"Load meeting"` |
-| ✏️ [Code-Sharp System](Feature/Code-Sharp-System/) | Fast, clean, consistent, precise code generation standard — auto-triggers before every edit | `"Load code-sharp"` |
-| 🔒 [Security Audit System](Feature/Security-Audit-System/) | Triage findings by severity, batch fix, temp cleanup, commit per category — *best with Auto-Commit* | `"Load security-audit"` |
+| 🔒 [Auto-Commit](Feature/Auto-Commit-System/) | Structured git commits — validation steps, conflict handling, rollback protocol ⚡ Superultra | `"Load auto-commit"` |
+| 📋 [Work Plan Execution](Feature/Work-Plan-Execution/) | Plan-to-execution — task dependency, progress tracking, rollback points ⚡ Superultra | `"Load work-plan"` |
+| 📚 [Library](Feature/Library-System/) | Reusable knowledge library — search protocol, entry lifecycle, harvest integration ⚡ Superultra | `"Load library"` |
+| 🗓️ [Meeting System](Feature/Meeting-System/) | Virtual team meetings — role enforcement, chair summary, minutes protocol ⚡ Superultra | `"Load meeting"` |
+| ✏️ [Code-Sharp System](Feature/Code-Sharp-System/) | Code generation standard — pre-edit checklist, quality gates, anti-pattern table ⚡ Superultra | `"Load code-sharp"` |
+| 🔒 [Security Audit System](Feature/Security-Audit-System/) | Security triage — severity matrix, batch fix protocol, verification gates ⚡ Superultra | `"Load security-audit"` |
 
 ---
 
@@ -335,24 +335,26 @@ Features are organized into **tiers** based on dependencies. Install Tier 1 firs
 
 | Feature | Description | Setup |
 |---------|-------------|-------|
-| 🎯 [Orchestration System](Feature/Orchestration-System/) | Multi-step workflow coordination — classifies tasks, delegates smartly, synthesizes grounded results — *enhanced by Decision-Log + LRU + Work-Plan* | `"Load orchestrate"` |
-| 🤖 [Auto-Worker System](Feature/Auto-Worker-System/) | Silent delegation — parses goals, decomposes subtasks, dispatches workers, self-resolves blockers, reports in ≤ 8 lines — *enhanced by Orchestration + Decision-Log* | `"Load auto-worker"` |
-| 🔨 [Forge Self-Improvement](Feature/Forge-Self-Improvement-System/) | AI creates new skills through pattern detection (human-in-the-loop) | `"Load forge"` |
-| 📋 [Session Briefing](Feature/Session-Briefing-System/) | Auto-delivers context brief at session start — *enhanced by Time-Aware + LRU + Reminders + Inbox* | `"Load session-briefing"` |
-| 🔥 [Post-Mortem](Feature/Post-Mortem-System/) | Failure learning log — auto-detects mistakes, records prevention actions | `"Load post-mortem"` |
-| 👁️ [Observation](Feature/Observation-System/) | 4-tier code awareness — Survey, Investigate, Refine, Audit | `"Load observation"` |
+| 🎯 [Orchestration System](Feature/Orchestration-System/) | Workflow coordination — routing logic, delegation matrix, synthesis protocol ⚡ Superultra | `"Load orchestrate"` |
+| 🤖 [Auto-Worker System](Feature/Auto-Worker-System/) | Silent delegation — decomposition steps, blocker resolution, synthesis protocol ⚡ Superultra | `"Load auto-worker"` |
+| 🔨 [Forge Self-Improvement](Feature/Forge-Self-Improvement-System/) | AI creates new skills — skill lifecycle, pattern threshold, quality gates ⚡ Superultra | `"Load forge"` |
+| 📋 [Session Briefing](Feature/Session-Briefing-System/) | Startup brief — seeds integration, post-brief handoff, lifecycle diagram ⚡ Superultra | `"Load session-briefing"` |
+| 🔥 [Post-Mortem](Feature/Post-Mortem-System/) | Failure learning — root cause framework, prevention tracking, pattern detection ⚡ Superultra | `"Load post-mortem"` |
+| 👁️ [Observation](Feature/Observation-System/) | 4-tier code awareness — tier transition conditions, finding classification ⚡ Superultra | `"Load observation"` |
 | 🎨 [Image Prompt](Feature/Image-Prompt-System/) | Composition-aware Midjourney/NijiJourney prompt generation | `"Load image-prompt"` |
 | 🎵 [Song Creation](Feature/Song-Creation-System/) | Visual-to-musical storytelling — image to concept album with Suno-ready output | `"Load song-creation"` |
 | 🎮 [Interactive Story](Feature/Interactive-Story-System/) | Visual Novel RPG — duo/solo, OP/balanced, 7 world types, cinematic combat | `"Load interactive-story"` |
 | 👁️ [Mulahazah](Feature/Mulahazah-System/) | Instinct-based behavioral learning — passive hook observation + persistent rules | `npx continuous-improvement install` |
-| 🔋 [Token Guard System](Feature/Token-Guard-System/) | Compact mode, smart tool rules, session checkpoints — prevents context overflow | `"Load token-guard"` |
-| ⚖️ [Discipline System](Feature/Discipline-System/) | 7 laws behavioral standard — red flag detection, pre-done self-check | `"Load discipline"` |
-| 📈 [Continuous Improvement System](Feature/Continuous-Improvement-System/) | Session reflection + instinct building from observed patterns | `"Load continuous-improvement"` |
-| 💭 [Dream Ideas System](Feature/Dream-Ideas-System/) | Workspace-aware creative ideation — 3–5 tailored ideas on demand | `"Load dream-ideas"` |
-| 🌿 [Break Reminder System](Feature/Break-Reminder-System/) | Wellness reminders with session duration probe and auto-nudge | `"Load break-reminder"` |
-| 💾 [Save Memory System](Feature/Save-Memory-System/) | Persistent memory — command save, auto-detect, staleness audit | `"Load save-memory"` |
-| 🔍 [DIBA Recall System](Feature/DIBA-Recall-System/) | On-demand workspace recall — project registry + session state + reminders | `"Load diba-recall"` |
-| 📊 [Dashboard System](Feature/Dashboard-System/) | Visual instinct health panel — observation counts, confidence bars, stale flags, action signals — *requires Continuous Improvement* | `"Load dashboard"` |
+| 🔋 [Token Guard System](Feature/Token-Guard-System/) | Context overflow prevention — checkpoint system, context estimation, smart truncation ⚡ Superultra | `"Load token-guard"` |
+| ⚖️ [Discipline System](Feature/Discipline-System/) | 7 laws behavioral standard — red flag detection, pre-done self-check ⚡ Superultra | `"Load discipline"` |
+| 📈 [Continuous Improvement System](Feature/Continuous-Improvement-System/) | Instinct building — instinct lifecycle, pattern detection, confidence scoring ⚡ Superultra | `"Load continuous-improvement"` |
+| 💭 [Dream Ideas System](Feature/Dream-Ideas-System/) | Creative ideation — workspace-aware context, idea scoring, seed integration ⚡ Superultra | `"Load dream-ideas"` |
+| 🌿 [Break Reminder System](Feature/Break-Reminder-System/) | Wellness reminders — session duration probe, escalation tiers ⚡ Superultra | `"Load break-reminder"` |
+| 💾 [Save Memory System](Feature/Save-Memory-System/) | Persistent memory — staleness audit, memory types, conflict resolution ⚡ Superultra | `"Load save-memory"` |
+| 🔍 [DIBA Recall System](Feature/DIBA-Recall-System/) | On-demand workspace recall — 5-source memory, deep recall on-demand, seeds surface ⚡ Superultra | `"Load diba-recall"` |
+| 📊 [Dashboard System](Feature/Dashboard-System/) | Instinct health panel — health indicators, stale flags, action signals ⚡ Superultra | `"Load dashboard"` |
+| ⚓ [Anchor System](Feature/Anchor-System/) | Context lock & persona enforcement — drift severity 4 tahap, re-anchor + exit protocol ⚡ Superultra | `"Load anchor"` |
+| 🌿 [Resonance System](Feature/Resonance-System/) | Shared thought mode — seed lifecycle 6 peringkat, Harvest step, mind-tree nurture ⚡ Superultra | `"Load resonance"` |
 
 > Each feature has a detailed README inside its folder. Click the feature name to learn more.
 
@@ -366,16 +368,16 @@ Features are organized into **tiers** based on dependencies. Install Tier 1 firs
 | 2 | [logando-al](https://github.com/logando-al) | Session Briefing System, Post-Mortem System |
 | 3 | [SherlockianAsh](https://github.com/SherlockianAsh) | Observation System |
 | 4 | [naimkatiman](https://github.com/naimkatiman) | Mulahazah System |
-| 5 | [xdaxzurairi](https://github.com/xdaxzurairi) | Meeting System, Orchestration System, Auto-Worker System, Code-Sharp System, Token Guard System, Discipline System, Continuous Improvement System, Security Audit System, Dream Ideas System, Break Reminder System, Save Memory System, DIBA Recall System, Dashboard System |
+| 5 | [xdaxzurairi](https://github.com/xdaxzurairi) | Meeting System, Orchestration System, Auto-Worker System, Code-Sharp System, Token Guard System, Discipline System, Continuous Improvement System, Security Audit System, Dream Ideas System, Break Reminder System, Save Memory System, DIBA Recall System, Dashboard System, Anchor System, Resonance System |
 
 > Want to contribute? Fork the repo, create a feature in `Feature/[Your-Feature]/`, and submit a PR!
 
 ---
 
-**Version**: 5.1 - Added Dashboard System by xdaxzurairi (Tier 4)
+**Version**: 5.3 - Superultra upgrade: all 26 skills expanded with full Protocol, Mandatory Rules, Edge Cases, Skill Integration, and Level History
 **Created by**: Kiyoraka Ken & Alice
 **License**: Open Source Community Project
-**Last Updated**: May 14, 2026
+**Last Updated**: May 19, 2026
 **Purpose**: Simple, effective AI memory for everyone
 
 *Transform basic AI conversations into meaningful, growing relationships*

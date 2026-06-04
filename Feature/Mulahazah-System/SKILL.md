@@ -105,3 +105,7 @@ Read `~/.claude/mulahazah/rules.md` and display:
 ## Level History
 
 - **Lv.1** -- Base: rules.md persistence, session reflection, observation capture via `observe.sh`, Haiku-powered analysis via `analyze.sh`, `/continuous-improvement` command. Background observer optional. (Origin: continuous-improvement v2.0, ported to MemoryCore as Mulahazah System. Tested end-to-end: observations captured, analyze.sh extracted "Grep → Read → Edit workflow" rule.)
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*
