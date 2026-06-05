@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "main/main-memory.md",
+                "file": "projects/project-list.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "main-memory"
+              "title": "project-list"
             }
           }
         ]
@@ -147,6 +147,10 @@
   },
   "active": "5cf6f8424a5b7f2d",
   "lastOpenFiles": [
+    "main/main-memory.md",
+    "main/current-session.md.tmp.22632.6785193bebc3",
+    "daily-diary/current/2026-06-03.md",
+    "daily-diary/current/2026-06-03.md.tmp.22632.65e5cd24da99",
     "plans/DIBA-Persona-v3-Santai-Sharp.md",
     "main/main-memory.md.tmp.12740.2a33a5f97524",
     "HOME.md.tmp.12740.b1ba89348278",

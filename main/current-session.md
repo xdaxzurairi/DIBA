@@ -1,6 +1,10 @@
-Topik: DIBA dual diary setup + eWorks PWA UI overhaul (2026-06-03)
+Topik: ea_newv3 login page revamp — corporate split-screen + particle network (2026-06-03)
 
-Keputusan: CLAUDE.md Save Diary skill dikemaskini — dual save aktif (daily-diary/current/ + projects/active/[project]/diary/). ruangniaga diconvert dari flat .md ke folder structure.
-Fail terakhir diubah: daily-diary/current/2026-06-03.md, projects/active/eworks/diary/2026-06-03.md, projects/active/ruangniaga/diary/2026-06-03.md, projects/active/ruangniaga/index.md
+Keputusan: Split-screen layout (46/54), particle canvas 72 nodes, logo filter fix, button 6px radius, staggered form entrance, gradient heading text. Semua auth logic (Google, Pengguna Luar, PWA) dikekalkan.
 
-Follow-up terbuka: DROP COLUMN status_date dari DB wr. Merge branch claude/diba-morning-brief-wZMIj → main. ruangniaga: tunggu folder upload → SQL migration.
+Fail terakhir diubah: index.php (ea_newv3), daily-diary/current/2026-06-03.md
+
+Follow-up terbuka:
+- Merge branch claude/diba-morning-brief-wZMIj → main
+- ruangniaga: tunggu folder upload → SQL migration
+- eWorks: DROP COLUMN status_date dari DB bila Abam confirm
