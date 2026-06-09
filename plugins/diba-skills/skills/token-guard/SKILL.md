@@ -1,167 +1,208 @@
 ---
 name: token-guard
-description: "Activate to save tokens and prevent exceeding context limits. Use when user says: 'jimat token', 'save token', 'token limit', 'context limit', 'compress context', 'compact mode', 'token guard', 'hemat token', 'limit hampir', 'context penuh', 'reset context', 'checkpoint'. Switches to ultra-compact response mode, batches all tool calls, prunes stale context, and saves session checkpoint to resume without losing progress."
-argument-hint: "mode: compact | checkpoint | resume | status"
+description: "Activate to save tokens and prevent exceeding context limits. Use when
+             user says: 'jimat token', 'hemat token', 'save token', 'token limit',
+             'context limit', 'compact mode', 'checkpoint', 'reset context', or
+             'resume dari checkpoint'. Also fires proactively via early warning detection."
 ---
 
-# Token Guard
+# Token Guard System — DIBA Context Manager
+*Compact. Checkpoint. Resume. Teruskan.*
 
-Skill ini mengaktifkan **mod penjimatan token** untuk memastikan sesi kerja dapat diteruskan tanpa melebihi had konteks. Ia mengandungi 4 mekanisme utama: Compact Mode, Context Pruning, Session Checkpoint, dan Smart Tool Rules.
+## Activation
 
----
+When this skill activates, output:
+"Token Guard aktif. Compact mode ON."
 
-## Trigger
-
-Aktifkan bila pengguna kata:
-- "jimat token", "hemat token", "save token"
-- "token limit", "context limit", "limit hampir", "context penuh"
-- "compact mode", "compress context"
-- "token guard", "activate token guard"
-- "checkpoint", "reset context", "resume dari checkpoint"
+Then immediately execute Step 1 of Protocol.
 
 ---
 
-## Empat Mekanisme Utama
+## Context Guard
 
-### 1. COMPACT MODE (Aktif serta-merta)
-
-Ubah gaya respons kepada **ultra-compact** sehingga skill ini dinyahaktifkan:
-
-| Perkara | Peraturan Compact |
-|---------|-------------------|
-| Panjang respons | 1–5 baris sahaja melainkan output teknikal diperlukan |
-| Preamble/conclusion | HAPUS sepenuhnya ("Baik!", "Sudah saya..." — buang) |
-| Ulangan maklumat | JANGAN ulangi apa yang sudah diketahui |
-| Penjelasan panjang | Guna bullet 3–5 perkataan, bukan ayat penuh |
-| Fail content echo | JANGAN paparkan semula kandungan fail yang baru dibaca |
-| Konfirmasi trivial | SKIP ("Done.", "OK" sahaja) |
-| Bahasa | Pendek, padat, jelas — tiada basa-basi |
-
-**Contoh SEBELUM compact:**
-> "Baik, saya akan membantu anda dengan itu. Saya telah membaca fail tersebut dan mendapati bahawa terdapat beberapa isu yang perlu diselesaikan..."
-
-**Contoh SELEPAS compact:**
-> "Jumpa 3 isu: [senarai]. Perbaiki?"
+| Context | Status |
+|---------|--------|
+| **Abam kata "jimat token", "compact mode"** | ACTIVE — aktif compact mode |
+| **Abam kata "checkpoint", "save checkpoint"** | ACTIVE — save checkpoint sekarang |
+| **Abam kata "resume", "resume dari checkpoint"** | ACTIVE — baca checkpoint dan teruskan |
+| **Abam kata "token guard status"** | ACTIVE — report usage estimate |
+| **Early warning threshold dicapai (Lv.2)** | ACTIVE — insert silent warning |
+| **Sesi biasa dalam had normal** | DORMANT — monitor sahaja |
+| **Abam kata "token guard off"** | EXIT — deaktif, teruskan tanpa compact mode |
 
 ---
 
-### 2. SMART TOOL RULES (Kurangkan round-trips)
+## Protocol — Default
 
-Peraturan ketat untuk penggunaan tools:
+### Step 1: Activate Compact Mode
 
-| Peraturan | Huraian |
-|-----------|---------|
-| **Batch semua parallel calls** | Gabungkan semua tool calls bebas dalam satu blok — JANGAN sequential tanpa sebab |
-| **Targeted reads sahaja** | Baca hanya baris yang diperlukan (`startLine`/`endLine`), bukan keseluruhan fail |
-| **Guna grep sebelum read** | Cari lokasi tepat dengan `grep_search` sebelum buka fail |
-| **Semantic search = last resort** | Guna hanya bila grep/file_search gagal |
-| **Elak redundant search** | Jangan cari perkara yang sama dua kali dalam satu sesi |
-| **Subagent untuk exploration** | Offload carian/exploration ke subagent Explore, dapat hasil terus |
-| **Skip validation reads** | Jika baru je edit fail, jangan baca balik untuk "konfirmasi" |
+- [ ] Switch response style kepada ultra-compact serta-merta:
 
----
+| Item | Compact Rule |
+|------|-------------|
+| Panjang respons | 1–5 baris melainkan output teknikal diperlukan |
+| Preamble / conclusion | BUANG sepenuhnya |
+| Maklumat berulang | JANGAN ulang apa yang sudah diketahui |
+| Penjelasan panjang | Bullet 3–5 perkataan, bukan ayat penuh |
+| Echo kandungan fail | JANGAN papar semula fail yang baru dibaca |
+| Konfirmasi trivial | Skip — "OK" sahaja |
 
-### 3. CONTEXT PRUNING (Buang konteks lapuk)
-
-Bila token hampir penuh, jalankan pruning:
-
-1. **Kenalpasti apa yang masih relevan** — task semasa + fail aktif sahaja
-2. **Buang dari perhatian**: fail yang sudah selesai diedit, output tool lama, search results lama
-3. **Ringkaskan ke session memory** — simpan state penting ke `/memories/session/current-task.md`
-4. **Pakai checkpoint** untuk teruskan kerja (lihat Mekanisme 4)
-
-Isyarat context hampir penuh:
-- Lebih 50 tool calls dalam sesi
-- Respons model jadi perlahan atau terpotong
-- User sebut "limit hampir" atau penggunaan token tinggi
+- [ ] Bila skill ini aktif: tiada "Baik!", "Saya faham", atau mana-mana preamble
 
 ---
 
-### 4. SESSION CHECKPOINT (Save & Resume)
+### Step 2: Audit Tool Usage
 
-#### Save Checkpoint
+- [ ] Semak pattern tool yang membazir. Enforce:
 
-Bila user minta "checkpoint" atau context hampir penuh, jalankan:
+| Peraturan | Detail |
+|-----------|--------|
+| Batch semua parallel calls | Gabungkan tool calls bebas dalam satu blok |
+| Targeted reads sahaja | Baca hanya baris yang diperlukan (`startLine`/`endLine`) |
+| Grep sebelum read | Cari lokasi tepat dengan grep sebelum buka fail |
+| Semantic search = last resort | Guna hanya bila grep/file_search gagal |
+| Tiada redundant searches | Jangan cari perkara sama dua kali dalam satu sesi |
+| Subagents untuk exploration | Outsource carian/exploration ke Explore subagent |
+| Skip validation reads | Jika fail baru diedit, jangan re-read untuk "confirm" |
 
-1. Tulis ke `/memories/session/checkpoint.md`:
+---
+
+### Step 3: Check Existing Checkpoint
+
+- [ ] Baca `memories/session/checkpoint.md` jika wujud
+- [ ] Jika dijumpai, tunjuk status dalam 3 baris
+- [ ] Jika tidak wujud, teruskan dengan compact mode sahaja
+
+---
+
+### Step 4: Report Status
+
+- [ ] 3 baris: mode aktif, status checkpoint, work pointer semasa
+
+---
+
+### Step 5: Continue in Compact Mode
+
+- [ ] Teruskan kerja dalam compact mode
+- [ ] Monitor threshold proaktif
+- [ ] Jangan kurangkan kualiti kerja — hanya buang token yang membazir
+
+---
+
+## Protocol — Checkpoint Save
+
+Bila Abam kata "checkpoint" atau context hampir penuh:
+
+1. - [ ] Tulis ke `memories/session/checkpoint.md`:
 
 ```markdown
 # Checkpoint — [YYYY-MM-DD HH:MM]
 
-## Task Semasa
-[Apa yang sedang dibuat]
+## Current Task
+[Apa yang sedang dikerjakan]
 
 ## Status
-- [x] Langkah yang dah siap
-- [ ] Langkah yang belum siap
+- [x] Langkah yang selesai
+- [ ] Langkah yang masih berbaki
 
-## Fail Aktif
-- `path/to/file.php` — [apa yang sedang diedit/kenapa]
+## Active Files
+- `path/to/file` — [apa/kenapa]
 
-## Context Penting
-[Maklumat kritikal yang perlu diketahui untuk sambung kerja]
+## Critical Context
+[Maklumat utama yang diperlukan untuk resume]
 
-## Langkah Seterusnya
-1. [Langkah konkrit pertama]
-2. [Langkah konkrit kedua]
+## Next Steps
+1. [Langkah pertama yang konkrit]
+2. [Langkah kedua yang konkrit]
 
-## Keputusan Dibuat
+## Decisions Made
 - [Keputusan 1]
-- [Keputusan 2]
 ```
 
-2. Beritahu user: "Checkpoint tersimpan. Boleh sambung dengan: `/token-guard resume`"
-
-#### Resume dari Checkpoint
-
-Bila user minta "resume" atau bermula sesi baru:
-
-1. Baca `/memories/session/checkpoint.md`
-2. Ringkaskan status semasa kepada user dalam **5 baris atau kurang**
-3. Terus ke "Langkah Seterusnya" dalam checkpoint
-4. JANGAN baca semula fail yang tidak perlu untuk orientasi
+2. - [ ] Notify: `"Checkpoint tersimpan. Boleh sambung dengan: /token-guard resume"`
 
 ---
 
-## Mod Operasi
+## Protocol — Resume
 
-### `/token-guard compact`
-Aktifkan compact mode sahaja. Terus semua kerja dalam mod ringkas.
+Bila Abam kata "resume":
 
-### `/token-guard checkpoint`
-Simpan session checkpoint sekarang. Stop & beritahu user endpoint.
-
-### `/token-guard resume`
-Baca checkpoint, ringkaskan status, sambung kerja.
-
-### `/token-guard status`
-Laporan ringkas:
-- Anggaran token digunakan (berdasarkan bilangan tool calls)
-- Langkah aktif dari checkpoint (jika ada)
-- Cadangan: teruskan / checkpoint dulu
+1. - [ ] Baca `memories/session/checkpoint.md`
+2. - [ ] Summarize status kepada Abam dalam **5 baris atau kurang**
+3. - [ ] Proceed terus ke Next Steps
+4. - [ ] Jangan re-read fail yang tidak perlu untuk orientasi semula
 
 ---
 
-## Prosedur Penuh (Default apabila skill diaktifkan)
+## Proactive Early Warning (Lv.2)
 
-1. **Aktifkan compact mode serta-merta** — tukar gaya respons
-2. **Audit tool usage** — adakah ada pattern boros? Cadangkan batching
-3. **Semak ada checkpoint lama** — baca `/memories/session/checkpoint.md` jika ada
-4. **Lapor status** — 3 baris: mod aktif, checkpoint status, pointer kerja semasa
-5. **Teruskan kerja** dalam mod compact
+Auto-detect context yang hampir penuh **tanpa tunggu Abam**:
+
+| Signal | Threshold | Tindakan |
+|--------|-----------|----------|
+| Tool calls dalam sesi | ≥ 40 calls | Cadang checkpoint |
+| Fail besar dibaca berturutan | 3+ fail > 200 baris | Switch ke targeted reads |
+| Respons panjang berulang | 3+ respons > 100 baris | Aktif compact mode |
+| Abam tanya perkara sama dua kali | Repeat query terkesan | Context mungkin hilang — cadang checkpoint |
+
+Bila threshold dicapai, masukkan satu baris amaran senyap:
+```
+[Token Guard: ~40 tool calls — cadang checkpoint sebelum sambung?]
+```
+
+Jangan interrupt kerja — satu baris sahaja, kemudian teruskan.
 
 ---
 
-## Rujukan
+## Mandatory Rules
 
-- [Compact Response Templates](./references/compact-mode.md)
-- [Checkpoint Protocol Details](./references/checkpoint-protocol.md)
+1. **Compact mode TIDAK kurangkan kualiti kerja** — hanya buang token yang membazir
+2. **Gunakan checkpoint proaktif** sebelum limit, bukan selepas
+3. **Tool batching wajib** dalam token-guard mode
+4. **Tiada preamble** bila skill aktif: tiada "Baik!", "Saya faham", atau intro
+5. **Grep dahulu** sebelum read — jangan buka fail untuk orientasi
+6. **Satu warning sahaja** untuk setiap threshold yang dicapai — jangan spam
+7. **Checkpoint mesti self-contained** — semua context yang perlu untuk resume mesti ada dalam fail
+8. **Jangan re-read** fail yang baru diedit untuk "confirm" — percaya pada edit yang baru dibuat
 
 ---
 
-## Nota Penting
+## Edge Cases
 
-- Compact mode **tidak** mengurangkan kualiti kerja — hanya buang token sia-sia
-- Checkpoint boleh digunakan **proaktif** sebelum limit, bukan tunggu sampai penuh
-- Tool batching adalah **wajib** dalam token-guard mode — elak sequential calls langsung
-- Bila skill ini aktif, **tiada** "Baik!", "Saya faham", atau preamble lain
+| Situation | Behavior |
+|-----------|----------|
+| Checkpoint file tidak wujud | Proceed compact mode sahaja — checkpoint optional |
+| Context sudah overflow sebelum checkpoint | Buat checkpoint segera, warn Abam tentang potensi kehilangan context |
+| Abam kata "resume" tapi tiada checkpoint | Report: "Tiada checkpoint — terangkan context semasa untuk sambung" |
+| Checkpoint lapuk (dari sesi lama berbeza task) | Flag: "Checkpoint dari [tarikh] — masih relevan?" sebelum resume |
+| Tool calls < 40 tapi context besar kerana fail | Trigger threshold berdasarkan saiz fail, bukan bilangan calls sahaja |
+| Abam kata "token guard off" | Deaktif compact mode — kembali ke response style biasa |
+| Work Plan aktif semasa token guard | Koordinasi checkpoint dengan plan file — update kedua-dua |
+| Subagent digunakan semasa compact mode | Subagent prompt mesti lebih pendek — hanya include context kritikal |
+| Compact mode tapi Abam minta penjelasan penuh | Ikut arahan Abam — override compact mode untuk satu respons |
+| Multiple checkpoints dari sesi berbeza | Rename lama sebagai `checkpoint-YYYYMMDD.md`, buat checkpoint baru |
+
+---
+
+## Integrasi Skill
+
+| Skill | Bila | Tindakan |
+|-------|------|----------|
+| `work-plan` | Plan execution berjalan lama | Checkpoint align dengan plan step — update kedua-dua fail |
+| `session-briefing` | Resume selepas context reset | Brief on resume include checkpoint summary |
+| `orchestrate` | Orchestration panjang hampir overflow | Token guard aktif compact semasa orchestration |
+| `anchor` | Compact mode drift dari fokus asal | Anchor lock semula scope dalam compact mode |
+| `save-diary` | Context reset sebelum diary sempat disave | Checkpoint serve sebagai proxy — save diary dulu |
+| `dispatching-parallel-agents` | Parallel agents cipta terlalu banyak context | Enforce targeted scope per agent |
+
+---
+
+## Level History
+
+- **Lv.1** — Base: 4 mechanisms (Compact Mode, Smart Tool Rules, Context Pruning, Session Checkpoint), 4 operation modes (compact/checkpoint/resume/status), full default protocol. (Origin: Token management protocol DIBA, xdaxzurairi)
+- **Lv.2** — Proactive Early Warning: auto-detect context hampir penuh melalui tool call count, large file reads, repeat queries — insert silent one-line warning sebelum Abam perasan. (Origin: Pattern Abam terkejut dengan context overflow, 2026-04-28)
+- **Lv.3** — Superultra: Frontmatter ditambah, activation message, Context Guard table dengan EXIT row, Protocol restructured kepada full checklist steps, Mandatory Rules dikembangkan kepada 8 peraturan, Edge Cases table 10 baris, Integrasi Skill table 6 baris, checkpoint format distandard. (2026-05-19)
+
+
+---
+*[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

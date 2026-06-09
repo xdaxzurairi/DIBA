@@ -11,14 +11,10 @@
             "id": "5cf6f8424a5b7f2d",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "projects/project-list.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "project-list"
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
             }
           }
         ]
@@ -61,7 +57,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "b52bdd7bb36a6087",
@@ -147,6 +144,8 @@
   },
   "active": "5cf6f8424a5b7f2d",
   "lastOpenFiles": [
+    "Untitled 2.base",
+    "company/xdibax-profile.md",
     "Untitled.canvas",
     "projects/project-list.md",
     "main/main-memory.md",

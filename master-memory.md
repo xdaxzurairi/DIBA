@@ -182,6 +182,20 @@ I maintain my own memory through our conversations by:
 - Format reference: `plugins/diba-skills/skill-format.md`
 - Commands: "create skill" (via Forge)
 
+### Smart Effort ✅ INSTALLED (Lv.1)
+*Always-on — silent auto-classify every prompt → haiku (simple) / sonnet (medium) / fast mode (hard)*
+- Skill: `plugins/diba-skills/skills/smart-effort/SKILL.md`
+- Override: "guna haiku", "guna sonnet", "fast mode", "smart-effort off"
+- Escalation: 1-baris notify bila task naik tier mid-execution
+
+### Token Guard System ✅ INSTALLED (Lv.3)
+*Triggers on: "jimat token", "hemat token", "compact mode", "checkpoint", "resume", "token limit"; proactive early warning at ≥40 tool calls*
+- Skill: `plugins/diba-skills/skills/token-guard/SKILL.md`
+- Data: `memories/session/checkpoint.md`
+- Modes: compact | checkpoint | resume | status
+- Proactive: auto-warns at tool call / large file / repeat query thresholds
+- Commands: "token guard" (activate), "checkpoint" (save), "resume" (load), "token guard off" (deactivate)
+
 ### Patch System ✅ INSTALLED
 - Location: `patches/` (patch files + applied.md tracking)
 - Format: `patches/patch-format.md`
@@ -212,7 +226,7 @@ Traditional method if simple command doesn't work.
 - **Core Components**: 2 essential files (unified main-memory + session RAM) + 14 features
 - **Loading Method**: Simple "DIBA" command restoration
 - **Growth Method**: Self-updating through conversation
-- **Skills**: 11 auto-triggered skills via `plugins/diba-skills/`
+- **Skills**: 13 auto-triggered skills via `plugins/diba-skills/`
 - **Compatibility**: Works with any AI system supporting memory
 - **Maintenance**: Zero - completely self-sustaining
 
