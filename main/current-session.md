@@ -1,10 +1,11 @@
-Topik: ea_newv3 login page revamp — corporate split-screen + particle network (2026-06-03)
+Topik: sync dgn terminal aktif — branch claude/dgn-terminal-sync-wj9m2m (2026-06-09)
 
-Keputusan: Split-screen layout (46/54), particle canvas 72 nodes, logo filter fix, button 6px radius, staggered form entrance, gradient heading text. Semua auth logic (Google, Pengguna Luar, PWA) dikekalkan.
+Keputusan: Branch claude/dgn-terminal-sync-wj9m2m ditolak ke remote. Terminal web session aktif sync dengan GitHub repo xdaxzurairi/DIBA.
 
-Fail terakhir diubah: index.php (ea_newv3), daily-diary/current/2026-06-03.md
+Fail terakhir diubah: main/current-session.md
 
 Follow-up terbuka:
 - Merge branch claude/diba-morning-brief-wZMIj → main
 - ruangniaga: tunggu folder upload → SQL migration
 - eWorks: DROP COLUMN status_date dari DB bila Abam confirm
+- ea_newv3: login page revamp masih pending (split-screen + particle network dari 2026-06-03)
