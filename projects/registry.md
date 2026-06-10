@@ -7,6 +7,7 @@
 | `//10.0.36.127/webs/pwa_eworks` | `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/projects/active/` |
 | `C:/Users/BSM/XDIBAX` | `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/main/` |
 | `C:/Apache24/htdocs/BFM2026` | `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/projects/active/bfm2026/` |
+| `C:/Users/BSM/Downloads/baseballfedarationmalaysia` | `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/projects/active/baseballfedarationmalaysia/` |
 | `//10.0.36.150/webs` | `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/projects/active/webs-150/` |
 | `//10.0.36.127/webs/eWorks` | `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/projects/active/eworks/` |
 | `C:/Apache24/htdocs/ruangniaga` | `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/projects/active/ruangniaga/` |
@@ -25,4 +26,4 @@ Fail memory projek yang dicari (ikut urutan):
 3. `master-memory.md` atau `identity-core.md`
 
 ---
-*Dikemaskini: 2026-04-24*
+*Dikemaskini: 2026-06-04*

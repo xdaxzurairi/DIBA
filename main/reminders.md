@@ -3,6 +3,10 @@
 
 ## Open
 
+### [2026-06-05] pwa_eworks — Drop afm.user_notifications (duplikasi corrupt)
+- [x] DROP TABLE afm.user_notifications — selesai 2026-06-05
+- [x] Verify: hanya dbo.user_notifications wujud (81 rows, struktur betul)
+
 ### [2026-05-25 Isnin] Drop table PWA dari FMSPROD — migrate ke Archibius dulu
 
 Table-table ini dah wujud terus dalam FMSPROD (dibuat inline oleh PHP) — perlu di-drop dan dicipta semula dengan betul melalui Archibius.
