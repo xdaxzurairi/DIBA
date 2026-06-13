@@ -1,3 +1,8 @@
+---
+name: post-mortem
+description: "Auto-detects failure signals and triggers on 'post-mortem', 'postmortem', 'log this failure', 'write a post-mortem', or 'what went wrong'. Appends analysis to main/post-mortems.md."
+---
+
 # 🔥 Post-Mortem — Skill Plugin
 
 ## Skill Name
@@ -41,7 +46,33 @@ When starting work in a domain that has a past post-mortem:
 - Check `main/post-mortems.md` for relevant entries
 - Flag: "⚠️ Reminder: [lesson] — see post-mortem [date]"
 
+### Regression Link (Lv.4)
+
+Bila failure sama domain muncul semula:
+- Cari entry lama dalam `main/post-mortems.md` dengan kata kunci domain/fail
+- Jika jumpa: sebut "regression vs [date]" dan lesson yang terlepas
+- Tawar update entry lama atau post-mortem baharu
+
+### Pattern Aggregation (Lv.5)
+
+Setiap 5 post-mortem entries, auto-analisa:
+- Categorize root causes: config, logic, integration, dependency, process
+- Surface top-3 recurring root causes
+- Tambah `## Patterns` section di akhir `main/post-mortems.md`
+- Format: "Category [X occurrences]: [ringkasan pattern]"
+
+### Preventive Alert (Lv.6)
+
+Sebelum mula kerja dalam domain berisiko tinggi:
+- Scan post-mortems.md untuk domain yang matching (file path, tech, API)
+- Jika domain ada 2+ post-mortems: surface preventive alert
+- Format: "Domain ini ada [X] kegagalan sebelum. Risiko utama: [lesson]. Mitigation: [cadangan]"
+- Alert hanya muncul sekali per session per domain — tidak spam
+
 ## Level History
 - **Lv.1** — Base: manual trigger + append to log
 - **Lv.2** — Auto-detection of failure signals + passive prompting
 - **Lv.3** — Domain reference: flag relevant post-mortems at session start or task start
+- **Lv.4** — Regression Link: kait kegagalan semula dengan post-mortem sedia ada. (Origin: 2026-05-22 — naikkan skill batch)
+- **Lv.5** — Pattern Aggregation: categorize root causes, surface top-3 patterns. (Origin: 2026-06-12)
+- **Lv.6** — Preventive Alert: pre-work risk alert berdasarkan post-mortem history. (Origin: 2026-06-12)

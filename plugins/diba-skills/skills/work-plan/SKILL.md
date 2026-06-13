@@ -179,7 +179,41 @@ If the Auto-Commit System is not installed, the execution loop still works:
 | **Context reset mid-execution** | User says "resume plan" to continue from last checkpoint |
 | **Multiple plan files in source** | Pick most recently modified, confirm with user |
 
+### Diary Checkpoint (Lv.3)
+
+Selepas setiap **wave** selesai (bukan setiap todo kecil):
+- Trigger ringkas save-diary: ringkasan wave + fail diubah + follow-up
+- Kemaskini `current-session.md` supaya `resume plan` ada konteks segar
+
+### Risk Tagging (Lv.4)
+
+Semasa copy/append plan, auto-tag items berisiko tinggi:
+- `[!]` — destructive ops (DB migration, delete, API contract change)
+- `[?]` — ambiguous requirement yang mungkin perlu clarification
+- Surface tagged items di awal execution sebagai pre-flight checklist
+- Escalate `[!]` items ke Abam sebelum execute
+
+### Parallel Wave Dispatch (Lv.5)
+
+Semasa execution loop, detect items dalam wave yang sama tanpa dependency:
+- Group independent `[ ]` items sebagai parallel batch
+- Dispatch ke sub-agents via `dispatching-parallel-agents` skill
+- Wave barrier: tunggu semua parallel items selesai sebelum mula wave seterusnya
+- Fallback: jika parallel dispatch gagal, execute sequentially
+
+### Adaptive Replan (Lv.6)
+
+Bila blocker (`[~]`) muncul semasa execution:
+- Analisa remaining items — reorder supaya non-blocked items jalan dulu
+- Cadangkan alternative approach jika blocker affect >30% remaining items
+- Update plan file dengan reordered sequence + sebab replan
+- Log replan event ke decision log via `log-decision`
+
 ## Level History
 
 - **Lv.1** — Base: Three commands (copy/append/resume) + shared execution loop + per-todo commit chain + line rotation + recovery mechanism + checkpoint saves. (Origin: Production AI companion plan execution workflow)
 - **Lv.2** — Wave Execution: Dependency-aware wave grouping — independent tasks within a phase can be executed in parallel via sub-agents, with wave barriers enforcing order between dependent groups.
+- **Lv.3** — Diary Checkpoint: save-diary + current-session selepas setiap wave. (Origin: 2026-05-22 — naikkan skill batch)
+- **Lv.4** — Risk Tagging: auto-tag destructive/ambiguous items, pre-flight checklist. (Origin: 2026-06-12)
+- **Lv.5** — Parallel Wave Dispatch: independent tasks dalam wave dispatch ke sub-agents. (Origin: 2026-06-12)
+- **Lv.6** — Adaptive Replan: auto-reorder bila blocker hit, cadang alternative. (Origin: 2026-06-12)
