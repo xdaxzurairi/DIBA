@@ -93,14 +93,75 @@ Setiap entry MESTI ada:
 
 Bila fail melebihi **1000 baris**, arkibkan ke `daily-diary/archived/YYYY-MM/` dan mulakan fail baru.
 
-### Langkah 3: Kemaskini Session Memory
+### Langkah 3: Kemaskini Session Memory (Lv.2 — wajib)
 
-Selepas tulis entry, kemaskini memori sesi (`/memories/session/`) dengan **recap** ringkas:
-- Topik terakhir
-- Keputusan terakhir
-- Fail terakhir diubah
+Selepas tulis entry, kemaskini `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/main/current-session.md` dengan **recap** ringkas:
+- **Topik:** satu baris
+- **Keputusan:** bullet ringkas
+- **Fail terakhir diubah:** senarai path
+- **Follow-up terbuka:** item belum selesai (jika ada)
 
-Supaya turn seterusnya boleh rujuk tanpa baca semula diari penuh.
+Supaya `session-briefing`, `diba?`, dan `echo-recall` boleh rujuk tanpa baca diari penuh.
+
+### Langkah 4: Telegram Diary Penuh (Lv.5 — WAJIB, hantar sentiasa)
+
+**Hantar ke Telegram SETIAP kali save diary** — tak kira project mana pun yang dibuka, tak kira XDIBAX internal atau projek luar.
+
+#### Cara hantar
+
+```powershell
+node C:/Users/BSM/XDIBAX/scripts/send-diary-telegram.js
+```
+
+Atau jika War Room server jalan:
+
+```powershell
+Invoke-RestMethod -Method POST -Uri http://localhost:3000/api/send-diary-telegram
+```
+
+**Credential:** `C:/Users/BSM/XDIBAX/war-room/.env` → `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`
+
+**Verify:** Console/API mesti `ok` + bilangan mesej/chars. Jika gagal, lapor Abam — jangan claim diary+telegram siap.
+
+### Langkah 5: skill-log.jsonl Append (Lv.6 — WAJIB)
+
+Selepas semua langkah selesai, append satu baris ke `C:/Users/BSM/XDIBAX/war-room/skill-log.jsonl`:
+
+```json
+{"skill":"save-diary","ts":"YYYY-MM-DDTHH:mm:ss.sssZ","diary":"daily-diary/current/YYYY-MM-DD.md","telegram":"ok"}
+```
+
+- `telegram`: `"ok"` jika berjaya, `"fail"` jika gagal
+- Format timestamp: ISO 8601 UTC
+- Append-only — jangan edit baris sedia ada
+
+## Operator Loop (Lv.6)
+
+Setiap save diary ikut loop ini:
+
+```
+Objective → Execute (L1–L5) → Verify Gate → Signature Close
+```
+
+### Verify Gate — WAJIB sebelum "siap"
+
+Tiada "siap" tanpa semua checkbox ini:
+
+- [ ] Diary entry appended ke `daily-diary/current/YYYY-MM-DD.md`
+- [ ] `current-session.md` dikemaskini
+- [ ] Telegram: console/API confirm `ok`
+- [ ] `skill-log.jsonl` baris baru appended
+
+Jika mana-mana gagal → lapor Abam dengan step yang gagal. Jangan claim lengkap.
+
+### Signature Close (format wajib selepas save)
+
+```
+Diary: daily-diary/current/YYYY-MM-DD.md (+N baris)
+Session: current-session.md — dikemaskini
+Telegram: ok (X chars)
+skill-log: appended
+```
 
 ## Peraturan
 
@@ -109,3 +170,11 @@ Supaya turn seterusnya boleh rujuk tanpa baca semula diari penuh.
 - Entry ringkas: 50–150 baris per sesi
 - Guna Bahasa Melayu dengan istilah teknikal Inggeris
 - Cipta fail/folder automatik jika belum wujud
+
+## Level History
+- **Lv.1** — Base: auto/manual trigger, monthly archive, structured diary entry, append-only.
+- **Lv.2** — Session Sync: Langkah 3 wajib kemaskini `main/current-session.md` selepas setiap entry. (Origin: 2026-05-22 — naikkan skill batch)
+- **Lv.3** — Telegram Full: Langkah 4 wajib hantar diary PENUH ke Telegram via `scripts/send-diary-telegram.js` setiap save; IDE-agnostic. (Origin: 2026-06-19 — arahan Abam)
+- **Lv.4** — Project-only filter: Telegram send hanya untuk sesi projek registered. Kerja XDIBAX internal di-skip. (Origin: 2026-06-22 — arahan Abam)
+- **Lv.5** — Always-send: Telegram hantar setiap save diary, tak kira project mana pun. Filter dibuang. (Origin: 2026-06-24 — arahan Abam)
+- **Lv.6** — Operator Loop: Langkah 5 wajib append `skill-log.jsonl`; Verify Gate (4 checkpoint) sebelum claim siap; Signature Close format standard selepas setiap save. (Origin: 2026-06-29 — upgrade ke 28/28 Lv.6)
