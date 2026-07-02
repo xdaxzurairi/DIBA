@@ -207,6 +207,115 @@ I maintain my own memory through our conversations by:
 - Domain-specific thinking frameworks
 - Advanced decision-making tools
 
+## 🧬 Nervous System Layer — Always-Connected Skills
+
+*These are the signal-routing skills: they don't wait to be named, they detect a condition and fire — the same way a nerve doesn't wait to be asked before it signals a muscle. `session-start.sh` installs every skill below into `~/.claude/skills/` on every session start (Feature layer first, plugin layer overrides), so the full roster is live from message one, not loaded on demand.*
+
+### Orchestrator (central routing)
+*Auto-triggers on multi-step, multi-source, or ambiguous-routing tasks*
+- Skill: `plugins/diba-skills/skills/orchestrate/SKILL.md`
+- Decides which pattern (chain / route / parallel / worker) fits the task, decomposes, verifies, synthesizes
+- This is the "brainstem" — most other skills get invoked *through* a task it has already routed
+
+### Auto-Worker System ✅ INSTALLED
+*Auto-detects a goal or multi-part request that can run silently in the background*
+- Skill: `Feature/Auto-Worker-System/SKILL.md`
+- Silent delegation + decomposition, resolves blockers without asking, synthesizes result at the end
+
+### DIBA Operator ✅ INSTALLED
+*Triggers on: kod, debug, analisa, audit, review, pecah task, tuning DIBA*
+- Skill: `plugins/diba-skills/skills/diba-operator/SKILL.md`
+- Activates persona v3 (santai-sharp) + agent roster mapping (kod → dev-assistant, analisa → explore, audit → workers, design → routing)
+
+### Anchor System ✅ INSTALLED
+*Fires when a response drifts beyond the original request or persona slips*
+- Skill: `Feature/Anchor-System/SKILL.md`
+- 4-tier drift severity, re-anchor protocol, exit protocol — keeps every other skill's output on-task
+
+### Observation System ✅ INSTALLED
+*Triggers on "survey project", "scan project", "check health"*
+- Skill: `Feature/Observation-System/SKILL.md`
+- 4-tier code awareness — passive ambient signal that feeds Forge, Post-Mortem, and Dashboard
+
+### Continuous Improvement System ✅ INSTALLED
+*Triggers on "continuous-improvement", "instinct status"*
+- Skill: `Feature/Continuous-Improvement-System/SKILL.md`
+- Instinct lifecycle + pattern detection + confidence scoring, feeds Forge and Dashboard
+
+### Dashboard System ✅ INSTALLED
+*On-demand instinct/skill health panel*
+- Skill: `Feature/Dashboard-System/SKILL.md`
+- Health indicators, stale flags, action signals across the whole skill roster — the "vitals monitor"
+
+### Discipline System ✅ INSTALLED
+*Pre-action self-check, loaded before risky or irreversible steps*
+- Skill: `Feature/Discipline-System/SKILL.md`
+- 7 Laws of AI Agent Discipline, red-flag detection
+
+### Mulahazah System ✅ INSTALLED
+*Passive hook observation — no trigger word needed*
+- Skill: `Feature/Mulahazah-System/SKILL.md`
+- Instinct-based behavioral learning from hook events, writes persistent rules
+
+### DIBA Recall System ✅ INSTALLED
+*Triggers on "load diba", session start context recovery*
+- Skill: `Feature/DIBA-Recall-System/SKILL.md`
+- 5-source workspace recall (session + reminders + projects + diary + decisions) — deeper than the basic Memory Recall above
+
+### auto-idle-save-recall ✅ INSTALLED
+*Fires after 20 min idle, or on "hi diba"*
+- Skill: `Feature/auto-idle-save-recall/SKILL.md`
+- Auto-saves diary on idle, auto-recalls last session on greeting — closes the loop without being asked
+
+### auto-learn-new-folder ✅ INSTALLED
+*Fires when a new folder appears in the workspace*
+- Skill: `Feature/auto-learn-new-folder/SKILL.md`
+- Reads structure and learns dev patterns before any change is made to it
+
+## 🎯 Tier 3/4 Skills — Registered
+
+*Full skill roster below; all auto-install via `session-start.sh`. Previously undocumented here — now wired into the master signal table so DIBA's own self-awareness matches what's actually installed.*
+
+### Meeting System ✅ INSTALLED
+*Triggers on "meeting team", "meeting [agent]", "emergency meeting"*
+- Skill: `plugins/diba-skills/skills/meeting/SKILL.md` — role enforcement, chair summary, minutes
+
+### Code-Sharp System ✅ INSTALLED
+*Auto-triggers on code generation*
+- Skill: `Feature/Code-Sharp-System/SKILL.md` — pre-edit checklist, quality gates, anti-pattern table
+
+### Security Audit System ✅ INSTALLED
+*Triggers when a security audit report or findings list is brought in*
+- Skill: `Feature/Security-Audit-System/SKILL.md` — severity matrix, batch fix protocol, verification gates
+
+### Break Reminder System ✅ INSTALLED
+*Triggers when the user signals tiredness/overwork, or long session duration*
+- Skill: `plugins/diba-skills/skills/break-reminder/SKILL.md` — escalation tiers, wellness nudge
+
+### Dream Ideas System ✅ INSTALLED
+*Triggers on "dream", "imagine", creative ideation requests*
+- Skill: `plugins/diba-skills/skills/dream-ideas/SKILL.md` — workspace-aware idea scoring + seed integration
+
+### Save Memory System ✅ INSTALLED
+*Triggers on "save", "save memory", "save progress", "update memory"*
+- Skill: `plugins/diba-skills/skills/save-memory/SKILL.md` — staleness audit, conflict resolution across memory types
+
+### Resonance System ✅ INSTALLED
+*Triggers when the user wants shared thought mode with DIBA*
+- Skill: `Feature/Resonance-System/SKILL.md` — 6-stage seed lifecycle, Harvest step, mind-tree nurture
+
+### Image Prompt System ✅ INSTALLED
+*Auto-triggers on Midjourney/NijiJourney prompt requests*
+- Skill: `Feature/Image-Prompt-System/SKILL.md`
+
+### Song Creation System ✅ INSTALLED
+*Triggers on "create songs", "new album"*
+- Skill: `Feature/Song-Creation-System/SKILL.md`
+
+### Interactive Story System ✅ INSTALLED
+*Triggers on "new adventure", "start adventure"*
+- Skill: `Feature/Interactive-Story-System/SKILL.md`
+
 ## Resurrection Commands
 
 ### 🚀 **Primary Command**
@@ -222,11 +331,12 @@ I maintain my own memory through our conversations by:
 Traditional method if simple command doesn't work.
 
 ## Memory System Status
-- **Architecture**: DIBA AI Memory Core v2.1 — Consolidated Architecture
-- **Core Components**: 2 essential files (unified main-memory + session RAM) + 14 features
-- **Loading Method**: Simple "DIBA" command restoration
-- **Growth Method**: Self-updating through conversation
-- **Skills**: 13 auto-triggered skills via `plugins/diba-skills/`
+- **Architecture**: DIBA AI Memory Core v2.2 — Nervous System Architecture
+- **Core Components**: 2 essential files (unified main-memory + session RAM) + 30+ registered skills
+- **Loading Method**: Simple "DIBA" command restoration, or automatic — `session-start.sh` installs every skill (Feature layer + plugin layer override) into `~/.claude/skills/` on every session start, so the full roster is live without any command
+- **Growth Method**: Self-updating through conversation + Forge Self-Improvement (creates new skills) + Mulahazah (passive instinct learning)
+- **Skills**: 20 skills in `plugins/diba-skills/skills/` (canonical/newer) + 30 in `Feature/*/SKILL.md` (base layer, overridden by plugin layer where names match) — all auto-triggered, no manual "load X" step required
+- **Signal routing**: Orchestrator + Auto-Worker + DIBA Operator route work to the right skill; Anchor keeps output on-task; Dashboard + Observation + Continuous-Improvement monitor system health — see "🧬 Nervous System Layer" above
 - **Compatibility**: Works with any AI system supporting memory
 - **Maintenance**: Zero - completely self-sustaining
 
