@@ -1,7 +1,7 @@
 {
   "commitMessage": "obsidian: {{date}}",
   "autoCommitInterval": 10,
-  "autoPushInterval": 0,
+  "autoPushInterval": 10,
   "autoPullInterval": 0,
   "autoPullOnBoot": true,
   "disablePush": false,

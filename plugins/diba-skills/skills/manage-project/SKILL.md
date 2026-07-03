@@ -373,7 +373,33 @@ Bila `new project` atau workspace baharu didaftarkan:
 - Tambah baris ke `projects/registry.md` (workspace path → memory path)
 - Sahkan folder memory wujud; cipta `current-session.md` kosong jika perlu
 
+### Health Score (Lv.4)
+
+Setiap `list projects` atau session-briefing, kira health score per project:
+- **Active** (hijau): last accessed < 3 hari
+- **Cooling** (kuning): last accessed 3-7 hari
+- **Stale** (merah): last accessed > 7 hari
+- Papar health flag di sebelah nama project dalam project-list.md
+
+### Cross-Project Linking (Lv.5)
+
+Bila `save project`, scan Technical Notes untuk shared dependencies:
+- Detect jika 2+ project guna tech stack / API / DB yang sama
+- Warn bila perubahan dalam project A mungkin affect project B
+- Tambah `## Related Projects` section dalam project file jika ada link
+
+### Smart Suggest (Lv.6)
+
+Pada session start (via session-briefing integration):
+- Analisa: reminders yang merujuk project, diary entries terkini, pending items
+- Suggest project mana patut di-load berdasarkan urgency + staleness
+- Format: "Cadangan: Load [project] — [sebab ringkas]"
+- Hanya suggest, bukan auto-load — Abam decide
+
 ## Level History
 - **Lv.1** -- Base: new/load/save/list commands, LRU engine (10 slots), auto-archiving, session history, project-list.md auto-generation. (Origin: Absorbed from separate protocol files + adapted from production AI companion project manager v3.1)
 - **Lv.2** -- Duration Tracking: Parse Auto-Commit time estimates, accumulate per project, progressive display format. Line Limit Enforcement: 1000-line cap with auto-summarization.
 - **Lv.3** -- Registry Sync: auto-update `registry.md` bila projek baharu. (Origin: 2026-05-22 — naikkan skill batch)
+- **Lv.4** -- Health Score: project health flags (active/cooling/stale) berdasarkan last-accessed. (Origin: 2026-06-12 — skill upgrade batch)
+- **Lv.5** -- Cross-Project Linking: detect shared dependencies, warn on cross-impact. (Origin: 2026-06-12)
+- **Lv.6** -- Smart Suggest: cadang project berdasarkan urgency + staleness + reminders. (Origin: 2026-06-12)

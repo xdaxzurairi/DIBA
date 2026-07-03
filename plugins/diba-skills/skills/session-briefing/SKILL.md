@@ -40,8 +40,25 @@ Fires automatically at the start of every new conversation session, before proce
 - LRU-Project-Management-System → active project + health flags
 - Reminders-System → open reminder items
 
+### Decision Context (Lv.5)
+
+Tambah ke briefing output:
+- Baca `main/decisions.md` — surface 1-2 keputusan terkini yang relevan ke workspace semasa
+- Format: "Keputusan terkini: [ringkasan] — [tarikh]"
+- Skip jika tiada keputusan dalam 7 hari terakhir
+
+### Priority Suggest (Lv.6)
+
+Analisa dan cadangkan highest-value task untuk sesi ini:
+- Scan: reminders (deadline terdekat), project pending items, diary follow-ups
+- Rank by: urgency (deadline) > staleness (lama tak disentuh) > impact (project size)
+- Output satu baris: "Fokus hari ini: [task] — [sebab ringkas]"
+- Hanya cadangan — Abam override bila-bila masa
+
 ## Level History
 - **Lv.1** — Base: session recap + time suggestion
 - **Lv.2** — Reminders integration (requires Reminders-System)
 - **Lv.3** — Project health flags (requires LRU-Project-Management-System)
 - **Lv.4** — Registry + Follow-up: baca `registry.md` untuk workspace match; surface follow-up dari `current-session.md`. (Origin: 2026-05-22 — naikkan skill batch)
+- **Lv.5** — Decision Context: surface keputusan terkini relevan ke workspace. (Origin: 2026-06-12)
+- **Lv.6** — Priority Suggest: cadang highest-value task berdasarkan urgency + staleness + impact. (Origin: 2026-06-12)

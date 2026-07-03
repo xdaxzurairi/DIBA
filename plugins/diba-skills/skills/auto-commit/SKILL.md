@@ -128,9 +128,29 @@ Jika `git status` menunjukkan perubahan pada **submodule** (contoh `DIBA`, `Proj
 - Commit dalam repo submodule dahulu jika perlu, kemudian parent
 - Commit message sebut submodule path + ringkasan perubahan skill/memory
 
+### Scope Guard (Lv.5)
+
+Sebelum commit, analisa staged changes:
+- Jika perubahan merentasi 2+ concern berbeza (contoh: UI fix + DB migration + config change):
+  - Cadangkan split ke commits berasingan
+  - Group files by concern secara automatik
+- Jika semua perubahan satu concern: terus commit tanpa gangguan
+- Tujuan: setiap commit boleh di-revert secara independen
+
+### Streak Tracking (Lv.6)
+
+Track commit consistency:
+- Kira commit streak (hari berturut-turut ada commit)
+- Simpan streak count dalam `current-session.md` metadata
+- Surface streak dalam diary saves: "Commit streak: X hari"
+- Bila streak putus > 3 hari: nudge ringan pada session briefing
+- Data untuk War Room dashboard (jika aktif)
+
 ## Level History
 
 - **Lv.1** — Base: Analyze staged changes, draft structured commit message with configurable sections, enforce human authorship, no-emoji rule, time tracking, sensitive file detection. (Origin: Production AI companion commit workflow)
 - **Lv.2** — Auto-Commit: Removed approval gate — AI analyzes, drafts, and commits in one seamless flow without waiting for user confirmation on the message.
 - **Lv.3** — Vigilant: Proactive post-task detection — auto-checks `git status` after completing any task and commits if dirty. No work ever left behind.
 - **Lv.4** — Submodule Awareness: urutan commit submodule → parent; message jelas untuk skill/memory paths. (Origin: 2026-05-22 XDIBAX multi-repo)
+- **Lv.5** — Scope Guard: detect multi-concern commits, cadang split. (Origin: 2026-06-12)
+- **Lv.6** — Streak Tracking: commit consistency tracking + nudge + War Room integration. (Origin: 2026-06-12)
