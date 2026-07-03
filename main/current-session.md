@@ -1,30 +1,30 @@
 # Current Session Recap
 
-**Tarikh:** 2026-06-18
-**Topik terakhir:** War Room — SSE bridge, meeting system, Telegram diary automation
-**Projek:** XDIBAX / War Room
+**Tarikh:** 2026-07-03
+**Topik terakhir:** BFM Fasa 3 — Player Stats, Leaderboard & Sijil Penyertaan (selesai)
 
-## Keputusan Terakhir
-- SSE real-time bridge DIBA ↔ War Room live
-- Meeting system — tekan M, NPC berkumpul bulatan, chat bubbles
-- Super Saiyan aura 3-layer pada NPC aktif + test mode (double-click)
-- SSE heartbeat 30s elak disconnect
-- Telegram bot @Diarykerja_bot — diary auto-send ke group Fms cr
-- COMMS LOG panel + diary COPY button
-- Kekal Claude API (Opus 4.6), drop local Ollama
-- Folder stale — discarded. eWorks discrepancy — discarded.
+## Keputusan utama
+- Fasa 3 BFM dilaksanakan sepenuhnya via subagent-driven development — 10 tasks, semua lulus review
+- Supabase View `player_batting_avg` dicipta dalam migration 005 (Abam kena run manual di Dashboard)
+- Leaderboard public `/browse/leaderboard?tournament=<id>` — batting avg ranking per tournament
+- PDF sijil penyertaan: jsPDF landscape A4, download dari browser, admin-only selepas tournament completed
+- Browse page `/browse` replace placeholder — clubs grid + tournaments list berfungsi
+- Reminder eWorks laporan 7a Option C ditutup tanpa implementasi (Abam keputuskan)
 
-## Fail Diubah Sesi Ini
-- war-room/public/index.html (comms panel, copy button, weather cleanup)
-- war-room/public/main.js (SSE, meeting, super saiyan, test mode, comms)
-- war-room/server.js (SSE, broadcast, heartbeat, Telegram, diary watcher)
-- war-room/.env (Telegram credentials, gitignored)
-- scripts/diba-broadcast.sh (baru)
-- daily-diary/current/2026-06-18.md
+## Fail terakhir diubah
+- baseballfedarationmalaysia/supabase/migrations/005_player_avg_view.sql
+- baseballfedarationmalaysia/src/hooks/useDb.js
+- baseballfedarationmalaysia/src/app/dashboard/sections/manager/PlayerRoster.jsx
+- baseballfedarationmalaysia/src/app/dashboard/Manager.jsx
+- baseballfedarationmalaysia/src/app/dashboard/sections/admin/StatsInput.jsx
+- baseballfedarationmalaysia/src/app/dashboard/Admin.jsx
+- baseballfedarationmalaysia/src/app/browse/index.jsx
+- baseballfedarationmalaysia/src/app/browse/Leaderboard.jsx
+- baseballfedarationmalaysia/src/Router.jsx
+- baseballfedarationmalaysia/src/utils/pdf.js
+- baseballfedarationmalaysia/src/app/dashboard/sections/admin/ExportPanel.jsx
 
-## Next Step
-- Tiada item terbuka
-
-## Previous Session Context
-- War Room Fasa 2: 8 feature sprint besar (commit 7dd2e87)
-- War Room Fasa 1: skill-card hover/pin, ISO VIEW, chat dock (commit 9a0c817)
+## Follow-up terbuka
+- **PENTING:** Run `005_player_avg_view.sql` di Supabase Dashboard untuk aktifkan leaderboard + PDF sijil
+- BFM Fasa 4: Live Match real-time score — belum dimulakan
+- BijakBersama: `npx supabase db reset` + gen types bila Docker available

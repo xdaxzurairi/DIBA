@@ -3,8 +3,15 @@
 
 ## Open
 
+- **Save diary → Telegram penuh (permanent):** Setiap save diary, hantar fail hari penuh via `scripts/send-diary-telegram.js`. IDE tidak relevan. Script ada **fallback plain text** bila Markdown parse gagal (underscore/path kod).
+- **eWorks e-signature:** End-to-end test Borang Arahan Kerja — **jangan sync prod** buat masa ini (keputusan 2026-06-11).
+
 ## Completed
 
+- **eWorks laporan 7a vs 1c — keputusan Option A/B/C** (completed 2026-07-01): Abam pilih **Option C** (kedua-dua). Reminder pending-keputusan ditutup; item baru dibuka untuk track implementasi kod.
+- **eWorks laporan 7a — implementasi Option C** (closed 2026-07-03, Abam): Ditutup tanpa implementasi — Abam keputuskan tutup terus.
+- **DIBA skills push** (completed 2026-07-01, confirmed Abam): Push skills ke DIBA.git dianggap selesai.
+- **War Room core chamber verify** (completed 2026-07-01, confirmed Abam): Verify visual chamber ditutup.
 - **Drop table PWA dari FMSPROD + Archibius** (completed 2026-06-10): Semua table PWA (PUSH_SUBSCRIPTIONS, USER_NOTIFICATIONS, APP_DEVICES, APP_INSTALLATIONS, PUSH_NOTIFICATION_LOG, LOGIN_ATTEMPTS, RATE_LIMIT_EVENTS, PASSWORD_RESET_TOKENS) telah diselesaikan.
 
 
