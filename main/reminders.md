@@ -3,29 +3,11 @@
 
 ## Open
 
-### [2026-06-05] pwa_eworks — Drop afm.user_notifications (duplikasi corrupt)
-- [x] DROP TABLE afm.user_notifications — selesai 2026-06-05
-- [x] Verify: hanya dbo.user_notifications wujud (81 rows, struktur betul)
-
-### [2026-05-25 Isnin] Drop table PWA dari FMSPROD — migrate ke Archibius dulu
-
-Table-table ini dah wujud terus dalam FMSPROD (dibuat inline oleh PHP) — perlu di-drop dan dicipta semula dengan betul melalui Archibius.
-
-**Checklist:**
-- [ ] Drop `PUSH_SUBSCRIPTIONS`
-- [ ] Drop `USER_NOTIFICATIONS`
-- [ ] Drop `APP_DEVICES`
-- [ ] Drop `APP_INSTALLATIONS`
-- [ ] Drop `PUSH_NOTIFICATION_LOG`
-- [ ] Drop `LOGIN_ATTEMPTS`
-- [ ] Drop `RATE_LIMIT_EVENTS`
-- [ ] Buat semula semua table di atas melalui Archibius
-- [ ] Transfer/sync ke MSSQL FMSPROD selepas siap
-- [ ] `PASSWORD_RESET_TOKENS` — belum wujud, cipta terus melalui Archibius
-
-**Nota:** Definisi schema ada dalam `pwa_eworks` — rujuk fail `setup_push_notifications.sql` dan inline CREATE TABLE dalam PHP masing-masing.
-
 ## Completed
+
+- **Drop table PWA dari FMSPROD + Archibius** (completed 2026-06-10): Semua table PWA (PUSH_SUBSCRIPTIONS, USER_NOTIFICATIONS, APP_DEVICES, APP_INSTALLATIONS, PUSH_NOTIFICATION_LOG, LOGIN_ATTEMPTS, RATE_LIMIT_EVENTS, PASSWORD_RESET_TOKENS) telah diselesaikan.
+
+
 
 - **eWorks N+1 complaints.php** (completed 2026-05-18): Semak dan selesai — N+1 `getResponsibleOfficers` dalam `complaints.php` dah ditangani.
 - **Monitor Dashboard Performance eWorks** (completed 2026-05-18): Dashboard laju selepas cache aktif — tiada isu.

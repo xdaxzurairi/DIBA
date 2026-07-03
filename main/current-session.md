@@ -1,27 +1,30 @@
 # Current Session Recap
 
-**Tarikh:** 2026-06-09
-**Topik:** War Room — Skill Combat Log + Mass Upgrade Lv.6 + Visual Overhaul
-**Projek:** war-room (localhost:3000)
+**Tarikh:** 2026-06-18
+**Topik terakhir:** War Room — SSE bridge, meeting system, Telegram diary automation
+**Projek:** XDIBAX / War Room
 
-## Keputusan
-- Chat feature dibuang sepenuhnya (spawn claude CLI tak jalan, API key tiada)
-- Skill Combat Log: PostToolUse hook → `log-skill.js` → `skill-log.jsonl` → `/api/skill-log` endpoint
-- 21 skill upgraded dari Lv.1/Lv.2 → Lv.6 (setiap satu +4-5 level features baru)
-- Status semasa: 22 skill Lv.6, 3 skill Lv.4, 2 skill Lv.3
-- War Room visual overhaul: fireflies, emotes, breathing, social walking, hover glow, 5 idle gestures
-- Semua Lv.6 NPC: hat tinggi, gem emas, aura sphere, purple accent
+## Keputusan Terakhir
+- SSE real-time bridge DIBA ↔ War Room live
+- Meeting system — tekan M, NPC berkumpul bulatan, chat bubbles
+- Super Saiyan aura 3-layer pada NPC aktif + test mode (double-click)
+- SSE heartbeat 30s elak disconnect
+- Telegram bot @Diarykerja_bot — diary auto-send ke group Fms cr
+- COMMS LOG panel + diary COPY button
+- Kekal Claude API (Opus 4.6), drop local Ollama
+- Folder stale — discarded. eWorks discrepancy — discarded.
 
 ## Fail Diubah Sesi Ini
-- `war-room/server.js` — buang chat, tambah skill-log endpoint
-- `war-room/public/index.html` — buang chat UI, tambah emote CSS
-- `war-room/public/main.js` — NPC overhaul, fireflies, emotes, hover, lerpCamera
-- `~/.claude/hooks/log-skill.js` — BARU: skill usage logger
-- `~/.claude/settings.json` — hooks.PostToolUse
-- 21x `.claude/skills/*/SKILL.md` — Lv.3-6 content added
+- war-room/public/index.html (comms panel, copy button, weather cleanup)
+- war-room/public/main.js (SSE, meeting, super saiyan, test mode, comms)
+- war-room/server.js (SSE, broadcast, heartbeat, Telegram, diary watcher)
+- war-room/.env (Telegram credentials, gitignored)
+- scripts/diba-broadcast.sh (baru)
+- daily-diary/current/2026-06-18.md
 
 ## Next Step
-1. Upgrade baki 5 skill ke Lv.6 (manage-project, work-plan, auto-commit, post-mortem, session-briefing)
-2. Buang `@anthropic-ai/sdk` dari package.json
-3. Follow-up pwa_eworks: buang debug code dari `approve_complaint.php`
-4. Test War Room visual di browser
+- Tiada item terbuka
+
+## Previous Session Context
+- War Room Fasa 2: 8 feature sprint besar (commit 7dd2e87)
+- War Room Fasa 1: skill-card hover/pin, ISO VIEW, chat dock (commit 9a0c817)
