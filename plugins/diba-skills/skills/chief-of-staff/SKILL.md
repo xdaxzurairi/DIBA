@@ -82,5 +82,56 @@ Compressed brief: overdue → top 3 → one-line recommendation. No greeting.
 | save-diary / auto-commit | Called during EOD wrap |
 | post-mortem | Watch-out section pulls from its log |
 
+## Lv.2 — Priority Scoring (Deterministic)
+
+Top 3 bukan agakan — skor eksplisit:
+
+| Faktor | Skor |
+|--------|------|
+| Reminder overdue | +10 per hari lewat (cap 30) |
+| Reminder due hari ini / esok | +8 / +5 |
+| Projek LRU #1–#3 (momentum) | +6 / +4 / +2 |
+| Projek stalled 7+ hari | +5 (perlu unblock, bukan biar mati) |
+| Carry-over dari sesi lepas | +4 |
+| Decision pending yang block kerja lain | +7 |
+
+Skor sama → yang ada deadline menang. Setiap priority dalam brief WAJIB tunjuk sumber skornya (1 frasa).
+
+## Lv.3 — Routines Integration
+
+- Bila priority match entri dalam `main/routines.md` → surface routine + **Perangkap** section-nya terus dalam brief
+- Contoh: priority "CR laporan bahagian eWorks" → brief sebut "routine ada — jangan lupa `page.php` whitelist semua group"
+- Routine yang lama tak dijalankan tapi berkaitan → tanya Abam sama ada masih valid
+
+## Lv.4 — Stalled & Drift Radar
+
+Dikira setiap morning brief (senyap jika kosong):
+- **Projek stalled**: `projects/active/` tak disentuh 7+ hari → 1 baris + cadangan (sambung / archive)
+- **Reminder basi**: Open 14+ hari tanpa progress → cadang: buat, jadualkan, atau tutup
+- **Decision hutang**: soalan dalam `decisions.md` / sesi lepas yang belum diputuskan 7+ hari → senarai untuk Abam decide
+- Radar max 3 item dalam brief — paling teruk dulu; selebihnya dalam weekly review
+
+## Lv.5 — Evidence-Based Weekly Metrics
+
+Weekly review guna data sebenar, bukan ingatan:
+- **Wins**: `git log --since="7 days ago"` + entri diary minggu ini
+- **Output**: bilangan commit, fail diubah, reminder completed, decision dilog
+- **Trend**: banding minggu lepas (naik/turun 1 baris) — data dari diary + git
+- **Kos AI** (jika `usage-tracker` ada data): belanja minggu ini + pattern mahal
+- Tiada data → nyatakan "tiada rekod", jangan reka
+
+## Lv.6 — Limit-Aware Operations & EOD Gate
+
+- **Pre-limit duty**: bila nampak usage-limit warning, chief-of-staff yang trigger handoff protocol (`ask-nemotron` Lv.4B): checkpoint → commit → arahan `node scripts/diba-fallback-chat.js`. Brief pagi selepas limit → semak `*-fallback.md` untuk catch-up
+- **EOD gate**: EOD wrap tidak dianggap siap sehingga 6 langkah checklist BERJAYA (verify, bukan assume) — gagal mana-mana langkah → report langkah tu, jangan claim "hari ditutup"
+- **Discipline chain**: EOD wrap jalankan self-audit `discipline` Lv.5 secara automatik
+
+---
+
 ## Level History
 - **Lv.1** — Base: morning brief, agenda, EOD wrap, weekly review; priority derivation rules; EOD checklist. (Origin: CTO build 2026-07-04 — DIBA v3 Phase 1)
+- **Lv.2** — Priority Scoring: skor deterministic dengan sumber dicite. (Origin: 2026-07-04 — batch upgrade Lv.6, arahan Abam)
+- **Lv.3** — Routines Integration: surface routine + perangkap dalam brief. (Origin: 2026-07-04)
+- **Lv.4** — Stalled & Drift Radar: projek/reminder/decision basi dikesan automatik. (Origin: 2026-07-04)
+- **Lv.5** — Evidence-Based Metrics: weekly review dari git log + diary + usage data. (Origin: 2026-07-04)
+- **Lv.6** — Limit-Aware Ops & EOD Gate: pre-limit handoff duty, EOD verify gate, discipline chain. (Origin: 2026-07-04)

@@ -96,5 +96,61 @@ Sebelum kata "siap", "done", atau "fixed":
 
 ---
 
+## Lv.2 — Stack Presets (Abam Stack)
+
+Standard tambahan ikut stack sebenar Abam:
+
+| Stack | Piawaian |
+|-------|----------|
+| **PHP procedural (eWorks/ruangniaga)** | Ikut pattern fail rujukan sedia ada; `page.php` whitelist WAJIB untuk page baru; section code ≠ display label; `in_house='1'` bila query `cf` table |
+| **MySQL** | Prepared statement / escape untuk semua input; JOIN besar → semak index dulu; jangan `SELECT *` dalam laporan |
+| **PWA/React** | Component ikut struktur folder sedia ada; state minimum; jangan tambah lib baru tanpa tanya |
+| **Supabase** | RLS policy semak sebelum query baru; jangan expose service key ke client |
+
+## Lv.3 — Blast Radius Check
+
+Sebelum edit merentas fail:
+- [ ] Grep semua caller/includer fail yang diubah (`grep -rn "nama_fungsi\|nama_fail"`)
+- [ ] Projek besar → query `project-map` (reverse dependency) ganti grep buta
+- [ ] Senarai terkesan > 3 fail → report blast radius kepada Abam SEBELUM edit
+- [ ] Fungsi shared diubah → verify sekurang-kurangnya 1 caller selepas edit
+
+## Lv.4 — Security Pass
+
+Auto-semak pada setiap kod baru yang sentuh input/output:
+- [ ] Input user → sanitize/validate sebelum guna (SQL param, escape output HTML)
+- [ ] Endpoint/page baru → auth check konsisten dengan pattern projek
+- [ ] Tiada credential/API key hardcoded — env var sahaja
+- [ ] Upload/file handling → jenis + saiz + path traversal check
+- Isu security ditemui dalam kod sedia ada (luar scope) → **report, jangan senyap**, jangan auto-fix tanpa arahan
+
+## Lv.5 — Diff Discipline
+
+- **Satu problem satu diff** — pembetulan berbeza = commit berbeza (chain auto-commit)
+- Self-review sebelum present: baca semula diff penuh, tanya "ada baris yang bukan untuk problem ini?"
+- Ada baris luar scope → strip sebelum tunjuk
+- Diff > 100 baris → ringkaskan approach kepada Abam dulu sebelum full implementation
+
+## Lv.6 — Verify Matrix
+
+Verification ikut jenis perubahan — bukan generic "dah test":
+
+| Jenis | Verify minimum |
+|-------|----------------|
+| PHP page/laporan | Load page dalam browser/curl; semak error log; test 1 filter |
+| SQL query | Run query sebenar; semak row count munasabah; EXPLAIN untuk JOIN besar |
+| JS/DOM | Buka console — zero error baru; test interaksi yang diubah |
+| PWA | Refresh + offline check jika service worker terlibat |
+| API/route | Call sekali dengan input sah + 1 input tak sah |
+
+Selepas verify pass → chain `auto-commit`; kod signifikan → chain `save-diary`.
+
+---
+
 ## Level History
-- **Lv.1** — Base: pre-code checklist, minimum-impact principle, verify gate, drift table, API contract guard, mandatory rules. (Origin: 2026-06-08 — gap analysis audit skill DIBA; code-sharp dirujuk dalam anchor + diba-response + CLAUDE.md tapi tiada SKILL.md)
+- **Lv.1** — Base: pre-code checklist, minimum-impact principle, verify gate, drift table, API contract guard, mandatory rules. (Origin: 2026-06-08 — gap analysis audit skill DIBA)
+- **Lv.2** — Stack Presets: piawaian PHP procedural/MySQL/PWA/Supabase ikut projek sebenar Abam. (Origin: 2026-07-04 — batch upgrade Lv.6, arahan Abam)
+- **Lv.3** — Blast Radius: caller check wajib sebelum edit merentas fail; chain project-map. (Origin: 2026-07-04)
+- **Lv.4** — Security Pass: sanitize/auth/credential check auto pada kod baru; report isu luar scope. (Origin: 2026-07-04)
+- **Lv.5** — Diff Discipline: satu problem satu diff, self-review, strip luar scope. (Origin: 2026-07-04)
+- **Lv.6** — Verify Matrix: verification spesifik ikut jenis perubahan + chain auto-commit/save-diary. (Origin: 2026-07-04)

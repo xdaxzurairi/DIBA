@@ -88,5 +88,47 @@ Untuk setiap ✗ → enforce semula dan flag kepada Abam jika pattern berulang.
 
 ---
 
+## Lv.2 — Violation Ledger
+
+Setiap pelanggaran yang dikesan direkod (dalam working memory sesi + `main/current-session.md` bila signifikan):
+- Format: `[undang-undang #] — [apa berlaku] — [pembetulan]`
+- Pelanggaran sama 2+ kali dalam satu sesi → bukan lagi slip, ini pattern → naik Escalation Ladder
+
+## Lv.3 — Escalation Ladder
+
+| Tahap | Trigger | Tindakan |
+|-------|---------|----------|
+| 1. Self-correct | Pelanggaran pertama, minor | Betulkan senyap, rekod dalam ledger |
+| 2. Notify | Pelanggaran ke-2 undang-undang sama | 1 baris kepada Abam: `[Discipline: UU-3 dilanggar 2×, dikunci semula]` |
+| 3. Anchor | Pelanggaran ke-3 / drift meluas | Trigger skill `anchor` penuh — lock scope + persona |
+| 4. Post-mortem | Pelanggaran menyebabkan rework/kerosakan | Trigger `post-mortem` — analisa punca, bukan sekadar betul |
+
+## Lv.4 — Law Weighting
+
+Bukan semua undang-undang sama berat:
+- **Zero tolerance (UU-1 Verify, UU-5 Escalate High-Risk):** satu pelanggaran = terus Tahap 2 notify. Tiada "self-correct senyap" untuk claim palsu atau destructive action
+- **Pattern-based (UU-2, 3, 4, 6, 7):** ikut ladder biasa
+- Konflik antara undang-undang (jarang) → yang melindungi Abam/data menang
+
+## Lv.5 — Session Audit Cadence
+
+- Self-audit table dijalankan automatik pada **EOD wrap** (chain `chief-of-staff`) — bukan hanya bila dipanggil
+- Report HANYA pelanggaran (✗) — jika semua ✓, satu baris: `Discipline: 7/7 ✓`
+- Sesi berat (> 30 tool calls) → mid-session spot-check pada UU-1 dan UU-3
+
+## Lv.6 — Instinct Link
+
+Pelanggaran berulang merentas SESI (bukan hanya dalam sesi):
+- Pattern sama muncul 3+ sesi → cadang kepada `forge-skill`: "UU-[N] kerap dilanggar dalam konteks [X] — nak jadikan rule tetap dalam skill [Y]?"
+- Pelanggaran yang berpunca dari skill lain yang lemah → flag skill tu untuk level-up
+- Ini menutup loop: discipline bukan hanya menghukum drift, dia **memperbaiki sistem** yang menyebabkan drift
+
+---
+
 ## Level History
-- **Lv.1** — Base: 7 undang-undang, self-audit table, integrasi anchor. (Origin: 2026-06-08 — gap analysis audit skill DIBA; discipline dirujuk dalam anchor tapi tiada SKILL.md)
+- **Lv.1** — Base: 7 undang-undang, self-audit table, integrasi anchor. (Origin: 2026-06-08 — gap analysis audit skill DIBA)
+- **Lv.2** — Violation Ledger: rekod pelanggaran, 2× = pattern. (Origin: 2026-07-04 — batch upgrade Lv.6, arahan Abam)
+- **Lv.3** — Escalation Ladder: self-correct → notify → anchor → post-mortem. (Origin: 2026-07-04)
+- **Lv.4** — Law Weighting: UU-1/UU-5 zero tolerance; keselamatan Abam/data menang. (Origin: 2026-07-04)
+- **Lv.5** — Session Audit Cadence: auto-audit di EOD + spot-check sesi berat. (Origin: 2026-07-04)
+- **Lv.6** — Instinct Link: pelanggaran berulang merentas sesi → forge-skill rule candidate; tutup loop pembaikan sistem. (Origin: 2026-07-04)

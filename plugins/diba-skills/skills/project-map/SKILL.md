@@ -125,9 +125,51 @@ Bila Abam tanya "di mana X" / "apa guna Y":
 
 ---
 
+## Lv.2 — Incremental Update
+
+- Map lama + kod berubah → JANGAN rebuild penuh: `git diff --name-only [tarikh-map]..HEAD` → re-scan fail berubah sahaja
+- Update entri terlibat dalam index; kekalkan yang lain
+- Rekod dalam map: `Updated: [tarikh] (incremental, N fail)`
+
+## Lv.3 — PHP/Legacy Support (Abam Stack)
+
+Simbol extraction untuk stack sebenar Abam, bukan hanya moden:
+- **PHP procedural**: `function`, `include`/`require` graph, form `action=` target, `$_GET`/`$_POST` params per page
+- **SQL dalam PHP**: table yang di-query per fail → jadual "fail ↔ table" (crucial untuk eWorks/ruangniaga)
+- **Page routing**: pattern `page.php` whitelist → map page → group access
+- Map projek PHP tunjuk: fail → tables → pages yang link ke sini
+
+## Lv.4 — Blast Radius Query
+
+Query mode baru: "kalau ubah X, apa pecah?"
+- Reverse dependency: siapa import/include/call X → senarai penuh dengan `path:line`
+- Untuk table SQL: fail mana query table ini
+- Output ranked: direct caller dulu, transitive kemudian (max 2 hop)
+- Chain dari `code-sharp` Lv.3 sebelum edit merentas modul
+
+## Lv.5 — Hotspot Analytics
+
+Tambah seksyen dalam map:
+- **Churn**: `git log --format="" --name-only --since="90 days"` → fail paling kerap berubah
+- **Hotspot** = churn tinggi × saiz besar × hub (banyak diimport) → risiko tertinggi
+- Jadual top-10 hotspot dengan sebab — panduan "mana patut hati-hati / mana patut refactor dulu"
+
+## Lv.6 — Session Auto-Refresh Gate
+
+- Session start dalam projek yang ada map → auto staleness check (1 saat): map date vs last commit date
+- Stale > 20 fail berubah → tawar incremental update SEBELUM kerja mula (bukan selepas tersesat)
+- Chain: map segar → `repo-pack` guna index untuk pilih fail teras; `orchestrate` guna untuk agih subtask; `code-sharp` guna untuk blast radius
+
+---
+
 ## Level History
 
-- **Lv.1** — Base: scan structure, extract symbols (grep bertarget), relationship graph, index ke `memories/maps/`, query mode dengan `path:line`, stale detection. (Origin: 2026-07-03 — isi jurang "Graphify" dari infografik "10 GitHub repos that make Claude supercharged")
+- **Lv.1** — Base: scan structure, extract symbols (grep bertarget), relationship graph, index ke `memories/maps/`, query mode dengan `path:line`, stale detection. (Origin: 2026-07-03 — isi jurang "Graphify")
+- **Lv.2** — Incremental Update: re-scan fail berubah sahaja via git diff. (Origin: 2026-07-04 — batch upgrade Lv.6, arahan Abam)
+- **Lv.3** — PHP/Legacy Support: include graph, fail↔table SQL map, page.php routing map. (Origin: 2026-07-04)
+- **Lv.4** — Blast Radius Query: reverse dependency "kalau ubah X apa pecah". (Origin: 2026-07-04)
+- **Lv.5** — Hotspot Analytics: churn × saiz × hub = risiko. (Origin: 2026-07-04)
+- **Lv.6** — Auto-Refresh Gate: staleness check di session start + chain repo-pack/orchestrate/code-sharp. (Origin: 2026-07-04)
 
 ---
 *[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*
