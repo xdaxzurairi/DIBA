@@ -189,9 +189,9 @@ Jangan interrupt kerja — satu baris sahaja, kemudian teruskan.
 | Skill | Bila | Tindakan |
 |-------|------|----------|
 | `work-plan` | Plan execution berjalan lama | Checkpoint align dengan plan step — update kedua-dua fail |
-| `session-briefing` | Resume selepas context reset | Brief on resume include checkpoint summary |
+| `chief-of-staff` | Resume selepas context reset | Session brief include checkpoint summary |
 | `orchestrate` | Orchestration panjang hampir overflow | Token guard aktif compact semasa orchestration |
-| `anchor` | Compact mode drift dari fokus asal | Anchor lock semula scope dalam compact mode |
+| `discipline` | Compact mode drift dari fokus asal | Context Lock semula scope dalam compact mode |
 | `save-diary` | Context reset sebelum diary sempat disave | Checkpoint serve sebagai proxy — save diary dulu |
 | `dispatching-parallel-agents` | Parallel agents cipta terlalu banyak context | Enforce targeted scope per agent |
 

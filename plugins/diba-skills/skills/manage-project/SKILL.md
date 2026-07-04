@@ -375,7 +375,7 @@ Bila `new project` atau workspace baharu didaftarkan:
 
 ### Health Score (Lv.4)
 
-Setiap `list projects` atau session-briefing, kira health score per project:
+Setiap `list projects` atau session brief (chief-of-staff), kira health score per project:
 - **Active** (hijau): last accessed < 3 hari
 - **Cooling** (kuning): last accessed 3-7 hari
 - **Stale** (merah): last accessed > 7 hari
@@ -390,7 +390,7 @@ Bila `save project`, scan Technical Notes untuk shared dependencies:
 
 ### Smart Suggest (Lv.6)
 
-Pada session start (via session-briefing integration):
+Pada session start (via chief-of-staff session brief):
 - Analisa: reminders yang merujuk project, diary entries terkini, pending items
 - Suggest project mana patut di-load berdasarkan urgency + staleness
 - Format: "Cadangan: Load [project] — [sebab ringkas]"

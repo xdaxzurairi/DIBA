@@ -140,9 +140,63 @@ Next: [langkah terbuka atau follow-up, jika ada]
 | `code-sharp` | Bila langkah ada kod, enforce code-sharp standard |
 | `work-plan` | Bila plan > 5 langkah atau ada file `plans/*.md`, handoff ke work-plan |
 | `log-decision` | Bila decompose ada trade-off signifikan, log decision |
-| `anchor` | Bila mid-execution ada drift dari goal asal, trigger anchor |
+| `discipline` | Bila mid-execution ada drift dari goal asal, trigger Context Lock (Lv.7) |
+
+---
+
+## Lv.2 — Parallel Lanes
+
+Langkah independent dikumpul dalam **lane** dan dijalankan serentak (parallel tool calls):
+- Lane = kumpulan langkah tanpa dependency antara satu sama lain
+- Dependent chain kekal berturutan; hanya lane yang selari
+- Report ikut lane: `Lane A ✓ · Lane B ✓ · Lane C ⚠`
+
+## Lv.3 — Risk Tiering
+
+Setiap langkah ditag masa decompose — declare threshold ikut risiko, bukan bilangan:
+
+| Tier | Contoh | Behavior |
+|------|--------|----------|
+| LOW | baca fail, grep, analisa | Terus execute, tak perlu declare |
+| MED | edit fail, tulis output baru | Declare dalam plan ringkas |
+| HIGH | delete, push, ubah API contract, sistem luar | WAJIB escalate — walau 1 langkah |
+
+Plan semua-LOW → terus jalan tanpa declare, walau 10 langkah.
+
+## Lv.4 — Recovery Protocol
+
+Langkah gagal ≠ terus skip:
+1. **Diagnose 1 kali** — baca error sebenar, cuba fix yang jelas (retry sekali)
+2. Masih gagal → cuba **laluan alternatif** jika ada (tool lain, pendekatan lain)
+3. Masih gagal → tanda blocked + catat *sebab sebenar* (bukan "tak jadi")
+4. Langkah yang dah siap sebelum kegagalan → nyatakan dalam report; jangan claim rollback yang tak dibuat
+
+## Lv.5 — Wave Reporting
+
+Untuk run panjang (> 5 langkah):
+- Setiap ~5 langkah: 1 baris progress wave — `[3/8] siap — sedang: [langkah semasa]`
+- Akhir run: senarai **artifacts** (fail dicipta/diubah dengan path) bukan sekadar "siap"
+- Jangan narrate setiap langkah — wave sahaja
+
+## Lv.6 — Handoff Intelligence & Goal Ledger
+
+Auto-handoff matrix — auto-worker kenal bila dia bukan tool yang betul:
+
+| Signal | Handoff ke |
+|--------|-----------|
+| > 5 langkah ATAU wujud `plans/*.md` berkaitan | `work-plan` (tracked checkboxes + per-todo commit) |
+| Multi-domain + perlu synthesis (kod+research+design) | `orchestrate` |
+| Goal tak habis dalam sesi | Goal ledger → `main/current-session.md` (goal, langkah siap, langkah tinggal) supaya sesi baru sambung terus |
+| Kerja harian/agenda | `chief-of-staff` (bukan auto-worker punya kerja) |
+
+Goal ledger WAJIB ditulis bila run terganggu — goal tak pernah hilang dengan sesi.
 
 ---
 
 ## Level History
-- **Lv.1** — Base: goal decomposition (detect hidden steps), 4-step protocol, execution loop, escalation gate, output pattern. (Origin: 2026-06-08 — gap analysis audit skill DIBA; auto-worker dirujuk dalam CLAUDE.md sebagai auto-trigger tapi tiada SKILL.md)
+- **Lv.1** — Base: goal decomposition (detect hidden steps), 4-step protocol, execution loop, escalation gate, output pattern. (Origin: 2026-06-08 — gap analysis audit skill DIBA)
+- **Lv.2** — Parallel Lanes: independent steps serentak. (Origin: 2026-07-04 — batch upgrade Lv.6, arahan Abam)
+- **Lv.3** — Risk Tiering: declare ikut risiko bukan bilangan; HIGH sentiasa escalate. (Origin: 2026-07-04)
+- **Lv.4** — Recovery: diagnose-retry-alternatif sebelum blocked; sebab sebenar direkod. (Origin: 2026-07-04)
+- **Lv.5** — Wave Reporting: progress wave + artifacts list. (Origin: 2026-07-04)
+- **Lv.6** — Handoff Intelligence: auto-handoff matrix (work-plan/orchestrate/chief-of-staff) + goal ledger dalam session RAM. (Origin: 2026-07-04)

@@ -198,7 +198,7 @@ Selepas recall berjaya:
 | Skill | Hubungan | Tindakan |
 |-------|----------|----------|
 | `save-diary` | Sumber utama data recall | Kualiti recall bergantung pada kualiti entry diary |
-| `session-briefing` | Brief surface "last session" | echo-recall untuk recall mendalam di luar sesi terkini |
+| `chief-of-staff` | Session brief surface "last session" | echo-recall untuk recall mendalam di luar sesi terkini |
 | `chief-of-staff` | Forward view guna data sama | echo-recall = backward search; chief-of-staff = agenda |
 | `resonance` | Seeds dari sesi lama | Link hasil recall kepada seed jika berkaitan |
 | `log-decision` | Keputusan dalam decisions.md | Semak decisions.md bila soalan berkaitan keputusan penting |

@@ -129,9 +129,54 @@ Kesan pola mahal & cadang jimat:
 
 ---
 
+## Lv.2 — Auto-Log di EOD
+
+- Chain dari `chief-of-staff` EOD wrap: log usage sesi automatik tanpa diminta — satu baris jsonl, senyap
+- Sesi tanpa EOD (terputus) → log pada sesi berikutnya dengan tag `"recovered":true`
+- Manual "log usage" tetap ada untuk mid-session
+
+## Lv.3 — Trend Reports
+
+- `usage minggu ini` / `usage bulan ini` → aggregate `usage-log.jsonl`:
+  - Jumlah kos MYR/USD, pecahan per model, purata per sesi
+  - **Top-3 sesi termahal** dengan sebab (tool calls tinggi? output panjang? model berat?)
+  - Banding tempoh sebelum: `↑12%` / `↓8%` — 1 baris
+- Tiada data cukup → kata terus, jangan extrapolate dari 2 data point
+
+## Lv.4 — Budget Alerts
+
+- Abam set budget: "budget AI RM[X] sebulan" → simpan dalam `memories/usage/budget.md`
+- Setiap log baru semak kumulatif bulan:
+  - ≥ 70% → 1 baris nota dalam report seterusnya
+  - ≥ 90% → warning proaktif + cadang mode jimat (haiku tier, compact, local fallback)
+  - ≥ 100% → sebut setiap sesi sehingga bulan baru / budget diubah
+- Tiada budget diset → tiada alert; jangan cipta budget sendiri
+
+## Lv.5 — Efficiency Score
+
+Kos bersendirian tak bermakna — ukur nilai:
+- Per sesi: kos ÷ output konkrit (commit, fail diubah, keputusan dilog, PR)
+- Weekly: `RM[X] / [N] commits` — trend naik = makin mahal per hasil → siasat kenapa
+- Sesi mahal TANPA artifact → flag jujur: "RM[X] habis, tiada output konkrit — sesi explore/debug?"
+- Jangan gamify — score ini isyarat siasatan, bukan KPI untuk dikejar buta
+
+## Lv.6 — Advisor Mode
+
+- Data usage masuk `chief-of-staff` weekly review automatik: belanja minggu, trend, 1 cadangan jimat teratas
+- Cadangan sentiasa konkrit + boleh diambil tindakan: "sesi eWorks banyak baca fail besar berulang — buat project-map sekali, jimat ~RM[X]/minggu"
+- Pattern belanja berubah mendadak (3× purata) → siasat dan report punca, bukan hanya angka
+- Local fallback (`diba-fallback-chat.js`) digunakan → nota penjimatan berbanding cloud
+
+---
+
 ## Level History
 
-- **Lv.1** — Base: token estimate (in/out), pricing reference multi-model, cost compute USD+MYR, log ke `memories/usage/usage-log.jsonl`, waste flagging dengan skill chain, FX override. (Origin: 2026-07-03 — isi jurang "ccusage" dari infografik "10 GitHub repos that make Claude supercharged"; dibezakan dari token-guard yang urus konteks langsung)
+- **Lv.1** — Base: token estimate (in/out), pricing reference multi-model, cost compute USD+MYR, log ke `memories/usage/usage-log.jsonl`, waste flagging dengan skill chain, FX override. (Origin: 2026-07-03 — isi jurang "ccusage")
+- **Lv.2** — Auto-Log: log automatik di EOD wrap via chief-of-staff. (Origin: 2026-07-04 — batch upgrade Lv.6, arahan Abam)
+- **Lv.3** — Trend Reports: aggregate mingguan/bulanan + top-3 termahal. (Origin: 2026-07-04)
+- **Lv.4** — Budget Alerts: threshold 70/90/100% budget Abam. (Origin: 2026-07-04)
+- **Lv.5** — Efficiency Score: kos per artifact, flag sesi mahal tanpa output. (Origin: 2026-07-04)
+- **Lv.6** — Advisor Mode: feed weekly review + cadangan konkrit + anomali siasat. (Origin: 2026-07-04)
 
 ---
 *[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

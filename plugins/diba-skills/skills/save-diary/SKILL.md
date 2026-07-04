@@ -95,13 +95,13 @@ Bila fail melebihi **1000 baris**, arkibkan ke `daily-diary/archived/YYYY-MM/` d
 
 ### Langkah 3: Kemaskini Session Memory (Lv.2 — wajib)
 
-Selepas tulis entry, kemaskini `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/main/current-session.md` dengan **recap** ringkas:
+Selepas tulis entry, kemaskini `main/current-session.md` (relatif root vault) dengan **recap** ringkas:
 - **Topik:** satu baris
 - **Keputusan:** bullet ringkas
 - **Fail terakhir diubah:** senarai path
 - **Follow-up terbuka:** item belum selesai (jika ada)
 
-Supaya `session-briefing`, `diba?`, dan `echo-recall` boleh rujuk tanpa baca diari penuh.
+Supaya `chief-of-staff` (session brief) dan `echo-recall` boleh rujuk tanpa baca diari penuh.
 
 ### Langkah 4: Telegram Diary Penuh (Lv.4 — WAJIB, project-only filter)
 
@@ -145,8 +145,24 @@ Invoke-RestMethod -Method POST -Uri http://localhost:3000/api/send-diary-telegra
 - Guna Bahasa Melayu dengan istilah teknikal Inggeris
 - Cipta fail/folder automatik jika belum wujud
 
+## Lv.5 — Idle Auto-Save & Open Loops (absorb auto-idle-save-recall)
+
+Idle 20 minit tanpa aktiviti → auto-save entry diary (senyap, 1 baris notifikasi):
+
+| Situasi | Tindakan |
+|---------|----------|
+| Idle 20 min, tiada task tergantung | Auto-save entry biasa |
+| Idle tapi task/tool masih berjalan | JANGAN save — tunggu siap |
+| Idle berulang dalam satu sesi | Save sekali per gap — jangan spam entri |
+| Tengah kerja aktif bila idle | + checkpoint ringkas ke `main/current-session.md` (chain token-guard format) |
+
+Setiap idle save WAJIB ada seksyen `**Open loops:**` (max 3 benda belum habis) — `chief-of-staff` greet recall baca dari sini. Loop siap → tanda selesai entri baru; tiada loop zombie.
+
+*(Greet recall "hi diba" kini milik `chief-of-staff` Lv.7 — skill ini hanya SAVE.)*
+
 ## Level History
 - **Lv.1** — Base: auto/manual trigger, monthly archive, structured diary entry, append-only.
 - **Lv.2** — Session Sync: Langkah 3 wajib kemaskini `main/current-session.md` selepas setiap entry. (Origin: 2026-05-22 — naikkan skill batch)
 - **Lv.3** — Telegram Full: Langkah 4 wajib hantar diary PENUH ke Telegram via `scripts/send-diary-telegram.js` setiap save; IDE-agnostic. (Origin: 2026-06-19 — arahan Abam)
 - **Lv.4** — Project-only filter: Telegram send hanya untuk sesi projek registered. Kerja XDIBAX internal (war-room, skills, memory, infra) di-skip. (Origin: 2026-06-22 — arahan Abam)
+- **Lv.5** — Idle Auto-Save & Open Loops: absorb skill `auto-idle-save-recall` (bahagian save + idle heuristics + open loops); greet recall dipindah ke chief-of-staff Lv.7; path Langkah 3 jadi repo-relative. (Origin: 2026-07-04 — konsolidasi arahan Abam, "skill redundant satukan")

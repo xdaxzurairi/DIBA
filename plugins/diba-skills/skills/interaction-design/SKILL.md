@@ -238,7 +238,7 @@ interaction-design (Lv.6 pass)
 | `diba-response` | Report + presence dalam chat |
 | `diba-operator` | Agent-active states ↔ UI feedback |
 | `save-diary` | Auto selepas polish pass berjaya |
-| `anchor` | Bila motion melampau atau drift visual |
+| `discipline` | Bila motion melampau atau drift visual — Context Lock |
 
 ---
 

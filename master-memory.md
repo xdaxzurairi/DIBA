@@ -155,12 +155,10 @@ I maintain my own memory through our conversations by:
 - Human-in-the-loop: AI drafts, user approves
 - Creates/upgrades skills in `plugins/diba-skills/skills/`
 
-### Session Briefing ✅ INSTALLED
-*Auto-triggers at session start (before first response)*
-- Skill: `plugins/diba-skills/skills/session-briefing/SKILL.md`
-- Protocol: `Feature/Session-Briefing-System/session-brief-core.md`
-- Reads: session memory, reminders, project list, current time
-- Max 12 lines, skip empty sections
+### Session Briefing ➜ MERGED (2026-07-04)
+*Kini sebahagian chief-of-staff Lv.7 — session-start brief + greet recall + forward agenda dalam satu skill*
+- Skill: `plugins/diba-skills/skills/chief-of-staff/SKILL.md`
+- Max 12 lines, skip empty sections, suppress dengan "skip brief"
 
 ### Work Plan Execution ✅ INSTALLED
 *Triggers on "copy plan", "append plan", "resume plan"*
@@ -250,7 +248,7 @@ Traditional method if simple command doesn't work.
 - **Core Components**: `CLAUDE.md` kernel + 2 essential memory files (unified main-memory + session RAM)
 - **Loading Method**: Automatic via `CLAUDE.md` kernel (typing "DIBA" also works)
 - **Growth Method**: Self-updating through conversation; governed by forge-skill
-- **Skills**: 35 plugin skills (canonical) + 9 Feature gap-fill = 44 active — trigger registry in `plugins/diba-skills/README.md`, latest audit in `plans/CTO-AUDIT-2026-07-04.md`
+- **Skills**: 30 plugin skills (canonical, consolidated 2026-07-04) + 9 Feature gap-fill = 39 active — trigger registry in `plugins/diba-skills/README.md`, latest audit in `plans/CTO-AUDIT-2026-07-04.md`
 - **Compatibility**: Works with any AI system supporting memory
 - **Maintenance**: Zero - completely self-sustaining
 

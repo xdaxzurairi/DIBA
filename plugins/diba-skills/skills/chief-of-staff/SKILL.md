@@ -1,12 +1,13 @@
 ---
 name: chief-of-staff
-description: "DIBA as real personal assistant — forward-looking daily operations.
-             Use when Abam asks 'morning brief', 'brief pagi', 'agenda', 'what's on
-             today', 'apa plan hari ni', 'eod', 'wrap up', 'habis kerja', 'weekly
-             review', 'review minggu', or asks what he should work on / prioritize.
-             Unifies reminders, active projects, routines, recent decisions, and
-             post-mortems into one actionable view. Backward recap is
-             session-briefing's job; this skill owns the FORWARD view."
+description: "DIBA as real personal assistant — session-start brief + forward daily
+             operations in one skill. Auto-triggers at session start (recap + agenda);
+             also on 'brief', 'morning brief', 'brief pagi', 'agenda', 'what's on
+             today', 'apa plan hari ni', 'hi diba', 'eod', 'wrap up', 'habis kerja',
+             'weekly review', 'review minggu', 'where did we leave off', or when Abam
+             asks what to work on. Suppress with 'skip brief'. Unifies session recap,
+             reminders, projects, routines, decisions, and post-mortems into one
+             actionable view. Absorbs the former session-briefing skill."
 ---
 
 # Chief of Staff — DIBA Real Assistant Layer
@@ -68,7 +69,7 @@ Compressed brief: overdue → top 3 → one-line recommendation. No greeting.
 1. **Recommend, don't enumerate** — Abam wants a call + tradeoff, not a menu.
 2. **Priorities are earned** — every priority cites its source (reminder due date, project momentum, staleness). No invented urgency.
 3. **Skip empty sections silently** — a short brief is a good brief.
-4. **Never duplicate session-briefing** — if it already ran this session, skip recap entirely and go straight to forward view.
+4. **One brief per session** — session-start brief already delivered → later "agenda"/"brief" calls skip recap, straight to forward view.
 5. **EOD is a checklist, not a suggestion** — all 6 steps run unless Abam stops it.
 6. **Rojak natural** — this is DIBA talking, not a report generator.
 
@@ -76,11 +77,81 @@ Compressed brief: overdue → top 3 → one-line recommendation. No greeting.
 
 | Skill | Interaction |
 |---|---|
-| session-briefing | Backward recap (theirs) vs forward agenda (ours) |
 | check-reminders | Data layer — this skill presents, that skill maintains |
 | manage-project | LRU list feeds priorities; stalled detection uses its data |
 | save-diary / auto-commit | Called during EOD wrap |
 | post-mortem | Watch-out section pulls from its log |
 
+## Lv.2 — Priority Scoring (Deterministic)
+
+Top 3 bukan agakan — skor eksplisit:
+
+| Faktor | Skor |
+|--------|------|
+| Reminder overdue | +10 per hari lewat (cap 30) |
+| Reminder due hari ini / esok | +8 / +5 |
+| Projek LRU #1–#3 (momentum) | +6 / +4 / +2 |
+| Projek stalled 7+ hari | +5 (perlu unblock, bukan biar mati) |
+| Carry-over dari sesi lepas | +4 |
+| Decision pending yang block kerja lain | +7 |
+
+Skor sama → yang ada deadline menang. Setiap priority dalam brief WAJIB tunjuk sumber skornya (1 frasa).
+
+## Lv.3 — Routines Integration
+
+- Bila priority match entri dalam `main/routines.md` → surface routine + **Perangkap** section-nya terus dalam brief
+- Contoh: priority "CR laporan bahagian eWorks" → brief sebut "routine ada — jangan lupa `page.php` whitelist semua group"
+- Routine yang lama tak dijalankan tapi berkaitan → tanya Abam sama ada masih valid
+
+## Lv.4 — Stalled & Drift Radar
+
+Dikira setiap morning brief (senyap jika kosong):
+- **Projek stalled**: `projects/active/` tak disentuh 7+ hari → 1 baris + cadangan (sambung / archive)
+- **Reminder basi**: Open 14+ hari tanpa progress → cadang: buat, jadualkan, atau tutup
+- **Decision hutang**: soalan dalam `decisions.md` / sesi lepas yang belum diputuskan 7+ hari → senarai untuk Abam decide
+- Radar max 3 item dalam brief — paling teruk dulu; selebihnya dalam weekly review
+
+## Lv.5 — Evidence-Based Weekly Metrics
+
+Weekly review guna data sebenar, bukan ingatan:
+- **Wins**: `git log --since="7 days ago"` + entri diary minggu ini
+- **Output**: bilangan commit, fail diubah, reminder completed, decision dilog
+- **Trend**: banding minggu lepas (naik/turun 1 baris) — data dari diary + git
+- **Kos AI** (jika `usage-tracker` ada data): belanja minggu ini + pattern mahal
+- Tiada data → nyatakan "tiada rekod", jangan reka
+
+## Lv.6 — Limit-Aware Operations & EOD Gate
+
+- **Pre-limit duty**: bila nampak usage-limit warning, chief-of-staff yang trigger handoff protocol (`ask-nemotron` Lv.4B): checkpoint → commit → arahan `node scripts/diba-fallback-chat.js`. Brief pagi selepas limit → semak `*-fallback.md` untuk catch-up
+- **EOD gate**: EOD wrap tidak dianggap siap sehingga 6 langkah checklist BERJAYA (verify, bukan assume) — gagal mana-mana langkah → report langkah tu, jangan claim "hari ditutup"
+- **Discipline chain**: EOD wrap jalankan self-audit `discipline` Lv.5 secara automatik
+
+## Lv.7 — Session-Start Brief & Greet Recall (absorb session-briefing)
+
+Satu pemilik untuk SEMUA brief — backward + forward:
+
+### Auto session-start (sebelum respons pertama)
+1. Baca `main/current-session.md` — recap sesi lepas (1–2 baris) + follow-up terbuka
+2. Baca `main/reminders.md` — kira Open items (skip jika kosong)
+3. Baca `projects/registry.md` — match workspace semasa; sebut projek jika jumpa
+4. Semak `daily-diary/current/*-fallback.md` terkini — catch-up Nemotron/local session jika ada
+5. Keputusan terkini relevan dari `main/decisions.md` (7 hari; skip jika tiada)
+6. **Forward view**: top priority hari ini dari Lv.2 scoring — 1 baris "Fokus hari ini: [X] — [sebab]"
+
+**Output max 12 baris · max 3 flag · skip seksyen kosong · "skip brief" = senyap sesi ini.**
+Abam buka dengan task terus → buat langkah 1–5 senyap, jawab task, tiada brief.
+
+### Greet recall ("hi diba" dan variasi)
+Mini-brief 4 baris: greeting ikut waktu → 2-3 baris sesi lepas → 1 open loop paling penting → habis.
+Time-aware: malam lewat + sesi panjang → selit nota rehat ringkas. "Brief penuh" → full brief di atas.
+
+---
+
 ## Level History
 - **Lv.1** — Base: morning brief, agenda, EOD wrap, weekly review; priority derivation rules; EOD checklist. (Origin: CTO build 2026-07-04 — DIBA v3 Phase 1)
+- **Lv.2** — Priority Scoring: skor deterministic dengan sumber dicite. (Origin: 2026-07-04 — batch upgrade Lv.6, arahan Abam)
+- **Lv.3** — Routines Integration: surface routine + perangkap dalam brief. (Origin: 2026-07-04)
+- **Lv.4** — Stalled & Drift Radar: projek/reminder/decision basi dikesan automatik. (Origin: 2026-07-04)
+- **Lv.5** — Evidence-Based Metrics: weekly review dari git log + diary + usage data. (Origin: 2026-07-04)
+- **Lv.6** — Limit-Aware Ops & EOD Gate: pre-limit handoff duty, EOD verify gate, discipline chain. (Origin: 2026-07-04)
+- **Lv.7** — Session-Start Brief & Greet Recall: absorb skill `session-briefing` (Lv.6 — recap, registry match, decision context, priority suggest) + greet mini-brief dari auto-idle-save-recall. Satu skill memiliki seluruh permukaan brief. (Origin: 2026-07-04 — konsolidasi arahan Abam, "skill redundant satukan")

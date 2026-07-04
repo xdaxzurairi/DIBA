@@ -78,7 +78,7 @@ Always-on — silent classification before every response. No output unless esca
 |-------|-----------|
 | `token-guard` | Compact mode aktif → prefer lower tier |
 | `orchestrate` | Orchestration auto-trigger = Hard |
-| `session-briefing` / `chief-of-staff` | Brief/agenda = Simple (baca fail sahaja) |
+| `chief-of-staff` | Brief/agenda = Simple (baca fail sahaja) |
 | `work-plan` | Plan execution = Medium/Hard ikut skop |
 
 ## Edge Cases

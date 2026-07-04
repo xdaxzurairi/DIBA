@@ -128,9 +128,57 @@ Kemudian laksana Protocol.
 
 ---
 
+## Lv.2 — Pack Profiles
+
+Pilih fail ikut TUJUAN, bukan pukul rata:
+
+| Profile | Isi | Bila |
+|---------|-----|------|
+| `handoff-ai` | Tree + semua source + README + config | Hantar ke AI lain |
+| `review` | Fail berubah (git diff) + fail berkaitan + tests | Code review |
+| `debug` | Fail dalam stack trace + caller + config berkaitan | Debug isu spesifik |
+| `onboard` | README + entry + config + top-10 hub files | Faham projek baru cepat |
+
+Default: tanya tujuan jika tak jelas; jangan pack penuh membuta.
+
+## Lv.3 — Delta Pack
+
+- Pack lama wujud → `repo-pack delta [tarikh/commit]`: hanya fail berubah sejak itu + senarai fail dipadam
+- Output: `repo-pack-[nama]-delta-[YYYYMMDD].md` merujuk pack asal
+- Jauh lebih kecil untuk update hand-off — jangan hantar 100k token untuk 5 fail berubah
+
+## Lv.4 — Deep Secret Scan
+
+Lapisan tambahan atas scan asas:
+- Regex khusus: `sk-or-`, `sk-ant-`, `ghp_`, `AKIA`, `eyJ` (JWT), `-----BEGIN`, `password\s*=`, connection string DSN
+- High-entropy string (> 32 aksara rawak) dalam config → redact + flag untuk semakan
+- `.env.example` dengan placeholder DIBENARKAN; `.env` sebenar TIDAK SESEKALI
+- Report akhir WAJIB ada: `Secret scan: [N] redacted, [N] flagged`
+
+## Lv.5 — Token-Budget Split
+
+- Sasaran budget diberi (cth "muat dalam 80k") → split pack jadi bahagian bernombor dengan fail INDEX
+- INDEX: senarai bahagian + isi setiap satu + arahan baca ("baca INDEX dulu, kemudian bahagian relevan")
+- Prioriti isi: entry + config + hub files dalam bahagian 1; leaf/util kemudian
+
+## Lv.6 — Pipeline Mode
+
+Pack sebagai bahagian aliran, bukan tindakan solo:
+1. Projek besar → chain `project-map` dulu → guna index pilih fail teras (bukan agak)
+2. Pack ikut profile → deep secret scan → token estimate
+3. Hand-off note auto: tujuan pack, mode, apa TIDAK disertakan, tarikh (staleness warning)
+4. Pack yang sama diminta semula > 7 hari kemudian → auto-cadang delta/rebuild, jangan hidang pack basi senyap
+
+---
+
 ## Level History
 
-- **Lv.1** — Base: scope + .gitignore respect, structure map, secret-scan redaction, pack ke `memories/packs/`, token estimate, 3 compression modes. (Origin: 2026-07-03 — isi jurang "Repomix" dari infografik "10 GitHub repos that make Claude supercharged")
+- **Lv.1** — Base: scope + .gitignore respect, structure map, secret-scan redaction, pack ke `memories/packs/`, token estimate, 3 compression modes. (Origin: 2026-07-03 — isi jurang "Repomix")
+- **Lv.2** — Pack Profiles: handoff-ai / review / debug / onboard. (Origin: 2026-07-04 — batch upgrade Lv.6, arahan Abam)
+- **Lv.3** — Delta Pack: hanya perubahan sejak pack lepas. (Origin: 2026-07-04)
+- **Lv.4** — Deep Secret Scan: regex khusus + entropy + report wajib. (Origin: 2026-07-04)
+- **Lv.5** — Token-Budget Split: pack berbahagian dengan INDEX. (Origin: 2026-07-04)
+- **Lv.6** — Pipeline Mode: chain project-map → pack → hand-off note + staleness guard. (Origin: 2026-07-04)
 
 ---
 *[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

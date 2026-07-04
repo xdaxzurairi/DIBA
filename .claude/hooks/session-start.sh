@@ -9,7 +9,7 @@ DIBA_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 SKILLS_DIR="$HOME/.claude/skills"
 
 # Skills retired by consolidation — never install, remove if present
-DEPRECATED="diba-recall diba-operator work-plan-execution"
+DEPRECATED="diba-recall diba-operator work-plan-execution anchor self-healing session-briefing dream-ideas auto-idle-save-recall"
 
 mkdir -p "$SKILLS_DIR"
 
