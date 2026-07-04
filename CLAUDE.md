@@ -52,3 +52,4 @@ Full skill catalog + trigger registry: `plugins/diba-skills/README.md`. Feature 
 - Projects (LRU, max 10 active): `projects/active/` + `projects/project-list.md`
 - Diary: `daily-diary/current/` · Knowledge: `library/` · Plans: `plans/`
 - Architecture map: `plans/DIBA-v3-Blueprint.md` · Latest audit: `plans/CTO-AUDIT-2026-07-04.md`
+- Manual pengguna penuh (setup + semua command): `MANUAL.md`

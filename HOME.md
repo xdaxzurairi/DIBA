@@ -2,6 +2,8 @@
 
 > *Deep Insight & Betterment Assistant — Zuex's trusted partner*
 
+📖 **[[MANUAL|MANUAL — setup & cara penggunaan penuh]]**
+
 ---
 
 ## Core Memory
