@@ -60,7 +60,7 @@ One owner per phrase. Before adding or leveling a skill, grep this table — a p
 | repo-pack | "pack repo", "repomix", "satukan projek", "bundle codebase" |
 | project-map | "graphify", "map projek", "buat index", "dependency map", "cari kat mana" |
 | forge-skill | "create skill", "forge this", "level up", "upgrade skill", "naikkan skill" · auto on 3+ repeated patterns |
-| ask-nemotron | "nm:", "nemotron:", "#nm" |
+| ask-nemotron | "nm:", "nemotron:", "#nm", "claude limit", "nemotron takeover", "guna nemotron je" |
 
 ### Design, creative & marketing
 | Skill | Owned triggers |
