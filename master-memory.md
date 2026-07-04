@@ -206,6 +206,20 @@ I maintain my own memory through our conversations by:
 - **marketing-workshop** — `skills/marketing-workshop/` — reusable SEO/copywriting/conversion/growth workflows (maps: Marketing Skills). Triggers: "copywriting", "SEO", "tulis copy", "growth".
 - *Already covered natively:* Anthropic public skills → `forge-skill`; Open Design → `interaction-design`; Obsidian skills → `library`/`save-memory`/`echo-recall` (DIBA is an Obsidian vault); Caveman → `diba-response`/`token-guard`; Superpowers → `work-plan`/`orchestrate`/`code-sharp`.
 
+### Chief of Staff ✅ INSTALLED (2026-07-04)
+*Forward-looking real-assistant layer — answers "what should Abam do next?"*
+- Skill: `plugins/diba-skills/skills/chief-of-staff/SKILL.md`
+- Commands: "morning brief" / "agenda" / "eod" / "weekly review"
+- Reads: reminders, project list (LRU), routines, decisions, post-mortems, session RAM
+- EOD wrap runs the full close-out checklist: session save → diary → commit
+- Distinct from session-briefing (backward recap) — this owns the FORWARD view
+
+### DIBA Kernel (CLAUDE.md) ✅ INSTALLED (2026-07-04)
+*Zero-incantation activation — DIBA loads in EVERY Claude Code session automatically*
+- File: `CLAUDE.md` (repo root, auto-loaded by Claude Code)
+- Contains: identity, session-start protocol, command router, standing rules
+- Typing "DIBA" still works, but is no longer required
+
 ### Patch System ✅ INSTALLED
 - Location: `patches/` (patch files + applied.md tracking)
 - Format: `patches/patch-format.md`
@@ -232,16 +246,14 @@ I maintain my own memory through our conversations by:
 Traditional method if simple command doesn't work.
 
 ## Memory System Status
-- **Architecture**: DIBA AI Memory Core v2.1 — Consolidated Architecture
-- **Core Components**: 2 essential files (unified main-memory + session RAM) + 14 features
-- **Loading Method**: Simple "DIBA" command restoration
-- **Growth Method**: Self-updating through conversation
-- **Skills**: 36 auto-triggered skills via `plugins/diba-skills/` (incl. Superultra Skill Pack — full "10 GitHub repos" coverage)
+- **Architecture**: DIBA OS v3 — Kernel + Memory + Skills + Proactive layers (see `plans/DIBA-v3-Blueprint.md`)
+- **Core Components**: `CLAUDE.md` kernel + 2 essential memory files (unified main-memory + session RAM)
+- **Loading Method**: Automatic via `CLAUDE.md` kernel (typing "DIBA" also works)
+- **Growth Method**: Self-updating through conversation; governed by forge-skill
+- **Skills**: 36 auto-triggered skills via `plugins/diba-skills/` — canonical list is the plugin folder itself, latest audit in `plans/CTO-AUDIT-2026-07-04.md`
 - **Compatibility**: Works with any AI system supporting memory
 - **Maintenance**: Zero - completely self-sustaining
 
 ---
 
-💜 **[AI_NAME] is here with instant memory restoration - just type "[AI_NAME]" and complete personality restoration happens immediately! Ready to grow and learn together through every conversation!**
-
-*Replace [AI_NAME] throughout this file with your chosen AI companion name*
+💜 **DIBA is here — every session in this vault starts with full memory and personality, automatically. Ready to grow and learn together through every conversation!**

@@ -1,8 +1,9 @@
 #!/bin/bash
-# Auto-install DIBA skills to ~/.claude/skills/ on every session start
+# DIBA SessionStart hook — auto-install skills to ~/.claude/skills/
+# Self-locating: works on any machine, any clone path.
 set -euo pipefail
 
-DIBA_DIR="/home/user/DIBA"
+DIBA_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 SKILLS_DIR="$HOME/.claude/skills"
 
 mkdir -p "$SKILLS_DIR"

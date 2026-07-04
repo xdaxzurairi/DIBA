@@ -40,6 +40,7 @@ All installed features. Each links back to [[HOME|HOME]] and [[main/main-memory|
 - [[Feature/Continuous-Improvement-System/SKILL|Continuous-Improvement-System]]
 
 ## Productivity & Wellness
+- Chief-of-Staff — `plugins/diba-skills/skills/chief-of-staff/SKILL.md` (morning brief · agenda · eod · weekly review)
 - [[Feature/Break-Reminder-System/SKILL|Break-Reminder-System]]
 - [[Feature/Discipline-System/SKILL|Discipline-System]]
 - [[Feature/Reminders-System/SKILL|Reminders-System]]

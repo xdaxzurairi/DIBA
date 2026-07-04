@@ -1,7 +1,7 @@
 {
   "name": "diba-skills",
-  "version": "1.0.0",
-  "description": "DIBA AI companion skill plugins for Zuex",
+  "version": "2.0.0",
+  "description": "DIBA AI companion skill plugins for Zuex — v3 architecture (kernel + chief-of-staff, see plans/DIBA-v3-Blueprint.md)",
   "author": {
     "name": "Zuex",
     "email": ""
