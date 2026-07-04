@@ -1,7 +1,7 @@
 # Current Session Recap
 
-**Tarikh:** 2026-07-03
-**Topik terakhir:** BFM Fasa 3 — Player Stats, Leaderboard & Sijil Penyertaan (selesai)
+**Tarikh:** 2026-07-04
+**Topik terakhir:** BFM Fasa 3 selesai — Player Stats, Leaderboard & Sijil Penyertaan PDF
 
 ## Keputusan utama
 - Fasa 3 BFM dilaksanakan sepenuhnya via subagent-driven development — 10 tasks, semua lulus review
@@ -9,7 +9,7 @@
 - Leaderboard public `/browse/leaderboard?tournament=<id>` — batting avg ranking per tournament
 - PDF sijil penyertaan: jsPDF landscape A4, download dari browser, admin-only selepas tournament completed
 - Browse page `/browse` replace placeholder — clubs grid + tournaments list berfungsi
-- Reminder eWorks laporan 7a Option C ditutup tanpa implementasi (Abam keputuskan)
+- eWorks laporan 7a Option C ditutup tanpa implementasi (Abam keputuskan)
 
 ## Fail terakhir diubah
 - baseballfedarationmalaysia/supabase/migrations/005_player_avg_view.sql
