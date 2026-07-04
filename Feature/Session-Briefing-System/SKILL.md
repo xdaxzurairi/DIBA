@@ -6,6 +6,9 @@ description: "Session Briefing — fires automatically at session start before p
              Trigger manually with 'brief', 'session brief', or 'where did we leave off'."
 ---
 
+> ⚠️ **SUPERSEDED** — canonical executable copy: `plugins/diba-skills/skills/session-briefing/SKILL.md`.
+> This Feature copy is documentation/history only and is no longer installed. Edit the plugin copy.
+
 # Session Briefing — DIBA Startup Intelligence
 *Konteks dimuat. Sesi dimulakan.*
 

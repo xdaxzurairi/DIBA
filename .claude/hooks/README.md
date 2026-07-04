@@ -4,7 +4,7 @@ Portable hook layer — no machine-specific paths. `settings.json` resolves the 
 
 | Hook | Event | Script | Job |
 |---|---|---|---|
-| Skill installer | SessionStart | `session-start.sh` | Copies Feature-layer then plugin-layer SKILL.md files to `~/.claude/skills/` (plugin wins) |
+| Skill installer | SessionStart | `session-start.sh` | Installs plugin skills (canonical), then Feature-layer skills as gap-fill only; removes deprecated skills (diba-recall, diba-operator, work-plan-execution) |
 | Auto-commit | PostToolUse (Write\|Edit) | `auto-commit.sh` | Commits edits under `main/`, `daily-diary/`, `projects/`, `plans/`, `company/` |
 
 ## Windows notes

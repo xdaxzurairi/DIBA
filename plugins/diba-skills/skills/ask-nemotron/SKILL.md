@@ -39,9 +39,13 @@ Auto-route adalah cadangan — DIBA tanya Abam dulu sebelum route, kecuali Abam 
 
 ### Langkah 3: Call script
 
+Path script datang dari env var `DIBA_NEMOTRON_SCRIPT` (set dalam shell profile atau `.claude/settings.json` env):
+
 ```bash
-node C:/Users/BSM/XDIBAX/scripts/ask-nemotron.js "<query>"
+node "$DIBA_NEMOTRON_SCRIPT" "<query>"
 ```
+
+Jika `DIBA_NEMOTRON_SCRIPT` tidak diset → skill PARKED: inform Abam setup diperlukan (1 baris), jangan cuba path hardcoded, teruskan respond sendiri.
 
 ### Langkah 4: Inject response inline
 
@@ -68,6 +72,7 @@ Jika fallback ke Nano model (rate limit):
 
 | Key | Lokasi | Nilai default |
 |-----|--------|---------------|
+| `DIBA_NEMOTRON_SCRIPT` | env var (shell profile / settings env) | (wajib — path penuh ke `ask-nemotron.js`) |
 | `OPENROUTER_API_KEY` | `war-room/.env` | (wajib isi) |
 | `NEMOTRON_MODEL` | `war-room/.env` | `nvidia/nemotron-3-super-120b-a12b:free` |
 
@@ -80,3 +85,4 @@ Jika fallback ke Nano model (rate limit):
 
 ## Level History
 - **Lv.1** — Base: keyword trigger (nm:, nemotron:, #nm), script call, inline response, error handling. (Origin: 2026-06-29 — integrasi DIBA × Nemotron via OpenRouter)
+- **Lv.2** — Portability: script path via env var `DIBA_NEMOTRON_SCRIPT` (hardcoded `C:/Users/BSM/...` dibuang); PARKED behavior bila env belum diset. (Origin: CTO Phase 2, 2026-07-04)

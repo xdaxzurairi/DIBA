@@ -7,6 +7,9 @@ description: "Use when DIBA detects a goal or multi-part request from Abam that 
              everything in [project]', 'handle [X] for me'."
 ---
 
+> ⚠️ **SUPERSEDED** — canonical executable copy: `plugins/diba-skills/skills/auto-worker/SKILL.md`.
+> This Feature copy is documentation/history only and is no longer installed. Edit the plugin copy.
+
 # Auto-Worker — Silent Delegation Orchestrator
 *Abam bagi goal. DIBA buat kerja. Hasil datang bersih.*
 

@@ -3,6 +3,9 @@ name: auto-idle-save-recall
 description: "MUST use when session idle for 20 min, or when user says 'hi diba'. Triggers auto-save diary on idle, and auto-recall last session if greeted."
 ---
 
+> ⚠️ **SUPERSEDED** — canonical executable copy: `plugins/diba-skills/skills/auto-idle-save-recall/SKILL.md`.
+> This Feature copy is documentation/history only and is no longer installed. Edit the plugin copy.
+
 # Auto Idle Save & Recall — DIBA Skill
 *Auto-save diary jika idle, auto-recall bila disapa*
 
