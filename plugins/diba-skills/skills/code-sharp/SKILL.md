@@ -89,7 +89,7 @@ Sebelum kata "siap", "done", atau "fixed":
 
 | Skill | Hubungan |
 |-------|----------|
-| `anchor` | Anchor lock scope; code-sharp enforce standard dalam scope itu |
+| `discipline` | Context Lock (Lv.7) kunci scope; code-sharp enforce standard dalam scope itu |
 | `orchestrate` | Multi-file task: code-sharp apply pada setiap file dalam subtask |
 | `auto-commit` | Selepas verify gate pass → chain ke auto-commit |
 | `diba-response` | Response kod: citation `path:line` untuk rujukan fail sedia ada |

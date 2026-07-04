@@ -16,16 +16,13 @@ One owner per phrase. Before adding or leveling a skill, grep this table — a p
 |-------|----------------|
 | diba-response | (always active in chat — persona contract) |
 | smart-effort | (silent, every prompt) · "quick answer", "full effort", "deep dive", "smart-effort off" |
-| self-healing | (background drift monitor, every 5 responses) |
-| session-briefing | session start (auto) · "brief", "session brief", "where did we leave off", "skip brief" |
-| auto-idle-save-recall | idle 20 min · "hi diba" |
-| chief-of-staff | "morning brief", "brief pagi", "agenda", "apa plan hari ni", "eod", "wrap up", "habis kerja", "weekly review", "review minggu" |
+| chief-of-staff | session start (auto) · "brief", "skip brief", "where did we leave off", "hi diba", "morning brief", "brief pagi", "agenda", "apa plan hari ni", "eod", "wrap up", "habis kerja", "weekly review", "review minggu" |
 
 ### Memory & recall
 | Skill | Owned triggers |
 |-------|----------------|
 | save-memory | "save", "save memory", "save progress", "update memory" |
-| save-diary | "save diary", "write diary", "log this session", "document this" · auto after code change |
+| save-diary | "save diary", "write diary", "log this session", "document this" · auto after code change · idle 20 min auto-save |
 | echo-recall | "recall", "ingat semula", "load context", "do you remember", "Diba ingat tak", "when did we", "what did we decide about", "last time we" · workspace recall via `projects/registry.md` |
 | token-guard | "jimat token", "hemat token", "compact mode", "checkpoint", "resume", "token limit" |
 | usage-tracker | "ccusage", "usage report", "berapa token", "kos token", "budget AI" |
@@ -49,9 +46,8 @@ One owner per phrase. Before adding or leveling a skill, grep this table — a p
 | auto-learn-new-folder | new folder detected in workspace |
 | orchestrate | "orchestrate", "audit keseluruhan" · multi-step coordination, subagent delegation |
 | code-sharp | (auto before writing/editing code) |
-| anchor | "anchor", "fokus", "lock", "jangan melalut", "stay on task" |
-| discipline | "discipline", "semak disiplin", "balik standard" |
-| resonance | "resonance", "jom fikir sama", "let's think together", "mode explore" |
+| discipline | "discipline", "semak disiplin", "balik standard", "anchor", "fokus", "lock", "jangan melalut", "stay on task" · (background drift monitor, every 5 responses) |
+| resonance | "resonance", "jom fikir sama", "let's think together", "mode explore", "dream", "bagi idea baru", "brainstorm", "cuba impikan" |
 
 ### Knowledge & analysis
 | Skill | Owned triggers |
@@ -68,7 +64,6 @@ One owner per phrase. Before adding or leveling a skill, grep this table — a p
 | frontend-design | "design guide", "buat cantik", "jangan generic", "landing page", "visual hierarchy" |
 | interaction-design | "poles UI", "tambah animasi", "microinteraction", "motion", "DIBA presence" |
 | marketing-workshop | "copywriting", "SEO", "tulis copy", "headline", "CTA", "growth", "buat iklan" |
-| dream-ideas | "dream", "imagine", "generate ideas" |
 
 ### Feature-layer only (installed as gap-fill from `Feature/`)
 continuous-improvement · dashboard · image-prompt · interactive-story · mulahazah · observation · security-audit-remediation · song-creation · skill-plugin-system
@@ -79,6 +74,11 @@ continuous-improvement · dashboard · image-prompt · interactive-story · mula
 | work-plan-execution | RETIRED 2026-07-04 — duplicate of work-plan |
 | diba-recall | MERGED 2026-07-04 → echo-recall Step 0 (workspace recall) |
 | diba-operator | MERGED 2026-07-04 → diba-response Lv.7 (operator routing) |
+| anchor | MERGED 2026-07-04 → discipline Lv.7 (Context Lock) |
+| self-healing | MERGED 2026-07-04 → discipline Lv.8 (Background Monitor) |
+| session-briefing | MERGED 2026-07-04 → chief-of-staff Lv.7 (Session-Start Brief) |
+| dream-ideas | MERGED 2026-07-04 → resonance Lv.7 (Dream Mode) |
+| auto-idle-save-recall | SPLIT 2026-07-04 → save-diary Lv.5 (idle save) + chief-of-staff Lv.7 (greet recall) |
 
 ## Auto-Discovery Notes
 - Semua skill dalam folder `skills/[skill-name]/SKILL.md` dikesan secara automatik.

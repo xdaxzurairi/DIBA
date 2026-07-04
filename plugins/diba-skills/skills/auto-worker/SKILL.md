@@ -140,7 +140,7 @@ Next: [langkah terbuka atau follow-up, jika ada]
 | `code-sharp` | Bila langkah ada kod, enforce code-sharp standard |
 | `work-plan` | Bila plan > 5 langkah atau ada file `plans/*.md`, handoff ke work-plan |
 | `log-decision` | Bila decompose ada trade-off signifikan, log decision |
-| `anchor` | Bila mid-execution ada drift dari goal asal, trigger anchor |
+| `discipline` | Bila mid-execution ada drift dari goal asal, trigger Context Lock (Lv.7) |
 
 ---
 

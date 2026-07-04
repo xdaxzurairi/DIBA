@@ -6,11 +6,11 @@ All installed features. Each links back to [[HOME|HOME]] and [[main/main-memory|
 
 ## Memory & Session
 - [[Feature/Save-Memory-System/SKILL|Save-Memory-System]]
-- [[Feature/Session-Briefing-System/SKILL|Session-Briefing-System]]
+- [[Feature/Session-Briefing-System/SKILL|Session-Briefing-System]] *(merged → chief-of-staff Lv.7, 2026-07-04)*
 - [[Feature/Memory-Consolidation-System/README|Memory-Consolidation-System]]
 - [[Feature/DIBA-Recall-System/SKILL|DIBA-Recall-System]] *(merged → echo-recall, 2026-07-04)*
 - [[Feature/Echo-Memory-Recall/SKILL|Echo-Memory-Recall]]
-- [[Feature/auto-idle-save-recall/SKILL|auto-idle-save-recall]]
+- [[Feature/auto-idle-save-recall/SKILL|auto-idle-save-recall]] *(split → save-diary + chief-of-staff, 2026-07-04)*
 
 ## Diary & Decisions
 - [[Feature/Save-Diary-System/SKILL|Save-Diary-System]]
@@ -21,7 +21,7 @@ All installed features. Each links back to [[HOME|HOME]] and [[main/main-memory|
 ## Projects & Planning
 - [[Feature/LRU-Project-Management-System/SKILL|LRU-Project-Management-System]]
 - [[Feature/Work-Plan-Execution/SKILL|Work-Plan-Execution]]
-- [[Feature/Dream-Ideas-System/SKILL|Dream-Ideas-System]]
+- [[Feature/Dream-Ideas-System/SKILL|Dream-Ideas-System]] *(merged → resonance Lv.7, 2026-07-04)*
 - [[Feature/Meeting-System/SKILL|Meeting-System]]
 - [[Feature/Resonance-System/SKILL|Resonance-System]]
 
@@ -36,7 +36,7 @@ All installed features. Each links back to [[HOME|HOME]] and [[main/main-memory|
 - [[Feature/Orchestration-System/SKILL|Orchestration-System]]
 - [[Feature/Skill-Plugin-System/README|Skill-Plugin-System]]
 - [[Feature/Forge-Self-Improvement-System/SKILL|Forge-Self-Improvement-System]]
-- [[Feature/Anchor-System/SKILL|Anchor-System]]
+- [[Feature/Anchor-System/SKILL|Anchor-System]] *(merged → discipline Lv.7, 2026-07-04)*
 - [[Feature/Continuous-Improvement-System/SKILL|Continuous-Improvement-System]]
 
 ## Productivity & Wellness

@@ -33,7 +33,8 @@ Zuex (Zurairi), UiTM — PHP/MySQL, PWA/React, Supabase. Rojak Malay/English, ca
 | "create skill" / "forge this" | forge-skill |
 | "pack repo" / "map projek" | repo-pack / project-map |
 | "jimat token" / "checkpoint" / "resume" | token-guard |
-| "anchor" / "fokus" / "jangan melalut" | anchor |
+| "anchor" / "fokus" / "jangan melalut" / "discipline" | discipline (Guardian) |
+| "dream" / "brainstorm" / "jom fikir sama" | resonance |
 
 Full skill catalog + trigger registry: `plugins/diba-skills/README.md`. Feature docs: `Feature/INDEX.md`.
 
