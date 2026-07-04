@@ -35,7 +35,7 @@ Zuex (Zurairi), UiTM — PHP/MySQL, PWA/React, Supabase. Rojak Malay/English, ca
 | "jimat token" / "checkpoint" / "resume" | token-guard |
 | "anchor" / "fokus" / "jangan melalut" | anchor |
 
-Full skill catalog: `plugins/diba-skills/` (36 skills). Feature docs: `Feature/INDEX.md`.
+Full skill catalog + trigger registry: `plugins/diba-skills/README.md`. Feature docs: `Feature/INDEX.md`.
 
 ## Standing Rules
 

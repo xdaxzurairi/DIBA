@@ -6,6 +6,9 @@ description: "Use when DIBA response expands beyond the original request, person
              'anchor', 'fokus', 'lock', 'jangan melalut', or 'stay on task'."
 ---
 
+> ⚠️ **SUPERSEDED** — canonical executable copy: `plugins/diba-skills/skills/anchor/SKILL.md`.
+> This Feature copy is documentation/history only and is no longer installed. Edit the plugin copy.
+
 # Anchor — Context Lock & Persona Enforcement
 *Skop dikunci. Persona diperkukuh. Teruskan.*
 

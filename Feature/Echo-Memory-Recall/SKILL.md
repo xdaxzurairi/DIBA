@@ -6,6 +6,9 @@ description: 'Search and recall past sessions from diary with narrative answers.
              or "Diba ingat tak...".'
 ---
 
+> ⚠️ **SUPERSEDED** — canonical executable copy: `plugins/diba-skills/skills/echo-recall/SKILL.md`.
+> This Feature copy is documentation/history only and is no longer installed. Edit the plugin copy.
+
 # Echo Recall — Memory Search & Narrate
 *Mencari dalam ingatan. Kisah lama hidup semula.*
 

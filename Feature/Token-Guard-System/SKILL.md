@@ -6,6 +6,9 @@ description: "Activate to save tokens and prevent exceeding context limits. Use 
              'resume dari checkpoint'. Also fires proactively via early warning detection."
 ---
 
+> ⚠️ **SUPERSEDED** — canonical executable copy: `plugins/diba-skills/skills/token-guard/SKILL.md`.
+> This Feature copy is documentation/history only and is no longer installed. Edit the plugin copy.
+
 # Token Guard System — DIBA Context Manager
 *Compact. Checkpoint. Resume. Teruskan.*
 

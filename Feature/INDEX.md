@@ -8,7 +8,7 @@ All installed features. Each links back to [[HOME|HOME]] and [[main/main-memory|
 - [[Feature/Save-Memory-System/SKILL|Save-Memory-System]]
 - [[Feature/Session-Briefing-System/SKILL|Session-Briefing-System]]
 - [[Feature/Memory-Consolidation-System/README|Memory-Consolidation-System]]
-- [[Feature/DIBA-Recall-System/SKILL|DIBA-Recall-System]]
+- [[Feature/DIBA-Recall-System/SKILL|DIBA-Recall-System]] *(merged → echo-recall, 2026-07-04)*
 - [[Feature/Echo-Memory-Recall/SKILL|Echo-Memory-Recall]]
 - [[Feature/auto-idle-save-recall/SKILL|auto-idle-save-recall]]
 

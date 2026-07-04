@@ -6,6 +6,9 @@ description: "Triggers when user says 'meeting team', 'meeting [agent]', 'emerge
              Not auto-triggered at session start — explicit command only."
 ---
 
+> ⚠️ **SUPERSEDED** — canonical executable copy: `plugins/diba-skills/skills/meeting/SKILL.md`.
+> This Feature copy is documentation/history only and is no longer installed. Edit the plugin copy.
+
 # Meeting — Virtual Team Coordination
 *Satu suara, banyak perspektif. Chair membuat keputusan, Owner menetapkan hala tuju.*
 

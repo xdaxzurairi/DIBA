@@ -7,6 +7,9 @@ description: "Gunakan bila tugasan memerlukan koordinasi multi-langkah, pecahan 
              tersembunyi."
 ---
 
+> ⚠️ **SUPERSEDED** — canonical executable copy: `plugins/diba-skills/skills/orchestrate/SKILL.md`.
+> This Feature copy is documentation/history only and is no longer installed. Edit the plugin copy.
+
 # Orchestration System — DIBA Operator Layer
 *Decompose. Route. Delegate. Synthesize. Verify. Close.*
 

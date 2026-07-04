@@ -79,13 +79,13 @@ A real assistant touches Zuex's actual world. Priority order, all via MCP server
 | Retire `work-plan-execution`, rescope `smart-effort` | First trust/duplication cleanup |
 | Audit + this blueprint | Shared map of where DIBA is going |
 
-### Phase 2 — Consolidation (next, ~1 session)
-- Merge `diba-recall` → `echo-recall` (workspace-awareness moves to kernel).
-- Merge `diba-operator` → `diba-response`.
-- Move `save-diary/SKILL-auto-idle-save-recall.md` into its own skill dir or absorb it.
-- Feature-layer dedup: mark superseded `Feature/*/SKILL.md` files; installer trusts plugin only.
-- Trigger-phrase registry: one table in `plugins/diba-skills/README.md`, greppable, one owner per phrase.
-- Fix or formally park `ask-nemotron` (env-var script path, or move script into repo).
+### Phase 2 — Consolidation ✅ (done 2026-07-04)
+- ✅ Merge `diba-recall` → `echo-recall` Lv.3 (Step 0 workspace recall via `projects/registry.md`; also repaired an unresolved merge conflict that was committed inside echo-recall's SKILL.md, and removed hardcoded `C:/Users/...` paths).
+- ✅ Merge `diba-operator` → `diba-response` Lv.7 (operator routing table).
+- ✅ `save-diary/SKILL-auto-idle-save-recall.md` → own dir `skills/auto-idle-save-recall/`.
+- ✅ Feature-layer dedup: 24 shadowed `Feature/*/SKILL.md` marked SUPERSEDED; installer now plugin-canonical with Feature gap-fill + deprecated-skill removal.
+- ✅ Trigger-phrase registry in `plugins/diba-skills/README.md` — one owner per phrase.
+- ✅ `ask-nemotron` Lv.2 — script path via `DIBA_NEMOTRON_SCRIPT` env var; PARKED until set.
 
 ### Phase 3 — Proactive & Connected (~2–4 sessions)
 - Scheduled morning brief: Claude Code web trigger or Task Scheduler/cron entry that opens a session with "morning brief".

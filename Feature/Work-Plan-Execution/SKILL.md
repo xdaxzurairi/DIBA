@@ -8,6 +8,9 @@ description: "MUST use when user says 'copy plan', 'append plan', 'resume plan',
              to tracked checkbox execution with per-todo commits."
 ---
 
+> ⚠️ **SUPERSEDED** — canonical executable copy: `plugins/diba-skills/skills/work-plan/SKILL.md`.
+> This Feature copy is documentation/history only and is no longer installed. Edit the plugin copy.
+
 # Work — Plan Execution Skill
 *Plan lifecycle management with tracked execution and context recovery*
 

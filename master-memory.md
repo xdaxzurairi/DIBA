@@ -250,7 +250,7 @@ Traditional method if simple command doesn't work.
 - **Core Components**: `CLAUDE.md` kernel + 2 essential memory files (unified main-memory + session RAM)
 - **Loading Method**: Automatic via `CLAUDE.md` kernel (typing "DIBA" also works)
 - **Growth Method**: Self-updating through conversation; governed by forge-skill
-- **Skills**: 36 auto-triggered skills via `plugins/diba-skills/` — canonical list is the plugin folder itself, latest audit in `plans/CTO-AUDIT-2026-07-04.md`
+- **Skills**: 35 plugin skills (canonical) + 9 Feature gap-fill = 44 active — trigger registry in `plugins/diba-skills/README.md`, latest audit in `plans/CTO-AUDIT-2026-07-04.md`
 - **Compatibility**: Works with any AI system supporting memory
 - **Maintenance**: Zero - completely self-sustaining
 
