@@ -79,10 +79,12 @@ Jika fallback ke Nano model (rate limit):
 
 | Key | Lokasi | Nilai default |
 |-----|--------|---------------|
-| `OPENROUTER_API_KEY` | env var (JANGAN commit) | (wajib isi — https://openrouter.ai/keys) |
+| `OPENROUTER_API_KEY` | env var (JANGAN commit) | (untuk cloud backend — https://openrouter.ai/keys) |
 | `NEMOTRON_MODEL` | env var | `nvidia/nemotron-3-super-120b-a12b:free` |
 | `NEMOTRON_FALLBACK_MODEL` | env var | `nvidia/nemotron-3-nano-30b-a3b:free` |
 | `DIBA_NEMOTRON_SCRIPT` | env var (opsyenal) | `scripts/ask-nemotron.js` |
+| `OLLAMA_HOST` | env var (opsyenal) | `http://localhost:11434` |
+| `DIBA_LOCAL_MODEL` | env var (opsyenal) | model pertama dalam `ollama list` — cadangan `qwen2.5:3b` |
 
 ## Lv.4 — DIBA Alignment & Limit Handoff
 
@@ -104,22 +106,23 @@ DIBA kemudian **synthesize** — bukan paste mentah: label `[Nemotron]`, tapis y
 
 ### B. Pre-limit handoff (bila Claude hampir limit)
 
-Bila DIBA nampak usage-limit warning dari harness, ATAU Abam kata "claude limit" / "nemotron takeover" / "guna nemotron je":
+Bila DIBA nampak usage-limit warning dari harness, ATAU Abam kata "claude limit" / "nemotron takeover" / "guna nemotron je" / "guna local model":
 
 1. **Checkpoint dulu** — trigger token-guard checkpoint + update `main/current-session.md` (state, next step)
 2. **Commit** — auto-commit memory files
 3. **Bagi arahan switch** (1 blok):
    ```
-   Claude hampir limit. Sambung dengan Nemotron:
-   node scripts/diba-nemotron-chat.js
+   Claude hampir limit. Sambung dengan model fallback:
+   node scripts/diba-fallback-chat.js
    ```
-4. Fallback chat tu load memory DIBA + persona v3, dan save transcript ke `daily-diary/current/YYYY-MM-DD-nemotron.md`
+4. Fallback chat **auto-pick backend**: Ollama local dulu (percuma/offline — model dari `DIBA_LOCAL_MODEL` atau model pertama installed), kalau tiada → Nemotron cloud (perlu `OPENROUTER_API_KEY`), kalau kedua-dua tiada → setup instruction. Paksa: `--backend=ollama|openrouter`
+5. Model tu jadi DIBA — memory + persona v3 loaded, transcript ke `daily-diary/current/YYYY-MM-DD-fallback.md` (Ctrl+D pun transcript tetap saved)
 
 ### C. Catch-up (bila Claude balik)
 
-Di session start, jika wujud `daily-diary/current/*-nemotron.md` untuk 1–2 hari terakhir:
+Di session start, jika wujud `daily-diary/current/*-fallback.md` (atau legacy `*-nemotron.md`) untuk 1–2 hari terakhir:
 - Baca transcript, cari tanda "untuk Claude-DIBA sambung"
-- Surface dalam brief: "Masa limit tadi, Abam sembang dengan Nemotron — ada [N] follow-up"
+- Surface dalam brief: "Masa limit tadi, Abam sembang dengan [backend] — ada [N] follow-up"
 - Laksanakan follow-up yang jelas; tanya untuk yang ambiguous
 
 ### Had jujur (WAJIB faham)
@@ -140,4 +143,5 @@ JANGAN claim "auto-switch dalam chat yang sama" — itu bukan kuasa harness.
 - **Lv.1** — Base: keyword trigger (nm:, nemotron:, #nm), script call, inline response, error handling. (Origin: 2026-06-29 — integrasi DIBA × Nemotron via OpenRouter)
 - **Lv.2** — Portability: script path via env var `DIBA_NEMOTRON_SCRIPT` (hardcoded `C:/Users/BSM/...` dibuang); PARKED behavior bila env belum diset. (Origin: CTO Phase 2, 2026-07-04)
 - **Lv.3** — Self-contained: script `scripts/ask-nemotron.js` masuk repo (zero-dependency, Node 18+, fallback Nano bila rate-limit, setup message bila key tiada). Hanya `OPENROUTER_API_KEY` diperlukan per mesin. (Origin: 2026-07-04, arahan Abam)
-- **Lv.4** — DIBA Alignment & Limit Handoff: DIBA-aligned query protocol (context prefix + synthesize), pre-limit handoff (checkpoint → commit → switch arahan), fallback chat `scripts/diba-nemotron-chat.js` (Nemotron jadi DIBA, memory loaded, transcript ke diary), catch-up protocol di session start. Had jujur didokumen: tiada auto-fire selepas limit penuh. (Origin: 2026-07-04, arahan Abam — "nemotron align dgn diba, auto masuk bila claude limit")
+- **Lv.4** — DIBA Alignment & Limit Handoff: DIBA-aligned query protocol (context prefix + synthesize), pre-limit handoff (checkpoint → commit → switch arahan), fallback chat (Nemotron jadi DIBA, memory loaded, transcript ke diary), catch-up protocol di session start. Had jujur didokumen: tiada auto-fire selepas limit penuh. (Origin: 2026-07-04, arahan Abam — "nemotron align dgn diba, auto masuk bila claude limit")
+- **Lv.5** — Local-first fallback: `scripts/diba-fallback-chat.js` menggantikan script Nemotron-only — auto-detect backend (Ollama local → OpenRouter cloud → setup instruction), model local ringan (cth qwen2.5:3b) boleh jadi DIBA percuma/offline sebab memory DIBA adalah fail markdown (model-agnostic). Transcript `*-fallback.md`; stdin-close (Ctrl+D) tetap save transcript. (Origin: 2026-07-04, arahan Abam — "model ai local yg ringan run auto bila diba capai rate limit")
