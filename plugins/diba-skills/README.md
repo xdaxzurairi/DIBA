@@ -23,6 +23,11 @@
 | orchestrate | "audit keseluruhan", "plan", "orchestrate", multi-step tasks | Coordinate complex tasks using chaining, routing, parallelization, and verification loops |
 | session-briefing | Session start (auto) | Session start brief with context |
 | work-plan | "copy plan", "resume plan" | Plan lifecycle and execution |
+| frontend-design | "design guide", "buat cantik", "jangan generic" | Plain-text design guide for crafted, non-generic frontends |
+| repo-pack | "pack repo", "repomix", "satukan projek" | Bundle a project into one AI-friendly file (secret-safe) |
+| project-map | "graphify", "map projek", "cari kat mana" | Searchable index of modules, symbols, and dependencies |
+| usage-tracker | "ccusage", "berapa token", "kos token" | Track token usage and estimated cost over time |
+| marketing-workshop | "copywriting", "SEO", "growth", "tulis copy" | Reusable SEO/copywriting/conversion/growth workflows |
 
 ## Auto-Discovery Notes
 - Semua skill dalam folder `skills/[skill-name]/SKILL.md` akan dikesan secara automatik oleh sistem plugin.

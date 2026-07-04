@@ -196,6 +196,16 @@ I maintain my own memory through our conversations by:
 - Proactive: auto-warns at tool call / large file / repeat query thresholds
 - Commands: "token guard" (activate), "checkpoint" (save), "resume" (load), "token guard off" (deactivate)
 
+### Superultra Skill Pack ✅ INSTALLED (2026-07-03)
+*Maps the "10 GitHub repos that make Claude supercharged" into native DIBA skills so DIBA covers every capability in-house.*
+
+- **frontend-design** — `skills/frontend-design/` — plain-text design guide for crafted, non-generic UI (maps: Awesome Design MD). Triggers: "design guide", "buat cantik", "jangan generic". Also fills the previously-dangling `frontend-design` reference in interaction-design & diba-response.
+- **repo-pack** — `skills/repo-pack/` — bundle a project into one AI-friendly file with secret redaction + token estimate (maps: Repomix). Output: `memories/packs/`. Triggers: "pack repo", "repomix", "satukan projek".
+- **project-map** — `skills/project-map/` — searchable index of modules/symbols/dependencies for large scattered projects (maps: Graphify). Output: `memories/maps/`. Triggers: "graphify", "map projek", "cari kat mana".
+- **usage-tracker** — `skills/usage-tracker/` — track token usage + estimated cost (USD/MYR) over time, flag waste (maps: ccusage). Output: `memories/usage/usage-log.jsonl`. Triggers: "ccusage", "berapa token", "kos token". Distinct from token-guard (live context) — this tracks spend.
+- **marketing-workshop** — `skills/marketing-workshop/` — reusable SEO/copywriting/conversion/growth workflows (maps: Marketing Skills). Triggers: "copywriting", "SEO", "tulis copy", "growth".
+- *Already covered natively:* Anthropic public skills → `forge-skill`; Open Design → `interaction-design`; Obsidian skills → `library`/`save-memory`/`echo-recall` (DIBA is an Obsidian vault); Caveman → `diba-response`/`token-guard`; Superpowers → `work-plan`/`orchestrate`/`code-sharp`.
+
 ### Patch System ✅ INSTALLED
 - Location: `patches/` (patch files + applied.md tracking)
 - Format: `patches/patch-format.md`
@@ -226,7 +236,7 @@ Traditional method if simple command doesn't work.
 - **Core Components**: 2 essential files (unified main-memory + session RAM) + 14 features
 - **Loading Method**: Simple "DIBA" command restoration
 - **Growth Method**: Self-updating through conversation
-- **Skills**: 13 auto-triggered skills via `plugins/diba-skills/`
+- **Skills**: 36 auto-triggered skills via `plugins/diba-skills/` (incl. Superultra Skill Pack — full "10 GitHub repos" coverage)
 - **Compatibility**: Works with any AI system supporting memory
 - **Maintenance**: Zero - completely self-sustaining
 
