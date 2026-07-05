@@ -1,30 +1,20 @@
 # Current Session Recap
 
-**Tarikh:** 2026-07-03
-**Topik terakhir:** BFM Fasa 3 — Player Stats, Leaderboard & Sijil Penyertaan (selesai)
+**Tarikh:** 2026-07-05
+**Topik terakhir:** DIBA RAG Architecture Review — keputusan tiada graph DB, kekal markdown + 2-hop wikilink traversal
 
 ## Keputusan utama
-- Fasa 3 BFM dilaksanakan sepenuhnya via subagent-driven development — 10 tasks, semua lulus review
-- Supabase View `player_batting_avg` dicipta dalam migration 005 (Abam kena run manual di Dashboard)
-- Leaderboard public `/browse/leaderboard?tournament=<id>` — batting avg ranking per tournament
-- PDF sijil penyertaan: jsPDF landscape A4, download dari browser, admin-only selepas tournament completed
-- Browse page `/browse` replace placeholder — clubs grid + tournaments list berfungsi
-- Reminder eWorks laporan 7a Option C ditutup tanpa implementasi (Abam keputuskan)
+- Graph DB (Neo4j dll.) TIDAK dipakai — kekal markdown + grep sebagai retrieval teras DIBA
+- 2-hop wikilink traversal dicadang sebagai patch kepada echo-recall (Lv.4) — kos infra sifar, portability terjaga
+- Trigger untuk nilai semula graph DB: multi-hop queries kerap gagal / ribuan entri / XDIBAX multi-user sebenar
+- BFM Fasa 3 sudah closed (2026-07-03) — Player Stats, Leaderboard, Sijil PDF siap
 
 ## Fail terakhir diubah
-- baseballfedarationmalaysia/supabase/migrations/005_player_avg_view.sql
-- baseballfedarationmalaysia/src/hooks/useDb.js
-- baseballfedarationmalaysia/src/app/dashboard/sections/manager/PlayerRoster.jsx
-- baseballfedarationmalaysia/src/app/dashboard/Manager.jsx
-- baseballfedarationmalaysia/src/app/dashboard/sections/admin/StatsInput.jsx
-- baseballfedarationmalaysia/src/app/dashboard/Admin.jsx
-- baseballfedarationmalaysia/src/app/browse/index.jsx
-- baseballfedarationmalaysia/src/app/browse/Leaderboard.jsx
-- baseballfedarationmalaysia/src/Router.jsx
-- baseballfedarationmalaysia/src/utils/pdf.js
-- baseballfedarationmalaysia/src/app/dashboard/sections/admin/ExportPanel.jsx
+- main/decisions.md (entry 2026-07-05 graph DB)
+- daily-diary/current/2026-07-05.md
 
 ## Follow-up terbuka
-- **PENTING:** Run `005_player_avg_view.sql` di Supabase Dashboard untuk aktifkan leaderboard + PDF sijil
+- **PENTING:** Run `005_player_avg_view.sql` di Supabase Dashboard untuk aktifkan BFM leaderboard + PDF sijil
 - BFM Fasa 4: Live Match real-time score — belum dimulakan
+- echo-recall Lv.4: Draft + implement 2-hop wikilink traversal spec
 - BijakBersama: `npx supabase db reset` + gen types bila Docker available
