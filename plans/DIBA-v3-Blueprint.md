@@ -97,6 +97,9 @@ A real assistant touches Zuex's actual world. Priority order, all via MCP server
 - DIBA runs unattended work sessions (subagents/background tasks) against active projects and reports at EOD.
 - Weekly review auto-drafts: wins, stalled projects, decisions pending, post-mortem themes.
 
+### Trigger-based (bukan fasa — hanya bila syarat berlaku)
+- **Graph DB / Vector DB untuk retrieval** — DITOLAK 2026-07-05 (lihat `main/decisions.md`). Kekal markdown + grep + 2-hop wikilink traversal (echo-recall Lv.4). Nilai semula HANYA bila: soalan multi-hop kerap gagal · diary/decisions cecah ribuan entri · multi-user sebenar. Jangan bina infra untuk masalah yang belum wujud.
+
 ---
 
 ## KPIs (how we know DIBA is a real assistant)
