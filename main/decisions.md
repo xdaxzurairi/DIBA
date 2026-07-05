@@ -133,4 +133,14 @@ co
 **Rationale:** Phased migration membolehkan client dapat sistem boleh guna awal (Fasa 1-2) sambil features premium datang berperingkat. Kos RM0/bulan — sesuai untuk persatuan sukan.
 
 ---
+
+## 2026-07-05 — Tiada Graph DB untuk DIBA: Kekal Markdown, Tambah 2-Hop Link Traversal
+
+**Context:** Selepas review infografik "8 RAG Architectures", DIBA dikenal pasti sebagai Agentic RAG (#8) dengan retrieval keyword-based. Timbul soalan: perlu ke graph DB (Neo4j dll.) untuk naikkan retrieval ke Graph/Hybrid RAG?
+
+**Decision:** **TIDAK guna graph DB.** Kekal markdown + grep sebagai retrieval, dan tambah **2-hop wikilink traversal** dalam echo-recall (Lv.4) sebagai ganti — kuasa graph atas sistem sedia ada, kos infra sifar. Graph DB hanya dinilai semula bila trigger konkrit berlaku: (1) soalan multi-hop kerap gagal, (2) diary/decisions cecah ribuan entri dan recall mula miss, (3) XDIBAX jadi multi-user sebenar.
+
+**Rationale:** Pada skala vault sekarang (ratusan entri), grep menang laju + sederhana. Graph DB akan: pecahkan portability "clone & jalan" (server per PC), cipta dual source of truth (masalah yang baru dibunuh dalam PR #17), pecahkan fallback local/Nemotron (memory tak lagi plain text), dan hilangkan git guarantee (DB binari). Vault pula dah ada graph semantics percuma — wikilinks Obsidian + project-map + mind-tree; yang kurang cuma traversal, dan itu boleh ditampal dengan grep ikut link. Keputusan Abam: "guna yg kita ada skrg, lebih baik dan padu."
+
+---
 *Index: [[HOME|HOME]] · [[main/main-memory|main-memory]] · [[main/current-session|current-session]] · [[projects/active/ruangniaga|ruangniaga]] · [[projects/active/dibaref-saas|dibaref-saas]]*

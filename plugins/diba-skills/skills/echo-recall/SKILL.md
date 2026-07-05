@@ -142,7 +142,17 @@ Bila soalan terlalu kabur atau tiada hasil langsung:
 
 ---
 
-### Step 6: Post-Recall Follow-Up
+### Step 6: Link Traversal — 2-Hop (Lv.4)
+
+Kuasa graph tanpa graph DB — bila match dijumpai tapi jawapan belum lengkap, atau soalan berbentuk hubungan ("apa kaitan X dengan Y", "keputusan mana berkait dengan bug tu"):
+
+- [ ] **Hop 1:** Dari entry match, kutip semua rujukan keluar — wikilink `[[...]]`, path fail disebut, tarikh entry lain, nama projek/keputusan
+- [ ] **Hop 2:** Grep keyword asal dalam fail-fail yang dirujuk tu sahaja (bukan seluruh vault semula)
+- [ ] Gabungkan bukti kedua-dua hop dalam SATU naratif — nyatakan rantaian: "Diary 15 Mac → link ke keputusan 11 Jun → yang berkait dengan post-mortem X"
+- [ ] **Had:** max 2 hop, max 5 fail per hop — bukan crawl seluruh vault; jika masih tak cukup, kata terus
+- [ ] Soalan lookup mudah (tarikh/fakta tunggal) → SKIP step ini; traversal hanya untuk soalan hubungan atau bukti tak lengkap
+
+### Step 7: Post-Recall Follow-Up
 
 Selepas recall berjaya:
 
@@ -162,6 +172,7 @@ Selepas recall berjaya:
 6. **Stop bila cukup** — jangan teruskan carian merentasi semua fail jika match dah jumpa
 7. **Truth-first** — uncertain match lebih baik dari confident fabrication
 8. **Path portable** — semua carian relatif kepada vault; tiada hardcoded machine path
+9. **Traversal berdisiplin** — max 2 hop, max 5 fail per hop; traversal untuk soalan hubungan sahaja, bukan default
 
 ---
 
@@ -211,3 +222,4 @@ Selepas recall berjaya:
 - **Lv.1** — Base: Three-level recall (search+narrate, uncertainty guard, ask-user fallback), keyword search merentasi current/ dan archived/, narrative output, jangan fabricate. (Origin: Echo Memory Recall System, DIBA)
 - **Lv.2** — Superultra: keyword extraction explicit, search priority table dengan decisions.md dan current-session.md, Post-Recall Follow-Up, output quality table, edge cases, integrasi skill lengkap. (2026-05-19)
 - **Lv.3** — Consolidation: absorb diba-recall (Step 0 workspace recall via `projects/registry.md`); repair unresolved merge conflict yang committed dalam fail ini; semua hardcoded `C:/Users/...` path ditukar kepada path relatif vault. (Origin: CTO Phase 2, 2026-07-04)
+- **Lv.4** — Link Traversal: Step 6 — 2-hop wikilink/rujukan traversal untuk soalan hubungan (kuasa Graph RAG atas markdown, tanpa graph DB); had disiplin max 2 hop × 5 fail; rantaian bukti dinyatakan dalam naratif. (Origin: 2026-07-04 — keputusan "tiada graph DB, guna yang ada lebih padu", lihat decisions.md)
