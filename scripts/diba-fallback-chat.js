@@ -12,6 +12,7 @@
  *   3. Tiada kedua-dua → tunjuk setup instruction.
  *
  * Paksa backend:  node scripts/diba-fallback-chat.js --backend=ollama|openrouter
+ * Pilih model:    node scripts/diba-fallback-chat.js --pick
  *
  * Apa dia buat:
  *   1. Load memory DIBA (main/main-memory.md + main/current-session.md + reminders)
@@ -84,6 +85,88 @@ function buildSystemPrompt() {
     "=== REMINDERS: main/reminders.md ===",
     readMemory("main/reminders.md") || "(tiada)",
   ].join("\n");
+}
+
+// ---------- model picker ----------
+
+const OLLAMA_SUGGEST = [
+  { name: "qwen2.5:3b",    size: "~1.9GB", note: "ringan, rojak Malay ok" },
+  { name: "qwen2.5:7b",    size: "~4.7GB", note: "lebih pintar, masih ok" },
+  { name: "llama3.2:3b",   size: "~2.0GB", note: "Meta, cepat" },
+  { name: "gemma2:2b",     size: "~1.6GB", note: "Google, paling ringan" },
+  { name: "phi3.5:mini",   size: "~2.2GB", note: "Microsoft, code-friendly" },
+  { name: "mistral:7b",    size: "~4.1GB", note: "classic, mantap" },
+];
+
+const OR_FREE_MODELS = [
+  { id: "nvidia/nemotron-3-super-120b-a12b:free",    ctx: "1M",   note: "DIBA default ★" },
+  { id: "nvidia/nemotron-3-ultra-550b-a55b:free",    ctx: "1M",   note: "terbesar Nemotron" },
+  { id: "meta-llama/llama-3.3-70b-instruct:free",    ctx: "131k", note: "Meta, general purpose" },
+  { id: "qwen/qwen3-coder:free",                     ctx: "1M",   note: "Qwen coding 480B" },
+  { id: "openai/gpt-oss-120b:free",                  ctx: "131k", note: "OpenAI OSS 120B" },
+  { id: "google/gemma-4-31b-it:free",                ctx: "262k", note: "Google Gemma 4 31B" },
+  { id: "nvidia/nemotron-3-nano-30b-a3b:free",       ctx: "256k", note: "Nemotron nano fallback" },
+  { id: "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free", ctx: "256k", note: "Nemotron reasoning" },
+  { id: "qwen/qwen3-next-80b-a3b-instruct:free",     ctx: "262k", note: "Qwen3 80B" },
+  { id: "nousresearch/hermes-3-llama-3.1-405b:free", ctx: "131k", note: "Hermes 405B" },
+];
+
+async function pickModelInteractive(installedOllama) {
+  const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+  const ask = (q) => new Promise((res) => rl.question(q, res));
+
+  const entries = [];
+
+  console.log("\n=== Pilih Model ===\n");
+
+  // Ollama installed
+  if (installedOllama.length) {
+    console.log("[OLLAMA — installed]");
+    for (const m of installedOllama) {
+      entries.push({ kind: "ollama", model: m });
+      console.log(`  ${entries.length}. ${m}  (installed)`);
+    }
+    console.log("");
+  }
+
+  // Ollama suggestions
+  console.log("[OLLAMA — boleh pull]");
+  for (const m of OLLAMA_SUGGEST) {
+    if (installedOllama.includes(m.name)) continue; // skip kalau dah install
+    entries.push({ kind: "ollama-pull", model: m.name, size: m.size, note: m.note });
+    console.log(`  ${entries.length}. ${m.name.padEnd(16)} ${m.size.padEnd(8)} — ${m.note}`);
+  }
+  console.log("");
+
+  // OpenRouter free
+  if (process.env.OPENROUTER_API_KEY) {
+    console.log("[OPENROUTER — cloud free]");
+    for (const m of OR_FREE_MODELS) {
+      entries.push({ kind: "openrouter", model: m.id, ctx: m.ctx, note: m.note });
+      const shortId = m.id.replace(/:free$/, "").split("/").pop();
+      console.log(`  ${entries.length}. ${shortId.padEnd(40)} ctx:${m.ctx.padEnd(5)} — ${m.note}`);
+    }
+    console.log("");
+  }
+
+  const ans = (await ask("Pilihan [Enter=auto, nombor=pilih, q=batal]: ")).trim();
+  rl.close();
+
+  if (!ans || ans === "") return null; // auto
+  if (ans.toLowerCase() === "q") process.exit(0);
+
+  const idx = parseInt(ans, 10) - 1;
+  if (isNaN(idx) || idx < 0 || idx >= entries.length) {
+    console.log("[warn] Pilihan tidak sah — guna auto.");
+    return null;
+  }
+
+  const chosen = entries[idx];
+  if (chosen.kind === "ollama-pull") {
+    console.log(`\nModel ${chosen.model} belum install. Jalankan:\n  ollama pull ${chosen.model}\nLepas tu run semula script.\n`);
+    process.exit(0);
+  }
+  return chosen; // { kind: "ollama"|"openrouter", model }
 }
 
 // ---------- backends ----------
@@ -186,7 +269,26 @@ function saveTranscript(turns, backendLabel) {
 
 async function main() {
   const forced = (process.argv.find((a) => a.startsWith("--backend=")) || "").split("=")[1] || null;
-  const backend = await pickBackend(forced);
+  const wantPick = process.argv.includes("--pick");
+
+  let backend;
+  if (wantPick) {
+    // fetch installed ollama models for picker
+    let installed = [];
+    try {
+      const r = await fetch(`${OLLAMA}/api/tags`);
+      const d = await r.json().catch(() => null);
+      installed = (d?.models || []).map((m) => m.name);
+    } catch { /* ollama offline — ok, list kosong */ }
+    const picked = await pickModelInteractive(installed);
+    if (picked) {
+      backend = picked;
+    } else {
+      backend = await pickBackend(forced);
+    }
+  } else {
+    backend = await pickBackend(forced);
+  }
 
   if (backend.kind === "none") {
     console.log(backend.reason || "Tiada backend fallback tersedia. Pilih satu (atau kedua-dua):");
