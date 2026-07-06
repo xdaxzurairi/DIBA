@@ -33,6 +33,21 @@ const path = require("path");
 const readline = require("readline");
 
 const VAULT = path.resolve(__dirname, "..");
+
+// Load .env dari root vault (zero-dependency dotenv)
+try {
+  const envPath = path.join(VAULT, ".env");
+  const envContent = fs.readFileSync(envPath, "utf8");
+  for (const line of envContent.split("\n")) {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith("#")) continue;
+    const eq = trimmed.indexOf("=");
+    if (eq < 1) continue;
+    const key = trimmed.slice(0, eq).trim();
+    const val = trimmed.slice(eq + 1).trim().replace(/^["']|["']$/g, "");
+    if (key && !(key in process.env)) process.env[key] = val;
+  }
+} catch { /* .env tiada — okay, guna env sistem */ }
 const OLLAMA = (process.env.OLLAMA_HOST || "http://localhost:11434").replace(/\/$/, "");
 const OR_URL = "https://openrouter.ai/api/v1/chat/completions";
 const OR_PRIMARY = process.env.NEMOTRON_MODEL || "nvidia/nemotron-3-super-120b-a12b:free";
