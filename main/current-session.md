@@ -1,26 +1,18 @@
 # Current Session Recap
 
-**Tarikh:** 2026-07-03
-**Topik terakhir:** BFM Fasa 3 — Player Stats, Leaderboard & Sijil Penyertaan (selesai)
+**Tarikh:** 2026-07-07
+**Topik terakhir:** Auto-diary EOD — carry-forward dari BFM Fasa 3 (selesai 2026-07-03)
 
 ## Keputusan utama
-- Fasa 3 BFM dilaksanakan sepenuhnya via subagent-driven development — 10 tasks, semua lulus review
-- Supabase View `player_batting_avg` dicipta dalam migration 005 (Abam kena run manual di Dashboard)
-- Leaderboard public `/browse/leaderboard?tournament=<id>` — batting avg ranking per tournament
-- PDF sijil penyertaan: jsPDF landscape A4, download dari browser, admin-only selepas tournament completed
-- Browse page `/browse` replace placeholder — clubs grid + tournaments list berfungsi
-- Reminder eWorks laporan 7a Option C ditutup tanpa implementasi (Abam keputuskan)
+- BFM Fasa 3 selesai sepenuhnya (Player Stats, Leaderboard, PDF Sijil)
+- Supabase View `player_batting_avg` dicipta dalam migration 005 — Abam kena run manual di Dashboard
+- 2026-07-05: DIBA kekal markdown + grep retrieval, TIDAK migrate ke graph DB
+- 2026-07-06: Claude limit hit — fallback ke llama3.2:1b, tiada output bermakna
 
 ## Fail terakhir diubah
 - baseballfedarationmalaysia/supabase/migrations/005_player_avg_view.sql
 - baseballfedarationmalaysia/src/hooks/useDb.js
-- baseballfedarationmalaysia/src/app/dashboard/sections/manager/PlayerRoster.jsx
-- baseballfedarationmalaysia/src/app/dashboard/Manager.jsx
-- baseballfedarationmalaysia/src/app/dashboard/sections/admin/StatsInput.jsx
-- baseballfedarationmalaysia/src/app/dashboard/Admin.jsx
-- baseballfedarationmalaysia/src/app/browse/index.jsx
 - baseballfedarationmalaysia/src/app/browse/Leaderboard.jsx
-- baseballfedarationmalaysia/src/Router.jsx
 - baseballfedarationmalaysia/src/utils/pdf.js
 - baseballfedarationmalaysia/src/app/dashboard/sections/admin/ExportPanel.jsx
 
