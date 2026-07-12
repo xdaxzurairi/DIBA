@@ -1,7 +1,7 @@
 # Current Session Recap
 
-**Tarikh:** 2026-07-03
-**Topik terakhir:** BFM Fasa 3 — Player Stats, Leaderboard & Sijil Penyertaan (selesai)
+**Tarikh:** 2026-07-12
+**Topik terakhir:** Auto-diary EOD checkpoint — tiada sesi aktif hari ini
 
 ## Keputusan utama
 - Fasa 3 BFM dilaksanakan sepenuhnya via subagent-driven development — 10 tasks, semua lulus review
@@ -9,18 +9,12 @@
 - Leaderboard public `/browse/leaderboard?tournament=<id>` — batting avg ranking per tournament
 - PDF sijil penyertaan: jsPDF landscape A4, download dari browser, admin-only selepas tournament completed
 - Browse page `/browse` replace placeholder — clubs grid + tournaments list berfungsi
-- Reminder eWorks laporan 7a Option C ditutup tanpa implementasi (Abam keputuskan)
+- 2026-07-05: Kekal Markdown + 2-hop link traversal untuk DIBA RAG (tiada graph DB)
 
 ## Fail terakhir diubah
 - baseballfedarationmalaysia/supabase/migrations/005_player_avg_view.sql
 - baseballfedarationmalaysia/src/hooks/useDb.js
-- baseballfedarationmalaysia/src/app/dashboard/sections/manager/PlayerRoster.jsx
-- baseballfedarationmalaysia/src/app/dashboard/Manager.jsx
-- baseballfedarationmalaysia/src/app/dashboard/sections/admin/StatsInput.jsx
-- baseballfedarationmalaysia/src/app/dashboard/Admin.jsx
-- baseballfedarationmalaysia/src/app/browse/index.jsx
 - baseballfedarationmalaysia/src/app/browse/Leaderboard.jsx
-- baseballfedarationmalaysia/src/Router.jsx
 - baseballfedarationmalaysia/src/utils/pdf.js
 - baseballfedarationmalaysia/src/app/dashboard/sections/admin/ExportPanel.jsx
 
