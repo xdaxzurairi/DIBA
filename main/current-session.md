@@ -1,23 +1,22 @@
 # Current Session Recap
 
-**Tarikh:** 2026-07-03
-**Topik terakhir:** BFM Fasa 3 — Player Stats, Leaderboard & Sijil Penyertaan (selesai)
+**Tarikh:** 2026-07-13
+**Topik terakhir:** DIBA Self-Learning Loop — design, build & first lesson extracted
 
 ## Keputusan utama
-- Fasa 3 BFM dilaksanakan sepenuhnya via subagent-driven development — 10 tasks, semua lulus review
-- Supabase View `player_batting_avg` dicipta dalam migration 005 (Abam kena run manual di Dashboard)
-- Leaderboard public `/browse/leaderboard?tournament=<id>` — batting avg ranking per tournament
-- PDF sijil penyertaan: jsPDF landscape A4, download dari browser, admin-only selepas tournament completed
-- Browse page `/browse` replace placeholder — clubs grid + tournaments list berfungsi
-- Reminder eWorks laporan 7a Option C ditutup tanpa implementasi (Abam keputuskan)
+- Self-Learning Loop diimplementasi: micro-capture (signal-buffer.md) + batch extract (auto-learn skill)
+- Storage hybrid: learned-index.md (in-context, max 80 baris) + library/learned/ (facts/cases/rules)
+- echo-recall Priority 0 = learned-index — loaded sebelum diary search
+- auto-learn chains selepas "eod" / "save diary"
+- First lesson extracted: webhook > polling untuk realtime events
 
 ## Fail terakhir diubah
-- baseballfedarationmalaysia/supabase/migrations/005_player_avg_view.sql
-- baseballfedarationmalaysia/src/hooks/useDb.js
-- baseballfedarationmalaysia/src/app/dashboard/sections/manager/PlayerRoster.jsx
-- baseballfedarationmalaysia/src/app/dashboard/Manager.jsx
-- baseballfedarationmalaysia/src/app/dashboard/sections/admin/StatsInput.jsx
-- baseballfedarationmalaysia/src/app/dashboard/Admin.jsx
+- main/signal-buffer.md (baru)
+- main/learned-index.md (baru)
+- library/learned/facts.md, cases.md, rules.md (baru)
+- C:/Users/BSM/.claude/skills/auto-learn/SKILL.md (skill baru)
+- CLAUDE.md (micro-capture + self-learning chain rules)
+- C:/Users/BSM/.claude/skills/echo-recall/SKILL.md (Priority 0 + Lv.5)
 - baseballfedarationmalaysia/src/app/browse/index.jsx
 - baseballfedarationmalaysia/src/app/browse/Leaderboard.jsx
 - baseballfedarationmalaysia/src/Router.jsx
