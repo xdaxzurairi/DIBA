@@ -1,7 +1,7 @@
 # Current Session Recap
 
 **Tarikh:** 2026-07-13
-**Topik terakhir:** DIBA Self-Learning Loop — design, build & first lesson extracted
+**Topik terakhir:** BFM Leaderboard + PDF Sijil; DIBA Self-Learning Loop deployed
 
 ## Keputusan utama
 - Self-Learning Loop diimplementasi: micro-capture (signal-buffer.md) + batch extract (auto-learn skill)
@@ -9,14 +9,13 @@
 - echo-recall Priority 0 = learned-index — loaded sebelum diary search
 - auto-learn chains selepas "eod" / "save diary"
 - First lesson extracted: webhook > polling untuk realtime events
+- BFM confirmed client project; Supabase leaderboard + PDF export siap — tunggu SQL migration
 
 ## Fail terakhir diubah
-- main/signal-buffer.md (baru)
-- main/learned-index.md (baru)
-- library/learned/facts.md, cases.md, rules.md (baru)
-- C:/Users/BSM/.claude/skills/auto-learn/SKILL.md (skill baru)
-- CLAUDE.md (micro-capture + self-learning chain rules)
-- C:/Users/BSM/.claude/skills/echo-recall/SKILL.md (Priority 0 + Lv.5)
+- daily-diary/current/2026-07-13.md (evening update ditambah)
+- main/signal-buffer.md
+- main/learned-index.md
+- library/learned/facts.md, cases.md, rules.md
 - baseballfedarationmalaysia/src/app/browse/index.jsx
 - baseballfedarationmalaysia/src/app/browse/Leaderboard.jsx
 - baseballfedarationmalaysia/src/Router.jsx
