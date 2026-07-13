@@ -1,9 +1,9 @@
 # DIBA Learned Index
-*Last updated: (auto-updated by auto-learn skill)*
+*Last updated: 2026-07-13*
 *Max 80 lines — oldest/lowest-confidence pruned bila penuh*
 
 ## Facts
-*(kosong — belum ada lessons)*
+- [2026-07-13] Webhook > polling untuk realtime events
 
 ## Cases
 *(kosong — belum ada lessons)*
