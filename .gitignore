@@ -9,3 +9,4 @@
 
 # Claude Code settings
 .claude/settings.local.json
+.devswarm-temp/
