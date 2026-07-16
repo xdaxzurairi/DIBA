@@ -14,6 +14,8 @@
 | `//10.0.36.127/webs/ea_newv3` | `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/projects/active/ea_newv3/` |
 | `C:/Users/BSM/XDIBAX/bijakbersama` | `C:/Users/BSM/.claude/projects/C--Users-BSM-XDIBAX/memory/project_bijakbersama.md` |
 
+| `C:/Users/BSM/xdibax/scoutops` | `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/projects/active/scoutops/` |
+
 ## Cara Tambah Projek Baru
 
 Tambah baris baru dalam jadual di atas:

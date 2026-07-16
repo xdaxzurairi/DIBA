@@ -6,4 +6,3 @@
 - **Source:** correction dari Abam
 - **Context:** Signal test — pattern ini dicapture sebagai first lesson dalam self-learning loop
 - **Fact:** Untuk realtime events, guna webhook — bukan API polling
-
