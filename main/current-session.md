@@ -15,7 +15,9 @@
 - `Project-AI-MemoryCore/library/learned/` — cases.md, rules.md, learned-index.md
 - `Project-AI-MemoryCore/main/signal-buffer.md` — 11 entries [done]
 - `C:/Users/BSM/.claude/skills/save-diary/skill.md` — Lv.4 filter removed (all → Telegram)
+- `daily-diary/current/2026-07-16.md` — EOD diary created
 
 ## Follow-up terbuka
 - Forge lebih `/legal` skills bila ada kontrak sebenar
 - Kemaskini `finance-head` description — buang "(forge queue)" dari financial-snapshot + invoice-chaser
+- Test Telegram notify untuk XDIBAX internal diary
