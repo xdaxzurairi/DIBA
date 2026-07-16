@@ -1,0 +1,255 @@
+{
+  "_meta": {
+    "version": "1.0.0",
+    "updated": "2026-07-16",
+    "description": "DIBA skill manifest — dept, model, triggers per skill",
+    "depts": ["dev","design","mkt","social","finance","biz","legal","memory","ops"],
+    "models": {
+      "opus": "plan, audit, architecture, keputusan besar, legal, finance",
+      "sonnet": "implementation, debugging, feature build, workload berat",
+      "haiku": "diary, recall, commit, kerja ringan, memory ops"
+    }
+  },
+  "code-sharp": {
+    "dept": "dev", "model": "sonnet",
+    "triggers": ["code","fix","bug","debug","implement","tulis kod","refactor"]
+  },
+  "forge-skill": {
+    "dept": "dev", "model": "sonnet",
+    "triggers": ["forge","skill baru","create skill","buat skill","naikkan skill"]
+  },
+  "systematic-debugging": {
+    "dept": "dev", "model": "sonnet",
+    "triggers": ["debug","error","crash","exception","tidak berfungsi","kenapa gagal"]
+  },
+  "test-driven-development": {
+    "dept": "dev", "model": "sonnet",
+    "triggers": ["test","tdd","unit test","integration test","spec"]
+  },
+  "repo-pack": {
+    "dept": "dev", "model": "sonnet",
+    "triggers": ["pack repo","export code","bundle","context window"]
+  },
+  "finishing-a-development-branch": {
+    "dept": "dev", "model": "sonnet",
+    "triggers": ["finish branch","siap branch","wrap up","close branch","merge ready"]
+  },
+  "using-git-worktrees": {
+    "dept": "dev", "model": "sonnet",
+    "triggers": ["worktree","git worktree","parallel branch","isolate branch"]
+  },
+  "verification-before-completion": {
+    "dept": "dev", "model": "sonnet",
+    "triggers": ["verify","check before done","semak sebelum siap","quality check"]
+  },
+  "dispatching-parallel-agents": {
+    "dept": "dev", "model": "opus",
+    "triggers": ["parallel","serentak","multiple agents","dispatch agents","pecah task"]
+  },
+  "subagent-driven-development": {
+    "dept": "dev", "model": "sonnet",
+    "triggers": ["subagent","delegate","fresh agent","spawn agent"]
+  },
+  "executing-plans": {
+    "dept": "dev", "model": "sonnet",
+    "triggers": ["execute plan","jalankan plan","run plan","implement plan"]
+  },
+  "frontend-design": {
+    "dept": "design", "model": "sonnet",
+    "triggers": ["frontend","ui","html","css","component","layout","tampilan"]
+  },
+  "interaction-design": {
+    "dept": "design", "model": "sonnet",
+    "triggers": ["interaction","ux","motion","animation","feel","polish","ui feel"]
+  },
+  "image-prompt": {
+    "dept": "design", "model": "sonnet",
+    "triggers": ["image prompt","gambar ai","generate image","visual prompt","midjourney","dalle"]
+  },
+  "brainstorming": {
+    "dept": "design", "model": "opus",
+    "triggers": ["brainstorm","idea","design spec","plan design","reka bentuk"]
+  },
+  "writing-plans": {
+    "dept": "design", "model": "opus",
+    "triggers": ["writing plan","implementation plan","tulis plan","buat plan","plan detail"]
+  },
+  "web-asset-generator": {
+    "dept": "design", "model": "sonnet",
+    "triggers": ["web asset","favicon","icon","logo","banner","asset web"]
+  },
+  "marketing-workshop": {
+    "dept": "mkt", "model": "sonnet",
+    "triggers": ["marketing","kempen","campaign","promosi","iklan","brand message"]
+  },
+  "writing-skills": {
+    "dept": "mkt", "model": "sonnet",
+    "triggers": ["tulis artikel","copywriting","blog post","content write","penulisan"]
+  },
+  "resonance": {
+    "dept": "mkt", "model": "sonnet",
+    "triggers": ["resonance","tone","voice","brand voice","cara tulis","gaya"]
+  },
+  "dream-ideas": {
+    "dept": "mkt", "model": "opus",
+    "triggers": ["dream","idea kreatif","creative idea","out of box","imaginasi","visi"]
+  },
+  "song-creation": {
+    "dept": "mkt", "model": "sonnet",
+    "triggers": ["lagu","song","lyric","music","nasyid","jingle"]
+  },
+  "interactive-story": {
+    "dept": "social", "model": "sonnet",
+    "triggers": ["cerita interaktif","story","narrative","interactive fiction","watak"]
+  },
+  "usage-tracker": {
+    "dept": "finance", "model": "haiku",
+    "triggers": ["usage","track usage","berapa guna","token usage","cost track"]
+  },
+  "smart-effort": {
+    "dept": "finance", "model": "sonnet",
+    "triggers": ["effort","estimate","workload estimate","berapa lama","scope effort"]
+  },
+  "manage-project": {
+    "dept": "biz", "model": "sonnet",
+    "triggers": ["projek baru","load project","save project","list project","manage project"]
+  },
+  "meeting": {
+    "dept": "biz", "model": "sonnet",
+    "triggers": ["meeting","mesyuarat","standup","minit mesyuarat","team meeting"]
+  },
+  "log-decision": {
+    "dept": "biz", "model": "haiku",
+    "triggers": ["log keputusan","decision","catat keputusan","save decision","rekod"]
+  },
+  "post-mortem": {
+    "dept": "biz", "model": "sonnet",
+    "triggers": ["post-mortem","retrospective","what went wrong","lessons learned","analisis lepas"]
+  },
+  "work-plan": {
+    "dept": "biz", "model": "sonnet",
+    "triggers": ["work plan","rancangan kerja","copy plan","resume plan","task list"]
+  },
+  "work-plan-execution": {
+    "dept": "biz", "model": "sonnet",
+    "triggers": ["execute work plan","jalankan work plan","run work plan","step by step"]
+  },
+  "orchestrate": {
+    "dept": "biz", "model": "opus",
+    "triggers": ["orchestrate","audit besar","koordinasi","pecah kerja besar","multi-step besar"]
+  },
+  "chief-of-staff": {
+    "dept": "biz", "model": "opus",
+    "triggers": ["chief of staff","briefing eksekutif","strategic overview","status semua projek"]
+  },
+  "project-map": {
+    "dept": "biz", "model": "sonnet",
+    "triggers": ["project map","peta projek","overview projek","landscape projek"]
+  },
+  "echo-recall": {
+    "dept": "memory", "model": "haiku",
+    "triggers": ["recall","ingat","do you remember","apa yang kita buat","sesi lepas"]
+  },
+  "save-memory": {
+    "dept": "memory", "model": "haiku",
+    "triggers": ["save memory","ingat ni","simpan","remember this","nota penting"]
+  },
+  "diba-recall": {
+    "dept": "memory", "model": "haiku",
+    "triggers": ["diba","diba?","ingat semula","brief semula","apa status"]
+  },
+  "library": {
+    "dept": "memory", "model": "haiku",
+    "triggers": ["library","save library","load library","simpan rujukan","knowledge base"]
+  },
+  "auto-learn": {
+    "dept": "memory", "model": "sonnet",
+    "triggers": ["extract lessons","process buffer","what did we learn","learn from today","pelajaran"]
+  },
+  "auto-learn-new-folder": {
+    "dept": "memory", "model": "haiku",
+    "triggers": ["folder baru","projek baru kesan","new folder detected","auto-learn folder"]
+  },
+  "check-reminders": {
+    "dept": "memory", "model": "haiku",
+    "triggers": ["reminder","check reminder","remind me","peringatan","apa yang tertunggak"]
+  },
+  "save-diary": {
+    "dept": "memory", "model": "haiku",
+    "triggers": ["save diary","diary","eod","catat hari ni","log harian"]
+  },
+  "auto-commit": {
+    "dept": "ops", "model": "haiku",
+    "triggers": ["commit","auto-commit","git commit","push","save code"]
+  },
+  "auto-worker": {
+    "dept": "ops", "model": "sonnet",
+    "triggers": ["auto-worker","buat ni","boleh tak","goal 2 langkah","buat sendiri"]
+  },
+  "self-healing": {
+    "dept": "ops", "model": "haiku",
+    "triggers": ["self-heal","drift","persona drift","skop lari","background check"]
+  },
+  "anchor": {
+    "dept": "ops", "model": "haiku",
+    "triggers": ["anchor","fokus","jangan melalut","balik fokus","scope drift"]
+  },
+  "discipline": {
+    "dept": "ops", "model": "haiku",
+    "triggers": ["discipline","ikut rules","enforce","jangan skip","semak rules"]
+  },
+  "token-guard": {
+    "dept": "ops", "model": "haiku",
+    "triggers": ["token","context penuh","jimat token","token guard","hemat context"]
+  },
+  "break-reminder": {
+    "dept": "ops", "model": "haiku",
+    "triggers": ["rehat","break","penat","istirahat","rest","tired"]
+  },
+  "session-briefing": {
+    "dept": "ops", "model": "haiku",
+    "triggers": ["session start","awal sesi","good morning","selamat pagi","baru start"]
+  },
+  "diba-operator": {
+    "dept": "ops", "model": "sonnet",
+    "triggers": ["operator mode","diba operator","full operator","kuasa penuh"]
+  },
+  "diba-response": {
+    "dept": "ceo", "model": "sonnet",
+    "triggers": ["_always_active_"],
+    "note": "CEO layer — always active, routing brain"
+  },
+  "ask-nemotron": {
+    "dept": "ops", "model": "sonnet",
+    "triggers": ["nemotron","tanya nemotron","second opinion","model lain","alternative model"]
+  },
+  "using-superpowers": {
+    "dept": "meta", "model": "haiku",
+    "triggers": ["_meta_always_"],
+    "note": "Meta layer — loaded at session start"
+  },
+  "financial-snapshot": {
+    "dept": "finance", "model": "opus",
+    "triggers": ["cash flow","budget","berapa duit","financial health","runway","kewangan"]
+  },
+  "invoice-chaser": {
+    "dept": "finance", "model": "opus",
+    "triggers": ["invoice","payment overdue","chase payment","hutang","outstanding"]
+  },
+  "contract-reviewer": {
+    "dept": "legal", "model": "opus",
+    "triggers": ["kontrak","contract","agreement","terms","clauses","nda","perjanjian"]
+  },
+  "compliance-check": {
+    "dept": "legal", "model": "opus",
+    "triggers": ["compliance","pdpa","gdpr","regulasi","audit","data protection"]
+  },
+  "post-writer": {
+    "dept": "social", "model": "sonnet",
+    "triggers": ["post linkedin","tweet","ig caption","draft post","social content","tulis post"]
+  },
+  "hook-generator": {
+    "dept": "social", "model": "sonnet",
+    "triggers": ["hook","opening line","first line","attention grabber","viral hook","penarik"]
+  }
+}
