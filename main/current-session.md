@@ -1,7 +1,7 @@
 # Current Session Recap
 
-**Tarikh:** 2026-07-16
-**Topik:** DIBA Department Architecture — verification + gemini sync
+**Tarikh:** 2026-07-19
+**Topik:** Auto-diary EOD — tiada sesi aktif (last active: 2026-07-16 DIBA Dept Architecture)
 
 ## Keputusan
 - Routing test PASS: `/dev`→code-sharp, `/memory`→echo-recall, `/finance`→financial-snapshot
@@ -15,6 +15,7 @@
 - `Project-AI-MemoryCore/library/learned/` — cases.md, rules.md, learned-index.md
 - `Project-AI-MemoryCore/main/signal-buffer.md` — 11 entries [done]
 - `C:/Users/BSM/.claude/skills/save-diary/skill.md` — Lv.4 filter removed (all → Telegram)
+- `daily-diary/current/2026-07-19.md` — auto-diary EOD created
 
 ## Follow-up terbuka
 - Forge lebih `/legal` skills bila ada kontrak sebenar
