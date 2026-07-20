@@ -1,7 +1,7 @@
 # Current Session Recap
 
-**Tarikh:** 2026-07-16
-**Topik:** DIBA Department Architecture — verification + gemini sync
+**Tarikh:** 2026-07-20 (auto-diary EOD — tiada sesi aktif)
+**Topik:** Tiada sesi baharu; last active: 2026-07-16 — DIBA Dept Architecture sync
 
 ## Keputusan
 - Routing test PASS: `/dev`→code-sharp, `/memory`→echo-recall, `/finance`→financial-snapshot
