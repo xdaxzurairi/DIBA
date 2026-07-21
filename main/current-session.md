@@ -12,12 +12,10 @@
 **Fail terakhir diubah:**
 - `.claude-flow/hooks/memory-sync.js` — +3 source paths
 - `Project-AI-MemoryCore/.git/hooks/post-commit` — hook baru (obsidian-git trigger)
-- `daily-diary/current/2026-07-21.md` — entry sesi petang
+- `daily-diary/current/2026-07-21.md` — auto-diary EOD (cron)
 
 **Follow-up terbuka:**
 - Pertimbang `scripts/setup-hooks.sh` untuk reproducibility post-commit hook
-
-**Follow-up terbuka:**
 - Verify morning brief cron 8am berjalan
 - Test `ruflo memory search -q "bijakbersama"` → hasil semantic
 - Define formal DIBA Review Gate protocol untuk spawn-agent
