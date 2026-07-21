@@ -21,3 +21,8 @@
 - **Rule:** git-monitor.js PostToolUse hook akan capture semua untracked folders termasuk node_modules, .cache, build artifacts. Signal buffer akan penuh dengan noise. Pertimbangkan tambah filter dalam git-monitor.js: `newFolders.filter(f => !f.includes('node_modules') && !f.includes('.vite-temp'))` sebelum append ke buffer.
 - **Source:** signal buffer 2026-07-21 (3 new-folder entries, setiap satu mengandungi 50+ node_modules paths)
 - **Confidence:** low (1 sesi, tapi pattern jelas)
+
+## R005 — Obsidian-Ruflo Bridge: Guna git post-commit Hook, Bukan Daemon Watcher
+- **Rule:** Pada Windows dengan obsidian-git, guna `post-commit` hook dalam `.git/hooks/` untuk trigger memory sync. Jangan guna `fs.watch` daemon — ia perlu proses background berterusan dan boleh mati tanpa notice. post-commit hook jalan automatik setiap kali obsidian-git commit (default 10 minit), zero maintenance.
+- **Source:** case 2026-07-21 (Obsidian-Ruflo Integration)
+- **Confidence:** low (1 instance)

@@ -1,22 +1,21 @@
 # Current Session Recap
 
 **Tarikh:** 2026-07-21
-**Topik:** Ruflo+DIBA Integration — complete & shipped
+**Topik:** Obsidian ↔ Ruflo Memory Integration
 
 **Keputusan:**
-- Ruflo sebagai Extension Layer (Pendekatan A) — DIBA interface, ruflo worker pool
-- `ruflo memory import` batch (satu call) gantikan per-file store (ONNX overload fix)
-- Morning brief via Node.js script standalone (bukan `ruflo workflow run`)
-- `echo path > latest-path.txt` gantikan `ln -sfn` (Windows compatibility)
-- DIBA Review Gate: semua ruflo agent output perlu Abam approve sebelum commit
+- git post-commit hook dalam MemoryCore → trigger memory-sync.js bila obsidian-git commit
+- Tambah 3 source paths ke memory-sync.js: `plans/`, `projects/active/`, `DIBA/`
+- 64 entries synced ke ruflo diba namespace (test pass)
+- post-commit hook local (.git/hooks/) — tidak di-track git
 
 **Fail terakhir diubah:**
-- `.claude-flow/hooks/memory-sync.js` — batch import 46 DIBA markdown entries → ruflo HNSW
-- `.claude-flow/hooks/spawn-agent.sh` — worker pool wrapper
-- `.claude-flow/scripts/generate-morning-brief.js` — daily brief generator
-- `DIBA/.claude/hooks/session-start.sh` — ruflo sync background call (submodule)
-- `C:/Users/BSM/.claude/hooks/git-monitor.js` — PostToolUse detect new folders
-- `daily-diary/current/2026-07-21.md` — diary entry hari ini
+- `.claude-flow/hooks/memory-sync.js` — +3 source paths
+- `Project-AI-MemoryCore/.git/hooks/post-commit` — hook baru (obsidian-git trigger)
+- `daily-diary/current/2026-07-21.md` — entry sesi petang
+
+**Follow-up terbuka:**
+- Pertimbang `scripts/setup-hooks.sh` untuk reproducibility post-commit hook
 
 **Follow-up terbuka:**
 - Verify morning brief cron 8am berjalan

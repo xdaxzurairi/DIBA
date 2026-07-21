@@ -16,3 +16,8 @@
 - **Source:** tool-fail dari DIBA (ruflo integration)
 - **Context:** `ruflo memory import -i batch.json` gagal dengan "Entries: 0" bila JSON adalah raw array
 - **Fact:** `ruflo memory import` mesti format `{ "entries": [...] }` sebagai wrapper object, bukan raw array `[...]`. Tanpa wrapper, ruflo parse 0 entries.
+
+## 2026-07-21 — .cursor/skills/ Tidak Dibersihkan oleh session-start.sh
+- **Source:** new-folder signal dari git-monitor.js
+- **Context:** git-monitor.js detected `.cursor/skills/anchor/`, `.cursor/skills/diba-operator/`, `.cursor/skills/dream-ideas/` dll sebagai untracked folders.
+- **Fact:** `session-start.sh` hanya padam deprecated skills dari `~/.claude/skills/` — ia tidak menyentuh `.cursor/skills/`. Deprecated skills boleh kekal dalam cursor vault secara kekal.

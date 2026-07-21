@@ -31,3 +31,15 @@
 - **Fix:** Ganti dengan `echo "$OUT_DIR" > "$SESSION_DIR/latest-path.txt"` — simpan path sebagai plain text.
 - **Outcome:** Works cross-platform, mudah dibaca dengan `cat latest-path.txt`.
 - **Lesson:** Symlink via `ln -sfn` tidak reliable dalam Windows bash (Git Bash/MINGW). Guna plain text file untuk path tracking.
+
+## 2026-07-21 — Obsidian ↔ Ruflo Integration via Git post-commit Hook
+- **Miss:** Tiada real-time bridge antara Obsidian vault edits dan Ruflo memory namespace. memory-sync.js hanya jalan sekali masa session start.
+- **Fix:** Tambah `post-commit` hook dalam `Project-AI-MemoryCore/.git/hooks/` yang trigger `memory-sync.js` setiap kali obsidian-git auto-commit (setiap 10 minit). Extended SOURCES dalam memory-sync.js dengan 3 paths baru: `plans/`, `projects/active/`, `DIBA/`.
+- **Outcome:** 64 entries synced. Hook test pass. Obsidian edits akan reflected dalam Ruflo dalam max 10 minit.
+- **Lesson:** Untuk Obsidian-Ruflo sync pada Windows, gunakan git `post-commit` hook (ikut obsidian-git cadence) — lebih reliable daripada `fs.watch` daemon yang perlu run berterusan.
+
+## 2026-07-21 — Large Agent Output Captured sebagai tool-fail (False Positive)
+- **Miss:** `capture-signal.js` captured output Agent explore yang berjaya sebagai `tool-fail` dalam signal-buffer.
+- **Fix:** Tiada fix diperlukan — ini false positive. Output Agent yang besar kadang trigger regex check dalam capture-signal.js walaupun operation berjaya.
+- **Outcome:** Buffer ada noise entry tapi ia tidak mengganggu operasi.
+- **Lesson:** Agent tool output boleh jadi false positive dalam signal-buffer. Verify dengan actual output/artifact, bukan buffer entry sahaja.
