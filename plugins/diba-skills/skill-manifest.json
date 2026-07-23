@@ -1,7 +1,7 @@
 {
   "_meta": {
-    "version": "1.0.0",
-    "updated": "2026-07-16",
+    "version": "1.1.0",
+    "updated": "2026-07-23",
     "description": "DIBA skill manifest — dept, model, triggers per skill",
     "depts": ["dev","design","mkt","social","finance","biz","legal","memory","ops"],
     "models": {
@@ -251,5 +251,53 @@
   "hook-generator": {
     "dept": "social", "model": "sonnet",
     "triggers": ["hook","opening line","first line","attention grabber","viral hook","penarik"]
+  },
+  "focused-fix": {
+    "dept": "dev", "model": "sonnet",
+    "triggers": ["fix bug ni","kenapa x tak jalan","repair this feature","something wrong dengan"]
+  },
+  "security-guidance": {
+    "dept": "dev", "model": "sonnet",
+    "triggers": ["security check","selamat ke code ni","ada vulnerability tak","audit security"]
+  },
+  "env-secrets-manager": {
+    "dept": "dev", "model": "sonnet",
+    "triggers": [".env","secret bocor","rotate credential","leak api key","check secrets"]
+  },
+  "dependency-auditor": {
+    "dept": "dev", "model": "sonnet",
+    "triggers": ["audit dependency","check license","upgrade packages","vulnerable package"]
+  },
+  "tech-debt-tracker": {
+    "dept": "dev", "model": "sonnet",
+    "triggers": ["tech debt","hutang teknikal","apa patut refactor dulu","prioritize cleanup"]
+  },
+  "changelog-generator": {
+    "dept": "dev", "model": "sonnet",
+    "triggers": ["buat changelog","generate release notes","apa yang berubah sejak version lepas"]
+  },
+  "deep-work": {
+    "dept": "ops", "model": "sonnet",
+    "triggers": ["time block hari ni","susun deep work","shallow work minggu ni","focus session","shutdown ritual"]
+  },
+  "weekly-review": {
+    "dept": "ops", "model": "sonnet",
+    "triggers": ["gtd review","audit komitmen","apa yang stalled","clear semua open loop","trusted system check"]
+  },
+  "capture": {
+    "dept": "memory", "model": "haiku",
+    "triggers": ["brain dump","ok banyak nak cakap ni","catat semua ni"]
+  },
+  "pulse": {
+    "dept": "biz", "model": "sonnet",
+    "triggers": ["apa orang cakap pasal","sentiment terkini","trend minggu ni","check reddit pasal","check hn pasal"]
+  },
+  "deep-research": {
+    "dept": "biz", "model": "opus",
+    "triggers": ["penyiasatan mendalam","deep research pasal","kajian menyeluruh dengan sumber"]
+  },
+  "experiment-designer": {
+    "dept": "biz", "model": "sonnet",
+    "triggers": ["design a/b test","macam mana nak test feature ni","hypothesis untuk experiment","berapa sample size"]
   }
 }

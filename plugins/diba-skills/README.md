@@ -3,7 +3,7 @@
 
 ## Plugin Info
 - **Name**: diba-skills
-- **Version**: 2.1.0
+- **Version**: 2.2.0
 - **Author**: Zuex
 - **Rule**: `Feature/*/SKILL.md` copies are documentation/history only (marked SUPERSEDED). Edit skills HERE.
 
@@ -48,6 +48,16 @@ One owner per phrase. Before adding or leveling a skill, grep this table — a p
 | code-sharp | (auto before writing/editing code) |
 | discipline | "discipline", "semak disiplin", "balik standard", "anchor", "fokus", "lock", "jangan melalut", "stay on task" · (background drift monitor, every 5 responses) |
 | resonance | "resonance", "jom fikir sama", "let's think together", "mode explore", "dream", "bagi idea baru", "brainstorm", "cuba impikan" |
+| focused-fix | "fix bug ni", "kenapa X tak jalan", "repair this feature", "something wrong dengan" |
+| security-guidance | (auto before Edit/Write kod) · "security check", "selamat ke code ni", "ada vulnerability tak", "audit security" |
+| env-secrets-manager | ".env", "secret bocor", "rotate credential", "leak API key", "check secrets" |
+| dependency-auditor | "audit dependency", "check license", "upgrade packages", "vulnerable package" |
+| tech-debt-tracker | "tech debt", "hutang teknikal", "apa patut refactor dulu", "prioritize cleanup" |
+| changelog-generator | "buat changelog", "generate release notes", "apa yang berubah sejak version lepas" |
+| deep-work | "time block hari ni", "susun deep work", "shallow work minggu ni", "focus session", "shutdown ritual" |
+| weekly-review | "gtd review", "audit komitmen", "apa yang stalled", "clear semua open loop", "trusted system check" |
+| capture | "brain dump", "ok banyak nak cakap ni", "catat semua ni" |
+| experiment-designer | "design A/B test", "macam mana nak test feature ni", "hypothesis untuk experiment", "berapa sample size" |
 
 ### Knowledge & analysis
 | Skill | Owned triggers |
@@ -57,6 +67,8 @@ One owner per phrase. Before adding or leveling a skill, grep this table — a p
 | project-map | "graphify", "map projek", "buat index", "dependency map", "cari kat mana" |
 | forge-skill | "create skill", "forge this", "level up", "upgrade skill", "naikkan skill" · auto on 3+ repeated patterns |
 | ask-nemotron | "nm:", "nemotron:", "#nm", "claude limit", "nemotron takeover", "guna nemotron je", "guna local model" |
+| pulse | "apa orang cakap pasal", "sentiment terkini", "trend minggu ni", "check reddit pasal", "check HN pasal" |
+| deep-research | "penyiasatan mendalam", "deep research pasal", "kajian menyeluruh dengan sumber" |
 
 ### Design, creative & marketing
 | Skill | Owned triggers |
