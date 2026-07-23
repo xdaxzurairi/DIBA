@@ -69,6 +69,29 @@ Sebelum mula kerja dalam domain berisiko tinggi:
 - Format: "Domain ini ada [X] kegagalan sebelum. Risiko utama: [lesson]. Mitigation: [cadangan]"
 - Alert hanya muncul sekali per session per domain — tidak spam
 
+### Outcome Scoring Against Pre-Committed Criteria (Lv.7)
+
+Guna bila post-mortem ni untuk keputusan yang **ada kriteria success/kill ditulis sebelum** (dalam `decisions.md`, `work-plan`, atau reminder asal) — bukan retrofit lepas fakta:
+
+1. Cari entri asal (decisions.md / plan) — extract kriteria success & kill yang ditulis masa tu
+2. Jika tiada kriteria eksplisit ditulis dulu: skip section ni, jangan reka kriteria retroaktif (retroactive justification = musuh utama post-mortem jujur)
+3. Jika ada: tambah jadual dalam entry
+
+   | Kriteria Success | Threshold | Actual | Capai? |
+   |---|---|---|---|
+   | ... | ... | ... | ✅ / ❌ |
+
+   | Kriteria Kill | Threshold | Actual | Trigger? |
+   |---|---|---|---|
+   | ... | ... | ... | ✅ / ❌ |
+
+4. **Status keseluruhan**: WIN / PARTIAL / LOSS / MIXED
+5. **Assumption Audit** — assumption asal (dari decision/plan) disenaraikan, tandakan Held? YES/NO/PARTIAL + sebab
+6. **Dissent Revisited** (jika ada alternatif yang ditolak masa keputusan dibuat, dicatat dalam decisions.md "rejected alternatives") — semak: adakah concern tu benar-benar berlaku? Kalau ya, apa kosnya?
+7. Routing: WIN → tutup, tiada follow-up. LOSS → cadang decision baharu atau reverse via log-decision "Reversed:" entry.
+
+Rasional: kriteria ditulis SEBELUM keputusan (bukan lepas), supaya tiada ruang untuk "memang dah agak dah" retroaktif — angka sama ada padan atau tidak.
+
 ## Level History
 - **Lv.1** — Base: manual trigger + append to log
 - **Lv.2** — Auto-detection of failure signals + passive prompting
@@ -76,3 +99,4 @@ Sebelum mula kerja dalam domain berisiko tinggi:
 - **Lv.4** — Regression Link: kait kegagalan semula dengan post-mortem sedia ada. (Origin: 2026-05-22 — naikkan skill batch)
 - **Lv.5** — Pattern Aggregation: categorize root causes, surface top-3 patterns. (Origin: 2026-06-12)
 - **Lv.6** — Preventive Alert: pre-work risk alert berdasarkan post-mortem history. (Origin: 2026-06-12)
+- **Lv.7** — Outcome Scoring: bila decision asal ada kriteria success/kill pre-committed, score WIN/PARTIAL/LOSS/MIXED + Assumption Audit + Dissent Revisited, elak retroactive justification. (Origin: 2026-07-23 — upskill dari `xdaxzurairi/xdibax-skills` repo punya `/cs:post-mortem` konsep, disesuaikan tanpa command-pipeline/multi-role yang tak relevan untuk DIBA)

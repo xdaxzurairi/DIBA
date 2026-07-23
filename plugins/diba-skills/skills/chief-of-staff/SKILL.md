@@ -81,6 +81,7 @@ Compressed brief: overdue → top 3 → one-line recommendation. No greeting.
 | manage-project | LRU list feeds priorities; stalled detection uses its data |
 | save-diary / auto-commit | Called during EOD wrap |
 | post-mortem | Watch-out section pulls from its log |
+| log-decision | Lv.4 Stalled Radar + weekly review scan `decisions.md` untuk `Review:` date lepas tempoh (log-decision Lv.3) — flag terus sebagai item radar |
 
 ## Lv.2 — Priority Scoring (Deterministic)
 
