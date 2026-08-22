@@ -63,5 +63,8 @@ All installed features. Each links back to [[HOME|HOME]] and [[main/main-memory|
 - [[Feature/Interactive-Story-System/SKILL|Interactive-Story-System]]
 - [[Feature/Song-Creation-System/SKILL|Song-Creation-System]]
 
+## Visual & Simulation
+- [[Feature/War-Room-System/SKILL|War-Room-System]]
+
 ---
 *[[HOME|HOME]] · [[main/main-memory|main-memory]] · [[plugins/diba-skills/README|diba-skills plugin]]*

@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DIBA War Room — Block Command Center</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --sky-top: #3a8fd9;
+      --sky-bot: #87ceeb;
+      --panel: #2d1f0f;
+      --panel-lit: #4a3520;
+      --border: #1a1008;
+      --border-lit: #c9a050;
+      --text: #fff8e7;
+      --muted: #c4a574;
+      --accent: #5cdb5c;
+      --gold: #ffcc00;
+      --hp: #ff4444;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; image-rendering: pixelated; }
+    body {
+      font-family: 'VT323', monospace;
+      background: #1a0a00;
+      color: var(--text);
+      height: 100vh;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      grid-template-rows: 52px 1fr 40px;
+    }
+
+    /* ── MC-style pixel border mixin via box-shadow layers ── */
+    .mc-panel {
+      background: var(--panel);
+      box-shadow:
+        inset 3px 3px 0 #6b5030,
+        inset -3px -3px 0 #1a1008,
+        0 0 0 3px var(--border-lit),
+        0 0 0 6px var(--border);
+    }
+
+    header {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 0 16px;
+      background: linear-gradient(180deg, #3d2a10 0%, #2d1f0f 100%);
+      border-bottom: 4px solid var(--border-lit);
+      z-index: 20;
+    }
+    header h1 {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 11px;
+      line-height: 1.6;
+      color: var(--gold);
+      text-shadow: 2px 2px 0 #000;
+    }
+    header h1 em { color: var(--accent); font-style: normal; }
+    .hud-hearts { display: flex; gap: 2px; font-size: 18px; }
+    .stats { font-size: 18px; color: var(--muted); letter-spacing: 1px; }
+    .search-wrap { margin-left: auto; }
+    .search-wrap input {
+      font-family: 'VT323', monospace;
+      font-size: 20px;
+      background: #1a1008;
+      border: 3px solid var(--border-lit);
+      color: var(--text);
+      padding: 4px 12px;
+      width: 220px;
+      outline: none;
+    }
+    .search-wrap input:focus { border-color: var(--accent); box-shadow: 0 0 12px rgba(92,219,92,0.4); }
+
+    #map-wrap {
+      position: relative;
+      overflow: hidden;
+      cursor: grab;
+    }
+    #map-wrap.dragging { cursor: grabbing; }
+    canvas#canvas { display: block; width: 100%; height: 100%; }
+
+    /* floating HUD */
+    .hud-top {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      pointer-events: none;
+    }
+    .xp-bar-wrap {
+      width: 200px;
+      height: 14px;
+      background: #1a1008;
+      border: 2px solid #000;
+      box-shadow: inset 0 0 0 2px #555;
+    }
+    .xp-bar {
+      height: 100%;
+      background: linear-gradient(180deg, #80ff80, #2a8a2a);
+      width: 72%;
+      transition: width 0.5s;
+      box-shadow: inset 0 -2px 0 rgba(0,0,0,0.3);
+    }
+    .xp-label { font-size: 16px; color: var(--accent); text-shadow: 1px 1px 0 #000; }
+
+    #minimap {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 160px;
+      height: 120px;
+      z-index: 10;
+      border: 3px solid var(--border-lit);
+      box-shadow: 4px 4px 0 rgba(0,0,0,0.5);
+      image-rendering: pixelated;
+    }
+
+    .action-bar {
+      position: absolute;
+      bottom: 16px;
+      right: 16px;
+      display: flex;
+      gap: 6px;
+      z-index: 10;
+    }
+    .mc-btn {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 8px;
+      padding: 10px 12px;
+      background: linear-gradient(180deg, #8b7355, #5c4a30);
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      box-shadow: inset 2px 2px 0 #c4a574, inset -2px -2px 0 #2d1f0f, 0 4px 0 #1a1008;
+      text-shadow: 1px 1px 0 #000;
+      transition: transform 0.05s;
+    }
+    .mc-btn:hover { filter: brightness(1.15); }
+    .mc-btn:active { transform: translateY(3px); box-shadow: inset 2px 2px 0 #2d1f0f, inset -2px -2px 0 #c4a574; }
+    .mc-btn.green { background: linear-gradient(180deg, #5cdb5c, #2a8a2a); }
+
+    #detail-panel {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      width: 360px;
+      z-index: 15;
+      display: none;
+      animation: slideUp 0.25s ease;
+    }
+    @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: none; opacity: 1; } }
+    #detail-panel.open { display: block; }
+    #detail-panel .inner { padding: 16px; position: relative; }
+    #detail-panel .close {
+      position: absolute; top: 8px; right: 10px;
+      background: #c0392b; border: 2px solid #000; color: #fff;
+      width: 28px; height: 28px; font-size: 16px; cursor: pointer;
+      font-family: 'Press Start 2P', monospace; line-height: 1;
+      box-shadow: inset 1px 1px 0 #e74c3c;
+    }
+    #detail-panel h2 {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 10px;
+      color: var(--gold);
+      margin-bottom: 8px;
+      line-height: 1.6;
+      text-shadow: 2px 2px 0 #000;
+    }
+    #detail-panel .sub { font-size: 18px; color: var(--muted); margin-bottom: 8px; }
+    .status-badge {
+      display: inline-block;
+      font-size: 16px;
+      padding: 2px 10px;
+      margin-bottom: 10px;
+      border: 2px solid #000;
+    }
+    .status-badge.dormant { background: #555; }
+    .status-badge.active { background: #e6a817; color: #000; animation: pulse 0.8s infinite; }
+    .status-badge.done { background: var(--accent); color: #000; }
+    @keyframes pulse { 50% { filter: brightness(1.3); } }
+    #detail-panel p { font-size: 18px; line-height: 1.4; margin-bottom: 10px; }
+    .triggers { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 12px; }
+    .trigger-tag {
+      background: #1a1008;
+      border: 2px solid var(--border-lit);
+      padding: 2px 8px;
+      font-size: 16px;
+      color: var(--accent);
+    }
+    .actions { display: flex; gap: 8px; }
+
+    /* DIBA speech bubble on canvas area */
+    #diba-bubble {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -120%);
+      z-index: 12;
+      max-width: 320px;
+      display: none;
+      pointer-events: none;
+    }
+    #diba-bubble.show { display: block; animation: bobble 2s ease-in-out infinite; }
+    @keyframes bobble { 50% { transform: translate(-50%, -125%); } }
+    #diba-bubble .bubble {
+      background: #fff;
+      color: #111;
+      border: 3px solid #000;
+      padding: 12px 16px;
+      font-size: 20px;
+      line-height: 1.3;
+      position: relative;
+      box-shadow: 4px 4px 0 rgba(0,0,0,0.4);
+    }
+    #diba-bubble .bubble::after {
+      content: '';
+      position: absolute;
+      bottom: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 10px solid transparent;
+      border-top-color: #000;
+    }
+
+    aside {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border-left: 4px solid var(--border-lit);
+    }
+    aside .mc-panel { flex: 1; display: flex; flex-direction: column; margin: 8px; overflow: hidden; }
+
+    .tabs { display: flex; border-bottom: 3px solid var(--border-lit); }
+    .tabs button {
+      flex: 1;
+      padding: 10px 4px;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 7px;
+      background: #3d2a10;
+      border: none;
+      color: var(--muted);
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -3px;
+    }
+    .tabs button.active { color: var(--gold); border-bottom-color: var(--gold); background: var(--panel-lit); }
+
+    .district-filter {
+      padding: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      border-bottom: 2px solid #3d2a10;
+    }
+    .district-filter button {
+      font-size: 18px;
+      padding: 2px 6px;
+      background: #1a1008;
+      border: 2px solid #555;
+      cursor: pointer;
+      transition: transform 0.1s;
+    }
+    .district-filter button:hover { transform: scale(1.15); }
+    .district-filter button.active { border-color: var(--gold); box-shadow: 0 0 8px var(--gold); }
+
+    .roster { flex: 1; overflow-y: auto; padding: 8px; }
+    .roster-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px;
+      margin-bottom: 4px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      font-size: 18px;
+      transition: background 0.15s;
+    }
+    .roster-item:hover { background: rgba(92,219,92,0.1); border-color: #4a3520; }
+    .roster-item.selected { background: rgba(255,204,0,0.15); border-color: var(--gold); }
+    .roster-item.boss { border-left: 4px solid var(--gold); }
+    .avatar-mini {
+      width: 28px; height: 28px;
+      flex-shrink: 0;
+      border: 2px solid #000;
+    }
+    .npc-name { font-size: 20px; color: var(--text); }
+    .npc-skill { font-size: 16px; color: var(--muted); }
+
+    .ticker {
+      padding: 8px;
+      font-size: 16px;
+      color: var(--accent);
+      border-top: 2px solid #3d2a10;
+      white-space: nowrap;
+      overflow: hidden;
+      animation: ticker 20s linear infinite;
+    }
+    @keyframes ticker { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
+
+    footer {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 0 16px;
+      font-size: 18px;
+      color: var(--muted);
+      background: #2d1f0f;
+      border-top: 4px solid var(--border-lit);
+    }
+
+    #guide-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.85);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 200;
+    }
+    #guide-overlay.hidden { display: none; }
+    #guide-error {
+      display: none;
+      color: #ff6b6b;
+      font-size: 18px;
+      margin-top: 12px;
+      padding: 10px;
+      border: 2px solid #c0392b;
+      background: rgba(0,0,0,0.4);
+      line-height: 1.4;
+    }
+    .guide-box {
+      max-width: 520px;
+      padding: 28px;
+      text-align: center;
+      animation: introZoom 0.6s ease;
+      pointer-events: auto;
+      position: relative;
+      z-index: 201;
+    }
+    .enter-hint { font-size: 16px; color: var(--muted); margin-top: 10px; }
+
+    .bridge-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: #64748b; display: inline-block;
+      box-shadow: 0 0 0 2px #1a1008;
+    }
+    .bridge-dot.live { background: #5cdb5c; box-shadow: 0 0 8px #5cdb5c; animation: pulse 1.2s infinite; }
+    .bridge-dot.off { background: #c0392b; }
+
+    .chat-panel { flex: 1; overflow-y: auto; padding: 8px; display: none; flex-direction: column; gap: 6px; }
+    .chat-panel.active { display: flex; }
+    .chat-line {
+      padding: 8px 10px; font-size: 17px; line-height: 1.35;
+      border: 2px solid #3d2a10; background: rgba(0,0,0,0.25);
+    }
+    .chat-line.user { border-left: 4px solid #60a5fa; }
+    .chat-line.diba { border-left: 4px solid #5cdb5c; }
+    .chat-line .meta { font-size: 14px; color: var(--muted); margin-bottom: 4px; }
+    .chat-compose {
+      padding: 8px; border-top: 3px solid var(--gold);
+      display: flex; flex-direction: column; gap: 6px;
+      flex-shrink: 0; background: #1a1008;
+    }
+    .chat-compose label {
+      font-size: 14px; color: var(--accent); letter-spacing: 1px;
+    }
+    .chat-compose .row { display: flex; gap: 6px; }
+    .chat-compose input {
+      flex: 1; font-family: 'VT323', monospace; font-size: 20px;
+      background: #0d0804; border: 2px solid var(--border-lit); color: var(--text);
+      padding: 8px 10px; outline: none; min-width: 0;
+    }
+    .chat-compose input:focus { border-color: var(--accent); box-shadow: 0 0 8px rgba(92,219,92,0.35); }
+    .chat-hint { font-size: 14px; color: var(--muted); line-height: 1.3; }
+    .invoke-toast {
+      position: fixed; top: 60px; left: 50%; transform: translateX(-50%);
+      background: #2d1f0f; border: 3px solid var(--gold); padding: 12px 20px;
+      font-size: 18px; z-index: 300; display: none; box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    }
+    .invoke-toast.show { display: block; animation: slideUp 0.25s ease; }
+    @keyframes introZoom { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    .guide-char {
+      width: 80px; height: 80px;
+      margin: 0 auto 16px;
+      image-rendering: pixelated;
+    }
+    .guide-box h2 {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 14px;
+      color: var(--gold);
+      margin-bottom: 16px;
+      line-height: 1.8;
+      text-shadow: 3px 3px 0 #000;
+    }
+    .guide-box p { font-size: 22px; line-height: 1.4; margin-bottom: 16px; color: #e8d5b0; }
+    .guide-box .features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 20px;
+      text-align: left;
+    }
+    .guide-box .feat {
+      font-size: 18px;
+      padding: 8px;
+      background: rgba(0,0,0,0.3);
+      border: 2px solid #4a3520;
+    }
+    .guide-box .feat strong { color: var(--accent); }
+
+    .grain {
+      position: fixed; inset: 0;
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+  </style>
+</head>
+<body>
+  <div class="grain"></div>
+  <div class="invoke-toast" id="invoke-toast"></div>
+
+  <header>
+    <h1>⛏ <em>DIBA</em><br>WAR ROOM</h1>
+    <div class="hud-hearts" id="hearts">❤️❤️❤️❤️❤️</div>
+    <span class="bridge-dot off" id="bridge-dot" title="Live bridge"></span>
+    <div class="stats" id="header-stats">...</div>
+    <div class="search-wrap">
+      <input type="search" id="search" placeholder="🔍 Cari NPC / skill..." />
+    </div>
+  </header>
+
+  <div id="map-wrap">
+    <canvas id="canvas"></canvas>
+    <div class="hud-top">
+      <div class="xp-label">⚡ INSTINCT XP</div>
+      <div class="xp-bar-wrap"><div class="xp-bar" id="xp-bar"></div></div>
+    </div>
+    <canvas id="minimap" width="160" height="120"></canvas>
+    <div id="diba-bubble"><div class="bubble" id="diba-text"></div></div>
+
+    <div id="detail-panel" class="mc-panel">
+      <div class="inner">
+        <button class="close" id="close-detail">×</button>
+        <h2 id="detail-name">—</h2>
+        <div class="sub" id="detail-sub">—</div>
+        <div class="status-badge dormant" id="detail-status">💤 DORMANT</div>
+        <p id="detail-desc"></p>
+        <div class="triggers" id="detail-triggers"></div>
+        <div class="actions">
+          <button class="mc-btn green" id="btn-simulate">⚡ DEPLOY</button>
+          <button class="mc-btn green" id="btn-invoke-chat">💬 HANTAR</button>
+          <button class="mc-btn" id="btn-focus">🎯 GOTO</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="action-bar">
+      <button class="mc-btn green" id="btn-tour">🗺 TOUR</button>
+      <button class="mc-btn" id="btn-party">🎉 PARTY</button>
+      <button class="mc-btn" id="zoom-in">＋</button>
+      <button class="mc-btn" id="zoom-out">－</button>
+      <button class="mc-btn" id="zoom-reset">⌂</button>
+    </div>
+  </div>
+
+  <aside>
+    <div class="mc-panel">
+      <div class="tabs">
+        <button class="active" data-tab="all">ALL</button>
+        <button data-tab="villager">SKILLS</button>
+        <button data-tab="boss">STAFF</button>
+        <button data-tab="chat">💬 CHAT</button>
+      </div>
+      <div class="district-filter" id="district-filter"></div>
+      <div class="roster" id="roster"></div>
+      <div class="chat-panel" id="chat-panel"></div>
+      <div class="ticker" id="ticker">✦ Taip mesej di bawah → DIBA baca dari queue ✦</div>
+      <div class="chat-compose" id="chat-compose">
+        <label>💬 DIBA CHAT (taip di sini)</label>
+        <div class="row">
+          <input id="chat-input" type="text" autocomplete="off" placeholder="Contoh: orchestrate audit eworks..." />
+          <button class="mc-btn green" id="chat-send" type="button">HANTAR</button>
+        </div>
+        <div class="chat-hint">Dalam Cursor chat, taip: <strong style="color:#ffcc00">baca war room</strong> — DIBA ambil mesej ni.</div>
+      </div>
+    </div>
+  </aside>
+
+  <footer>
+    <span>🖱 Drag=pan · Scroll=zoom · Klik NPC=dialog</span>
+    <span id="footer-time"></span>
+    <span id="clock"></span>
+  </footer>
+
+  <div id="guide-overlay">
+    <div class="guide-box mc-panel">
+      <canvas class="guide-char" id="guide-char" width="32" height="32"></canvas>
+      <h2>SELAMAT DATANG<br>ABAM ZUE!</h2>
+      <p>Saya <strong style="color:#5cdb5c">DIBA</strong> — guide kamu di Block Command Center xdibax!</p>
+      <div class="features">
+        <div class="feat">🟩 <strong>63</strong> skill NPC</div>
+        <div class="feat">👑 <strong>12</strong> staff boss</div>
+        <div class="feat">🏰 <strong>11</strong> district</div>
+        <div class="feat">⚡ deploy misi live</div>
+      </div>
+      <button type="button" class="mc-btn green" id="start-btn" style="width:100%;font-size:10px;padding:16px;cursor:pointer;">▶ MASUK HQ</button>
+      <p class="enter-hint">atau tekan <strong>ENTER</strong> · klik luar kotak</p>
+      <div id="guide-error"></div>
+    </div>
+  </div>
+
+  <script src="agents-data.js"></script>
+  <script>
+    let DATA = window.WAR_ROOM_DATA || null;
+    let appReady = false;
+    let pendingEnter = false;
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    const minimap = document.getElementById('minimap');
+    const mctx = minimap.getContext('2d');
+    const wrap = document.getElementById('map-wrap');
+
+    const TILE_W = 52, TILE_H = 26, ZONE_W = 6, ZONE_H = 5;
+    const DISTRICT_LAYOUT = {
+      spawn: { col: 0, row: 0 }, memory: { col: 1, row: 0 }, diary: { col: 2, row: 0 }, project: { col: 3, row: 0 },
+      automation: { col: 0, row: 1 }, command: { col: 1, row: 1, wide: 2 }, wellness: { col: 3, row: 1 },
+      code: { col: 0, row: 2 }, persona: { col: 1, row: 2 }, creative: { col: 2, row: 2 }, workshop: { col: 3, row: 2 },
+    };
+
+    const BLOCK_PALETTES = {
+      spawn:      ['#c8a020','#a08010','#e8c840'],
+      memory:     ['#7b4fb0','#5a3080','#9b6fd0'],
+      diary:      ['#d06090','#a04070','#f080a8'],
+      project:    ['#3080d0','#2060a0','#50a0f0'],
+      automation: ['#c04030','#902020','#e06050'],
+      command:    ['#30a050','#208040','#50d070'],
+      wellness:   ['#40a040','#287828','#60c860'],
+      code:       ['#808890','#606870','#a0a8b0'],
+      persona:    ['#9060c0','#7040a0','#b080e0'],
+      creative:   ['#d08030','#a06020','#f0a040'],
+      workshop:   ['#686058','#484038','#888078'],
+    };
+
+    const DIBA_LINES = [
+      'Abam, nak deploy siapa hari ni?',
+      'NEXUS sedang review architecture di Code District!',
+      'CIPHER + GRID ready untuk security audit parallel.',
+      '3 projek aktif dalam LRU — semak Project District.',
+      'Klik DEPLOY untuk simulate skill active!',
+      'Orchestrate mode: route ke NPC betul, jangan over-delegate.',
+      'Instinct XP naik bila skill siap verify ✅',
+      'PIXEL tunggu di Creative District untuk UI polish.',
+    ];
+
+    let camX = 0, camY = 0, zoom = 1;
+    let selected = null, hovered = null;
+    let filterDistrict = 'all', filterTab = 'all', searchQuery = '';
+    let entities = [], particles = [], clouds = [];
+    let dragging = false, dragStart = { x: 0, y: 0, camX: 0, camY: 0 };
+    let time = 0, dayPhase = 0.35, tourIndex = 0, partyMode = false;
+    let dibaLineTimer = 0;
+    let bridgeLive = false;
+    let chatLog = [];
+
+    const API = '';
+
+    function setBridgeDot(live) {
+      bridgeLive = live;
+      const dot = document.getElementById('bridge-dot');
+      if (!dot) return;
+      dot.className = 'bridge-dot ' + (live ? 'live' : 'off');
+      dot.title = live ? 'Live bridge ON — sync chat aktif' : 'Bridge OFF — jalankan node serve.mjs';
+    }
+
+    function applySkillStatus(skillId, status, message) {
+      if (!skillId) return;
+      const match = (n) => n.skillName === skillId || n.id === skillId;
+      entities.filter(e => e.type === 'npc' && match(e)).forEach(n => { n.status = status; });
+      const v = DATA.villagers.find(match);
+      if (v) v.status = status;
+      if (selected && match(selected)) {
+        const badge = document.getElementById('detail-status');
+        const labels = { dormant: '💤 DORMANT', active: '⚡ DEPLOYED', done: '✅ VERIFIED' };
+        if (badge) { badge.textContent = labels[status] || labels.dormant; badge.className = 'status-badge ' + status; }
+      }
+      if (message) showDibaLine(message);
+      renderRoster();
+    }
+
+    function renderChatLog() {
+      const panel = document.getElementById('chat-panel');
+      if (!panel) return;
+      panel.innerHTML = chatLog.length ? '' : '<div class="chat-line diba"><div class="meta">DIBA</div>Chat feed kosong — taip mesej atau invoke skill dari NPC.</div>';
+      chatLog.forEach((line) => {
+        const el = document.createElement('div');
+        el.className = 'chat-line ' + (line.role || 'diba');
+        const who = line.role === 'user' ? 'Abam Zue' : (line.skillId ? `DIBA · ${line.skillId}` : 'DIBA');
+        const t = line.at ? new Date(line.at).toLocaleTimeString('ms-MY', { hour: '2-digit', minute: '2-digit' }) : '';
+        el.innerHTML = `<div class="meta">${who} · ${t}</div>${line.text}`;
+        panel.appendChild(el);
+      });
+      panel.scrollTop = panel.scrollHeight;
+    }
+
+    function pushChatLine(line) {
+      chatLog.push(line);
+      if (chatLog.length > 100) chatLog.shift();
+      renderChatLog();
+      const ticker = document.getElementById('ticker');
+      if (ticker) ticker.textContent = `💬 ${line.text}`;
+    }
+
+    async function apiPost(path, body) {
+      const r = await fetch(API + path, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+      return r.json();
+    }
+
+    function showInvokeToast(msg) {
+      const t = document.getElementById('invoke-toast');
+      if (!t) return;
+      t.textContent = msg;
+      t.classList.add('show');
+      clearTimeout(showInvokeToast._t);
+      showInvokeToast._t = setTimeout(() => t.classList.remove('show'), 4000);
+    }
+
+    async function queueMessage(text, skillId, npcName) {
+      pushChatLine({ role: 'user', skillId, text, at: new Date().toISOString() });
+      try {
+        await apiPost('/api/chat', { role: 'user', text, skillId });
+        await apiPost('/api/invoke', { prompt: text, skillId, npcName });
+        showInvokeToast('✅ Dalam Cursor: taip "baca war room"');
+      } catch (_) {
+        showInvokeToast('⚠ Queue offline — taip "baca war room" selepas server hidup');
+      }
+      if (skillId) applySkillStatus(skillId, 'active', text);
+    }
+
+    async function invokeToChat(npc, customText) {
+      const skillId = npc.skillName || npc.id;
+      const trigger = npc.triggers?.[0] || skillId;
+      const prompt = customText || `DIBA, guna skill ${skillId} — ${trigger}`;
+      await queueMessage(prompt, skillId, npc.npcName || npc.name);
+    }
+
+    async function connectBridge() {
+      try {
+        const st = await fetch(API + '/api/status').then(r => r.json());
+        setBridgeDot(true);
+        chatLog = st.chatLog || [];
+        renderChatLog();
+        Object.entries(st.skills || {}).forEach(([id, s]) => applySkillStatus(id, s.status, null));
+      } catch (_) {
+        setBridgeDot(false);
+      }
+
+      try {
+        const es = new EventSource(API + '/api/events');
+        es.addEventListener('hello', () => setBridgeDot(true));
+        es.addEventListener('skill', (e) => {
+          const d = JSON.parse(e.data);
+          applySkillStatus(d.skillId, d.status, d.message);
+        });
+        es.addEventListener('chat', (e) => pushChatLine(JSON.parse(e.data)));
+        es.addEventListener('invoke', (e) => {
+          const d = JSON.parse(e.data);
+          pushChatLine({ role: 'user', skillId: d.skillId, text: `[INVOKE] ${d.prompt}`, at: d.at });
+        });
+        es.onerror = () => setBridgeDot(false);
+      } catch (_) {
+        setBridgeDot(false);
+      }
+    }
+
+    async function sendChatFromPanel() {
+      const input = document.getElementById('chat-input');
+      const text = input?.value?.trim();
+      if (!text) return;
+      input.value = '';
+      await queueMessage(text, null, null);
+    }
+
+    function enterHQ() {
+      document.getElementById('guide-overlay')?.classList.add('hidden');
+      if (appReady) afterEnter();
+      else pendingEnter = true;
+    }
+
+    function afterEnter() {
+      centerOnCommand();
+      showDibaLine(DIBA_LINES[0]);
+      setTimeout(runTour, 2000);
+    }
+
+    function centerOnCommand() {
+      const cmd = entities.find(e => e.type === 'zone' && e.id === 'command');
+      if (!cmd) return;
+      const mid = isoToScreen(cmd.width / 2, cmd.height / 2, cmd.ox, cmd.oy);
+      camX = canvas.width / 2 - mid.x + camX;
+      camY = canvas.height / 2 - mid.y + camY;
+    }
+
+    function showLoadError(msg) {
+      const el = document.getElementById('guide-error');
+      if (!el) return;
+      el.style.display = 'block';
+      el.innerHTML = msg;
+    }
+
+    function bindEnterEarly() {
+      document.getElementById('start-btn')?.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        enterHQ();
+      });
+      document.getElementById('guide-overlay')?.addEventListener('click', (e) => {
+        if (e.target.id === 'guide-overlay') enterHQ();
+      });
+      document.addEventListener('keydown', (e) => {
+        const ov = document.getElementById('guide-overlay');
+        if (ov && !ov.classList.contains('hidden') && (e.key === 'Enter' || e.key === ' ')) {
+          e.preventDefault();
+          enterHQ();
+        }
+      });
+    }
+    bindEnterEarly();
+
+    async function loadDataFallback() {
+      if (window.WAR_ROOM_DATA) return window.WAR_ROOM_DATA;
+      try {
+        const r = await fetch('../data/agents.json');
+        if (r.ok) return await r.json();
+      } catch (_) {}
+      return null;
+    }
+
+    function isoToScreen(gx, gy, ox, oy) {
+      return {
+        x: (gx - gy) * (TILE_W / 2) * zoom + ox + camX,
+        y: (gx + gy) * (TILE_H / 2) * zoom + oy + camY,
+      };
+    }
+
+    function shade(hex, amt) {
+      const n = parseInt(hex.slice(1), 16);
+      const clamp = (v) => Math.max(0, Math.min(255, v));
+      return `rgb(${clamp((n>>16)+amt)},${clamp(((n>>8)&255)+amt)},${clamp((n&255)+amt)})`;
+    }
+
+    function initClouds() {
+      clouds = Array.from({ length: 12 }, (_, i) => ({
+        x: Math.random() * 3000, y: 30 + Math.random() * 80,
+        w: 60 + Math.random() * 80, speed: 0.15 + Math.random() * 0.3, alpha: 0.5 + Math.random() * 0.4,
+      }));
+    }
+
+    function spawnParticles(x, y, color, n = 12) {
+      for (let i = 0; i < n; i++) {
+        particles.push({
+          x, y, vx: (Math.random() - 0.5) * 4, vy: -Math.random() * 4 - 1,
+          life: 1, color, size: 2 + Math.random() * 3,
+        });
+      }
+    }
+
+    function buildEntities() {
+      entities = [];
+      const zoneOrigin = (col, row) => ({
+        ox: col * ZONE_W * TILE_W * 0.52 + 100,
+        oy: row * ZONE_H * TILE_H * 0.85 + 100,
+      });
+
+      for (const [id, layout] of Object.entries(DISTRICT_LAYOUT)) {
+        const origin = zoneOrigin(layout.col + (layout.wide ? 0.5 : 0), layout.row);
+        const dist = DATA.districts[id];
+        const palette = BLOCK_PALETTES[id] || BLOCK_PALETTES.command;
+        const villagers = DATA.villagers.filter(v => v.district === id);
+        const bosses = DATA.bosses.filter(b => b.district === id);
+
+        entities.push({
+          type: 'zone', id, name: dist.name, icon: dist.icon, color: dist.color,
+          palette, ...origin, width: (layout.wide || 1) * ZONE_W, height: ZONE_H,
+          buildingH: id === 'command' ? 4 : id === 'spawn' ? 3 : 2,
+        });
+
+        bosses.forEach((b, i) => {
+          entities.push(makeNPC('boss', b, id, origin, 1.2 + i * 1.4, 0.8, '#ffcc00', i));
+        });
+
+        villagers.forEach((v, i) => {
+          const cols = Math.ceil(Math.sqrt(villagers.length + 1));
+          entities.push(makeNPC('villager', v, id, origin,
+            0.6 + (i % cols) * 0.95, 1.8 + Math.floor(i / cols) * 0.9, dist.color, i));
+        });
+      }
+    }
+
+    function makeNPC(role, data, district, origin, gx, gy, color, seed) {
+      return {
+        type: 'npc', role, ...data, district,
+        npcName: data.npcName || data.name,
+        skillName: data.skillName || data.id,
+        status: data.status || 'dormant',
+        gx, gy, homeGx: gx, homeGy: gy,
+        ...origin, color,
+        walkPhase: Math.random() * Math.PI * 2,
+        facing: Math.random() > 0.5 ? 1 : -1,
+        wanderT: Math.random() * 200,
+        skinHue: (seed * 37) % 360,
+        profession: ['farmer','librarian','cleric','armorer','toolsmith'][seed % 5],
+      };
+    }
+
+    function drawSky() {
+      const night = dayPhase < 0.25 || dayPhase > 0.75;
+      const t = night ? 0 : Math.sin(dayPhase * Math.PI);
+      const g = ctx.createLinearGradient(0, 0, 0, canvas.height * 0.55);
+      if (night) {
+        g.addColorStop(0, '#0a0a20'); g.addColorStop(1, '#1a1a40');
+      } else {
+        g.addColorStop(0, shade('#3a8fd9', t * 20)); g.addColorStop(1, shade('#87ceeb', t * 10));
+      }
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      if (night) {
+        for (let i = 0; i < 60; i++) {
+          const sx = (i * 137.5 + time * 0.01) % canvas.width;
+          const sy = (i * 97.3) % (canvas.height * 0.4);
+          ctx.fillStyle = `rgba(255,255,255,${0.3 + Math.sin(time * 0.05 + i) * 0.2})`;
+          ctx.fillRect(sx, sy, 2, 2);
+        }
+      } else {
+        const sunX = canvas.width * 0.75 + camX * 0.05;
+        const sunY = 60 + Math.sin(dayPhase * Math.PI) * 30;
+        ctx.fillStyle = '#ffee44';
+        ctx.beginPath(); ctx.arc(sunX, sunY, 28 * zoom, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = 'rgba(255,238,68,0.15)';
+        ctx.beginPath(); ctx.arc(sunX, sunY, 50 * zoom, 0, Math.PI * 2); ctx.fill();
+      }
+
+      clouds.forEach(c => {
+        c.x += c.speed;
+        if (c.x > canvas.width + 200) c.x = -200;
+        const cx = c.x + camX * 0.08;
+        ctx.fillStyle = night ? `rgba(80,80,100,${c.alpha * 0.5})` : `rgba(255,255,255,${c.alpha})`;
+        ctx.beginPath();
+        ctx.ellipse(cx, c.y, c.w * 0.5, 18, 0, 0, Math.PI * 2);
+        ctx.ellipse(cx - 25, c.y + 5, c.w * 0.3, 14, 0, 0, Math.PI * 2);
+        ctx.ellipse(cx + 25, c.y + 5, c.w * 0.3, 14, 0, 0, Math.PI * 2);
+        ctx.fill();
+      });
+    }
+
+    function drawBlock(gx, gy, ox, oy, top, left, right, height = 1) {
+      const { x, y } = isoToScreen(gx, gy, ox, oy);
+      const w = TILE_W * zoom, h = TILE_H * zoom, d = height * 10 * zoom;
+
+      ctx.beginPath();
+      ctx.moveTo(x, y - d); ctx.lineTo(x + w/2, y + h/2 - d);
+      ctx.lineTo(x, y + h - d); ctx.lineTo(x - w/2, y + h/2 - d); ctx.closePath();
+      ctx.fillStyle = top; ctx.fill();
+      ctx.strokeStyle = 'rgba(0,0,0,0.25)'; ctx.lineWidth = 1; ctx.stroke();
+
+      ctx.beginPath();
+      ctx.moveTo(x - w/2, y + h/2 - d); ctx.lineTo(x, y + h - d);
+      ctx.lineTo(x, y + h); ctx.lineTo(x - w/2, y + h/2); ctx.closePath();
+      ctx.fillStyle = left; ctx.fill(); ctx.stroke();
+
+      ctx.beginPath();
+      ctx.moveTo(x + w/2, y + h/2 - d); ctx.lineTo(x, y + h - d);
+      ctx.lineTo(x, y + h); ctx.lineTo(x + w/2, y + h/2); ctx.closePath();
+      ctx.fillStyle = right; ctx.fill(); ctx.stroke();
+    }
+
+    function drawZone(zone) {
+      const [top, left, right] = zone.palette;
+      for (let dy = 0; dy < zone.height; dy++) {
+        for (let dx = 0; dx < zone.width; dx++) {
+          const variant = (dx + dy) % 3;
+          const h = variant === 0 ? 1.1 : variant === 1 ? 0.8 : 1;
+          const tint = variant * 8;
+          drawBlock(dx, dy, zone.ox, zone.oy, shade(top, tint), shade(left, tint - 15), shade(right, tint - 25), h);
+          if (variant === 0 && Math.random() < 0.001) {
+            const p = isoToScreen(dx + 0.5, dy + 0.5, zone.ox, zone.oy);
+            spawnParticles(p.x, p.y - 20, '#5cdb5c', 2);
+          }
+        }
+      }
+
+      // District building
+      const bx = zone.width * 0.4, by = zone.height * 0.3;
+      const bh = zone.buildingH || 2;
+      for (let layer = 0; layer < bh; layer++) {
+        drawBlock(bx, by - layer * 0.3, zone.ox, zone.oy,
+          shade(top, 30 + layer * 10), shade(left, 20), shade(right, 10), 1.5);
+      }
+
+      // Torch
+      const torch = isoToScreen(zone.width - 0.5, 0.5, zone.ox, zone.oy);
+      const flicker = Math.sin(time * 0.2) * 3;
+      ctx.fillStyle = '#8b4513';
+      ctx.fillRect(torch.x - 2, torch.y - 20 * zoom, 4 * zoom, 14 * zoom);
+      ctx.fillStyle = `rgba(255,${160 + flicker * 10},0,0.9)`;
+      ctx.beginPath(); ctx.arc(torch.x, torch.y - 22 * zoom, (5 + flicker) * zoom, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = `rgba(255,180,0,${0.08 + flicker * 0.01})`;
+      ctx.beginPath(); ctx.arc(torch.x, torch.y - 22 * zoom, 30 * zoom, 0, Math.PI * 2); ctx.fill();
+
+      const labelPos = isoToScreen(zone.width / 2, -0.8, zone.ox, zone.oy);
+      ctx.font = `bold ${Math.max(10, 12 * zoom)}px VT323, monospace`;
+      ctx.textAlign = 'center';
+      ctx.strokeStyle = '#000'; ctx.lineWidth = 3; ctx.strokeText(`${zone.icon} ${zone.name}`, labelPos.x, labelPos.y);
+      ctx.fillStyle = zone.color; ctx.fillText(`${zone.icon} ${zone.name}`, labelPos.x, labelPos.y);
+    }
+
+    function drawPixelChar(x, y, npc, scale) {
+      const s = scale * zoom;
+      const bob = npc.status === 'active' ? Math.sin(time * 0.15) * 2 * s : Math.sin(time * 0.05 + npc.walkPhase) * 1 * s;
+      const walk = npc.status !== 'dormant' || partyMode ? Math.sin(time * 0.12 + npc.walkPhase) * 2 * s : 0;
+      const py = y + bob;
+
+      // Shadow
+      ctx.fillStyle = 'rgba(0,0,0,0.35)';
+      ctx.beginPath(); ctx.ellipse(x, y + 14 * s, 10 * s, 4 * s, 0, 0, Math.PI * 2); ctx.fill();
+
+      const isBoss = npc.role === 'boss';
+      const skin = `hsl(${npc.skinHue || 30}, 50%, ${isBoss ? 65 : 55}%)`;
+      const shirt = isBoss ? '#ffcc00' : npc.color;
+      const pants = isBoss ? '#8b4513' : shade(npc.color, -80);
+
+      // Body (pixel style)
+      const px = (dx, dy, w, h, col) => {
+        ctx.fillStyle = col;
+        ctx.fillRect(x + dx * s - w * s / 2, py + dy * s, w * s, h * s);
+      };
+
+      px(-3 + walk * npc.facing * 0.3, -2, 6, 7, pants); // legs
+      px(-3, -10, 6, 8, shirt); // torso
+      px(-3, -14, 6, 5, skin); // head
+
+      // Eyes
+      ctx.fillStyle = '#111';
+      const eyeOff = npc.facing > 0 ? 1 : -1;
+      ctx.fillRect(x + eyeOff * s - 2 * s, py - 12 * s, 2 * s, 2 * s);
+      ctx.fillRect(x + eyeOff * s + 1 * s, py - 12 * s, 2 * s, 2 * s);
+
+      if (isBoss) {
+        ctx.fillStyle = '#ffcc00';
+        ctx.fillRect(x - 4 * s, py - 18 * s, 8 * s, 3 * s);
+        ctx.fillStyle = '#cc0000';
+        ctx.fillRect(x - 1 * s, py - 20 * s, 2 * s, 2 * s);
+      }
+
+      // Status orb
+      const orbs = { dormant: '#888', active: '#ffcc00', done: '#5cdb5c' };
+      ctx.fillStyle = orbs[npc.status] || '#888';
+      const pulse = npc.status === 'active' ? 1 + Math.sin(time * 0.2) * 0.3 : 1;
+      ctx.beginPath(); ctx.arc(x, py - 20 * s, 3 * s * pulse, 0, Math.PI * 2); ctx.fill();
+
+      if (npc.status === 'active') {
+        ctx.strokeStyle = `rgba(255,204,0,${0.4 + Math.sin(time * 0.15) * 0.3})`;
+        ctx.lineWidth = 2;
+        ctx.beginPath(); ctx.arc(x, py - 8 * s, 16 * s, 0, Math.PI * 2); ctx.stroke();
+      }
+
+      if (selected === npc || hovered === npc) {
+        ctx.strokeStyle = selected === npc ? '#ffcc00' : '#5cdb5c';
+        ctx.lineWidth = 2;
+        ctx.setLineDash([4, 4]);
+        ctx.strokeRect(x - 10 * s, py - 22 * s, 20 * s, 28 * s);
+        ctx.setLineDash([]);
+      }
+
+      // Name tag
+      if (zoom > 0.55) {
+        const label = npc.npcName;
+        ctx.font = `bold ${Math.max(10, 14 * zoom)}px VT323`;
+        ctx.textAlign = 'center';
+        ctx.strokeStyle = '#000'; ctx.lineWidth = 3;
+        ctx.strokeText(label, x, py + 20 * s);
+        ctx.fillStyle = isBoss ? '#ffcc00' : '#fff';
+        ctx.fillText(label, x, py + 20 * s);
+      }
+
+      npc._screenX = x;
+      npc._screenY = py - 10 * s;
+      npc._hitR = 18 * s;
+    }
+
+    function updateNPCs() {
+      entities.filter(e => e.type === 'npc').forEach(npc => {
+        npc.wanderT--;
+        if (npc.wanderT <= 0 || npc.status === 'active') {
+          npc.wanderT = 120 + Math.random() * 240;
+          npc.facing = Math.random() > 0.5 ? 1 : -1;
+        }
+        if (npc.status === 'active' || partyMode) {
+          npc.gx += npc.facing * 0.008;
+          if (Math.abs(npc.gx - npc.homeGx) > 0.6) npc.facing *= -1;
+        } else if (npc.wanderT % 60 === 0) {
+          npc.gx += (Math.random() - 0.5) * 0.05;
+          npc.gy += (Math.random() - 0.5) * 0.05;
+          npc.gx = Math.max(npc.homeGx - 0.4, Math.min(npc.homeGx + 0.4, npc.gx));
+          npc.gy = Math.max(npc.homeGy - 0.3, Math.min(npc.homeGy + 0.3, npc.gy));
+        }
+      });
+    }
+
+    function updateParticles() {
+      particles = particles.filter(p => {
+        p.x += p.vx; p.y += p.vy; p.vy += 0.08; p.life -= 0.02;
+        if (p.life <= 0) return false;
+        ctx.globalAlpha = p.life;
+        ctx.fillStyle = p.color;
+        ctx.fillRect(p.x, p.y, p.size, p.size);
+        ctx.globalAlpha = 1;
+        return true;
+      });
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      drawSky();
+
+      const sorted = [...entities].sort((a, b) => {
+        const ay = (a.oy || 0) + (a.gy || 0) + (a.height || 0);
+        const by = (b.oy || 0) + (b.gy || 0) + (b.height || 0);
+        return ay - by;
+      });
+
+      sorted.filter(e => e.type === 'zone').forEach(drawZone);
+      sorted.filter(e => e.type === 'npc').forEach(npc => {
+        const { x, y } = isoToScreen(npc.gx, npc.gy, npc.ox, npc.oy);
+        drawPixelChar(x, y, npc, npc.role === 'boss' ? 1.3 : 1);
+      });
+
+      updateParticles();
+      drawMinimap();
+    }
+
+    function drawMinimap() {
+      mctx.fillStyle = '#1a3060';
+      mctx.fillRect(0, 0, 160, 120);
+      const sc = 0.07;
+      entities.filter(e => e.type === 'zone').forEach(z => {
+        mctx.fillStyle = z.color;
+        mctx.fillRect(z.ox * sc, z.oy * sc, z.width * TILE_W * sc, z.height * TILE_H * sc);
+      });
+      entities.filter(e => e.type === 'npc').forEach(n => {
+        mctx.fillStyle = n.status === 'active' ? '#ffcc00' : n.role === 'boss' ? '#ff6600' : '#5cdb5c';
+        mctx.fillRect((n.ox + n.gx * TILE_W * 0.4) * sc, (n.oy + n.gy * TILE_H) * sc, 3, 3);
+      });
+      if (selected?._screenX) {
+        mctx.strokeStyle = '#fff'; mctx.lineWidth = 2;
+        mctx.strokeRect(70, 50, 20, 15);
+      }
+    }
+
+    function hitTest(mx, my) {
+      return entities.filter(e => e.type === 'npc').reverse().find(n => {
+        const dx = mx - n._screenX, dy = my - n._screenY;
+        return dx * dx + dy * dy < (n._hitR || 20) ** 2;
+      }) || null;
+    }
+
+    function showDibaLine(text) {
+      const bubble = document.getElementById('diba-bubble');
+      document.getElementById('diba-text').textContent = text;
+      bubble.classList.add('show');
+      clearTimeout(showDibaLine._t);
+      showDibaLine._t = setTimeout(() => bubble.classList.remove('show'), 5000);
+    }
+
+    function showDetail(npc) {
+      selected = npc;
+      document.getElementById('detail-panel').classList.add('open');
+      document.getElementById('detail-name').textContent = `${npc.role === 'boss' ? '👑 ' : '▸ '}${npc.npcName}`;
+      document.getElementById('detail-sub').textContent = npc.role === 'boss'
+        ? `${npc.title} · ${DATA.districts[npc.district]?.name}`
+        : `${npc.skillName} · ${npc.boss} · ${DATA.districts[npc.district]?.name}`;
+      const badge = document.getElementById('detail-status');
+      const labels = { dormant: '💤 DORMANT', active: '⚡ DEPLOYED', done: '✅ VERIFIED' };
+      badge.textContent = labels[npc.status] || labels.dormant;
+      badge.className = 'status-badge ' + npc.status;
+      document.getElementById('detail-desc').textContent = npc.description || npc.title || 'Skill NPC siap untuk misi.';
+      const triggers = document.getElementById('detail-triggers');
+      triggers.innerHTML = '';
+      (npc.triggers?.length ? npc.triggers : [npc.skillName]).forEach(t => {
+        const span = document.createElement('span');
+        span.className = 'trigger-tag'; span.textContent = t;
+        triggers.appendChild(span);
+      });
+      spawnParticles(npc._screenX, npc._screenY, npc.color || '#5cdb5c', 16);
+      showDibaLine(`${npc.npcName} dipanggil! ${npc.role === 'boss' ? 'Boss tier ready.' : 'Trigger: ' + (npc.triggers?.[0] || npc.skillName)}`);
+      renderRoster();
+    }
+
+    function renderRoster() {
+      const roster = document.getElementById('roster');
+      roster.innerHTML = '';
+      let list = [];
+      if (filterTab !== 'villager') list = list.concat(DATA.bosses.map(b => ({ ...b, role: 'boss', npcName: b.name, status: 'dormant' })));
+      if (filterTab !== 'boss') list = list.concat(DATA.villagers);
+      if (filterDistrict !== 'all') list = list.filter(n => n.district === filterDistrict);
+      if (searchQuery) {
+        const q = searchQuery.toLowerCase();
+        list = list.filter(n => [n.npcName, n.name, n.skillName, n.id, n.description].join(' ').toLowerCase().includes(q));
+      }
+      list.forEach(npc => {
+        const el = document.createElement('div');
+        el.className = 'roster-item' + (npc.role === 'boss' ? ' boss' : '');
+        if (selected?.npcName === (npc.npcName || npc.name)) el.classList.add('selected');
+        const dist = DATA.districts[npc.district];
+        const hue = (npc.npcName || '').length * 40;
+        el.innerHTML = `
+          <div class="avatar-mini" style="background:hsl(${hue},50%,45%)"></div>
+          <div><div class="npc-name">${dist?.icon || ''} ${npc.npcName || npc.name}</div>
+          <div class="npc-skill">${npc.skillName || npc.id}</div></div>`;
+        el.onclick = () => {
+          const ent = entities.find(e => e.type === 'npc' && e.npcName === (npc.npcName || npc.name));
+          if (ent) { focusEntity(ent); showDetail(ent); } else showDetail(npc);
+        };
+        roster.appendChild(el);
+      });
+    }
+
+    function renderDistrictFilter() {
+      const c = document.getElementById('district-filter');
+      c.innerHTML = '';
+      const mk = (label, id) => {
+        const b = document.createElement('button');
+        b.textContent = label; b.title = id === 'all' ? 'All' : DATA.districts[id]?.name;
+        b.className = filterDistrict === id ? 'active' : '';
+        b.onclick = () => { filterDistrict = id; renderDistrictFilter(); renderRoster(); };
+        c.appendChild(b);
+      };
+      mk('🌐', 'all');
+      Object.entries(DATA.districts).forEach(([id, d]) => mk(d.icon, id));
+    }
+
+    function focusEntity(npc, smooth = false) {
+      if (!npc._screenX) return;
+      const tx = canvas.width / 2 - npc._screenX + camX;
+      const ty = canvas.height / 2 - npc._screenY + camY;
+      if (smooth) {
+        const startX = camX, startY = camY;
+        let f = 0;
+        const step = () => {
+          f += 0.06;
+          camX = startX + (tx - startX) * f;
+          camY = startY + (ty - startY) * f;
+          if (f < 1) requestAnimationFrame(step);
+        };
+        step();
+      } else { camX = tx; camY = ty; }
+    }
+
+    function runTour() {
+      const zones = entities.filter(e => e.type === 'zone');
+      const z = zones[tourIndex % zones.length];
+      tourIndex++;
+      const npc = entities.find(e => e.type === 'npc' && e.district === z.id);
+      if (npc) { focusEntity(npc, true); showDibaLine(`Tour: ${z.icon} ${z.name} — ${npc.npcName} menjaga zon ni.`); }
+      setTimeout(() => showDetail(npc || { npcName: z.name, role: 'zone', district: z.id, status: 'dormant', description: z.name }), 600);
+    }
+
+    function partyModeToggle() {
+      partyMode = !partyMode;
+      if (partyMode) {
+        entities.filter(e => e.type === 'npc').forEach(n => { n.status = 'active'; });
+        showDibaLine('🎉 PARTY MODE! Semua NPC deploy — HQ hidup!');
+        document.getElementById('xp-bar').style.width = '100%';
+      } else {
+        entities.filter(e => e.type === 'npc').forEach(n => { n.status = 'dormant'; });
+        document.getElementById('xp-bar').style.width = '72%';
+      }
+    }
+
+    function drawGuideChar() {
+      const g = document.getElementById('guide-char').getContext('2d');
+      g.imageSmoothingEnabled = false;
+      g.fillStyle = '#5cdb5c';
+      g.fillRect(8, 4, 16, 8);
+      g.fillStyle = '#f0c080';
+      g.fillRect(10, 0, 12, 8);
+      g.fillStyle = '#111';
+      g.fillRect(12, 3, 3, 3); g.fillRect(17, 3, 3, 3);
+      g.fillStyle = '#2a8a2a';
+      g.fillRect(8, 12, 7, 8); g.fillRect(17, 12, 7, 8);
+    }
+
+    function resize() {
+      canvas.width = wrap.clientWidth;
+      canvas.height = wrap.clientHeight;
+    }
+
+    function init() {
+      if (!DATA || !DATA.villagers) throw new Error('DATA NPC kosong');
+
+      buildEntities();
+      initClouds();
+      drawGuideChar();
+
+      document.getElementById('header-stats').textContent =
+        `${DATA.stats.totalVillagers} NPC · ${DATA.stats.totalBosses} BOSS`;
+      document.getElementById('footer-time').textContent = new Date(DATA.generatedAt).toLocaleDateString('ms-MY');
+
+      renderDistrictFilter();
+      renderRoster();
+      resize();
+      window.addEventListener('resize', resize);
+
+      document.getElementById('close-detail').onclick = () => {
+        document.getElementById('detail-panel').classList.remove('open');
+        selected = null; renderRoster();
+      };
+
+      document.getElementById('btn-focus').onclick = () => selected && focusEntity(selected, true);
+      document.getElementById('btn-invoke-chat').onclick = () => selected && invokeToChat(selected);
+      document.getElementById('chat-send').onclick = sendChatFromPanel;
+      document.getElementById('chat-input')?.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') sendChatFromPanel();
+      });
+
+      document.getElementById('btn-simulate').onclick = () => {
+        if (!selected) return;
+        const cycle = { dormant: 'active', active: 'done', done: 'dormant' };
+        selected.status = cycle[selected.status];
+        const v = DATA.villagers.find(x => x.id === selected.skillName || x.id === selected.id);
+        if (v) v.status = selected.status;
+        if (selected.status === 'active') spawnParticles(selected._screenX, selected._screenY, '#ffcc00', 24);
+        if (selected.status === 'done') {
+          const xp = document.getElementById('xp-bar');
+          xp.style.width = Math.min(100, parseFloat(xp.style.width || 72) + 3) + '%';
+        }
+        showDetail(selected);
+      };
+
+      document.getElementById('btn-tour').onclick = runTour;
+      document.getElementById('btn-party').onclick = partyModeToggle;
+
+      document.getElementById('search').oninput = e => { searchQuery = e.target.value; renderRoster(); };
+      document.querySelectorAll('.tabs button').forEach(btn => {
+        btn.onclick = () => {
+          document.querySelectorAll('.tabs button').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const isChat = btn.dataset.tab === 'chat';
+          filterTab = isChat ? filterTab : btn.dataset.tab;
+          document.getElementById('roster').style.display = isChat ? 'none' : '';
+          document.getElementById('district-filter').style.display = isChat ? 'none' : '';
+          document.getElementById('chat-panel').classList.toggle('active', isChat);
+          if (!isChat) {
+            filterTab = btn.dataset.tab;
+            renderRoster();
+          } else {
+            renderChatLog();
+            document.getElementById('chat-input')?.focus();
+          }
+        };
+      });
+
+      document.getElementById('zoom-in').onclick = () => { zoom = Math.min(2.2, zoom * 1.15); };
+      document.getElementById('zoom-out').onclick = () => { zoom = Math.max(0.35, zoom / 1.15); };
+      document.getElementById('zoom-reset').onclick = () => { zoom = 1; camX = 0; camY = 0; };
+
+      canvas.addEventListener('wheel', e => {
+        e.preventDefault();
+        zoom = Math.max(0.35, Math.min(2.2, zoom * (e.deltaY > 0 ? 0.92 : 1.08)));
+      }, { passive: false });
+
+      canvas.addEventListener('mousedown', e => {
+        dragging = true; wrap.classList.add('dragging');
+        dragStart = { x: e.clientX, y: e.clientY, camX, camY };
+      });
+      window.addEventListener('mousemove', e => {
+        if (dragging) { camX = dragStart.camX + e.clientX - dragStart.x; camY = dragStart.camY + e.clientY - dragStart.y; }
+        const rect = canvas.getBoundingClientRect();
+        hovered = hitTest(e.clientX - rect.left, e.clientY - rect.top);
+        canvas.style.cursor = hovered ? 'pointer' : dragging ? 'grabbing' : 'grab';
+      });
+      window.addEventListener('mouseup', () => { dragging = false; wrap.classList.remove('dragging'); });
+
+      canvas.addEventListener('click', e => {
+        if (Math.abs(e.clientX - dragStart.x) > 5) return;
+        const rect = canvas.getBoundingClientRect();
+        const hit = hitTest(e.clientX - rect.left, e.clientY - rect.top);
+        if (hit) showDetail(hit);
+      });
+
+      function loop() {
+        time++;
+        dayPhase = (dayPhase + 0.00008) % 1;
+        updateNPCs();
+        draw();
+
+        dibaLineTimer++;
+        if (dibaLineTimer > 600 && document.getElementById('guide-overlay').classList.contains('hidden')) {
+          dibaLineTimer = 0;
+          if (Math.random() < 0.3) showDibaLine(DIBA_LINES[Math.floor(Math.random() * DIBA_LINES.length)]);
+        }
+
+        document.getElementById('clock').textContent = new Date().toLocaleTimeString('ms-MY', { hour: '2-digit', minute: '2-digit' });
+        requestAnimationFrame(loop);
+      }
+      loop();
+
+      connectBridge();
+      document.getElementById('chat-input')?.addEventListener('click', (e) => e.stopPropagation());
+      setTimeout(() => document.getElementById('chat-input')?.focus(), 500);
+
+      appReady = true;
+      if (pendingEnter) afterEnter();
+    }
+
+    async function bootstrap() {
+      if (!DATA) DATA = await loadDataFallback();
+      if (!DATA) {
+        showLoadError(
+          '⚠ Data NPC tak load.<br><br>' +
+          '<strong>Cara betul:</strong><br>' +
+          '1. Buka terminal<br>' +
+          '2. <code>node serve.mjs</code><br>' +
+          '3. Buka <a href="http://localhost:8765" style="color:#5cdb5c">http://localhost:8765</a><br><br>' +
+          'Jangan guna file:// terus — browser block script.'
+        );
+        return;
+      }
+      try {
+        init();
+      } catch (err) {
+        console.error('War Room init error:', err);
+        showLoadError('⚠ Error init: ' + err.message + '<br>Semak Console (F12).');
+      }
+    }
+
+    bootstrap();
+  </script>
+</body>
+</html>
