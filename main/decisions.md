@@ -173,4 +173,16 @@ co
 **Rationale:** 6 tindih native harness — simpan = dua implementasi divergent (masalah yang sama kita baru bunuh untuk memory + auto-push). 7 stub/niche — kos kognitif (muncul dalam skill list tiap sesi) tanpa nilai; boleh re-add bila keperluan sebenar wujud (forge-skill). 2 pure-play (`interactive-story`, `song-creation`) — bukan kerja. Target ~33 dekat dengan Blueprint L2 "~32, one owner per capability". Ditolak: (a) buang semua sekali gus — risiko tinggi, susah audit; (b) biar je — sprawl makin teruk, governance jadi hiasan.
 
 ---
+
+## 2026-09-10 — Reversed (separa): 4 skill "cut sebab native" DIKEMBALIKAN sebagai skill DIBA yang bungkus native
+
+**Context:** Batch 1 cut 4 skill atas alasan "native harness dah ada" — `observation`, `hook-generator`, `skill-plugin-system`, `changelog-generator`. Abam bantah: DIBA patut ada skill sendiri, bukan defer bulat-bulat ke `.claude` built-in. Skill DIBA = pintu depan; native = enjin bawah yang boleh dipanggil/ditukar.
+
+**Decision:** Restore keempat-empat (dari `fcb14c3~1`). Prinsip baru: **DIBA miliki workflow, native tool jadi enjin.** `observation` + `security-audit-remediation` dapat seksyen "Native engine — DIBA wraps, tak ganti" (Refine/Audit panggil `/code-review`+`/simplify`; security audit panggil `/security-review` untuk hasilkan findings, skill DIBA pandu remediation + log `decisions.md` + chain `save-diary`). Nota: `hook-generator` rupanya skill **content marketing** (5 content hooks, dept: social) — bukan berkaitan Claude Code hooks langsung; alasan cut asal salah baca nama. Ia kekal, kelak fold ke `marketing-workshop` (Batch 2).
+
+**Rationale:** "Defer ke native" hakis identity DIBA dan pecah portability (skill hilang bila pindah mesin / native tool berubah). Bungkus native bagi DIBA kawal rawatan (rojak verdict, decisions log, diary chain) sambil tak double-maintain enjin analisa. Kekal cut: 9 skill stub/niche/pure-play — bantahan Abam khusus pada kategori "native overlap" sahaja, bukan yang tu.
+
+**Kesan:** Batch 1 net = **74→65 installed** (bukan 61), **canonical 52→45**. Batch 2 (MERGE) akan disemak semula ikut prinsip ni sebelum gerak.
+
+---
 *Index: [[HOME|HOME]] · [[main/main-memory|main-memory]] · [[main/current-session|current-session]] · [[projects/active/ruangniaga|ruangniaga]] · [[projects/active/dibaref-saas|dibaref-saas]]*

@@ -55,6 +55,7 @@ One owner per phrase. Before adding or leveling a skill, grep this table — a p
 | deep-work | "time block hari ni", "susun deep work", "shallow work minggu ni", "focus session", "shutdown ritual" |
 | weekly-review | "gtd review", "audit komitmen", "apa yang stalled", "clear semua open loop", "trusted system check" |
 | capture | "brain dump", "ok banyak nak cakap ni", "catat semua ni" |
+| changelog-generator | "buat changelog", "generate release notes", "apa yang berubah sejak version lepas" · reasoning terus atas git log |
 
 ### Knowledge & analysis
 | Skill | Owned triggers |
@@ -73,9 +74,10 @@ One owner per phrase. Before adding or leveling a skill, grep this table — a p
 | frontend-design | "design guide", "buat cantik", "jangan generic", "landing page", "visual hierarchy" |
 | interaction-design | "poles UI", "tambah animasi", "microinteraction", "motion", "DIBA presence" |
 | marketing-workshop | "copywriting", "SEO", "tulis copy", "headline", "CTA", "growth", "buat iklan" |
+| hook-generator | "buat hook", "opening line", "attention grabber", "viral hook", "penarik" · 5 content hooks + psikologi |
 
 ### Feature-layer only (installed as gap-fill from `Feature/`)
-continuous-improvement · dashboard · image-prompt · mulahazah · security-audit-remediation
+continuous-improvement · dashboard · image-prompt · mulahazah · observation · security-audit-remediation · skill-plugin-system
 
 ### Retired (do not re-create)
 | Skill | Fate |
@@ -88,10 +90,6 @@ continuous-improvement · dashboard · image-prompt · mulahazah · security-aud
 | session-briefing | MERGED 2026-07-04 → chief-of-staff Lv.7 (Session-Start Brief) |
 | dream-ideas | MERGED 2026-07-04 → resonance Lv.7 (Dream Mode) |
 | auto-idle-save-recall | SPLIT 2026-07-04 → save-diary Lv.5 (idle save) + chief-of-staff Lv.7 (greet recall) |
-| observation | CUT 2026-09-10 — native `/code-review` + `/simplify`; project health via repo-pack / project-map |
-| hook-generator | CUT 2026-09-10 — native `update-config` skill + claude-code-guide |
-| skill-plugin-system | CUT 2026-09-10 — session-start.sh + forge-skill already cover it |
-| changelog-generator | CUT 2026-09-10 — `git log` + native tooling |
 | compliance-check | CUT 2026-09-10 — stub, no active need |
 | contract-reviewer | CUT 2026-09-10 — stub, no active need |
 | invoice-chaser | CUT 2026-09-10 — stub, no active need |

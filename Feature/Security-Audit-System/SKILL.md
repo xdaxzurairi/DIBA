@@ -32,6 +32,16 @@ Then immediately execute Step 1 of Protocol.
 
 ---
 
+## Native engine — DIBA wraps, tak ganti
+
+Skill ni **milik DIBA** dan ia untuk **remediation** (triage → batch → fix → clean → commit), bukan penjanaan findings.
+
+- Nak **hasilkan** findings dari branch semasa: jalankan `/security-review` (atau native `security-review` skill) dahulu — itu enjinnya.
+- Lepas dapat findings (dari `/security-review`, semgrep, CodeQL, atau audit manual), **skill ni yang pandu remediation** + log keputusan fix ke `main/decisions.md` + chain `save-diary`.
+- `security-guidance` (pre-write, auto) kekal berasingan — ia cegah, skill ni baiki.
+
+---
+
 ## Protocol
 
 ### Step 1: Ingest & Triage
