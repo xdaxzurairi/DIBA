@@ -143,4 +143,14 @@ co
 **Rationale:** Pada skala vault sekarang (ratusan entri), grep menang laju + sederhana. Graph DB akan: pecahkan portability "clone & jalan" (server per PC), cipta dual source of truth (masalah yang baru dibunuh dalam PR #17), pecahkan fallback local/Nemotron (memory tak lagi plain text), dan hilangkan git guarantee (DB binari). Vault pula dah ada graph semantics percuma — wikilinks Obsidian + project-map + mind-tree; yang kurang cuma traversal, dan itu boleh ditampal dengan grep ikut link. Keputusan Abam: "guna yg kita ada skrg, lebih baik dan padu."
 
 ---
+
+## 2026-09-10 — Satu Sumber Memory + Scheduled Brief Kekal Local (bukan Cloud)
+
+**Context:** Review "adakah feature baru Claude Code selari dengan DIBA". Dua penemuan: (1) native Claude Code memory (`~/.claude/projects/.../memory/`) jalan serentak dengan vault DIBA — 3 fail native dah ~4 bulan stale dan tunjuk path mati `tets/Project-AI-MemoryCore`; (2) Claude Code kini ada `/schedule` (cloud cron routines) yang nampak macam boleh tutup Phase 3 scheduled brief.
+
+**Decision:** (1) **Kosongkan native memory jadi pointer** ke `xdibax/DIBA/main/`, buang 3 fail stale — satu owner per capability. (2) **Scheduled brief guna Windows Task Scheduler (local), BUKAN cloud `/schedule`.** Ditolak: cloud routine, custom Telegram script (buat masa ni).
+
+**Rationale:** Dua memory store = drift terjamin (native dah buktikan — stale + path salah). Cloud `/schedule` routine jalan dalam sandbox cloud, **tiada akses** ke vault lokal `C:\Users\...\xdibax\DIBA\`, jadi tak boleh baca reminders/session/projects — brief jadi kosong. Local schtasks → `claude -p` headless dalam vault dapat konteks penuh (hooks DIBA fire macam biasa) dan tulis ke `main/brief-inbox.md` yang di-auto-commit. Telegram delivery ditangguh: infra belum wujud (takde bot token, `send-diary-telegram.js` tak ada dalam repo) — calon ganti: Zapier MCP, bukan custom script.
+
+---
 *Index: [[HOME|HOME]] · [[main/main-memory|main-memory]] · [[main/current-session|current-session]] · [[projects/active/ruangniaga|ruangniaga]] · [[projects/active/dibaref-saas|dibaref-saas]]*

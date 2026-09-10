@@ -4,12 +4,14 @@
 ## Open
 
 - **Setup local model kat PC opis (Isnin 2026-07-07):** Install Ollama + `ollama pull qwen2.5:3b`, kemudian test `node scripts/diba-fallback-chat.js` — fallback bila Claude limit. Opsyenal: set `OPENROUTER_API_KEY` untuk backend Nemotron cloud sekali. (Ditambah 2026-07-04 selepas merge PR #17)
-- **Phase 3 — Scheduled Loops (lepas setup Ollama Isnin):** Tutup loop harian/mingguan 100% auto — (1) scheduled morning brief: Claude Code web trigger ATAU Task Scheduler/cron buka sesi "morning brief" jam 8 pagi; (2) weekly review auto hari Jumaat; (3) Telegram bridge supaya brief/reminder sampai ke phone. Rujuk `plans/DIBA-v3-Blueprint.md` Phase 3. (Diluluskan Abam 2026-07-05 — "loop engineering: automasi pencetus")
+- **Phase 3 — Scheduled Loops (baki: Telegram sahaja):** (1) scheduled morning brief + (2) weekly review auto Jumaat — **SIAP 2026-09-10** via Windows Task Scheduler (`scripts/scheduled-brief.sh` → `main/brief-inbox.md`). Abam kena run sekali: `scripts/register-scheduled-briefs.ps1`. **Baki (3) Telegram bridge** — belum wujud: takde bot token, `scripts/send-diary-telegram.js` tak ada dalam repo. Penemuan 2026-09-10: cloud `/schedule` routine **tak boleh** akses vault lokal, jadi scheduled brief mesti local schtasks (bukan cloud). Rujuk `plans/DIBA-v3-Blueprint.md` Phase 3. (Diluluskan Abam 2026-07-05 — "loop engineering: automasi pencetus")
 - **Save diary → Telegram penuh (permanent):** Setiap save diary, hantar fail hari penuh via `scripts/send-diary-telegram.js`. IDE tidak relevan. Script ada **fallback plain text** bila Markdown parse gagal (underscore/path kod).
 - **eWorks e-signature:** End-to-end test Borang Arahan Kerja — **jangan sync prod** buat masa ini (keputusan 2026-06-11).
 
 ## Completed
 
+- **Phase 3 loops — morning brief + weekly review** (completed 2026-09-10): Windows Task Scheduler tasks `DIBA Morning Brief` (harian 08:00) + `DIBA Weekly Review` (Jumaat 16:00) → `scripts/scheduled-brief.sh` jalankan `claude -p` headless dalam vault, tulis ke `main/brief-inbox.md`. Pendaftaran sekali: `scripts/register-scheduled-briefs.ps1`. Baki Phase 3 = Telegram bridge sahaja (masih Open).
+- **Native Claude memory collapsed → pointer** (completed 2026-09-10): `~/.claude/projects/C--Users-Administrator/memory/` dikosongkan jadi pointer ke vault. 3 fail stale (path mati `tets/Project-AI-MemoryCore`) dibuang. Satu sumber kebenaran = `xdibax/DIBA/main/`.
 - **eWorks laporan 7a vs 1c — keputusan Option A/B/C** (completed 2026-07-01): Abam pilih **Option C** (kedua-dua). Reminder pending-keputusan ditutup; item baru dibuka untuk track implementasi kod.
 - **eWorks laporan 7a — implementasi Option C** (closed 2026-07-03, Abam): Ditutup tanpa implementasi — Abam keputuskan tutup terus.
 - **DIBA skills push** (completed 2026-07-01, confirmed Abam): Push skills ke DIBA.git dianggap selesai.

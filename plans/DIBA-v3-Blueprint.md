@@ -88,9 +88,9 @@ A real assistant touches Zuex's actual world. Priority order, all via MCP server
 - ✅ `ask-nemotron` Lv.2 — script path via `DIBA_NEMOTRON_SCRIPT` env var; PARKED until set.
 
 ### Phase 3 — Proactive & Connected (~2–4 sessions)
-- Scheduled morning brief: Claude Code web trigger or Task Scheduler/cron entry that opens a session with "morning brief".
-- Calendar MCP → agenda with real meetings.
-- Telegram bridge → DIBA on the phone, reminders that actually arrive.
+- ✅ **Scheduled morning brief + weekly review** (2026-09-10): Windows Task Scheduler → `scripts/scheduled-brief.sh` runs `claude -p` headless in the vault → `main/brief-inbox.md`. Register once with `scripts/register-scheduled-briefs.ps1`. Note: cloud `/schedule` routines can't reach the local vault, so scheduling must stay local (schtasks), not cloud.
+- Calendar MCP → agenda with real meetings. (Gmail + Google Calendar MCP connectors are available in-session — just need `authenticate`.)
+- Telegram bridge → DIBA on the phone, reminders that actually arrive. **Not started** — no bot token, `scripts/send-diary-telegram.js` absent. Candidate: Zapier MCP instead of a custom script.
 - Routines engine: `main/routines.md` entries get "last run / next due" and surface in the morning brief.
 
 ### Phase 4 — Delegation (ambition)
