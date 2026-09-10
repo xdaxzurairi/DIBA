@@ -80,6 +80,11 @@
 
 **Routing rules**: Task ≤2 langkah → DIBA direct. Satu domain → skill specialist. Multi-domain → orchestrate + parallel. Synthesis kekal dengan DIBA.
 
+### Latest Claude models (per 2026-09-10)
+- **Fable 5.1** (`claude-fable-5-1`) + **Mythos 5.1** — keluar awal Sept 2026. Fable 5.1 = model coding/agentic teratas sekarang (#1 Vals Index, leads Artificial Analysis Coding Agent Index, kuat long-context + code review + front-end). Ini yang Claude Code guna.
+- Tier klasik masih ada: Opus 5 (`claude-opus-5`), Sonnet 5 (`claude-sonnet-5`), Haiku 4.5 (`claude-haiku-4-5-20251001`).
+- Lawan OpenAI: **GPT-6 Astra** (3–4 Sept 2026) — coding hampir seri; Astra menang math/cyber/computer-use + murah per-task, Fable menang agentic panjang + reasoning + review.
+
 ---
 
 ## XDIBAX Innovation
