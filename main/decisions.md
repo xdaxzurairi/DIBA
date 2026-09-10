@@ -153,4 +153,14 @@ co
 **Rationale:** Dua memory store = drift terjamin (native dah buktikan — stale + path salah). Cloud `/schedule` routine jalan dalam sandbox cloud, **tiada akses** ke vault lokal `C:\Users\...\xdibax\DIBA\`, jadi tak boleh baca reminders/session/projects — brief jadi kosong. Local schtasks → `claude -p` headless dalam vault dapat konteks penuh (hooks DIBA fire macam biasa) dan tulis ke `main/brief-inbox.md` yang di-auto-commit. Telegram delivery ditangguh: infra belum wujud (takde bot token, `send-diary-telegram.js` tak ada dalam repo) — calon ganti: Zapier MCP, bukan custom script.
 
 ---
+
+## 2026-09-10 — Reversed: DIBA vault kini auto-push ke origin di session-end
+
+**Context:** Abam minta "pastikan git DIBA auto sync dgn segala perubahan". Semakan: auto-commit hook jalan (commit lokal), tapi TIADA push langsung — `main` ahead `origin/main` 12 commits, GitHub tak update sejak ~2026-08-22. Rule lama (auto-commit skill): "never auto-push / push only when asked".
+
+**Decision:** Untuk **vault DIBA sahaja**, tambah best-effort `git push` dalam `session-end.sh` + `session-end.ps1` (fires on Stop/SessionEnd). Push bila branch ahead upstream; timeout 20s; senyap bila gagal (offline/auth/non-fast-forward); retry auto di session-end seterusnya. Repo kod di luar vault **kekal** ikut rule lama (push bila diminta sahaja). Kernel `CLAUDE.md` standing rule dikemas kini supaya doc = behavior.
+
+**Rationale:** Vault DIBA = memory peribadi, satu penulis (Abam), repo private — risiko push automatik hampir sifar dan nilai tinggi (memory selamat merentas mesin, tak menimbun lagi). Ini berbeza dari repo kod projek (eWorks dll.) di mana push automatik boleh terganggu review/CI/branch orang lain — sebab tu skop dihadkan ke vault. Best-effort + silent-fail elak hook stall session bila tiada rangkaian. Ditolak: (a) push setiap Write/Edit — terlalu kerap, bising; (b) biarkan manual — punca masalah asal (3 minggu tak sync).
+
+---
 *Index: [[HOME|HOME]] · [[main/main-memory|main-memory]] · [[main/current-session|current-session]] · [[projects/active/ruangniaga|ruangniaga]] · [[projects/active/dibaref-saas|dibaref-saas]]*

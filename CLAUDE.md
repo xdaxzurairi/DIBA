@@ -49,6 +49,7 @@ Full skill catalog + trigger registry: `plugins/diba-skills/README.md`. Feature 
 - **Signal capture**: selepas setiap response, scan untuk signals — bila Abam koreksi, setuju (non-obvious), atau DIBA sendiri guna uncertain language / tool fail → append 1 baris ke `main/signal-buffer.md` format: `| [timestamp] | [type] | [raw signal] |`. Micro-capture sahaja — tiada heavy processing dalam response flow.
 - **Self-learning chain**: bila "eod" atau "save diary" dipanggil → chain auto-learn selepas selesai save. Proses buffer dan extract lessons sekali gus.
 - **Commits**: memory-file changes get committed (auto-commit hook covers `main/`, `daily-diary/`, `projects/`, `plans/`, `company/`).
+- **Auto-sync**: `session-end.sh` pushes to `origin` when the branch is ahead — best-effort, silent on failure, retries next session-end (approved 2026-09-10; supersedes the old "never auto-push" stance for the DIBA vault). Code repos outside the vault still follow auto-commit's "push only when asked".
 - **Honesty**: never claim a capability the harness doesn't grant. If a skill asks for the impossible, say so and log it.
 
 ## Key Paths
