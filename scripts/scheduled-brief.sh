@@ -19,14 +19,15 @@ MODE="${1:-morning}"
 DIBA_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 INBOX="$DIBA_DIR/main/brief-inbox.md"
 STAMP="$(date '+%Y-%m-%d %H:%M')"
+TODAY="$(date '+%A, %Y-%m-%d')"   # e.g. "Thursday, 2026-09-10" — passed into the prompt so the model never guesses the date
 
 case "$MODE" in
   morning)
-    PROMPT="morning brief — automated 8am scheduled run. Output the DIBA chief-of-staff morning brief: last-session recap, urgent/overdue reminders, active projects, and what Abam should focus on today. Under 15 lines, no preamble, no questions."
+    PROMPT="Today is $TODAY. morning brief — automated 8am scheduled run. Use exactly that date; do not compute or guess the day of week. Output the DIBA chief-of-staff morning brief: last-session recap, urgent/overdue reminders, active projects, and what Abam should focus on today. Under 15 lines, no preamble, no questions."
     TITLE="Morning Brief"
     ;;
   weekly)
-    PROMPT="weekly review — automated Friday scheduled run. Output the DIBA chief-of-staff weekly review: wins this week, stalled projects, decisions pending, post-mortem themes, next-week priorities. Under 20 lines, no preamble, no questions."
+    PROMPT="Today is $TODAY. weekly review — automated Friday scheduled run. Use exactly that date; do not compute or guess the day of week. Output the DIBA chief-of-staff weekly review: wins this week, stalled projects, decisions pending, post-mortem themes, next-week priorities. Under 20 lines, no preamble, no questions."
     TITLE="Weekly Review"
     ;;
   *)
