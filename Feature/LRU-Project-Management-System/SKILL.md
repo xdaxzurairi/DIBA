@@ -6,6 +6,9 @@ description: "Auto-triggers on 'new project [name]', 'load project [name]',
              mentions switching between active projects."
 ---
 
+> ⚠️ **SUPERSEDED** — canonical executable copy: `plugins/diba-skills/skills/manage-project/SKILL.md`.
+> This Feature copy is documentation/history only and is no longer installed. Edit the plugin copy.
+
 # Manage Project -- LRU Project Management Skill
 *Smart project tracking with automatic memory management.*
 

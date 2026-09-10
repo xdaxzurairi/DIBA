@@ -5,6 +5,9 @@ description: "Auto-triggers at session start to review open reminders. Also trig
              'next session we should', or when user mentions a deadline."
 ---
 
+> ⚠️ **SUPERSEDED** — canonical executable copy: `plugins/diba-skills/skills/check-reminders/SKILL.md`.
+> This Feature copy is documentation/history only and is no longer installed. Edit the plugin copy.
+
 # Check Reminders — Persistent Follow-Up Skill
 *Tiada yang terlupa antara sesi.*
 

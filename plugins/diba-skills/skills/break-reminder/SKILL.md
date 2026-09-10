@@ -60,3 +60,9 @@ Contoh ayat:
 - [ ] Rehat mata 20-20-20
 - [ ] Tarik nafas dalam 5 kali
 - [ ] Kembali dengan 1 tugasan kecil
+
+## Level History
+- **Lv.1** — Base: wellness trigger, script BM, mini checklist, safety tone.
+- **Lv.2** — Session Aware: jika `current-session.md` ada follow-up kritikal, ingatkan "satu task kecil" selepas rehat, bukan task berat. (Origin: 2026-05-22 — naikkan skill batch)
+- **Lv.3** — Signal Detection: auto-kesan tanda keletihan dari nada mesej/sesi panjang berterusan tanpa Abam explicitly minta diingatkan, tawar rehat proaktif. (Origin: 2026-07-31 — upskill batch Lv1-3→Lv4, arahan Abam)
+- **Lv.4** — Deep Work Sync: rehat align dengan `deep-work` shutdown ritual/focus session log, elak break memotong blok deep work di tengah sesi. (Origin: 2026-07-31 — upskill batch Lv1-3→Lv4, arahan Abam)

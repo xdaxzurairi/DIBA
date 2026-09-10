@@ -9,6 +9,9 @@ description: "MUST use when committing code changes, when user says 'commit',
              changes without being asked. No work ever left behind."
 ---
 
+> ⚠️ **SUPERSEDED** — canonical executable copy: `plugins/diba-skills/skills/auto-commit/SKILL.md`.
+> This Feature copy is documentation/history only and is no longer installed. Edit the plugin copy.
+
 # Auto-Commit — Intelligent Commit Skill
 *Setiap perubahan dijaga. Setiap kerja bercerita.*
 

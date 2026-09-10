@@ -93,14 +93,49 @@ Setiap entry MESTI ada:
 
 Bila fail melebihi **1000 baris**, arkibkan ke `daily-diary/archived/YYYY-MM/` dan mulakan fail baru.
 
-### Langkah 3: Kemaskini Session Memory
+### Langkah 3: Kemaskini Session Memory (Lv.2 — wajib)
 
-Selepas tulis entry, kemaskini memori sesi (`/memories/session/`) dengan **recap** ringkas:
-- Topik terakhir
-- Keputusan terakhir
-- Fail terakhir diubah
+Selepas tulis entry, kemaskini `main/current-session.md` (relatif root vault) dengan **recap** ringkas:
+- **Topik:** satu baris
+- **Keputusan:** bullet ringkas
+- **Fail terakhir diubah:** senarai path
+- **Follow-up terbuka:** item belum selesai (jika ada)
 
-Supaya turn seterusnya boleh rujuk tanpa baca semula diari penuh.
+Supaya `chief-of-staff` (session brief) dan `echo-recall` boleh rujuk tanpa baca diari penuh.
+
+### Langkah 4: Telegram Diary Penuh (Lv.4 — WAJIB, project-only filter)
+
+**Hantar ke Telegram HANYA jika sesi berkaitan projek registered.**
+
+#### Projek Registered (send Telegram)
+Sesi yang melibatkan projek dalam `Project-AI-MemoryCore/projects/active/` — contoh: eWorks, DevAtlas, BFM, RuangNiaga, Webs-150, EA New v3, atau mana-mana projek yang didaftarkan.
+
+#### Kerja XDIBAX Internal (SKIP Telegram)
+Sesi yang hanya melibatkan infrastruktur XDIBAX sendiri — contoh: war-room, skills, memory core, hooks, diary system, DIBA config, scripts. **Jangan send ke Telegram.**
+
+#### Cara tentukan
+Semak tag dan fail yang diubah dalam entry diary:
+- Jika fail yang diubah berada dalam path projek luar (contoh: `C:/Users/BSM/pwa_eworks/`, `C:/Apache24/htdocs/`, projek lain) → **SEND**
+- Jika fail yang diubah hanya dalam `C:/Users/BSM/XDIBAX/` (war-room, .claude, .cursor, .gemini, scripts, Project-AI-MemoryCore) → **SKIP**
+- Jika mixed (ada projek + XDIBAX internal) → **SEND** (projek menang)
+
+#### Cara hantar (bila eligible)
+
+```powershell
+node C:/Users/BSM/XDIBAX/scripts/send-diary-telegram.js
+```
+
+Atau jika War Room server jalan:
+
+```powershell
+Invoke-RestMethod -Method POST -Uri http://localhost:3000/api/send-diary-telegram
+```
+
+**Credential:** `C:/Users/BSM/XDIBAX/war-room/.env` → `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`
+
+**Verify:** Console/API mesti `ok` + bilangan mesej/chars. Jika gagal, lapor Abam — jangan claim diary+telegram siap.
+
+**Bila SKIP:** Log dalam diary entry: `> Telegram: skipped (XDIBAX internal)`
 
 ## Peraturan
 
@@ -109,3 +144,30 @@ Supaya turn seterusnya boleh rujuk tanpa baca semula diari penuh.
 - Entry ringkas: 50–150 baris per sesi
 - Guna Bahasa Melayu dengan istilah teknikal Inggeris
 - Cipta fail/folder automatik jika belum wujud
+
+## Lv.6 — Event-Driven Auto-Save & Open Loops
+
+> **Nota jujur (harness reality):** Claude Code **tiada** idle timer atau wall-clock hook. Tiada proses background yang tick bila Abam berhenti taip — agent cuma hidup masa ada turn. Jadi "idle 20 minit → auto-save" (design lama Lv.5) **tak boleh fire sendiri**; itu andaian salah dan dah dibuang. Auto-save sebenar adalah **event-driven**, bukan time-driven.
+
+Trigger auto-save yang BETUL-BETUL wujud:
+
+| Event sebenar | Mekanisme | Tindakan |
+|---|---|---|
+| Sesi bermula | `SessionStart` hook | Pastikan folder `daily-diary/current/` + fail hari ini wujud (folder auto-create) |
+| Selepas perubahan kod berjaya | save-diary skill (model) | Tulis entry penuh |
+| Abam kata "save diary" / wrap-up / "eod" | save-diary skill (model) | Tulis entry penuh + chain auto-learn |
+| Sesi tamat (Abam berhenti/tutup) | `SessionEnd` hook | Commit fail memory yang berubah — **safety net, TIDAK reka ringkasan** |
+
+**Yang hook TAK buat:** hook bash bukan model — ia tak boleh ringkaskan sesi. Ia cuma commit apa yang dah wujud. Entry diari bermakna mesti ditulis oleh DIBA masa turn; jangan harap hook karang summary.
+
+**Open loops:** setiap entry save WAJIB ada seksyen `**Open loops:**` (max 3 benda belum habis) — `chief-of-staff` greet recall baca dari sini. Loop siap → tanda selesai entri baru; tiada loop zombie.
+
+*(Greet recall "hi diba" kini milik `chief-of-staff` Lv.7 — skill ini hanya SAVE.)*
+
+## Level History
+- **Lv.1** — Base: auto/manual trigger, monthly archive, structured diary entry, append-only.
+- **Lv.2** — Session Sync: Langkah 3 wajib kemaskini `main/current-session.md` selepas setiap entry. (Origin: 2026-05-22 — naikkan skill batch)
+- **Lv.3** — Telegram Full: Langkah 4 wajib hantar diary PENUH ke Telegram via `scripts/send-diary-telegram.js` setiap save; IDE-agnostic. (Origin: 2026-06-19 — arahan Abam)
+- **Lv.4** — Project-only filter: Telegram send hanya untuk sesi projek registered. Kerja XDIBAX internal (war-room, skills, memory, infra) di-skip. (Origin: 2026-06-22 — arahan Abam)
+- **Lv.5** — Idle Auto-Save & Open Loops: absorb skill `auto-idle-save-recall` (bahagian save + idle heuristics + open loops); greet recall dipindah ke chief-of-staff Lv.7; path Langkah 3 jadi repo-relative. (Origin: 2026-07-04 — konsolidasi arahan Abam, "skill redundant satukan")
+- **Lv.6** — Event-Driven honesty fix: buang fiksyen "idle 20 min timer" (harness tiada idle hook — tak boleh fire). Ganti dengan trigger event sebenar: `SessionStart` (auto-create folder), save-diary skill (entry bermakna), `SessionEnd` hook (safety-net commit). Hook tak reka summary. (Origin: 2026-08-12 — arahan Abam "jgn halusinasi, buat benda betul")

@@ -5,6 +5,9 @@ description: "Quick reference card for the 7 Laws of AI Agent Discipline. Use be
              end as self-check. Trigger with 'discipline', '7 laws', or 'self-check'."
 ---
 
+> ⚠️ **SUPERSEDED** — canonical executable copy: `plugins/diba-skills/skills/discipline/SKILL.md`.
+> This Feature copy is documentation/history only and is no longer installed. Edit the plugin copy.
+
 # Discipline — 7 Laws of AI Agent Discipline
 *Research. Plan. Execute. Verify. Reflect. Learn. Iterate.*
 

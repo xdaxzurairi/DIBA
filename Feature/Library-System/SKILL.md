@@ -9,6 +9,9 @@ description: "MUST use when saving to the library, loading from the library,
              or when the AI independently decides to save reusable knowledge."
 ---
 
+> ⚠️ **SUPERSEDED** — canonical executable copy: `plugins/diba-skills/skills/library/SKILL.md`.
+> This Feature copy is documentation/history only and is no longer installed. Edit the plugin copy.
+
 # Library — Knowledge Guardian Skill
 *Simpan sekali, guna selama-lamanya. Jangan selesaikan masalah yang sama dua kali.*
 

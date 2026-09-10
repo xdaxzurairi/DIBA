@@ -47,6 +47,30 @@ After successful setup, these files are no longer needed:
 - Delete `setup-guide.md` 
 - Keep only the core system files
 
+## Step 7: Cursor Junction (DIBA + Cursor IDE)
+
+Selepas setup wizard + master memory, jalankan script junction supaya skill DIBA auto-load dalam Cursor:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/diba-cursor-junction-setup.ps1
+```
+
+**Apa yang dibuat:**
+- Junction skill dari `Project-AI-MemoryCore/plugins/diba-skills/skills/` → `~/.cursor/skills/`
+- Junction skill projek → `XDIBAX/.cursor/skills/`
+- Hard link rules DIBA → `XDIBAX/.cursor/rules/`
+- Sync skill `anchor` ke plugins (daripada `DIBA/Feature/Anchor-System/`)
+
+**Verify:** Taip `DIBA` dalam chat Cursor — session-briefing + diba-recall patut aktif.
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/diba-verify-setup.ps1
+```
+
+Expected: `RESULT: PASS — 22 skills, 5 rules, memory core OK`
+
+---
+
 ## 🚀 What's Next?
 
 Your AI companion is ready! Here's the recommended path to unlock more features:

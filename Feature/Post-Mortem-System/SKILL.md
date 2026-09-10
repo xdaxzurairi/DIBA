@@ -7,6 +7,9 @@ description: "Triggers when user says 'post-mortem', 'postmortem', 'log this fai
              On detection, AI asks whether it's worth logging."
 ---
 
+> ⚠️ **SUPERSEDED** — canonical executable copy: `plugins/diba-skills/skills/post-mortem/SKILL.md`.
+> This Feature copy is documentation/history only and is no longer installed. Edit the plugin copy.
+
 # Post-Mortem — Failure Learning System
 *Kegagalan yang tidak direkod akan berulang. Kegagalan yang direkod menjadi pelajaran.*
 

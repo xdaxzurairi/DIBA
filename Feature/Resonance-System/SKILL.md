@@ -5,6 +5,9 @@ description: "Use when Abam wants to enter a shared thought mode with DIBA — s
              grow across sessions. Trigger with 'resonance', 'kongsi otak', or 'neural'."
 ---
 
+> ⚠️ **SUPERSEDED** — canonical executable copy: `plugins/diba-skills/skills/resonance/SKILL.md`.
+> This Feature copy is documentation/history only and is no longer installed. Edit the plugin copy.
+
 # Resonance — Kongsi Otak DIBA × Abam
 *Frekuensi terbuka. Fikiran mengalir.*
 

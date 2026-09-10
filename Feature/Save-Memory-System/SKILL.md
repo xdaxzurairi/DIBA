@@ -6,6 +6,9 @@ description: "MUST use when user says 'save', 'save memory', 'save progress', 'u
              'update memory'. Also fires passively on auto-detect signals."
 ---
 
+> ⚠️ **SUPERSEDED** — canonical executable copy: `plugins/diba-skills/skills/save-memory/SKILL.md`.
+> This Feature copy is documentation/history only and is no longer installed. Edit the plugin copy.
+
 # Save Memory System — DIBA Memory Layer
 *Simpan. Semak. Kekalkan.*
 

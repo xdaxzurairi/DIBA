@@ -8,6 +8,9 @@ description: "Auto-triggers when AI detects a repeated pattern handled ad-hoc 3+
              level-up to an existing skill based on conversation patterns."
 ---
 
+> ⚠️ **SUPERSEDED** — canonical executable copy: `plugins/diba-skills/skills/forge-skill/SKILL.md`.
+> This Feature copy is documentation/history only and is no longer installed. Edit the plugin copy.
+
 # Forge Skill — Self-Improvement System
 *AI yang belajar dari pengalaman dan memperbaiki diri sendiri.*
 

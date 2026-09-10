@@ -60,169 +60,45 @@ Skill ini memastikan Diba:
 
 ## Decision Matrix — Bila guna pattern mana
 
-### A. Prompt Chaining
-**Guna bila:** langkah kerja tetap dan berjujukan.
+| Pattern | Guna bila | Contoh | Kelebihan |
+|---|---|---|---|
+| **A. Prompt Chaining** | Langkah kerja tetap & berjujukan | extract→normalize→summarize; audit→findings→recommendations; outline→draft→polish | Predictable, mudah debug |
+| **B. Routing** | Input boleh dibahagi kepada kategori berbeza treatment | isu UI vs backend vs database; bug fix vs docs vs architecture | Specialization, elak satu prompt jadi semua benda |
+| **C. Parallelization** | Subtask bebas antara satu sama lain / perlu pelbagai perspektif | audit beberapa fail serentak; semak security/performance/UX berasingan | Laju, coverage lebih luas |
+| **D. Orchestrator-Workers** | Subtugas belum diketahui awal, perlu dipecah dinamik | audit projek besar; perubahan multi-file kompleks | Fleksibel untuk tugasan terbuka |
+| **E. Evaluator-Optimizer** | Ada kriteria semakan jelas, hasil boleh diperbaiki iteratif | dokumen diperkemas; kod perlu lepas test/lint | Kualiti hasil lebih konsisten |
 
-Contoh:
-- extract → normalize → summarize
-- audit → findings → recommendations
-- outline → draft → polish
-
-**Kelebihan:** predictable, mudah debug.
-
-### B. Routing
-**Guna bila:** input boleh dibahagi kepada kategori yang perlukan treatment berbeza.
-
-Contoh:
-- isu UI vs backend vs database
-- permintaan user: bug fix vs docs vs architecture
-- aduan: billing vs account vs technical
-
-**Kelebihan:** specialization, elak satu prompt cuba jadi semua benda.
-
-### C. Parallelization
-**Guna bila:** subtask bebas antara satu sama lain atau perlukan pelbagai perspektif.
-
-Contoh:
-- audit beberapa fail/folder serentak
-- semak security, performance, dan UX secara berasingan
-- banding beberapa option implementation
-
-**Kelebihan:** laju, coverage lebih luas.
-
-### D. Orchestrator-Workers
-**Guna bila:** subtugas belum diketahui awal dan perlu dipecah secara dinamik.
-
-Contoh:
-- audit projek besar
-- perubahan multi-file kompleks
-- research merentasi banyak sumber dan synthesize keputusan
-
-**Kelebihan:** fleksibel untuk tugasan terbuka.
-
-### E. Evaluator-Optimizer
-**Guna bila:** ada kriteria semakan yang jelas dan hasil boleh diperbaiki secara iteratif.
-
-Contoh:
-- dokumen perlu diperkemas
-- cadangan teknikal perlu dipolish
-- kod perlu melepasi test/lint/review criteria
-
-**Kelebihan:** kualiti hasil lebih konsisten.
-
-## Orchestration Loop
+## Orchestration Loop, Delegation & Verification
 
 Ikut loop ini sebagai default operating model:
 
-### Step 1 — Define the mission
-Kenal pasti:
-- hasil akhir yang pengguna mahu
-- skop masuk / skop luar
-- constraint (masa, fail, sistem, akses, format)
-- signal siap (apa yang membuktikan task selesai)
+1. **Define the mission** — hasil akhir yang pengguna mahu, skop masuk/luar, constraint (masa, fail, sistem, akses, format), signal siap.
+2. **Classify the task** — single-pass, chain, route, parallel, orchestrator-workers, evaluator-optimizer, atau gabungan.
+3. **Build a minimal plan** — checklist/todo pendek tapi spesifik, action-oriented, boleh diverifikasi, hanya satu item `in-progress` pada satu masa.
+4. **Gather grounded context** — fail workspace, log/error, web source autoritatif, dokumentasi sedia ada, memory/diary jika berkaitan. Jangan baca rawak tanpa tujuan; setiap bacaan mesti menyokong keputusan seterusnya.
+5. **Delegate smartly** — route ikut domain, bacaan parallel untuk konteks bebas, subagent untuk exploration/research focused; kekalkan synthesis di tangan orchestrator utama.
+   - **Delegate bila**: banyak area bebas, context window boleh sesak, exploration hasilkan banyak noise, perlukan research focused satu domain.
+   - **Jangan delegate bila**: task kecil & jelas, synthesis bergantung pada konteks sama, overhead lebih tinggi dari manfaat, keputusan mesti dibuat rapat step-by-step.
+   - **Delegation yang baik ada**: objective tajam, skop fail/domain jelas, tahap thoroughness (quick/medium/thorough), output yang diminta kembali, arahan read-only atau boleh edit.
+6. **Synthesize, don't dump** — gabungkan hasil subtask kepada ringkasan yang difahami, keputusan beralasan, cadangan tindakan praktikal, artifact/fail yang benar-benar berguna.
+7. **Verify** — guna Verification Contract di bawah untuk semak hasil sebelum ditutup.
+8. **Close cleanly** — update todo status, rekod perubahan penting jika perlu, beritahu pengguna apa yang siap, cadangkan next step yang relevan (bukan generik).
 
-### Step 2 — Classify the task
-Tentukan sama ada task lebih sesuai sebagai:
-- single-pass
-- chain
-- route
-- parallel
-- orchestrator-workers
-- evaluator-optimizer
-- atau gabungan beberapa pattern
+### Verification Contract
 
-### Step 3 — Build a minimal plan
-Cipta checklist/todo yang:
-- pendek tetapi cukup spesifik
-- action-oriented
-- boleh diverifikasi
-- hanya satu item `in-progress` pada satu masa
-
-### Step 4 — Gather grounded context
-Kumpul konteks secukupnya daripada:
-- fail workspace
-- log / error
-- web source autoritatif
-- dokumentasi sedia ada
-- memory/diary jika berkaitan
-
-Jangan baca secara rawak tanpa tujuan. Setiap bacaan mesti menyokong keputusan seterusnya.
-
-### Step 5 — Delegate smartly
-Jika task besar:
-- route ikut domain
-- jalankan bacaan parallel untuk konteks bebas
-- guna subagent untuk exploration/research focused
-- kekalkan synthesis di tangan orchestrator utama
-
-### Step 6 — Synthesize, don’t dump
-Gabungkan hasil subtask kepada:
-- ringkasan yang difahami
-- keputusan yang beralasan
-- cadangan tindakan yang praktikal
-- artifact/fail yang benar-benar berguna
-
-### Step 7 — Verify
-Semak:
-- adakah semua requirement pengguna diliputi?
-- adakah ada claim tanpa bukti?
-- adakah hasil perlu test, lint, review, atau proof lain?
-- adakah terdapat blocker sebenar yang perlu dimaklumkan?
-
-### Step 8 — Close cleanly
-Sebelum tamat:
-- update todo status
-- rekod perubahan penting jika perlu
-- beritahu pengguna apa yang telah siap
-- cadangkan next step yang relevan, bukan generik
-
-## Delegation Rules
-
-### Bila patut delegate
-Delegate bila:
-- ada banyak area bebas untuk dianalisis
-- context window boleh jadi sesak
-- exploration akan menghasilkan banyak noise
-- perlukan research focused satu domain pada satu masa
-
-### Bila jangan delegate
-Jangan delegate bila:
-- task kecil dan jelas
-- synthesis sangat bergantung pada konteks yang sama
-- overhead lebih tinggi daripada manfaat
-- keputusan mesti dibuat secara rapat step-by-step
-
-### Bentuk delegation yang baik
-Setiap delegation patut ada:
-- objective yang tajam
-- skop fail/domain yang jelas
-- tahap thoroughness (quick / medium / thorough)
-- output yang diminta kembali
-- arahan sama ada read-only atau boleh edit
-
-## Verification Contract
-
-Untuk setiap hasil besar, Diba mesti semak sekurang-kurangnya perkara ini:
-
+Untuk setiap hasil besar, semak sekurang-kurangnya:
 - **Correctness** — betul tak berdasarkan evidence?
 - **Coverage** — semua requirement user dah kena?
 - **Consistency** — selari tak dengan codebase/dokumen sedia ada?
 - **Risk** — ada side effect atau assumption berbahaya?
 - **Readability** — hasil boleh difahami dan diguna terus?
 
-Jika task teknikal:
-- semak errors
-- jalankan test/build bila sesuai
-- pastikan perubahan minimum-impact bila itu objektifnya
+Task teknikal: semak errors, jalankan test/build bila sesuai, pastikan perubahan minimum-impact bila itu objektifnya.
+Task dokumentasi/research: pastikan struktur jelas, label assumption dengan jujur, asingkan fakta/tafsiran/cadangan.
 
-Jika task dokumentasi/research:
-- pastikan struktur jelas
-- label assumption dengan jujur
-- asingkan fakta, tafsiran, dan cadangan
+### Guardrails
 
-## Guardrails
-
-- Jangan claim sesuatu “siap” tanpa signal verifikasi yang munasabah.
+- Jangan claim sesuatu "siap" tanpa signal verifikasi yang munasabah.
 - Jangan overuse tools atau subagent tanpa sebab jelas.
 - Jangan guna workflow kompleks jika routing mudah atau satu pass sudah cukup.
 - Jangan fabricate source findings, historic decisions, atau external facts.
@@ -242,27 +118,9 @@ Bila skill ini aktif, hasil yang baik biasanya ikut corak ini:
 
 ## Mini Templates
 
-### Template A — Audit Kompleks
-- Tentukan domain audit
-- Baca struktur projek
-- Route kepada: architecture / data / security / UX / ops
-- Synthesize findings mengikut severity
-- Hasilkan cadangan prioriti tinggi dahulu
-
-### Template B — Multi-file Engineering Task
-- Kenal pasti entry point
-- Cari dependency & call chain
-- Pecahkan kepada read/modify/verify
-- Edit minimum-impact
-- Validate dengan errors/tests
-- Sediakan summary fail yang berubah
-
-### Template C — Research + Recommendation
-- Nyatakan soalan keputusan
-- Kumpul sumber relevan
-- Banding option dalam jadual
-- Nilai tradeoff
-- Beri recommendation + alasan + risiko
+- **Audit Kompleks**: tentukan domain → baca struktur projek → route (architecture/data/security/UX/ops) → synthesize ikut severity → cadangan prioriti tinggi dahulu
+- **Multi-file Engineering Task**: kenal pasti entry point → cari dependency/call chain → pecah read/modify/verify → edit minimum-impact → validate errors/tests → summary fail berubah
+- **Research + Recommendation**: nyatakan soalan keputusan → kumpul sumber → banding option dalam jadual → nilai tradeoff → recommendation + alasan + risiko
 
 ## Contoh Trigger-to-Pattern
 
@@ -274,15 +132,6 @@ Bila skill ini aktif, hasil yang baik biasanya ikut corak ini:
 | "Buat dokumen dari hasil audit" | Prompt chaining |
 | "Perkemas cadangan sampai solid" | Evaluator-optimizer |
 
-## Source-Informed Notes
-
-Skill ini direka berasaskan amalan yang konsisten merentas beberapa sumber autoritatif:
-- guna **instruksi yang jelas dan spesifik**
-- pecahkan kerja besar kepada langkah lebih kecil
-- gunakan **grounding context** dan evidence
-- pilih workflow berdasarkan struktur masalah, bukan hype
-- utamakan simplicity, transparency, dan verification loops
-
 ## Success Signal
 
 Skill ini dianggap berjaya bila Diba:
@@ -291,3 +140,14 @@ Skill ini dianggap berjaya bila Diba:
 - memberi progress yang jelas
 - menghasilkan output yang grounded
 - menutup task dengan hasil yang boleh terus digunakan pengguna
+
+## External Collaborator Mode (Lv.2)
+
+Bila user sebut Codex, Gemini, second opinion, atau kerja-berasingan agent lain:
+1. Tentukan **owner** per subtask (DIBA vs external)
+2. DIBA fokus struktur/refactor/verify; external fokus runtime edge-case jika sesuai
+3. Dokumentasikan siapa commit apa dalam save-diary (contoh: eWorks map 2026-05-21)
+
+## Level History
+- **Lv.1** — Base: pattern selection, decompose, ground claims, synthesis, success signals.
+- **Lv.2** — External Collaborator: routing owner DIBA vs agent luar + log kolaborasi. (Origin: 2026-05-21 eWorks + Codex, 2026-05-22 batch)

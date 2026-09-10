@@ -6,6 +6,9 @@ description: "Auto-triggers when a non-obvious decision is made during conversat
              asks about past reasoning behind a choice."
 ---
 
+> ⚠️ **SUPERSEDED** — canonical executable copy: `plugins/diba-skills/skills/log-decision/SKILL.md`.
+> This Feature copy is documentation/history only and is no longer installed. Edit the plugin copy.
+
 # Log Decision — Append-Only Decision Tracking Skill
 *Setiap WHY yang penting — dirakam, tidak dihapus, boleh dicari.*
 

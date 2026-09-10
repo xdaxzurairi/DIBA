@@ -3,6 +3,9 @@ name: auto-learn-new-folder
 description: "MUST use when a new folder is detected in the workspace. Triggers automatic reading, structure analysis, and learning of development patterns before any major or minor changes are made."
 ---
 
+> ⚠️ **SUPERSEDED** — canonical executable copy: `plugins/diba-skills/skills/auto-learn-new-folder/SKILL.md`.
+> This Feature copy is documentation/history only and is no longer installed. Edit the plugin copy.
+
 # Project Explorer — Kaji Dahulu, Ubah Kemudian
 Skill ini memastikan Claude sentiasa memahami konteks penuh sesebuah projek sebelum menyentuh mana-mana fail. Ia seperti kontraktor berpengalaman yang meninjau bangunan dahulu sebelum memulakan kerja renovasi.
 

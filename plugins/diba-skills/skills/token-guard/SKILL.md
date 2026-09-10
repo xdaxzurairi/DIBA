@@ -63,7 +63,7 @@ Then immediately execute Step 1 of Protocol.
 | Semantic search = last resort | Guna hanya bila grep/file_search gagal |
 | Tiada redundant searches | Jangan cari perkara sama dua kali dalam satu sesi |
 | Subagents untuk exploration | Outsource carian/exploration ke Explore subagent |
-| Skip validation reads | Jika fail baru diedit, jangan re-read untuk "confirm" |
+| Elak re-read membuta | Jangan re-read fail penuh sekadar "biasakan diri" semula — tapi verify-before-claim (rujuk `discipline` UU-1) tetap wajib bila perlu bukti |
 
 ---
 
@@ -163,7 +163,7 @@ Jangan interrupt kerja — satu baris sahaja, kemudian teruskan.
 5. **Grep dahulu** sebelum read — jangan buka fail untuk orientasi
 6. **Satu warning sahaja** untuk setiap threshold yang dicapai — jangan spam
 7. **Checkpoint mesti self-contained** — semua context yang perlu untuk resume mesti ada dalam fail
-8. **Jangan re-read** fail yang baru diedit untuk "confirm" — percaya pada edit yang baru dibuat
+8. **Elak re-read boros** — jangan buka semula fail penuh sekadar rutin, tapi verify-before-claim (`discipline` UU-1) tetap keutamaan atas jimat token
 
 ---
 
@@ -172,13 +172,12 @@ Jangan interrupt kerja — satu baris sahaja, kemudian teruskan.
 | Situation | Behavior |
 |-----------|----------|
 | Checkpoint file tidak wujud | Proceed compact mode sahaja — checkpoint optional |
-| Context sudah overflow sebelum checkpoint | Buat checkpoint segera, warn Abam tentang potensi kehilangan context |
-| Abam kata "resume" tapi tiada checkpoint | Report: "Tiada checkpoint — terangkan context semasa untuk sambung" |
-| Checkpoint lapuk (dari sesi lama berbeza task) | Flag: "Checkpoint dari [tarikh] — masih relevan?" sebelum resume |
+| Context overflow sebelum checkpoint | Buat checkpoint segera, warn Abam tentang potensi kehilangan context |
+| "Resume" tapi tiada checkpoint | Report: "Tiada checkpoint — terangkan context semasa untuk sambung" |
+| Checkpoint lapuk (sesi lama berbeza task) | Flag: "Checkpoint dari [tarikh] — masih relevan?" sebelum resume |
 | Tool calls < 40 tapi context besar kerana fail | Trigger threshold berdasarkan saiz fail, bukan bilangan calls sahaja |
-| Abam kata "token guard off" | Deaktif compact mode — kembali ke response style biasa |
+| "Token guard off" | Deaktif compact mode — kembali ke response style biasa |
 | Work Plan aktif semasa token guard | Koordinasi checkpoint dengan plan file — update kedua-dua |
-| Subagent digunakan semasa compact mode | Subagent prompt mesti lebih pendek — hanya include context kritikal |
 | Compact mode tapi Abam minta penjelasan penuh | Ikut arahan Abam — override compact mode untuk satu respons |
 | Multiple checkpoints dari sesi berbeza | Rename lama sebagai `checkpoint-YYYYMMDD.md`, buat checkpoint baru |
 
@@ -189,9 +188,9 @@ Jangan interrupt kerja — satu baris sahaja, kemudian teruskan.
 | Skill | Bila | Tindakan |
 |-------|------|----------|
 | `work-plan` | Plan execution berjalan lama | Checkpoint align dengan plan step — update kedua-dua fail |
-| `session-briefing` | Resume selepas context reset | Brief on resume include checkpoint summary |
+| `chief-of-staff` | Resume selepas context reset | Session brief include checkpoint summary |
 | `orchestrate` | Orchestration panjang hampir overflow | Token guard aktif compact semasa orchestration |
-| `anchor` | Compact mode drift dari fokus asal | Anchor lock semula scope dalam compact mode |
+| `discipline` | Compact mode drift dari fokus asal | Context Lock semula scope dalam compact mode |
 | `save-diary` | Context reset sebelum diary sempat disave | Checkpoint serve sebagai proxy — save diary dulu |
 | `dispatching-parallel-agents` | Parallel agents cipta terlalu banyak context | Enforce targeted scope per agent |
 
@@ -202,6 +201,7 @@ Jangan interrupt kerja — satu baris sahaja, kemudian teruskan.
 - **Lv.1** — Base: 4 mechanisms (Compact Mode, Smart Tool Rules, Context Pruning, Session Checkpoint), 4 operation modes (compact/checkpoint/resume/status), full default protocol. (Origin: Token management protocol DIBA, xdaxzurairi)
 - **Lv.2** — Proactive Early Warning: auto-detect context hampir penuh melalui tool call count, large file reads, repeat queries — insert silent one-line warning sebelum Abam perasan. (Origin: Pattern Abam terkejut dengan context overflow, 2026-04-28)
 - **Lv.3** — Superultra: Frontmatter ditambah, activation message, Context Guard table dengan EXIT row, Protocol restructured kepada full checklist steps, Mandatory Rules dikembangkan kepada 8 peraturan, Edge Cases table 10 baris, Integrasi Skill table 6 baris, checkpoint format distandard. (2026-05-19)
+- **Lv.4** — Orchestrate Sync: bila orchestration panjang aktif dan checkpoint diperlukan, checkpoint auto-align dengan step/plan semasa `orchestrate` (rujuk mission + step in-progress terkini), supaya resume selepas context reset tak hilang jejak orchestration loop. (Origin: 2026-07-31 — upskill batch Lv1-3→Lv4, arahan Abam)
 
 
 ---

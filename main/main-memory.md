@@ -146,15 +146,57 @@ Full profile: [[company/xdibax-profile|xdibax-profile]]
 
 ---
 
+## Kamus AI DIBA
+
+**Fail:** `main/kamus-ai-diba.md` | **Dikemaskini:** 2026-06-30
+
+| Bahagian | Kandungan |
+|----------|-----------|
+| A | 100 istilah Claude (EN → Malay penuh) |
+| B | 15 istilah ekosistem DIBA (Resonance, Seed, Mulahazah dll) |
+| C | Slanga & perkataan Abam yang kerap guna |
+| D | Singkatan teknikal (WR, BPF, AC, DB dll) |
+
+Guna bila: nak terjemah istilah teknikal Claude, atau faham singkatan/slanga Abam.
+
+---
+
 ## Installed Features (41)
 
 → [[Feature/INDEX|Feature Index]] — Memory, Diary, Projects, Automation, Orchestration, Skills, Code, Security, Persona, Creative
 
 ---
 
+## Recent Operational Notes (2026-06-22)
+
+### Diary + Telegram
+- Setiap `save diary`: local append + **diary penuh** ke Telegram (`scripts/send-diary-telegram.js`).
+- Hantar minggu lepas = satu fail per hari (bukan gabung), chunk ~3800 char/mesej.
+- Markdown parse gagal pada path kod (`_`) → script auto-retry **plain text**.
+- Rate limit Telegram 429 → tunggu `retry_after` (~20s) dan hantar semula.
+
+### War Room (Jun 9–19)
+- Port 3000, `cd war-room && node server.js`.
+- Core chamber: klik diamond → mode `core`; NPC pendua `dibaChamberClone` dalam chamber (bukan reparent diamond).
+- DIBA patrol rapat reaktor; bubble arahan jatuh ke agent bila task aktif.
+- Crash fix: jangan `Object.assign` position pada Object3D — guna helper `posMesh()`.
+
+### DIBA Skills (Jun 13)
+- Source of truth: `XDIBAX/.claude/skills/` — 27/27 Lv.6.
+- War Room `/api/skills` parse level dari SKILL.md.
+
+### eWorks (Jun 11–12)
+- E-signature sequential (PNG filesystem) — jangan sync prod.
+- Laporan 7a vs 1c discrepancy — keputusan fix pending Abam.
+
+### Virtual Company (Jun 15)
+- `main/virtual-company.html` — kingdom RTS 2D isometric + NPC staf.
+
+---
+
 **Version**: Main Memory v2.0 — Advanced
 **Persona**: v3 Santai-Sharp-Padu (active 2026-05-24)
 **Company**: XDIBAX Innovation — 10 staff active
-**Last updated**: 2026-06-03
+**Last updated**: 2026-06-22
 
 **Cross-links:** [[main/current-session|current-session]] · [[main/decisions|decisions]] · [[main/reminders|reminders]] · [[main/post-mortems|post-mortems]] · [[company/xdibax-profile|xdibax innovation]] · [[projects/project-list|projects]] · [[HOME|HOME]]

@@ -5,6 +5,9 @@ description: "MUST use when user says 'save diary', 'log this session', 'documen
              Auto-triggers after every successful code change. Append-only session documentation."
 ---
 
+> ⚠️ **SUPERSEDED** — canonical executable copy: `plugins/diba-skills/skills/save-diary/SKILL.md`.
+> This Feature copy is documentation/history only and is no longer installed. Edit the plugin copy.
+
 # Save Diary — Session Documentation
 *Pen menyentuh kertas. Kisah hari ini terbentuk.*
 

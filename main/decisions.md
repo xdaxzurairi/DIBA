@@ -108,6 +108,39 @@ co
 **Decision**: Aktifkan Persona v3 (`DIBA-Persona-v3-Santai-Sharp.md`). Pasang skills `diba-operator` (agent roster + routing) dan `orchestrate` (multi-step coordination) ke `~/.cursor/skills/`. Kekalkan v2 operating loop, boundaries, dan KPI sebagai base.
 **Rationale**: v2 terlalu tegas/formal untuk gaya Abam. v3 balance rojak santai + execution tajam. Agent roster pastikan setiap domain (kod/analisa/audit/design) ada pattern + skill betul — elak over-orchestrate task mudah, elak under-structure task complex.
 
+---
+
+## 2026-07-01 — eWorks 7a/1c Discrepancy: Pilih Option C (Fix Bug + Align Definisi)
+**Context**: Reminder terbuka sejak 2026-06-11/12 — 3 nilai berbeza untuk "bilangan aduan pelanggan" merentas laporan 1c (2,938), 3b (3,282), 7a (3,416/3,372). Punca: bug formula row(f) dalam 7a (`THEN 0` patut `THEN 1`) + 7a tiada filter `bl_id LIKE 'B01%'` dan `section IN (...)` yang ada dalam 1c.
+**Decision**: Laksana **Option C** — gabungan A + B: (A) fix bug row(f) `THEN 0` → `THEN 1` dalam `lap_ringkasan_aduan_pengendalian.php`; (B) align definisi "Aduan Pelanggan" merentas semua laporan dengan tambah filter `bl_id` + `section` ke 7a supaya sepadan dengan 1c.
+**Rationale**: Fix bug sahaja (Option A) tak selesaikan root cause perbezaan definisi antara laporan; align definisi sahaja (Option B) tak betulkan bug formula. Option C selesaikan kedua-dua supaya semua laporan konsisten dan tepat.
+
+---
+
+## 2026-07-01 — BFM (Baseball Federation Malaysia) ialah Client Project
+**Context**: Meeting kickoff BFM — ORACLE flag perlu clarify sama ada BFM projek client atau internal, kerana ini tentukan hosting/domain plan dan boundary scope.
+**Decision**: BFM disahkan sebagai **client project** (bukan internal XDIBAX).
+**Rationale**: Status client bermakna hosting/domain, data (`app/data.js`), dan scope kerja perlu ikut keperluan client — bukan default infra internal XDIBAX. Threat model (CIPHER) dan deploy plan (GRID) perlu selaras dengan standard penghantaran client, bukan eksperimen internal.
+
+---
+
+## 2026-07-01 — BFM Production Spec Diluluskan
+
+**Context:** Audit sistem BFM menunjukkan prototype tidak production-ready — tiada auth, data dalam localStorage, tiada validation.
+
+**Decision:** Migrate BFM kepada Vite + React + Supabase + Vercel (semua free tier). 4 fasa: Foundation → Core Ops → Player Stats → Live Match. Spec penuh di `baseballfedarationmalaysia/docs/specs/2026-07-01-bfm-production-design.md`.
+
+**Rationale:** Phased migration membolehkan client dapat sistem boleh guna awal (Fasa 1-2) sambil features premium datang berperingkat. Kos RM0/bulan — sesuai untuk persatuan sukan.
+
+---
+
+## 2026-07-05 — Tiada Graph DB untuk DIBA: Kekal Markdown, Tambah 2-Hop Link Traversal
+
+**Context:** Selepas review infografik "8 RAG Architectures", DIBA dikenal pasti sebagai Agentic RAG (#8) dengan retrieval keyword-based. Timbul soalan: perlu ke graph DB (Neo4j dll.) untuk naikkan retrieval ke Graph/Hybrid RAG?
+
+**Decision:** **TIDAK guna graph DB.** Kekal markdown + grep sebagai retrieval, dan tambah **2-hop wikilink traversal** dalam echo-recall (Lv.4) sebagai ganti — kuasa graph atas sistem sedia ada, kos infra sifar. Graph DB hanya dinilai semula bila trigger konkrit berlaku: (1) soalan multi-hop kerap gagal, (2) diary/decisions cecah ribuan entri dan recall mula miss, (3) XDIBAX jadi multi-user sebenar.
+
+**Rationale:** Pada skala vault sekarang (ratusan entri), grep menang laju + sederhana. Graph DB akan: pecahkan portability "clone & jalan" (server per PC), cipta dual source of truth (masalah yang baru dibunuh dalam PR #17), pecahkan fallback local/Nemotron (memory tak lagi plain text), dan hilangkan git guarantee (DB binari). Vault pula dah ada graph semantics percuma — wikilinks Obsidian + project-map + mind-tree; yang kurang cuma traversal, dan itu boleh ditampal dengan grep ikut link. Keputusan Abam: "guna yg kita ada skrg, lebih baik dan padu."
 
 ---
 *Index: [[HOME|HOME]] · [[main/main-memory|main-memory]] · [[main/current-session|current-session]] · [[projects/active/ruangniaga|ruangniaga]] · [[projects/active/dibaref-saas|dibaref-saas]]*

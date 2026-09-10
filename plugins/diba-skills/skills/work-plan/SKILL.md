@@ -45,85 +45,29 @@ Three commands, each with its own activation message:
 
 ## Copy Plan
 
-### Step 1: Find Latest Plan
-- [ ] Scan `[PLAN_SOURCE_PATH]` for plan files
-- [ ] Sort by modification date, pick most recently modified
-- [ ] If no plan files found: ask user to specify a plan file path or enter plan mode first
-
-### Step 2: Transform to Project Plan Format
-- [ ] Convert plan steps/items into `- [ ]` checkbox todo items
-- [ ] Preserve all architecture diagrams (ASCII, mermaid) from the original plan
-- [ ] Add standard instructions header (see `plan-format.md` in plan location folder)
-- [ ] Maintain logical phase/section grouping from the original plan
-- [ ] No emoji in the plan file — clean, parseable markdown only
-
-### Step 3: Write Project Plan
-- [ ] Check if `[PLAN_LOCATION]/` folder exists — create if needed
-- [ ] Write to `[PLAN_LOCATION]/project-plan.md` (overwrite if exists)
-- [ ] Report: "Plan copied — [X] todo items ready for execution"
-
-### Step 4: Begin Execution
-- [ ] Execute the **Shared Execution Loop** (see below)
+1. Scan `[PLAN_SOURCE_PATH]`, pick most recently modified plan file (none found -> ask user for path or to enter plan mode)
+2. Transform: convert steps into `- [ ]` checkboxes, preserve diagrams (ASCII/mermaid), keep phase/section grouping, no emoji
+3. Write to `[PLAN_LOCATION]/project-plan.md` (overwrite if exists); report "Plan copied — [X] todo items ready"
+4. Execute the **Shared Execution Loop**
 
 ---
 
 ## Append Plan
 
-### Step 1: Find Latest Plan
-- [ ] Same as Copy Plan Step 1
-
-### Step 2: Transform to Project Plan Format
-- [ ] Same as Copy Plan Step 2
-
-### Step 3: Check Existing Plan + Line Limit
-- [ ] Read current `[PLAN_LOCATION]/project-plan.md`
-- [ ] Count total lines in the existing file
-- [ ] If appending would **NOT** exceed `[LINE_LIMIT]` lines:
-  - Append new content with a date separator:
-    ```
-    ---
-    ## Appended: [YYYY-MM-DD]
-    ```
-  - Report: "Plan extended — [X] new items added, [Y] total items"
-- [ ] If appending **WOULD** exceed `[LINE_LIMIT]` lines:
-  - Rename current file to `project-plan-YYYYMMDD.md` (archived)
-  - Create fresh `project-plan.md` with the new content only
-  - Report: "Previous plan archived as project-plan-[date].md, new plan created"
-
-### Step 4: Begin Execution
-- [ ] Execute the **Shared Execution Loop** (see below)
+1-2. Same as Copy Plan steps 1-2
+3. Read current `project-plan.md`, count lines. If append would **not** exceed `[LINE_LIMIT]`: append with a `## Appended: [YYYY-MM-DD]` separator, report new/total item counts. If it **would** exceed: archive current file as `project-plan-YYYYMMDD.md`, create fresh `project-plan.md` with new content only
+4. Execute the **Shared Execution Loop**
 
 ---
 
 ## Resume Plan
 
-### Step 1: Read Current Project Plan
-- [ ] Read `[PLAN_LOCATION]/project-plan.md`
-- [ ] If file not found: report "No plan found — use 'copy plan' to create one"
+1. Read `[PLAN_LOCATION]/project-plan.md` (not found -> "No plan found — use 'copy plan' to create one")
+2. Parse progress: count `[x]`/`[ ]`/`[~]` items, identify next pending item, read Architecture section for technical context
+3. Report status: `Plan Status: [X] completed, [Y] pending, [Z] blocked` + current phase + next task
+4. Execute the **Shared Execution Loop** from the next pending item
 
-### Step 2: Parse Progress
-- [ ] Count `[x]` items (completed)
-- [ ] Count `[ ]` items (pending)
-- [ ] Count `[~]` items (blocked)
-- [ ] Identify the next pending `[ ]` item as the resumption point
-- [ ] Read the Architecture section to restore technical context
-
-### Step 3: Report Status
-- [ ] Display progress summary:
-  ```
-  Plan Status: [X] completed, [Y] pending, [Z] blocked
-  Current Phase: [phase name]
-  Next Task: [description of next pending item]
-  ```
-- [ ] Read architecture diagrams to restore technical understanding
-
-### Step 4: Resume Execution
-- [ ] Execute the **Shared Execution Loop** from the next pending item
-
-### Recovery Context
-After a context reset, the AI loses its working state. `"resume plan"` restores it entirely from the file:
-- The plan file **IS** the recovery mechanism
-- No user explanation needed — the AI reads the file and continues
+**Recovery Context**: after a context reset, `"resume plan"` restores working state entirely from the file — no user explanation needed, the plan file IS the recovery mechanism.
 
 ---
 
@@ -157,29 +101,49 @@ If the Auto-Commit System is not installed, the execution loop still works:
 
 ## Mandatory Rules
 
-1. **Commit chain per-todo** — every completed todo item triggers a commit (if Auto-Commit is installed). Not at the end, not in batches — every single one.
-2. **Never commit plan files** — `project-plan*.md` stays local as the AI's working reference. Only code changes are committed.
-3. **Preserve diagrams** — all visual elements (ASCII art, mermaid diagrams) from the original plan must be carried over to the plan file.
+1. **Commit chain per-todo** — every completed todo item triggers a commit (if Auto-Commit is installed). Not at the end, not in batches.
+2. **Never commit plan files** — `project-plan*.md` stays local as the AI's working reference.
+3. **Preserve diagrams** — all visual elements (ASCII art, mermaid diagrams) from the original plan carry over to the plan file.
 4. **No emoji in plan files** — clean, parseable markdown only.
 5. **Line limit enforcement** — if the plan file exceeds `[LINE_LIMIT]` lines during append, rotate (archive old, create fresh).
-6. **Recovery-first design** — the plan file IS the recovery mechanism after any context reset. Everything needed to resume must be in the file.
-7. **Skip blocked items** — if a task is blocked, mark it `[~]`, flag it to the user, and continue to the next item.
+6. **Recovery-first design** — the plan file IS the recovery mechanism after any context reset.
+7. **Skip blocked items** — mark `[~]`, flag to the user, continue to the next item.
 8. **Checkpoint discipline** — update the plan file every 5 completed items, even mid-execution.
 
 ## Edge Cases
 
 | Situation | Behavior |
 |-----------|----------|
-| **Plan file not found** | Prompt user: "No plan found — use 'copy plan' to create one" |
+| **Plan file not found** | Prompt: "No plan found — use 'copy plan' to create one" |
 | **All items completed** | Report: "Plan complete! All [X] items done." |
-| **Blocked task** | Mark `[~]`, flag to user with reason, continue to next item |
-| **User says "stop" or "pause"** | Halt at current item, save plan file, report progress |
-| **Plan exceeds line limit** | Archive old file as `project-plan-YYYYMMDD.md`, start fresh |
+| **Blocked task** | Mark `[~]`, flag reason, continue to next item |
+| **User says "stop" / "pause"** | Halt at current item, save plan file, report progress |
+| **Plan exceeds line limit** | Archive as `project-plan-YYYYMMDD.md`, start fresh |
 | **No plan source files found** | Ask user to enter plan mode first or specify a file path |
-| **Context reset mid-execution** | User says "resume plan" to continue from last checkpoint |
 | **Multiple plan files in source** | Pick most recently modified, confirm with user |
+
+### Diary Checkpoint (Lv.3)
+
+Selepas setiap **wave** selesai (bukan setiap todo kecil):
+- Trigger ringkas save-diary: ringkasan wave + fail diubah + follow-up
+- Kemaskini `current-session.md` supaya `resume plan` ada konteks segar
+
+### Risk Tagging (Lv.4)
+
+Semasa copy/append plan, auto-tag items berisiko tinggi:
+- `[!]` — destructive ops (DB migration, delete, API contract change)
+- `[?]` — ambiguous requirement yang mungkin perlu clarification
+- Surface tagged items di awal execution sebagai pre-flight checklist; escalate `[!]` ke Abam sebelum execute
+
+### Parallel Wave & Adaptive Replan (Lv.5-6)
+
+Untuk parallel dispatch (group independent `[ ]` items ke sub-agents, wave barrier) dan replan bila blocker muncul (reorder, cadang alternatif, log via `log-decision`) — rujuk skill **orchestrate** untuk pattern penuh (Decision Matrix, Delegation Rules, Verification Contract). Work-plan hanya trigger orchestrate bila wave ada 2+ independent item atau blocker affect >30% remaining items; fallback sequential jika dispatch gagal.
 
 ## Level History
 
 - **Lv.1** — Base: Three commands (copy/append/resume) + shared execution loop + per-todo commit chain + line rotation + recovery mechanism + checkpoint saves. (Origin: Production AI companion plan execution workflow)
 - **Lv.2** — Wave Execution: Dependency-aware wave grouping — independent tasks within a phase can be executed in parallel via sub-agents, with wave barriers enforcing order between dependent groups.
+- **Lv.3** — Diary Checkpoint: save-diary + current-session selepas setiap wave. (Origin: 2026-05-22 — naikkan skill batch)
+- **Lv.4** — Risk Tagging: auto-tag destructive/ambiguous items, pre-flight checklist. (Origin: 2026-06-12)
+- **Lv.5** — Parallel Wave Dispatch: independent tasks dalam wave dispatch ke sub-agents. (Origin: 2026-06-12)
+- **Lv.6** — Adaptive Replan: auto-reorder bila blocker hit, cadang alternative. (Origin: 2026-06-12)

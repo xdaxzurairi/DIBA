@@ -81,5 +81,21 @@ When this skill activates, silently read `main/decisions.md`.
 | Multiple related decisions | Log each as a separate entry with cross-references |
 | Reversal of past decision | Append new entry with "Reversed:" prefix, never edit original |
 
+### Proactive Offer (Lv.2)
+
+Bila perbualan ada **2+ alternatif** dan user pilih satu (atau kata "guna A", "ok proceed"):
+- Tawar ringkas: "Nak log keputusan ni ke `decisions.md`?"
+- Jika user setuju atau senyap selepas pilih — log serta-merta tanpa tunggu arahan eksplisit
+
+### Review Date + Revisit Radar (Lv.3)
+
+Untuk keputusan yang high-stakes atau reversible-dengan-syarat (bukan setiap decision perlu ini):
+- Bila log entry, tanya ringkas atau infer: "Bila patut semak balik ni?" — tambah baris `**Review**: YYYY-MM-DD` (optional field, skip kalau tak relevan)
+- Bila log entry ada kriteria success/kill yang disebut (contoh: "kalau X tak jalan dalam sebulan, revert") — catat terus dalam entry sebagai kriteria pre-committed, supaya `post-mortem` Lv.7 boleh rujuk balik tanpa retrofit
+- `chief-of-staff` weekly review / Lv.4 Stalled Radar scan `decisions.md` untuk entry dengan `Review:` date yang dah lepas → flag: "Keputusan [X] pada [date] — waktu semak dah sampai, jadi post-mortem ke?"
+
 ## Level History
 - **Lv.1** -- Base: decision detection, append-only logging, Context+Decision+Rationale format, search, reversal tracking.
+- **Lv.2** -- Proactive Offer: auto-tawar log selepas trade-off diselesaikan. (Origin: 2026-05-22 — naikkan skill batch)
+- **Lv.3** -- Review Date + Revisit Radar: optional review-date field pada entry high-stakes, dikesan semula oleh chief-of-staff radar, sambung terus ke post-mortem Lv.7 outcome scoring. (Origin: 2026-07-23 — upskill dari `xdaxzurairi/xdibax-skills` repo punya two-layer decision-log + review-date concept, disesuaikan ke single-file `decisions.md` sedia ada — bukan tukar struktur fail)
+- **Lv.4** -- Auto-Learn Bridge: bila keputusan yang dilog mengandungi corak koreksi/pengajaran (bukan sekadar pilihan neutral), auto-signal ke `auto-learn` supaya keputusan besar turut tersimpan sebagai rule kekal dalam `library/learned/rules.md`, bukan hanya rekod one-off dalam decisions.md. (Origin: 2026-07-31 — upskill batch Lv1-3→Lv4, arahan Abam)

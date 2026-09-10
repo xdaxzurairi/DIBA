@@ -5,6 +5,9 @@ description: "Piawaian janaan kod DIBA — laju, bersih, konsisten, tepat. Auto-
              'sharp', atau 'ikut standard'."
 ---
 
+> ⚠️ **SUPERSEDED** — canonical executable copy: `plugins/diba-skills/skills/code-sharp/SKILL.md`.
+> This Feature copy is documentation/history only and is no longer installed. Edit the plugin copy.
+
 # Code-Sharp — Piawaian Janaan Kod DIBA
 *Scan. Tulis. Hantar. Tiada lebih.*
 

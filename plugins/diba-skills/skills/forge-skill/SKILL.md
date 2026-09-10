@@ -4,8 +4,8 @@ description: "Auto-triggers when AI detects a repeated pattern handled ad-hoc 3+
              when AI makes a mistake that a permanent rule would prevent, when AI
              identifies a workflow that should be automated as a skill, or when user
              says 'create skill', 'new skill', 'forge this', 'level up', 'upgrade skill',
-             'self improve', 'improve skill'. Also triggers when AI wants to propose a
-             level-up to an existing skill based on conversation patterns."
+             'naikkan skill', 'upgrade all skills', 'self improve', 'improve skill'.
+             Also triggers when AI wants to propose a level-up to an existing skill."
 ---
 
 # Forge Skill -- Self-Improvement System
@@ -50,6 +50,7 @@ Identify the improvement opportunity. Forge recognizes these patterns:
 - "create skill", "new skill", "forge this"
 - "level up [skill]", "upgrade [skill]"
 - "self improve", "improve skill"
+- **"naikkan skill"**, **"upgrade all skills"** — bulk audit semua skill dalam `plugins/diba-skills/skills/`
 
 ### Step 2: Analyze
 
@@ -95,13 +96,7 @@ Draft ready -- approve to forge?
 
 **For NEW skill:**
 1. Create skill folder: `plugins/[plugin-name]/skills/[skill-name]/`
-2. Write `SKILL.md` following the standard skill format:
-   - YAML frontmatter with name + description (trigger phrases)
-   - Activation section (what the AI says when triggered)
-   - Context Guard table (when active vs dormant)
-   - Protocol steps (step-by-step execution)
-   - Mandatory rules
-   - Level History (starting at Lv.1)
+2. Write `SKILL.md` following the standard structure (frontmatter, activation, context guard, protocol, rules, Level History starting at Lv.1) -- see **Forge Principles**
 3. Verify file was created successfully
 
 **For LEVEL-UP:**
@@ -145,49 +140,7 @@ Your AI evolved!
 6. **Respect existing skills** -- level-up before creating duplicates. Check if an existing skill could handle the case first
 7. **Level history is permanent** -- append-only record of how the skill evolved
 
-## Skill File Template
-
-When Forge creates a new skill, use this structure:
-
-```markdown
----
-name: [skill-name]
-description: "[When this skill should auto-trigger -- include trigger phrases
-             and context descriptions]"
----
-
-# [Skill Name] -- [One-line description]
-*[Thematic tagline]*
-
-## Activation
-
-When this skill activates, output:
-"[Activation message]"
-
-## Context Guard
-
-| Context | Status |
-|---------|--------|
-| **[Trigger condition 1]** | ACTIVE -- [action] |
-| **[Trigger condition 2]** | ACTIVE -- [action] |
-| **[Non-trigger context]** | DORMANT |
-
-## Protocol
-
-### Step 1: [First action]
-- [ ] [Substep]
-- [ ] [Substep]
-
-### Step 2: [Second action]
-- [ ] [Substep]
-
-## Mandatory Rules
-1. [Rule 1]
-2. [Rule 2]
-
-## Level History
-- **Lv.1** -- Base: [description of initial capabilities]. (Origin: [what triggered creation])
-```
+Standard structure for every skill file: frontmatter (`name` + `description` with trigger phrases) -> Activation message -> Context Guard table -> Protocol steps -> Mandatory Rules -> Level History (append-only, starts at Lv.1). Reuse an existing skill's SKILL.md as the concrete template rather than a separate scaffold here.
 
 ## What Makes a Good Skill
 
@@ -247,5 +200,14 @@ Each level should add **one meaningful capability** -- not multiple changes bund
 | **Decision Log System** | Log the decision to create/level-up a skill with rationale |
 | **Save Diary System** | Document the forge event in the session diary |
 
+### Bulk Audit Protocol (Lv.2)
+
+Bila user minta naikkan/upgrade semua skill:
+1. Senaraikan semua folder dalam `plugins/diba-skills/skills/`
+2. Untuk setiap skill: baca `Level History` terakhir → cadangkan **satu** Lv seterusnya dengan evidence dari diari/sesi
+3. Papar jadual ringkas (skill | level semasa | cadangan | approve?)
+4. Laksana level-up **hanya** untuk skill yang user approve (batch atau satu-satu)
+
 ## Level History
 - **Lv.1** -- Base: detect repeated patterns (3+ ad-hoc), mistake prevention, workflow automation, level-up opportunities. Human-in-the-loop approval. Standard skill template. Level-up guidelines with Lv.1-5+ progression. (Origin: Adapted from production AI companion self-improvement system with 23 skills forged over 7 months)
+- **Lv.2** -- Bulk Audit: trigger "naikkan skill" / "upgrade all skills" dengan jadual audit + approval batch. (Origin: 2026-05-22 — arahan Zuex)

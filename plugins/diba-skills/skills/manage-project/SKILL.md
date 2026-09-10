@@ -25,188 +25,75 @@ When this skill activates, silently determine which command was triggered and ex
 
 ---
 
+## Shared Sub-Procedures
+
+Digunakan oleh semua protokol di bawah -- rujuk nama, jangan ulang logic.
+
+**A. Update Project List** -- regenerate `projects/project-list.md` (format lihat **Project List Format**) selepas SETIAP operasi LRU (new/load/save/archive).
+
+**B. Update Session Memory** -- update `current-session.md` blok `## Active Project` (Name, status timestamp mengikut aksi: Started/Resumed/Last worked, Context). Untuk load, tambah 3 entri progress terkini.
+
+**C. LRU Reposition** -- move project ke posisi #1, shift lain turun 1, auto-archive posisi #11 jika wujud (rujuk **LRU Engine**).
+
+---
+
 ## Protocol: New Project
 
-**Trigger**: `"new project [name]"` or `"create project [name]"`
+**Trigger**: `"new project [name]"` / `"create project [name]"`
 
-### Step 1: Parse Command
-- [ ] Extract project name from command
-- [ ] Check if project name already exists in active or archived
-- [ ] If exists: suggest loading instead, or ask for a different name
-
-### Step 2: Gather Project Details
-- [ ] Ask user for brief description (1-2 sentences)
-- [ ] Get current date using platform-appropriate time command
-- [ ] Note any initial requirements, goals, or tech stack
-
-### Step 3: Create Project File
-- [ ] Generate project file from **Embedded Project Template** (see below)
-- [ ] Fill in: name, description, created date, status (Active)
-- [ ] Save to `projects/active/[name].md`
-
-### Step 4: Apply LRU Positioning
-- [ ] Insert new project at position #1
-- [ ] Shift all existing active projects down by 1
-- [ ] If position #11 exists after shift:
-  - Move to `projects/archived/`
-  - Update status to "Archived (LRU)"
-  - Add archive date
-
-### Step 5: Update Project List
-- [ ] Regenerate `projects/project-list.md` (see **Project List Format**)
-- [ ] New project at top of active section
-- [ ] Note any auto-archived project
-
-### Step 6: Update Session Memory
-- [ ] Add to current-session.md:
-  ```markdown
-  ## Active Project
-  - Name: [project name]
-  - Started: [date/time]
-  - Context: [description]
-  ```
-
-### Step 7: Confirm
-- [ ] Display confirmation with project name, position #1, and description
+1. Extract nama; semak wujud dalam active/archived -- jika ya, cadang load atau nama lain
+2. Tanya deskripsi ringkas (1-2 ayat) + tarikh semasa + tech stack/goals awal
+3. Generate fail dari **Embedded Project Template**, isi name/description/date/status Active, simpan `projects/active/[name].md`
+4. **LRU Reposition** (C) -- insert di #1
+5. **Update Project List** (A) + **Update Session Memory** (B)
+6. Confirm: nama, posisi #1, deskripsi
 
 ---
 
 ## Protocol: Load Project
 
-**Trigger**: `"load project [name]"` or `"resume project [name]"`
+**Trigger**: `"load project [name]"` / `"resume project [name]"`
 
-### Step 1: Search for Project
-- [ ] Parse project name from command
-- [ ] Search `projects/active/` first
-- [ ] Then search `projects/archived/`
-- [ ] Use fuzzy matching if exact name not found (partial names, case-insensitive)
-
-### Step 2: Handle Search Results
-- [ ] If multiple matches: show list, ask for selection
-- [ ] If in archived: note that project will be reactivated
-- [ ] If not found: suggest similar projects, offer to create new
-
-### Step 3: Load Project Data
-- [ ] Read project file completely
-- [ ] Extract: description, last accessed, status, recent sessions, duration
-
-### Step 4: Apply LRU Positioning
-- [ ] If archived: move from `archived/` to `active/`
-- [ ] Move project to position #1
-- [ ] Shift all other active projects down
-- [ ] If position #11 exists: auto-archive
-
-### Step 5: Update Project File
-- [ ] Update "Last Accessed" to current date/time
-- [ ] Add session note to progress:
-  ```markdown
-  ### [Current Date]
-  - Project resumed from [previous position/archived]
-  ```
-
-### Step 6: Update Project List
-- [ ] Regenerate `projects/project-list.md`
-
-### Step 7: Load into Session Memory
-- [ ] Update current-session.md:
-  ```markdown
-  ## Active Project
-  - Name: [project name]
-  - Resumed: [date/time]
-  - Last worked: [previous date]
-  - Context: [description]
-  - Recent progress: [last 3 session entries]
-  ```
-
-### Step 8: Display Summary
-- [ ] Show: name, position #1, last worked date, description, recent activity
+1. Cari `projects/active/` dahulu, kemudian `archived/`; fuzzy match jika nama tak exact
+2. Multiple match -> tanya pilihan; tiada match -> cadang serupa atau tawar create baru; archived -> nyatakan akan reactivate
+3. Baca fail projek penuh -- extract description, last accessed, status, sesi terkini, duration
+4. **LRU Reposition** (C) -- termasuk move archived -> active jika perlu
+5. Update "Last Accessed" + tambah nota resume ke progress
+6. **Update Project List** (A) + **Update Session Memory** (B, dengan 3 entri progress terkini)
+7. Display summary: nama, posisi #1, tarikh last worked, deskripsi, aktiviti terkini
 
 ---
 
 ## Protocol: Save Project
 
-**Trigger**: `"save project"` -- saves current project only, NOT AI memory
+**Trigger**: `"save project"` -- save projek semasa sahaja, BUKAN AI memory
 
-### Step 1: Identify Active Project
-- [ ] Check current-session.md for active project
-- [ ] If no active project: inform user, suggest loading or creating one
-- [ ] If project exists: proceed to save
-
-### Step 2: Gather Session Progress
-- [ ] Collect work done in current session
-- [ ] Capture code changes, decisions, milestones
-- [ ] Note issues resolved or discovered
-- [ ] Document resources or references added
-
-### Step 3: Parse Duration
-- [ ] Read recent commit messages from session: `git log --oneline --format="%s%n%b" -20`
-- [ ] Search for `Time:` field in commit bodies (from Auto-Commit System)
-- [ ] Sum all `Time: ~XX min` values for this session
-- [ ] Add to project's accumulated duration
-- [ ] Format using **Duration Thresholds** (see below)
-
-### Step 4: Update Project File
-- [ ] Load project file from `projects/active/[name].md`
-- [ ] Update "Last Accessed" to current date/time
-- [ ] Update "Duration" with accumulated total
-- [ ] Update "Current Status" section
-- [ ] Add session entry to Session History:
-  ```markdown
-  ### [Current Date] - [Session Title]
-  - **Changes**: [Summary of session work]
-  - **Time Spent**: ~XX min
-  ```
-
-### Step 5: Line Limit Check
-- [ ] Count lines in project file
-- [ ] If over 1000 lines: run **Line Limit Enforcement** (see below)
-- [ ] Verify file is under 1000 lines after enforcement
-
-### Step 6: Update Project List
-- [ ] Regenerate `projects/project-list.md` with updated timestamps
-
-### Step 7: Confirm Save
-- [ ] Display: project name, saved timestamp, session summary, total duration
+1. Semak `current-session.md` untuk projek aktif; tiada -> inform + cadang load/create
+2. Kumpul progress sesi: perubahan kod, keputusan, milestone, isu selesai/ditemui
+3. **Parse Duration** -- `git log --oneline --format="%s%n%b" -20`, jumlah semua `Time: ~XX min` dari Auto-Commit, tambah ke accumulated duration (format ikut **Duration Thresholds**)
+4. Update fail projek: Last Accessed, Duration, Current Status, tambah entri Session History
+5. **Line Limit Check** -- jika > 1000 baris, jalankan **Line Limit Enforcement**
+6. **Update Project List** (A)
+7. Confirm: nama, timestamp save, ringkasan sesi, jumlah duration
 
 ---
 
 ## Protocol: List Projects
 
-**Trigger**: `"list projects"` or `"show projects"`
+**Trigger**: `"list projects"` / `"show projects"`
 
-### Step 1: Read Project List
-- [ ] Load `projects/project-list.md`
-- [ ] Parse active projects (positions 1-10) and archived projects
-
-### Step 2: Display
-- [ ] Show active projects with: position, name, last updated, status
-- [ ] Show archived project count and names
-- [ ] Highlight currently loaded project (if any)
+1. Baca `projects/project-list.md`, parse active (posisi 1-10) + archived
+2. Papar active (posisi, nama, last updated, status) + kiraan archived; highlight projek semasa dimuat jika ada
 
 ---
 
 ## LRU Engine
 
 ### Rules
-- **Fixed Capacity**: 10 active projects (positions 1-10)
-- **Position-Based**: Projects ranked by most recent access/creation
-- **Auto-Archiving**: Position #11 gets archived when new project added or existing one loaded
-- **Reactivation**: Archived projects can be loaded back (replaces position #10, archives it)
-
-### Operations
-
-**Move to Position #1**:
-1. Identify project location (active position or archived)
-2. Remove from current position
-3. Insert at position #1
-4. Shift all others down by 1
-5. Archive position #11 if it exists
-6. Regenerate project-list.md
-
-**Auto-Archive**:
-1. Move project file from `active/` to `archived/`
-2. Update project metadata: status = "Archived (LRU)", archive date added
-3. Update project-list.md
+- **Fixed Capacity**: 10 slot aktif (posisi 1-10)
+- **Position-Based**: ranking ikut akses/cipta terkini
+- **Auto-Archiving**: posisi #11 auto-archive bila projek baharu ditambah/dimuat
+- **Reactivation**: projek archived boleh dimuat semula (ganti posisi #10, archive yang lama)
 
 ### Project List Format
 
@@ -237,67 +124,24 @@ When this skill activates, silently determine which command was triggered and ex
 
 ## Duration Tracking
 
-### Parsing
-- Read commit messages for `Time: ~XX min` or `Time: XX min` patterns
-- Source: Auto-Commit System's SESSION CONTEXT section
-- Sum all time values from commits made during the current session
-
-### Accumulation
-- Each "save project" adds session time to the project's total Duration
-- Duration stored in project file's Overview section
-
-### Display Thresholds
-
-| Total Minutes | Display Format | Example |
-|---------------|----------------|---------|
-| 1-59 | X min | 45 min |
-| 60-1439 | X hours | 3 hours |
-| 1440-43199 | X days | 2 days |
-| 43200+ | X months | 1 month |
-
-- Round to nearest 0.5 for clean display (e.g., "2.5 hours", "1.5 days")
-- Conversion: 60 min = 1 hour, 1440 min = 1 day (24h), 43200 min = 1 month (30d)
+Parse commit messages untuk `Time: ~XX min` (sumber: Auto-Commit); jumlah tiap "save project" ke total Duration (Overview section). Format ikut threshold: 1-59 min → "X min", 60-1439 → "X hours", 1440-43199 → "X days", 43200+ → "X months". Round ke 0.5 terdekat (cth "2.5 hours").
 
 ---
 
 ## Line Limit Enforcement
 
-**Maximum: 1000 lines per project file**
+**Maksimum: 1000 baris per fail projek.** Semak sebelum setiap "save project" siap.
 
-### When to Check
-- Before completing any "save project" operation
-- After adding new session content
+Bila melebihi 1000 baris:
+1. **Summarize** -- sesi lebih lama dari 5 terkini: extract tarikh + perubahan utama ke Historical Summary, buang entri detail lama
+2. **Trim** -- kekal hanya: Overview, Status, Sessions (5), History, Notes; buang section tambahan luar template
+3. **Verify** -- kira semula baris; masih > 1000 -> summarize lagi lebih agresif
 
-### When project file exceeds 1000 lines:
-
-**Step 1: Summarize Old Sessions**
-- [ ] Identify sessions older than last 5
-- [ ] Extract key info: dates, major changes
-- [ ] Create/update Historical Summary paragraph
-- [ ] Remove detailed old session entries
-
-**Step 2: Trim Verbose Sections**
-- [ ] Keep only: Overview, Status, Sessions (5), History, Notes
-- [ ] Remove any extra sections not in the template
-
-**Step 3: Verify**
-- [ ] Count lines after summarization
-- [ ] If still > 1000: repeat summarization more aggressively
-- [ ] Ensure file is under 1000 lines
-
-### Historical Summary Format
-```markdown
-## Historical Summary
-Project started [Start Date] as [initial scope]. Over [X] sessions spanning
-[timeframe], developed [major features/changes]. Key milestones: [milestone 1],
-[milestone 2], [milestone 3]. Previous sessions covered: [brief theme list].
-```
+Historical Summary ringkas: tarikh mula + scope awal, jumlah sesi + tempoh, milestone utama, tema sesi lalu (1 perenggan, bukan senarai detail).
 
 ---
 
 ## Embedded Project Template
-
-When creating a new project, use this template:
 
 ```markdown
 # [Project Name] - [Brief Description]
@@ -347,7 +191,7 @@ When creating a new project, use this template:
 9. **Preserve data on archive** -- archived projects retain all history and can be reloaded
 10. **Command separation** -- `save` = AI memory (handled elsewhere), `save project` = project progress
 
-## Edge Cases
+## Edge Cases & Synergy
 
 | Situation | Behavior |
 |-----------|----------|
@@ -358,15 +202,24 @@ When creating a new project, use this template:
 | No Auto-Commit time data available | Use `~XX min` estimate or ask user |
 | Multiple projects match search | Display list with positions and dates, ask for selection |
 
-## Synergy with Other Features
+Integrates with: Auto-Commit (duration parsing), Save Diary (daily narrative vs. project progress), Reminders (project follow-ups), Decision Log (project decisions).
 
-| Feature | Integration |
-|---------|-------------|
-| **Auto-Commit System** | Duration tracking parses `Time:` from commit messages |
-| **Save Diary System** | Diary captures daily narrative; project captures project-specific progress |
-| **Reminders System** | "Revisit this project next week" becomes a reminder |
-| **Decision Log System** | Project decisions can reference the decision log |
+### Registry Sync (Lv.3)
+`new project` / workspace baharu -> tambah baris ke `projects/registry.md` (workspace path -> memory path); sahkan folder memory wujud, cipta `current-session.md` kosong jika perlu.
+
+### Health Score (Lv.4)
+Setiap `list projects` / session brief (chief-of-staff), kira health: **Active** (hijau, <3 hari), **Cooling** (kuning, 3-7 hari), **Stale** (merah, >7 hari). Papar flag di sebelah nama dalam project-list.md.
+
+### Cross-Project Linking (Lv.5)
+`save project` -> scan Technical Notes untuk shared dependency; jika 2+ projek guna stack/API/DB sama, warn cross-impact dan tambah `## Related Projects` jika ada link.
+
+### Smart Suggest (Lv.6)
+Session start (via chief-of-staff): analisa reminders/diary/pending items -> "Cadangan: Load [project] -- [sebab ringkas]". Suggest sahaja, bukan auto-load.
 
 ## Level History
 - **Lv.1** -- Base: new/load/save/list commands, LRU engine (10 slots), auto-archiving, session history, project-list.md auto-generation. (Origin: Absorbed from separate protocol files + adapted from production AI companion project manager v3.1)
 - **Lv.2** -- Duration Tracking: Parse Auto-Commit time estimates, accumulate per project, progressive display format. Line Limit Enforcement: 1000-line cap with auto-summarization.
+- **Lv.3** -- Registry Sync: auto-update `registry.md` bila projek baharu. (Origin: 2026-05-22 — naikkan skill batch)
+- **Lv.4** -- Health Score: project health flags (active/cooling/stale) berdasarkan last-accessed. (Origin: 2026-06-12 — skill upgrade batch)
+- **Lv.5** -- Cross-Project Linking: detect shared dependencies, warn on cross-impact. (Origin: 2026-06-12)
+- **Lv.6** -- Smart Suggest: cadang project berdasarkan urgency + staleness + reminders. (Origin: 2026-06-12)

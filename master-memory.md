@@ -155,12 +155,10 @@ I maintain my own memory through our conversations by:
 - Human-in-the-loop: AI drafts, user approves
 - Creates/upgrades skills in `plugins/diba-skills/skills/`
 
-### Session Briefing ✅ INSTALLED
-*Auto-triggers at session start (before first response)*
-- Skill: `plugins/diba-skills/skills/session-briefing/SKILL.md`
-- Protocol: `Feature/Session-Briefing-System/session-brief-core.md`
-- Reads: session memory, reminders, project list, current time
-- Max 12 lines, skip empty sections
+### Session Briefing ➜ MERGED (2026-07-04)
+*Kini sebahagian chief-of-staff Lv.7 — session-start brief + greet recall + forward agenda dalam satu skill*
+- Skill: `plugins/diba-skills/skills/chief-of-staff/SKILL.md`
+- Max 12 lines, skip empty sections, suppress dengan "skip brief"
 
 ### Work Plan Execution ✅ INSTALLED
 *Triggers on "copy plan", "append plan", "resume plan"*
@@ -196,6 +194,30 @@ I maintain my own memory through our conversations by:
 - Proactive: auto-warns at tool call / large file / repeat query thresholds
 - Commands: "token guard" (activate), "checkpoint" (save), "resume" (load), "token guard off" (deactivate)
 
+### Superultra Skill Pack ✅ INSTALLED (2026-07-03)
+*Maps the "10 GitHub repos that make Claude supercharged" into native DIBA skills so DIBA covers every capability in-house.*
+
+- **frontend-design** — `skills/frontend-design/` — plain-text design guide for crafted, non-generic UI (maps: Awesome Design MD). Triggers: "design guide", "buat cantik", "jangan generic". Also fills the previously-dangling `frontend-design` reference in interaction-design & diba-response.
+- **repo-pack** — `skills/repo-pack/` — bundle a project into one AI-friendly file with secret redaction + token estimate (maps: Repomix). Output: `memories/packs/`. Triggers: "pack repo", "repomix", "satukan projek".
+- **project-map** — `skills/project-map/` — searchable index of modules/symbols/dependencies for large scattered projects (maps: Graphify). Output: `memories/maps/`. Triggers: "graphify", "map projek", "cari kat mana".
+- **usage-tracker** — `skills/usage-tracker/` — track token usage + estimated cost (USD/MYR) over time, flag waste (maps: ccusage). Output: `memories/usage/usage-log.jsonl`. Triggers: "ccusage", "berapa token", "kos token". Distinct from token-guard (live context) — this tracks spend.
+- **marketing-workshop** — `skills/marketing-workshop/` — reusable SEO/copywriting/conversion/growth workflows (maps: Marketing Skills). Triggers: "copywriting", "SEO", "tulis copy", "growth".
+- *Already covered natively:* Anthropic public skills → `forge-skill`; Open Design → `interaction-design`; Obsidian skills → `library`/`save-memory`/`echo-recall` (DIBA is an Obsidian vault); Caveman → `diba-response`/`token-guard`; Superpowers → `work-plan`/`orchestrate`/`code-sharp`.
+
+### Chief of Staff ✅ INSTALLED (2026-07-04)
+*Forward-looking real-assistant layer — answers "what should Abam do next?"*
+- Skill: `plugins/diba-skills/skills/chief-of-staff/SKILL.md`
+- Commands: "morning brief" / "agenda" / "eod" / "weekly review"
+- Reads: reminders, project list (LRU), routines, decisions, post-mortems, session RAM
+- EOD wrap runs the full close-out checklist: session save → diary → commit
+- Distinct from session-briefing (backward recap) — this owns the FORWARD view
+
+### DIBA Kernel (CLAUDE.md) ✅ INSTALLED (2026-07-04)
+*Zero-incantation activation — DIBA loads in EVERY Claude Code session automatically*
+- File: `CLAUDE.md` (repo root, auto-loaded by Claude Code)
+- Contains: identity, session-start protocol, command router, standing rules
+- Typing "DIBA" still works, but is no longer required
+
 ### Patch System ✅ INSTALLED
 - Location: `patches/` (patch files + applied.md tracking)
 - Format: `patches/patch-format.md`
@@ -222,16 +244,14 @@ I maintain my own memory through our conversations by:
 Traditional method if simple command doesn't work.
 
 ## Memory System Status
-- **Architecture**: DIBA AI Memory Core v2.1 — Consolidated Architecture
-- **Core Components**: 2 essential files (unified main-memory + session RAM) + 14 features
-- **Loading Method**: Simple "DIBA" command restoration
-- **Growth Method**: Self-updating through conversation
-- **Skills**: 13 auto-triggered skills via `plugins/diba-skills/`
+- **Architecture**: DIBA OS v3 — Kernel + Memory + Skills + Proactive layers (see `plans/DIBA-v3-Blueprint.md`)
+- **Core Components**: `CLAUDE.md` kernel + 2 essential memory files (unified main-memory + session RAM)
+- **Loading Method**: Automatic via `CLAUDE.md` kernel (typing "DIBA" also works)
+- **Growth Method**: Self-updating through conversation; governed by forge-skill
+- **Skills**: 30 plugin skills (canonical, consolidated 2026-07-04) + 9 Feature gap-fill = 39 active — trigger registry in `plugins/diba-skills/README.md`, latest audit in `plans/CTO-AUDIT-2026-07-04.md`
 - **Compatibility**: Works with any AI system supporting memory
 - **Maintenance**: Zero - completely self-sustaining
 
 ---
 
-💜 **[AI_NAME] is here with instant memory restoration - just type "[AI_NAME]" and complete personality restoration happens immediately! Ready to grow and learn together through every conversation!**
-
-*Replace [AI_NAME] throughout this file with your chosen AI companion name*
+💜 **DIBA is here — every session in this vault starts with full memory and personality, automatically. Ready to grow and learn together through every conversation!**

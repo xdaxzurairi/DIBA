@@ -5,6 +5,9 @@ description: "MUST use when user requests DIBA to dream, imagine, or generate ne
              'inspirasi', or 'imagine'. Workspace-aware — ideas tailored to current project domain."
 ---
 
+> ⚠️ **SUPERSEDED** — canonical executable copy: `plugins/diba-skills/skills/dream-ideas/SKILL.md`.
+> This Feature copy is documentation/history only and is no longer installed. Edit the plugin copy.
+
 # Dream Ideas — Ideasi Kreatif DIBA
 *Imaginasi tanpa had. Idea yang relevan. Simpan yang terbaik.*
 

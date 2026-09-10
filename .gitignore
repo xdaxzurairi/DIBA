@@ -2,5 +2,11 @@
 /[Tt]emp/
 *.exe
 
+# Secrets — jangan commit
+.env
+.env.local
+.env.*
+
 # Claude Code settings
 .claude/settings.local.json
+.devswarm-temp/

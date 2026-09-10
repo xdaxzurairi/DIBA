@@ -69,19 +69,6 @@ Not all systems are the same. The library considers the **current project contex
 | **Scale** | Is it appropriate for the project size? (Kafka for 50 users is overkill) |
 | **Complexity** | Would it over-engineer the solution? (Redis caching for 20 records is unnecessary) |
 
-### Example
-```
-Working on: Task Management System (Laravel + Vue, small-medium scale)
-
-Suitable from library:
-- security/laravel-sanctum-rbac.md — auth pattern fits
-- integration/digitalocean-spaces-laravel.md — file storage fits
-
-Not suitable:
-- architecture/kafka-extreme-scale-pattern.md — overkill for this scale
-- integration/payment-gateway.md — no payment needed in task system
-```
-
 ## Report Format
 
 ```
@@ -106,9 +93,9 @@ Recommendation:
 - [IMPLEMENT / SKIP — for project-specific suggestions]
 ```
 
-## Decision Rules
+## Decision Rules & Edge Cases
 
-| Scenario | Recommendation |
+| Scenario | Recommendation / Behavior |
 |----------|---------------|
 | No filename/keyword matches | **CREATE NEW** entry |
 | Filename similar but different scope | **CREATE NEW** (note the related entry) |
@@ -116,6 +103,11 @@ Recommendation:
 | Content already fully covered | **REFERENCE ONLY** — skip save |
 | Entry exists but wrong scale/domain | **SKIP** — not suitable for current project |
 | Entry exists and fits perfectly | **IMPLEMENT** — use this pattern |
+| No `library/` / not installed / empty | Warn and install, or skip straight to CREATE NEW if just empty |
+| Format template missing / new section | Generic markdown structure (title + overview + content + examples); create folder as needed |
+| Entry name collision | Append numeric suffix (e.g., `pattern-name-2.md`) |
+| Cross-section content | Pick primary section, note secondary relevance in the entry |
+| Item not found in catalog / already in library | List available items from `library-items/`; ask overwrite-or-skip if duplicate |
 
 ## Format-Aware Save
 
@@ -218,20 +210,6 @@ If Auto-Commit is not installed, remind the user to commit manually.
 7. **Wait for approval** — present findings and wait for the user's decision before saving
 8. **Format-aware saves** — always load the matching format template before creating a new entry
 
-## Edge Cases
-
-| Situation | Behavior |
-|-----------|----------|
-| **No library/ directory** | Warn user: "Library directory not found. Run the install protocol first." |
-| **Empty library (no entries)** | Skip search, go straight to CREATE NEW recommendation |
-| **Format template missing** | Use generic markdown structure (title + overview + content + examples) |
-| **Entry name collision** | Append numeric suffix (e.g., `pattern-name-2.md`) |
-| **User wants new section** | Create the folder, note that no format template exists for it |
-| **Cross-section content** | Pick primary section, note secondary relevance in the entry |
-| **Item not found in catalog** | List all available items from `library-items/` |
-| **Library not installed** | Warn: "Library directory not found. Install Library System first." |
-| **Item already in library** | Ask user: overwrite existing entry or skip |
-
 ## Level History
 
 - **Lv.1** — Base: Dynamic library scanning + keyword matching + deduplication prevention. Scans library/ at runtime, extracts keywords from topic, matches against filenames and section names, reads top matches to check overlap, reports findings. (Origin: Knowledge reuse system for AI companions)
@@ -239,3 +217,4 @@ If Auto-Commit is not installed, remind the user to commit manually.
 - **Lv.3** — Commit Chain: After saving/updating library entries, auto-triggers the Auto-Commit skill (if installed) to commit all changes. Library save exit becomes commit entrance.
 - **Lv.4** — Format-Aware Save: Auto-determines library section from content keywords, loads matching format template from `library/formats/[section]-format.md`, applies template structure to new entries. Trust-based section selection (no approval gate). Formats loaded on-demand, not embedded.
 - **Lv.5** — Item Install: Install pre-made library entries from `library-items/` catalog. New commands: "install item [name]", "install library item", "add item from catalog". Scans catalog by filename keyword, shows preview, checks for duplicates in user's library, copies to correct section, chains commit. Catalog persists at project root (not deleted during Library System installation). (Origin: Public knowledge sharing for AI MemoryCore community)
+- **Lv.6** — Registry Context: bila load/save library untuk projek aktif, semak `registry.md` dan sebut path memory projek dalam cadangan. (Origin: 2026-05-22 — naikkan skill batch)

@@ -7,6 +7,9 @@ description: "Friendly wellness reminder for users who have been working too lon
              user continues working after requesting reminders."
 ---
 
+> ⚠️ **SUPERSEDED** — canonical executable copy: `plugins/diba-skills/skills/break-reminder/SKILL.md`.
+> This Feature copy is documentation/history only and is no longer installed. Edit the plugin copy.
+
 # Break Reminder — Wellness & Focus Reset
 *Rehat bukan lemah. Rehat itu strategi.*
 

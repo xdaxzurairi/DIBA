@@ -5,6 +5,10 @@ description: "Load memory workspace DIBA — recap sesi lepas, reminder terbuka,
              'ingat semula', atau bila perlu deep workspace context load."
 ---
 
+> ⚠️ **MERGED INTO ECHO-RECALL** — diba-recall dihentikan pada 2026-07-04 (CTO Phase 2).
+> Workspace recall kini Step 0 dalam `plugins/diba-skills/skills/echo-recall/SKILL.md`.
+> Fail ini kekal sebagai dokumentasi/sejarah sahaja dan tidak lagi diinstall.
+
 # DIBA Recall — Workspace Memory Load
 *Ingatan dimuat. Konteks dipulihkan.*
 
