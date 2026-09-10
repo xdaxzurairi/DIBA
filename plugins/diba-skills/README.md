@@ -51,13 +51,10 @@ One owner per phrase. Before adding or leveling a skill, grep this table — a p
 | focused-fix | "fix bug ni", "kenapa X tak jalan", "repair this feature", "something wrong dengan" |
 | security-guidance | (auto before Edit/Write kod) · "security check", "selamat ke code ni", "ada vulnerability tak", "audit security" |
 | env-secrets-manager | ".env", "secret bocor", "rotate credential", "leak API key", "check secrets" |
-| dependency-auditor | "audit dependency", "check license", "upgrade packages", "vulnerable package" |
 | tech-debt-tracker | "tech debt", "hutang teknikal", "apa patut refactor dulu", "prioritize cleanup" |
-| changelog-generator | "buat changelog", "generate release notes", "apa yang berubah sejak version lepas" |
 | deep-work | "time block hari ni", "susun deep work", "shallow work minggu ni", "focus session", "shutdown ritual" |
 | weekly-review | "gtd review", "audit komitmen", "apa yang stalled", "clear semua open loop", "trusted system check" |
 | capture | "brain dump", "ok banyak nak cakap ni", "catat semua ni" |
-| experiment-designer | "design A/B test", "macam mana nak test feature ni", "hypothesis untuk experiment", "berapa sample size" |
 
 ### Knowledge & analysis
 | Skill | Owned triggers |
@@ -78,7 +75,7 @@ One owner per phrase. Before adding or leveling a skill, grep this table — a p
 | marketing-workshop | "copywriting", "SEO", "tulis copy", "headline", "CTA", "growth", "buat iklan" |
 
 ### Feature-layer only (installed as gap-fill from `Feature/`)
-continuous-improvement · dashboard · image-prompt · interactive-story · mulahazah · observation · security-audit-remediation · song-creation · skill-plugin-system
+continuous-improvement · dashboard · image-prompt · mulahazah · security-audit-remediation
 
 ### Retired (do not re-create)
 | Skill | Fate |
@@ -91,6 +88,19 @@ continuous-improvement · dashboard · image-prompt · interactive-story · mula
 | session-briefing | MERGED 2026-07-04 → chief-of-staff Lv.7 (Session-Start Brief) |
 | dream-ideas | MERGED 2026-07-04 → resonance Lv.7 (Dream Mode) |
 | auto-idle-save-recall | SPLIT 2026-07-04 → save-diary Lv.5 (idle save) + chief-of-staff Lv.7 (greet recall) |
+| observation | CUT 2026-09-10 — native `/code-review` + `/simplify`; project health via repo-pack / project-map |
+| hook-generator | CUT 2026-09-10 — native `update-config` skill + claude-code-guide |
+| skill-plugin-system | CUT 2026-09-10 — session-start.sh + forge-skill already cover it |
+| changelog-generator | CUT 2026-09-10 — `git log` + native tooling |
+| compliance-check | CUT 2026-09-10 — stub, no active need |
+| contract-reviewer | CUT 2026-09-10 — stub, no active need |
+| invoice-chaser | CUT 2026-09-10 — stub, no active need |
+| financial-snapshot | CUT 2026-09-10 — stub, no active need |
+| post-writer | CUT 2026-09-10 — stub; fold into marketing-workshop if needed |
+| experiment-designer | CUT 2026-09-10 — niche, re-add on real need |
+| dependency-auditor | CUT 2026-09-10 — niche, re-add on real need |
+| interactive-story | CUT 2026-09-10 — pure play, not work |
+| song-creation | CUT 2026-09-10 — pure play, not work |
 
 ## Auto-Discovery Notes
 - Semua skill dalam folder `skills/[skill-name]/SKILL.md` dikesan secara automatik.

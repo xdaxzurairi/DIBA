@@ -16,7 +16,6 @@ All installed features. Each links back to [[HOME|HOME]] and [[main/main-memory|
 - [[Feature/Save-Diary-System/SKILL|Save-Diary-System]]
 - [[Feature/Decision-Log-System/SKILL|Decision-Log-System]]
 - [[Feature/Post-Mortem-System/SKILL|Post-Mortem-System]]
-- [[Feature/Observation-System/SKILL|Observation-System]]
 
 ## Projects & Planning
 - [[Feature/LRU-Project-Management-System/SKILL|LRU-Project-Management-System]]
@@ -34,7 +33,6 @@ All installed features. Each links back to [[HOME|HOME]] and [[main/main-memory|
 
 ## Orchestration & Skills
 - [[Feature/Orchestration-System/SKILL|Orchestration-System]]
-- [[Feature/Skill-Plugin-System/README|Skill-Plugin-System]]
 - [[Feature/Forge-Self-Improvement-System/SKILL|Forge-Self-Improvement-System]]
 - [[Feature/Anchor-System/SKILL|Anchor-System]] *(merged → discipline Lv.7, 2026-07-04)*
 - [[Feature/Continuous-Improvement-System/SKILL|Continuous-Improvement-System]]
@@ -61,8 +59,6 @@ All installed features. Each links back to [[HOME|HOME]] and [[main/main-memory|
 
 ## Creative
 - [[Feature/Image-Prompt-System/SKILL|Image-Prompt-System]]
-- [[Feature/Interactive-Story-System/SKILL|Interactive-Story-System]]
-- [[Feature/Song-Creation-System/SKILL|Song-Creation-System]]
 
 ## Visual & Simulation
 - [[Feature/War-Room-System/SKILL|War-Room-System]]
