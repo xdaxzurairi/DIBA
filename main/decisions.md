@@ -185,4 +185,28 @@ co
 **Kesan:** Batch 1 net = **74→65 installed** (bukan 61), **canonical 52→45**. Batch 2 (MERGE) akan disemak semula ikut prinsip ni sebelum gerak.
 
 ---
+
+## 2026-09-10 — Skill spring-clean Batch 2: MERGE 22 skills → 10 survivors + departments 9→1
+
+**Context:** Sambungan spring-clean. Batch 1 (CUT) siap → 65 installed. Batch 2 = konsolidasi DIBA-internal (bukan defer ke native).
+
+**Decision:** Port kandungan/trigger setiap skill yang diserap ke seksyen "Absorbed (2026-09-10 spring-clean)" dalam survivor, kemudian buang folder yang diserap. Peta:
+- `code-sharp` ← focused-fix, tech-debt-tracker
+- `save-memory` ← capture, memory-compaction
+- `save-diary` ← topic-diary
+- `auto-learn` ← auto-learn-new-folder, mulahazah, continuous-improvement, dashboard (jadi pusat semua pembelajaran DIBA)
+- `orchestrate` ← dispatching-parallel-agents, auto-worker
+- `deep-research` ← pulse (quick/recency mode)
+- `repo-pack` ← project-map
+- `diba-response` ← smart-effort
+- `chief-of-staff` ← deep-work
+- `marketing-workshop` ← hook-generator
+- `image-generation` ← image-prompt, video-generation, auto-link-image-library (skop luas jadi "media")
+- `departments` (SATU skill org-map baru) ← 9× `*-head` router. Router tak tambah apa-apa atas trigger-match + orchestrate; 9 `*-head` installed dir sebenarnya artifact stale (hook semasa tak install `departments/*/skill.md` 2-level). 
+
+**Rationale:** Setiap merge kumpul kapabiliti bertindih bawah satu owner (governance forge-skill "one owner per capability"). Kandungan penuh skill lama kekal dalam git history (recoverable). Trigger registry `README.md` dikemas — absorbed triggers kini di-tag `← <skill>` di bawah survivor supaya routing tak putus. Ditolak: rewrite penuh setiap survivor (skop besar, nilai rendah — nota Absorbed + trigger cukup untuk spring-clean).
+
+**Kesan unjuran:** installed **65 → ~37**, canonical **46 → ~35**. Bilangan tepat selepas Abam run `scripts/spring-clean-batch2.sh`.
+
+---
 *Index: [[HOME|HOME]] · [[main/main-memory|main-memory]] · [[main/current-session|current-session]] · [[projects/active/ruangniaga|ruangniaga]] · [[projects/active/dibaref-saas|dibaref-saas]]*
