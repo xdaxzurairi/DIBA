@@ -163,4 +163,14 @@ co
 **Rationale:** Vault DIBA = memory peribadi, satu penulis (Abam), repo private — risiko push automatik hampir sifar dan nilai tinggi (memory selamat merentas mesin, tak menimbun lagi). Ini berbeza dari repo kod projek (eWorks dll.) di mana push automatik boleh terganggu review/CI/branch orang lain — sebab tu skop dihadkan ke vault. Best-effort + silent-fail elak hook stall session bila tiada rangkaian. Ditolak: (a) push setiap Write/Edit — terlalu kerap, bising; (b) biarkan manual — punca masalah asal (3 minggu tak sync).
 
 ---
+
+## 2026-09-10 — Skill spring-clean 74 → ~33 (Batch 1: 13 CUT)
+
+**Context:** Alignment review dapati skill sprawl — 74 installed vs target Blueprint ~32. Governance forge-skill ada atas kertas tapi tak enforce. Ada stub kosong + skill yang tindih feature native Claude Code (`/code-review`, `/simplify`, `/security-review`, `update-config`).
+
+**Decision:** Spring-clean berperingkat. **Batch 1 = pure CUT (13):** `observation`, `hook-generator`, `skill-plugin-system`, `changelog-generator`, `compliance-check`, `contract-reviewer`, `invoice-chaser`, `financial-snapshot`, `post-writer`, `experiment-designer`, `dependency-auditor`, `interactive-story`, `song-creation`. Buang dari `plugins/diba-skills/skills/`, `Feature/`, installed dir; tambah ke `DEPRECATED` list `session-start.sh`; catat dalam README "Retired". Batch seterusnya = MERGE cluster (memory, dev-fix, learning-loop, departments 9→1, media-gen).
+
+**Rationale:** 6 tindih native harness — simpan = dua implementasi divergent (masalah yang sama kita baru bunuh untuk memory + auto-push). 7 stub/niche — kos kognitif (muncul dalam skill list tiap sesi) tanpa nilai; boleh re-add bila keperluan sebenar wujud (forge-skill). 2 pure-play (`interactive-story`, `song-creation`) — bukan kerja. Target ~33 dekat dengan Blueprint L2 "~32, one owner per capability". Ditolak: (a) buang semua sekali gus — risiko tinggi, susah audit; (b) biar je — sprawl makin teruk, governance jadi hiasan.
+
+---
 *Index: [[HOME|HOME]] · [[main/main-memory|main-memory]] · [[main/current-session|current-session]] · [[projects/active/ruangniaga|ruangniaga]] · [[projects/active/dibaref-saas|dibaref-saas]]*
