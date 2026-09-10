@@ -76,8 +76,9 @@ Then execute the commit protocol automatically.
 - [ ] Show any remaining unstaged/untracked files if applicable
 
 ### Step 5: Push (Optional)
-- [ ] Only execute if user explicitly said "push" or "commit and push"
-- [ ] Never auto-push — pushing affects remote repositories and should be deliberate
+- [ ] **Exception — DIBA vault:** the vault at `C:/Users/Administrator/xdibax/DIBA/` auto-pushes to `origin` via the `session-end.sh` / `session-end.ps1` hook (best-effort, silent on failure, retries next session-end). No explicit "push" needed there. (Approved 2026-09-10 — see `main/decisions.md`.)
+- [ ] **All other repos:** only execute if user explicitly said "push" or "commit and push"
+- [ ] Never auto-push outside the vault — pushing a code repo affects remotes / CI / other people's branches and should be deliberate
 - [ ] Run `git push` and confirm success
 
 ## Vigilant Mode (Lv.3) — Proactive Detection
@@ -107,7 +108,7 @@ After completing ANY task, the AI automatically:
 3. **Prefer specific file staging** — use `git add [filename]` not `git add -A` to avoid accidentally staging sensitive or unrelated files
 4. **Time estimate required** — always include approximate time spent in the session section
 5. **Warn on sensitive files** — if `.env`, credentials, API keys, or AI configuration files are about to be committed, warn the user and exclude them
-6. **Never auto-push** — pushing is always explicit. Commits are local until the user decides to push
+6. **Never auto-push outside the DIBA vault** — for code repos, pushing is always explicit; commits stay local until the user decides to push. The DIBA vault is the sole exception: it auto-pushes at session-end via its hook (approved 2026-09-10).
 7. **Follow recent commit style** — check `git log` to maintain consistency with the project's existing commit message style
 
 ## Edge Cases
@@ -154,3 +155,4 @@ Track commit consistency:
 - **Lv.4** — Submodule Awareness: urutan commit submodule → parent; message jelas untuk skill/memory paths. (Origin: 2026-05-22 XDIBAX multi-repo)
 - **Lv.5** — Scope Guard: detect multi-concern commits, cadang split. (Origin: 2026-06-12)
 - **Lv.6** — Streak Tracking: commit consistency tracking + nudge + War Room integration. (Origin: 2026-06-12)
+- **Lv.7** — Vault Auto-Sync: DIBA vault auto-pushes to `origin` at session-end (best-effort, silent-fail, retry). Supersedes the blanket "never auto-push" for the vault only; code repos unchanged. (Origin: 2026-09-10 — DIBA ↔ Claude Code feature alignment; vault was 12 commits / 3 weeks unpushed)
