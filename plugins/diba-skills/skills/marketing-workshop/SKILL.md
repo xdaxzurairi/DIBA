@@ -175,6 +175,10 @@ marketing-workshop (copy + SEO + conversion)
 
 ---
 
+## Absorbed (2026-09-10 spring-clean)
+
+- **hook-generator** — jana 5 scroll-stopping opening hooks untuk content (LinkedIn, Twitter/X, IG, email subject, video script). Triggers: "buat hook", "opening line", "first line", "attention grabber", "viral hook", "penarik", "hook generator". Setiap hook + penjelasan kenapa ia berfungsi secara psikologi. Guna 7 formula hook terbukti.
+
 ## Level History
 
 - **Lv.1** — Base: brief-first, formula (AIDA/PAS/FAB/4U), copy rules, 3-variasi output. (Origin: 2026-07-03 — isi jurang "Marketing Skills" dari infografik "10 GitHub repos that make Claude supercharged")

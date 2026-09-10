@@ -1,16 +1,23 @@
 ---
 name: image-generation
-description: MUST use when the user wants to RENDER or GENERATE an actual image from a description (not just craft prompt text). Triggers on "render an image", "render this", "generate image", "render image", "make an image of", "render the prompt", "render this prompt". Builds the prompt from what the user types (subject-agnostic, no built-in persona), optionally pulls a saved reference from the Library System, confirms cost, then calls the OpenAI gpt-image API and saves a PNG.
+description: MUST use for any visual media generation — RENDER/GENERATE an image or video from a description, ANIMATE a local image, or CRAFT a Midjourney/Niji prompt. Triggers on "render an image", "generate image", "make an image of", "render a video", "generate video", "animate this", "bring this to life", "midjourney prompt", "niji prompt", "create a prompt", "image prompt", "reference sheet". Subject-agnostic, no built-in persona; optionally pulls a saved reference from the Library System, confirms cost, calls the OpenAI gpt-image / Seedance API, saves a PNG or MP4.
 ---
 
-# Image Generation System — Render descriptions into real PNGs
+# Media Generation System — Render descriptions into real images & video
 
 ## Overview
 
-This skill renders an actual image by calling the OpenAI gpt-image API. It is the rendering
-companion to the Image Prompt System (which only crafts prompt text). The skill is **subject-
-agnostic**: it builds the prompt from whatever the user types and has **no built-in character,
-persona, or stored identity**. Whatever the user describes is what gets drawn.
+This skill covers all visual-media generation. It is **subject-agnostic**: it builds the prompt
+from whatever the user types and has **no built-in character, persona, or stored identity**.
+Whatever the user describes is what gets drawn.
+
+## Absorbed (2026-09-10 spring-clean)
+
+One skill now owns the whole pipeline: prompt-craft → render → link to library.
+
+- **image-prompt** — craft a Midjourney/NijiJourney prompt (text only, no render). Triggers: "midjourney prompt", "niji prompt", "create a prompt", "image prompt", "generate prompt", "draw this", "reference sheet". Composition-aware framing.
+- **video-generation** — text-to-video / image-to-video via the Seedance API (async submit/poll/download → MP4). Triggers: "render a video", "generate video", "make a video", "animate this image", "bring this to life". Video is expensive — confirm cost.
+- **auto-link-image-library** — after a prompt/render, connect the output to the Library System, log the decision, trigger an anchor when scope changes.
 
 ## Protocol
 

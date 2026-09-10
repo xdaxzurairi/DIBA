@@ -28,16 +28,16 @@ All installed features. Each links back to [[HOME|HOME]] and [[main/main-memory|
 ## Automation & Hooks
 - [[Feature/Auto-Commit-System/SKILL|Auto-Commit-System]]
 - [[Feature/Auto-Load-Hook-System/README|Auto-Load-Hook-System]]
-- [[Feature/Auto-Worker-System/SKILL|Auto-Worker-System]]
+- [[Feature/Auto-Worker-System/SKILL|Auto-Worker-System]] *(merged → orchestrate, 2026-09-10)*
 - [[Feature/User-Prompt-Hook-System/README|User-Prompt-Hook-System]]
-- [[Feature/auto-learn-new-folder/SKILL|auto-learn-new-folder]]
+- [[Feature/auto-learn-new-folder/SKILL|auto-learn-new-folder]] *(merged → auto-learn, 2026-09-10)*
 
 ## Orchestration & Skills
 - [[Feature/Orchestration-System/SKILL|Orchestration-System]]
 - [[Feature/Skill-Plugin-System/README|Skill-Plugin-System]]
 - [[Feature/Forge-Self-Improvement-System/SKILL|Forge-Self-Improvement-System]]
 - [[Feature/Anchor-System/SKILL|Anchor-System]] *(merged → discipline Lv.7, 2026-07-04)*
-- [[Feature/Continuous-Improvement-System/SKILL|Continuous-Improvement-System]]
+- [[Feature/Continuous-Improvement-System/SKILL|Continuous-Improvement-System]] *(merged → auto-learn, 2026-09-10)*
 
 ## Productivity & Wellness
 - Chief-of-Staff — `plugins/diba-skills/skills/chief-of-staff/SKILL.md` (morning brief · agenda · eod · weekly review)
@@ -45,7 +45,7 @@ All installed features. Each links back to [[HOME|HOME]] and [[main/main-memory|
 - [[Feature/Discipline-System/SKILL|Discipline-System]]
 - [[Feature/Reminders-System/SKILL|Reminders-System]]
 - [[Feature/Token-Guard-System/SKILL|Token-Guard-System]]
-- [[Feature/Dashboard-System/SKILL|Dashboard-System]]
+- [[Feature/Dashboard-System/SKILL|Dashboard-System]] *(merged → auto-learn, 2026-09-10)*
 
 ## Code & Security
 - [[Feature/Code-Sharp-System/SKILL|Code-Sharp-System]]
@@ -57,10 +57,12 @@ All installed features. Each links back to [[HOME|HOME]] and [[main/main-memory|
 - [[Feature/Tone-Prompt-Inject-System/README|Tone-Prompt-Inject-System]]
 - [[Feature/Time-Prompt-Inject-System/README|Time-Prompt-Inject-System]]
 - [[Feature/Time-based-Aware-System/README|Time-based-Aware-System]]
-- [[Feature/Mulahazah-System/SKILL|Mulahazah-System]]
+- [[Feature/Mulahazah-System/SKILL|Mulahazah-System]] *(merged → auto-learn, 2026-09-10)*
 
 ## Creative
-- [[Feature/Image-Prompt-System/SKILL|Image-Prompt-System]]
+- [[Feature/Image-Generation-System/SKILL|Image-Generation-System]] — media (image + video + prompt-craft)
+- [[Feature/Image-Prompt-System/SKILL|Image-Prompt-System]] *(merged → image-generation, 2026-09-10)*
+- [[Feature/Video-Generation-System/SKILL|Video-Generation-System]] *(merged → image-generation, 2026-09-10)*
 
 ## Visual & Simulation
 - [[Feature/War-Room-System/SKILL|War-Room-System]]

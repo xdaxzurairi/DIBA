@@ -148,6 +148,12 @@ Bila user sebut Codex, Gemini, second opinion, atau kerja-berasingan agent lain:
 2. DIBA fokus struktur/refactor/verify; external fokus runtime edge-case jika sesuai
 3. Dokumentasikan siapa commit apa dalam save-diary (contoh: eWorks map 2026-05-21)
 
+## Absorbed (2026-09-10 spring-clean)
+
+- **dispatching-parallel-agents** — bila ada 2+ task bebas (tiada dependency) yang boleh jalan serentak sebagai subagent berasingan. Guna Agent/Task tool native untuk spawn isolated-context subagent; orchestrate simpan penilaian *bila* patut fan out vs jalan sendiri.
+- **auto-worker** — bila Abam bagi matlamat / permintaan multi-part dengan 2+ langkah tersembunyi tanpa nyatakan 'macam mana'. Auto-decompose matlamat, kenal pasti semua langkah perlu, laksana autonomously.
+- Native enjin: Agent tool (Explore/Plan/general-purpose/fork subagents) + Workflow tool. DIBA pandu decomposition + sintesis; jangan dump hasil mentah.
+
 ## Level History
 - **Lv.1** — Base: pattern selection, decompose, ground claims, synthesis, success signals.
 - **Lv.2** — External Collaborator: routing owner DIBA vs agent luar + log kolaborasi. (Origin: 2026-05-21 eWorks + Codex, 2026-05-22 batch)

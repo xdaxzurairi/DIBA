@@ -147,6 +147,12 @@ Selepas verify pass → chain `auto-commit`; kod signifikan → chain `save-diar
 
 ---
 
+## Absorbed (2026-09-10 spring-clean)
+
+- **focused-fix** — disiplin scope→trace→diagnose→fix→verify untuk bug dalam kod sedia ada. Triggers: "fix bug ni", "kenapa X tak jalan", "repair this feature", "something wrong dengan". Guna bila root cause dah jelas dan tinggal tulis fix; elak patch simptom.
+- **tech-debt-tracker** — kesan pattern messy berulang, prioritize apa nak refactor dulu. Triggers: "tech debt", "hutang teknikal", "apa patut refactor dulu", "prioritize cleanup". Output: senarai debt bertingkat impact vs effort.
+- Native enjin: `/code-review` (bug), `/simplify` (quality) — panggil bila ada, DIBA balut dengan verdict rojak + log ke `decisions.md`.
+
 ## Level History
 - **Lv.1** — Base: pre-code checklist, minimum-impact principle, verify gate, drift table, API contract guard, mandatory rules. (Origin: 2026-06-08 — gap analysis audit skill DIBA)
 - **Lv.2** — Stack Presets: piawaian PHP procedural/MySQL/PWA/Supabase ikut projek sebenar Abam. (Origin: 2026-07-04 — batch upgrade Lv.6, arahan Abam)

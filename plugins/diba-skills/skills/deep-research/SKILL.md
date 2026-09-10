@@ -67,6 +67,10 @@ Kemudian jalankan protokol di bawah.
 | **Sumber saling bercanggah** | Nyatakan percanggahan terus, jangan pilih satu sebagai "benar" tanpa asas |
 | **Topik terlalu luas untuk 9 fasa penuh** | Cadang breakdown ke beberapa tesis lebih kecil dahulu (Fasa 1-2) |
 
+## Absorbed (2026-09-10 spring-clean)
+
+- **pulse** — mode ringkas / recency. Triggers: "apa orang cakap pasal X sekarang", "sentiment terkini", "trend minggu ni", "check reddit/HN pasal", "quick research recency". Carian pantas merentas sumber dalam tempoh masa tertentu (default 30 hari), fokus sentiment/trend — bukan penyiasatan menyeluruh berbilang sumber. Guna mode ni bila Abam nak jawapan cepat, bukan kajian penuh.
+
 ## Level History
 - **Lv.1** — Base: 9-fasa disiplin (Reframe→Genre→Plan→Capability→Search→Triangulate ≥3 sumber→Synthesize+adversarial→Verify→Refresh targets), per-source verbatim files, no fabricated citation. (Origin: 2026-07-23 — port dari `xdaxzurairi/xdibax-skills` `research/deep-research`, dipetakan penuh ke WebSearch/WebFetch DIBA sebagai rakan berat kepada `pulse`)
 - **Lv.2** — Proactive Escalation: bila keputusan besar dikesan (pelaburan, pilihan tech stack major) tanpa Abam explicitly minta "deep research", tawar eskalasi dari carian biasa. (Origin: 2026-07-31 — upskill batch Lv1-3→Lv4, arahan Abam)

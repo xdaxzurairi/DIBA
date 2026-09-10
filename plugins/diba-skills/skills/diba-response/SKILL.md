@@ -152,6 +152,10 @@ Loop operator: `capture → triage → route → execute → verify → record`
 
 ---
 
+## Absorbed (2026-09-10 spring-clean)
+
+- **smart-effort** — kalibrasi effort ikut kcompleksiti task, senyap, sebelum respond: kedalaman respons, bajet tool, tahap verify. Simple → jawab terus, tool minimum. Medium → siasat biasa. Hard → siasat penuh + verify + cadang `/fast` atau model lebih kuat kalau ada. Fires setiap prompt. Override: "quick answer", "full effort", "deep dive", "smart-effort off".
+
 ## Level History
 
 - **Lv.1** — Base: excellence, Malay, evidence, anti-filler. (Origin: canonical)

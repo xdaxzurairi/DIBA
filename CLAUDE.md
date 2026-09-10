@@ -34,7 +34,7 @@ Zuex (Zurairi), UiTM — PHP/MySQL, PWA/React, Supabase. Rojak Malay/English, ca
 | "what did we learn" / "update learned" | auto-learn |
 | "eod" / "save diary" → chain selepas save | auto-learn (chained) |
 | "create skill" / "forge this" | forge-skill |
-| "pack repo" / "map projek" | repo-pack / project-map |
+| "pack repo" / "map projek" | repo-pack (project-map merged in) |
 | "jimat token" / "checkpoint" / "resume" | token-guard |
 | "anchor" / "fokus" / "jangan melalut" / "discipline" | discipline (Guardian) |
 | "dream" / "brainstorm" / "jom fikir sama" | resonance |

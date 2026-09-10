@@ -39,6 +39,11 @@ When this skill activates, output:
 2. Preserve existing content — append or update, never overwrite without reason
 3. Confirm to user what was saved
 
+## Absorbed (2026-09-10 spring-clean)
+
+- **capture** — bila Abam brain-dump banyak benda campur (task/idea/nota) tanpa struktur. Triggers: "brain dump", "ok banyak nak cakap ni", "catat semua ni". Susun tanpa hilang maklumat atau ubah maksud asal, kemudian route ke memory/reminders/diary yang betul.
+- **memory-compaction** — bila fail memory lebih bajet. Triggers: "compact memory", "compact [file]", "check budgets", "set budget". Ringkaskan tanpa hilang fakta penting; jalankan sebelum sebarang 'save' yang sasarannya lebih bajet `compaction/compaction-policy.md`.
+
 ## Level History
 - **Lv.1** — Base: Save conversation insights to memory files on command.
 - **Lv.2** — Session Chain: sentiasa sync `current-session.md` + optional reminders; chain ke save-diary bila sesi signifikan. (Origin: 2026-05-22 — naikkan skill batch)

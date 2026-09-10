@@ -88,6 +88,15 @@ learned-index.md: [baris semasa]/80
 
 ---
 
+## Absorbed (2026-09-10 spring-clean)
+
+Skill ni sekarang pusat **semua pembelajaran DIBA** — proses signal, instinct, dan reflection dalam satu tempat.
+
+- **auto-learn-new-folder** — bila folder baru dikesan dalam workspace: baca struktur, faham pattern development sebelum buat perubahan besar/kecil.
+- **mulahazah** — status instinct + rules terkumpul + pattern yang DIBA perasan. Triggers: "instinct status", "what have you learned", "show learned rules", "mulahazah status", "what patterns have you noticed".
+- **continuous-improvement** — reflect atas sesi semasa, analisa observation untuk pattern, pasang instinct-based learning loop. Trigger: "continuous-improvement" selepas kerja besar.
+- **dashboard** — papar visual instinct health + observation stats + learning progress. Triggers: "dashboard", "instinct dashboard", "learning status".
+
 ## Level History
 - **Lv.1** — Base: baca signal-buffer.md, klasifikasi ke facts/cases/rules, kemaskini learned-index.md (had 80 baris), clear buffer selepas confirm. (Origin: 2026-08-01 — CLAUDE.md rujuk auto-learn sebagai skill aktif tapi fail tiada, dicipta untuk tutup gap)
 - **Lv.2** — Proactive Mid-Session Flush: bila signal-buffer capai ambang (~15 baris) sebelum eod, auto-tawar proses awal, bukan tunggu explicit trigger. (Origin: 2026-07-31 — upskill batch Lv1-3→Lv4, arahan Abam)

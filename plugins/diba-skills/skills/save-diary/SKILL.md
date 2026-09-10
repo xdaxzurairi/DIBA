@@ -164,6 +164,10 @@ Trigger auto-save yang BETUL-BETUL wujud:
 
 *(Greet recall "hi diba" kini milik `chief-of-staff` Lv.7 — skill ini hanya SAVE.)*
 
+## Absorbed (2026-09-10 spring-clean)
+
+- **topic-diary** — bila 'save' perlu di-route antara session memory / daily diary / topic diary / semua. Triggers: "save topic", "save to topic diary", "remember this under", "review topic", "list topics". Simpan entri bertajuk merentas sesi dalam `daily-diary/topics/<topic>.md`; papar bila "review topic [X]".
+
 ## Level History
 - **Lv.1** — Base: auto/manual trigger, monthly archive, structured diary entry, append-only.
 - **Lv.2** — Session Sync: Langkah 3 wajib kemaskini `main/current-session.md` selepas setiap entry. (Origin: 2026-05-22 — naikkan skill batch)

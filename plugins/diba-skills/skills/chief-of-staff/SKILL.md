@@ -148,6 +148,10 @@ Time-aware: malam lewat + sesi panjang → selit nota rehat ringkas. "Brief penu
 
 ---
 
+## Absorbed (2026-09-10 spring-clean)
+
+- **deep-work** — struktur masa untuk kerja mendalam. Triggers: "time block hari ni", "susun deep work", "berapa banyak shallow work minggu ni", "focus session", "shutdown ritual". Beza dari brief prioriti (fungsi teras chief-of-staff) — ni khusus time-blocking + shutdown ritual hujung hari. Surface bila Abam minta susun jadual fokus.
+
 ## Level History
 - **Lv.1** — Base: morning brief, agenda, EOD wrap, weekly review; priority derivation rules; EOD checklist. (Origin: CTO build 2026-07-04 — DIBA v3 Phase 1)
 - **Lv.2** — Priority Scoring: skor deterministic dengan sumber dicite. (Origin: 2026-07-04 — batch upgrade Lv.6, arahan Abam)

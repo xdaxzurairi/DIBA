@@ -9,7 +9,7 @@ DIBA_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 SKILLS_DIR="$HOME/.claude/skills"
 
 # Skills retired by consolidation — never install, remove if present
-DEPRECATED="diba-recall diba-operator work-plan-execution anchor self-healing session-briefing dream-ideas auto-idle-save-recall compliance-check contract-reviewer invoice-chaser financial-snapshot post-writer experiment-designer dependency-auditor interactive-story song-creation"
+DEPRECATED="diba-recall diba-operator work-plan-execution anchor self-healing session-briefing dream-ideas auto-idle-save-recall compliance-check contract-reviewer invoice-chaser financial-snapshot post-writer experiment-designer dependency-auditor interactive-story song-creation focused-fix tech-debt-tracker capture memory-compaction topic-diary auto-learn-new-folder mulahazah continuous-improvement dashboard dispatching-parallel-agents auto-worker pulse project-map smart-effort deep-work image-prompt video-generation auto-link-image-library hook-generator biz-head dev-head design-head finance-head legal-head memory-head mkt-head ops-head social-head"
 
 mkdir -p "$SKILLS_DIR"
 

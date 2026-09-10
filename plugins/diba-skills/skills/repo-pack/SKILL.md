@@ -171,6 +171,10 @@ Pack sebagai bahagian aliran, bukan tindakan solo:
 
 ---
 
+## Absorbed (2026-09-10 spring-clean)
+
+- **project-map** — bila projek terlalu besar/berselerak untuk fikir dalam satu prompt: bina index boleh-cari untuk fail, symbol, dan hubungan. Triggers: "graphify", "map projek", "project map", "buat index", "dependency map", "peta kod", "macam mana modul ni sambung", "cari kat mana". Beza dengan pack (satu fail untuk AI) — map = index symbol/export/import supaya boleh lompat terus ke fail betul tanpa grep buta.
+
 ## Level History
 
 - **Lv.1** — Base: scope + .gitignore respect, structure map, secret-scan redaction, pack ke `memories/packs/`, token estimate, 3 compression modes. (Origin: 2026-07-03 — isi jurang "Repomix")

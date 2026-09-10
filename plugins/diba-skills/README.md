@@ -3,7 +3,7 @@
 
 ## Plugin Info
 - **Name**: diba-skills
-- **Version**: 2.2.0
+- **Version**: 2.3.0
 - **Author**: Zuex
 - **Rule**: `Feature/*/SKILL.md` copies are documentation/history only (marked SUPERSEDED). Edit skills HERE.
 
@@ -14,15 +14,15 @@ One owner per phrase. Before adding or leveling a skill, grep this table — a p
 ### Always-on / session lifecycle
 | Skill | Owned triggers |
 |-------|----------------|
-| diba-response | (always active in chat — persona contract) |
-| smart-effort | (silent, every prompt) · "quick answer", "full effort", "deep dive", "smart-effort off" |
-| chief-of-staff | session start (auto) · "brief", "skip brief", "where did we leave off", "hi diba", "morning brief", "brief pagi", "agenda", "apa plan hari ni", "eod", "wrap up", "habis kerja", "weekly review", "review minggu" |
+| diba-response | (always active in chat — persona contract) · ← smart-effort: (silent, every prompt) "quick answer", "full effort", "deep dive", "smart-effort off" |
+| chief-of-staff | session start (auto) · "brief", "skip brief", "where did we leave off", "hi diba", "morning brief", "brief pagi", "agenda", "apa plan hari ni", "eod", "wrap up", "habis kerja", "weekly review", "review minggu" · ← deep-work: "time block hari ni", "susun deep work", "shallow work minggu ni", "focus session", "shutdown ritual" |
 
 ### Memory & recall
 | Skill | Owned triggers |
 |-------|----------------|
-| save-memory | "save", "save memory", "save progress", "update memory" |
-| save-diary | "save diary", "write diary", "log this session", "document this" · auto after code change · SessionEnd hook safety-net |
+| save-memory | "save", "save memory", "save progress", "update memory" · ← capture: "brain dump", "ok banyak nak cakap ni", "catat semua ni" · ← memory-compaction: "compact memory", "check budgets", "set budget" |
+| save-diary | "save diary", "write diary", "log this session", "document this" · auto after code change · SessionEnd hook safety-net · ← topic-diary: "save topic", "remember this under", "review topic", "list topics" |
+| auto-learn | "extract lessons", "process buffer", "learn from today", "what did we learn", "update learned" · chain after eod/save-diary · ← auto-learn-new-folder: new folder detected · ← mulahazah/continuous-improvement/dashboard: "instinct status", "what have you learned", "show learned rules", "learning status", "continuous-improvement" |
 | echo-recall | "recall", "ingat semula", "load context", "do you remember", "Diba ingat tak", "when did we", "what did we decide about", "last time we" · workspace recall via `projects/registry.md` |
 | token-guard | "jimat token", "hemat token", "compact mode", "checkpoint", "resume", "token limit" |
 | usage-tracker | "ccusage", "usage report", "berapa token", "kos token", "budget AI" |
@@ -42,42 +42,35 @@ One owner per phrase. Before adding or leveling a skill, grep this table — a p
 | Skill | Owned triggers |
 |-------|----------------|
 | auto-commit | "commit", "push", "save changes" · vigilant after tasks |
-| auto-worker | goal with 2+ hidden steps, "how" not stated |
-| auto-learn-new-folder | new folder detected in workspace |
-| orchestrate | "orchestrate", "audit keseluruhan" · multi-step coordination, subagent delegation |
-| code-sharp | (auto before writing/editing code) |
+| orchestrate | "orchestrate", "audit keseluruhan" · multi-step coordination · ← auto-worker: goal with 2+ hidden steps, "how" not stated · ← dispatching-parallel-agents: 2+ independent tasks → subagents |
+| code-sharp | (auto before writing/editing code) · ← focused-fix: "fix bug ni", "kenapa X tak jalan", "repair this feature" · ← tech-debt-tracker: "tech debt", "hutang teknikal", "apa patut refactor dulu" |
 | discipline | "discipline", "semak disiplin", "balik standard", "anchor", "fokus", "lock", "jangan melalut", "stay on task" · (background drift monitor, every 5 responses) |
 | resonance | "resonance", "jom fikir sama", "let's think together", "mode explore", "dream", "bagi idea baru", "brainstorm", "cuba impikan" |
-| focused-fix | "fix bug ni", "kenapa X tak jalan", "repair this feature", "something wrong dengan" |
 | security-guidance | (auto before Edit/Write kod) · "security check", "selamat ke code ni", "ada vulnerability tak", "audit security" |
 | env-secrets-manager | ".env", "secret bocor", "rotate credential", "leak API key", "check secrets" |
-| tech-debt-tracker | "tech debt", "hutang teknikal", "apa patut refactor dulu", "prioritize cleanup" |
-| deep-work | "time block hari ni", "susun deep work", "shallow work minggu ni", "focus session", "shutdown ritual" |
 | weekly-review | "gtd review", "audit komitmen", "apa yang stalled", "clear semua open loop", "trusted system check" |
-| capture | "brain dump", "ok banyak nak cakap ni", "catat semua ni" |
 | changelog-generator | "buat changelog", "generate release notes", "apa yang berubah sejak version lepas" · reasoning terus atas git log |
+| departments | "department status", "company status", "siapa handle X", "who owns X", "brief [domain]" · staff code names (NEXUS/FORGE/LENS/ORACLE/PIXEL/ECHO/CIPHER/GRID/PULSE/SAGE) |
 
 ### Knowledge & analysis
 | Skill | Owned triggers |
 |-------|----------------|
 | library | "save/load/search library", "install item", "do we have", "is there a pattern for" |
-| repo-pack | "pack repo", "repomix", "satukan projek", "bundle codebase" |
-| project-map | "graphify", "map projek", "buat index", "dependency map", "cari kat mana" |
+| repo-pack | "pack repo", "repomix", "satukan projek", "bundle codebase" · ← project-map: "graphify", "map projek", "buat index", "dependency map", "cari kat mana" |
 | forge-skill | "create skill", "forge this", "level up", "upgrade skill", "naikkan skill" · auto on 3+ repeated patterns |
 | ask-nemotron | "nm:", "nemotron:", "#nm", "claude limit", "nemotron takeover", "guna nemotron je", "guna local model" |
-| pulse | "apa orang cakap pasal", "sentiment terkini", "trend minggu ni", "check reddit pasal", "check HN pasal" |
-| deep-research | "penyiasatan mendalam", "deep research pasal", "kajian menyeluruh dengan sumber" |
+| deep-research | "penyiasatan mendalam", "deep research pasal", "kajian menyeluruh dengan sumber" · ← pulse: "apa orang cakap pasal X sekarang", "sentiment terkini", "trend minggu ni", "check reddit/HN pasal" |
 
 ### Design, creative & marketing
 | Skill | Owned triggers |
 |-------|----------------|
 | frontend-design | "design guide", "buat cantik", "jangan generic", "landing page", "visual hierarchy" |
 | interaction-design | "poles UI", "tambah animasi", "microinteraction", "motion", "DIBA presence" |
-| marketing-workshop | "copywriting", "SEO", "tulis copy", "headline", "CTA", "growth", "buat iklan" |
-| hook-generator | "buat hook", "opening line", "attention grabber", "viral hook", "penarik" · 5 content hooks + psikologi |
+| marketing-workshop | "copywriting", "SEO", "tulis copy", "headline", "CTA", "growth", "buat iklan" · ← hook-generator: "buat hook", "opening line", "attention grabber", "viral hook", "penarik" |
+| image-generation | "render an image", "generate image", "make an image of" · ← image-prompt: "midjourney prompt", "niji prompt", "create a prompt", "reference sheet" · ← video-generation: "render a video", "animate this", "bring this to life" |
 
 ### Feature-layer only (installed as gap-fill from `Feature/`)
-continuous-improvement · dashboard · image-prompt · mulahazah · observation · security-audit-remediation · skill-plugin-system
+image-generation (media) · observation · security-audit-remediation · skill-plugin-system
 
 ### Retired (do not re-create)
 | Skill | Fate |
@@ -99,6 +92,26 @@ continuous-improvement · dashboard · image-prompt · mulahazah · observation 
 | dependency-auditor | CUT 2026-09-10 — niche, re-add on real need |
 | interactive-story | CUT 2026-09-10 — pure play, not work |
 | song-creation | CUT 2026-09-10 — pure play, not work |
+| focused-fix | MERGED 2026-09-10 → code-sharp (Absorbed section) |
+| tech-debt-tracker | MERGED 2026-09-10 → code-sharp |
+| capture | MERGED 2026-09-10 → save-memory |
+| memory-compaction | MERGED 2026-09-10 → save-memory |
+| topic-diary | MERGED 2026-09-10 → save-diary |
+| auto-learn-new-folder | MERGED 2026-09-10 → auto-learn |
+| mulahazah | MERGED 2026-09-10 → auto-learn (learning loop) |
+| continuous-improvement | MERGED 2026-09-10 → auto-learn |
+| dashboard | MERGED 2026-09-10 → auto-learn |
+| dispatching-parallel-agents | MERGED 2026-09-10 → orchestrate |
+| auto-worker | MERGED 2026-09-10 → orchestrate |
+| pulse | MERGED 2026-09-10 → deep-research (quick/recency mode) |
+| project-map | MERGED 2026-09-10 → repo-pack |
+| smart-effort | MERGED 2026-09-10 → diba-response |
+| deep-work | MERGED 2026-09-10 → chief-of-staff |
+| hook-generator | MERGED 2026-09-10 → marketing-workshop |
+| image-prompt | MERGED 2026-09-10 → image-generation (media) |
+| video-generation | MERGED 2026-09-10 → image-generation (media) |
+| auto-link-image-library | MERGED 2026-09-10 → image-generation (media) |
+| biz/dev/design/finance/legal/memory/mkt/ops/social-head | COLLAPSED 2026-09-10 → single `departments` org-map skill |
 
 ## Auto-Discovery Notes
 - Semua skill dalam folder `skills/[skill-name]/SKILL.md` dikesan secara automatik.
