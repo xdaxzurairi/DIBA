@@ -42,3 +42,11 @@
 1. Run `scripts/register-scheduled-briefs.ps1` — tutup Phase 3 loop registration.
 2. Clear reminder lewat: setup Ollama lokal di PC opis (fallback bila Claude limit).
 3. Semak git status root repo — ada `.diba-models.json` + `conflict-files-obsidian-git.md` untracked, dan modified `scripts/ask-nemotron.js` belum commit.
+
+---
+
+## Morning Brief — 2026-09-14 20:25
+
+> ⚠️ scheduled run failed (exit 1). Output:
+
+Failed to authenticate: OAuth session expired and could not be refreshed
