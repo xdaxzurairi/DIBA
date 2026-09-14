@@ -22,9 +22,11 @@
 
 **Commits (semua pushed):** 3d01867 · 96cac63 · 5d0e340 · 45c2a44 · ce2f457 · fcb14c3 · e0c71c8 · 0761b26
 
-**Follow-up terbuka:**
-- Telegram bridge — belum wujud (takde bot token / script). Baki terakhir Phase 3.
-- Ollama lokal PC opis — overdue 2 bulan.
-- **L4 integrations** — Gmail + Google Calendar MCP tersedia, tinggal `authenticate`. Langkah ubah-kelas DIBA.
-- Review #3 (output-style Proactive vs human-in-the-loop DIBA) — belum disemak.
-- Uncommitted pre-existing vault: `scripts/ask-nemotron.js`, `.diba-models.json`, `conflict-files-obsidian-git.md` — bukan kerja sesi ni.
+**EOD auto-diary:** selesai 22:47 KL — evening update ditambah ke `daily-diary/current/2026-09-10.md`
+
+**Follow-up terbuka (prioriti):**
+1. **L4 integrations** — Gmail + Google Calendar MCP tersedia, tinggal `authenticate`. Langkah ubah-kelas DIBA.
+2. **Review #3** — output-style Proactive vs human-in-the-loop DIBA — belum disemak.
+3. **Telegram bridge** — belum wujud (takde bot token / script). Baki terakhir Phase 3. Calon: Zapier MCP.
+4. Ollama lokal PC opis — overdue 2 bulan.
+5. Uncommitted pre-existing vault: `scripts/ask-nemotron.js`, `.diba-models.json`, `conflict-files-obsidian-git.md` — bukan kerja sesi ni.
