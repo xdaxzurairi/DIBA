@@ -209,4 +209,11 @@ co
 **Kesan unjuran:** installed **65 → ~37**, canonical **46 → ~35**. Bilangan tepat selepas Abam run `scripts/spring-clean-batch2.sh`.
 
 ---
+
+## 2026-09-15 — Strip Moonshot/Kimi Hijack from Claude Code `settings.json`
+**Context**: Abam suspek VS Code/Claude Code setup tercemar — "restore old setup from claude" + "don't want Kimi model from Moonshot AI". Investigation jumpa punca: `~/.claude/settings.json` ada `env` block yang override `ANTHROPIC_BASE_URL` ke `https://api.moonshot.ai/anthropic`, dengan `ANTHROPIC_MODEL`/`ANTHROPIC_DEFAULT_OPUS_MODEL`/`ANTHROPIC_DEFAULT_SONNET_MODEL`/`ANTHROPIC_DEFAULT_FABLE_MODEL` = `kimi-k3[1m]`, `ANTHROPIC_DEFAULT_HAIKU_MODEL` = `kimi-k2.7-code`, `CLAUDE_CODE_SUBAGENT_MODEL` = `kimi-k3[1m]`, plus satu Moonshot API key tertanam plaintext. Ini hijack semua Claude Code CLI/VS Code-extension/SDK session ke Moonshot backend (bukan Anthropic betul) — Claude Desktop app sendiri (OAuth subscription) nampak tak terjejas sebab tak baca file env ni.
+**Decision**: Buang 8 key Moonshot-specific tu dari `env` block, kekalkan `CLAUDE_CODE_AUTO_COMPACT_WINDOW` + `CLAUDE_CODE_EFFORT_LEVEL` (unrelated, legit tuning). Tak sentuh `.claude.json`'s `clientDataCacheSlots` (`"model": "kimi-k3"` entries) — tu historical telemetry cache sahaja, bukan live config. Sengaja **tak auto-commit** (breach vigilant-commit norm) sebab repo ni track seluruh home directory termasuk `.ssh/` dan `.claude/.credentials.json` — commit/push kena confirm Abam dulu.
+**Rationale**: Punca hijack satu file je (env block dalam `settings.json`), bukan isu architectural — surgical removal cukup, tak perlu rebuild config dari kosong (takde backup `settings.json` pre-Moonshot; yang ada cuma `.claude.json.backup.*` yang tak relevant). Moonshot API key yang terdedah plaintext patut Abam revoke terus di Moonshot console — bukan tindakan AI boleh buat sebab perlu login pihak ketiga.
+
+---
 *Index: [[HOME|HOME]] · [[main/main-memory|main-memory]] · [[main/current-session|current-session]] · [[projects/active/ruangniaga|ruangniaga]] · [[projects/active/dibaref-saas|dibaref-saas]]*
