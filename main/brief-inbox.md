@@ -50,3 +50,14 @@
 > ⚠️ scheduled run failed (exit 1). Output:
 
 Failed to authenticate: OAuth session expired and could not be refreshed
+
+---
+
+## Morning Brief — 2026-09-15 12:55
+
+> ⚠️ scheduled run failed (exit 1). Output:
+
+⚠ claude.ai connectors are disabled because ANTHROPIC_API_KEY or another auth source is set and takes precedence over your claude.ai login · Unset it to load your organization's connectors
+[claude-code:unrecognized_model] {"model":"kimi-k2.7-code","query_source":"generate_session_title"}
+[claude-code:unrecognized_model] {"model":"kimi-k3[1m]","query_source":"sdk"}
+API Error: Request rejected (429) · Your account org-86faafe39e9548bf9473d168c928d7d0 <ak-fcmzydm6g63i11fp9i31> is suspended due to insufficient balance, please recharge your account or check your plan and billing details
