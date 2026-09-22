@@ -216,4 +216,16 @@ co
 **Rationale**: Punca hijack satu file je (env block dalam `settings.json`), bukan isu architectural — surgical removal cukup, tak perlu rebuild config dari kosong (takde backup `settings.json` pre-Moonshot; yang ada cuma `.claude.json.backup.*` yang tak relevant). Moonshot API key yang terdedah plaintext patut Abam revoke terus di Moonshot console — bukan tindakan AI boleh buat sebab perlu login pihak ketiga.
 
 ---
+
+## 2026-09-22 — Book Finder: Full Redesign Now to Match Agreed Mockup
+
+**Context**: Abam tanya kenapa `metadatabuku` (app "Book Finder") punya interface tak sama dgn artifact yg disetujui. Siasat jumpa canvas **"Book Finder · Mockup v2"** (Main/Mobile/Import, 2026-09-22) — build steps 1-9 sebelum ni implement logic sahaja atas Tailwind generic scaffold, tiada satu step pun untuk apply design.
+
+**Decision**: Tiga pilihan ditawar (AskUserQuestion) — full redesign sekarang / core visual sahaja / breakdown plan dulu. Abam pilih **full redesign sekarang**. Laksana penuh: sidebar nav + UI Bahasa Melayu + Fraunces/Plex fonts + warm palette + results grid dgn mobile card variant + import jadi view (ganti modal) + live term-classification chips — semua ikut mockup, business logic (search/dedup/filter/import/export) tak disentuh langsung.
+
+**Rationale**: Mockup v2 authoritative sebab paling lengkap (3 artboard, bukan preview tunggal) dan backend dah sedia utk ni — `RowTermBuilder.php`'s `status_label` values (Cari ikut ISBN / Tajuk + Penulis / ISBN tak sah) dan `app.js`'s lama `COLUMN_TYPE_OPTIONS` (Bawa ke eksport/Abaikan) **dah** dalam Bahasa Melayu sebelum redesign ni — confirm backend memang dibina expect design Melayu ni, bukan tekaan. Partial/core-visual-only ditolak sebab akan tinggalkan sidebar+import-view+mobile separuh siap, risiko kena buat dua kali.
+
+**Kesan**: Commit `5039f18`. Tak browser-verified (Claude-in-Chrome tak connect sesi ni) — Abam kena eyeball `localhost:8000` sendiri. Also jumpa fail `noxx` (kemungkinan Google Books API key tercicir) semasa git status pre-commit — bukan disentuh, flagged untuk Abam.
+
+---
 *Index: [[HOME|HOME]] · [[main/main-memory|main-memory]] · [[main/current-session|current-session]] · [[projects/active/ruangniaga|ruangniaga]] · [[projects/active/dibaref-saas|dibaref-saas]]*
