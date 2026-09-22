@@ -1,19 +1,15 @@
 # Current Session Recap
 
-**Tarikh:** 2026-09-22
-**Topik:** Book Finder (repo: `C:\Users\Administrator\metadatabuku\metadatabuku`) — frontend redesign to match agreed mockup
+**Tarikh:** 2026-09-23
+**Topik:** Book Finder (metadatabuku) — sesi panjang: redesign → backend hardening → real-data testing. Diary penuh di `daily-diary/current/2026-09-23.md`.
 
-**Koreksi penting:** Projek ni **BUKAN** "book-finder tak wujud" macam nota sesi awal hari ni. Folder sebenar bernama `metadatabuku`, bukan `book-finder` — nama app/README/artifact semua "Book Finder" tapi folder disk lain. Dah 9 build step siap sebelum sesi ni (ISBN recovery, search.php, Excel import/export, README). Jangan ulang carian "book-finder" — projek tu IALAH ni.
+**Ringkasan:** 6 build step (10-15) siap dalam satu sesi: interface redesign penuh, completion pass, search-limit widening, title+author fallback (+ fix bug InputParser lama), verify-then-refallback loop untuk recovered ISBN, dan 3 bug SEBENAR jumpa+fix bila diuji dgn fail Excel sebenar UiTM (column-mapping banner-row, title_author verification gap, sentinel "n/a" jadi nama penulis palsu). Projek didaftar LRU pos #1 (sebelum ni tak wujud dlm tracking — naming confusion "book-finder" vs folder sebenar "metadatabuku" diselesaikan).
 
-**Apa jadi:**
-- Abam tanya kenapa interface x macam artifact yg disetujui. Siasat: 2 artifact "Book Finder" wujud dalam gallery — yang authoritative ialah canvas **"Book Finder · Mockup v2"** (3 artboard: Main/Mobile/Import, dated 2026-09-22). Build sebelum ni guna generic Tailwind scaffold, tak pernah apply design tu — takde satu build-step pun untuk ini.
-- Abam pilih "Full redesign sekarang" (AskUserQuestion). Redesign penuh: sidebar nav (Carian/Import Excel/Sejarah+Tetapan inert), font Fraunces+IBM Plex Sans+Mono, palet warm paper/charcoal, UI penuh Bahasa Melayu, results jadi CSS-grid + mobile card variant + expand row, import jadi view (bukan modal) dgn column-mapping + stat tiles + status pills, live "Dikesan" term-classification chips.
-- Logic sedia ada (search/dedup/filter/import/export) **tak disentuh** — hanya app.js/render.js punya DOM-facing code ditulis semula. Verified: 110/110 backend test pass, live API smoke-test (curl ke search.php) match shape yang render.js jangka.
-- **TAK boleh browser-verify** — Claude-in-Chrome extension tak connect di mesin ni sesi ni (gap sama yang dicatat di build step 8 & 9 commit). Dev server (`php -S localhost:8000`) ditinggalkan running untuk Abam check sendiri.
-- Commit `5039f18` "Redesign frontend to match agreed mockup (build step 10)" — tak push (default rule).
-- **⚠️ Jumpa fail `noxx` di root repo** — kandungan nampak macam live Google Books API key (`AIzaSy...`), bukan saya cipta, punca tak diketahui. `.env` tak wujud lagi (`.env` ada dalam `.gitignore`). Bukan track dalam git, tak masuk commit. Abam kena semak: kalau ni key sebenar, pindah ke `.env` sebagai `GOOGLE_BOOKS_API_KEY=` dan buang `noxx`; kalau tak dikenali, anggap leaked → revoke di Google Cloud Console.
+**Status commit:** `cc7dbd0` = HEAD = `origin/main`, pushed. **SELESAI** — `c22b4f5` (leaked key) diamend keluar dari history (bukan sekadar file dibuang, tapi commit tu sendiri didrop sebab isi dia cuma noxx). 6 commit build step 10-15 di-cherry-pick semula ke history bersih, disahkan diff vs history lama cuma `noxx | 1 -` (tiada apa lain berubah), 110/110 test lepas, push fast-forward berjaya. Backup branch `backup-before-noxx-amend` (lokal sahaja, tak pernah push) kekal sebagai safety net. Rujuk `main/decisions.md` 2026-09-23 untuk detail penuh.
 
 **Follow-up terbuka:**
-- Abam kena buka `http://localhost:8000/public/index.html` sendiri untuk sah layout/font/mobile breakpoint sebelum anggap redesign ni 100% siap.
-- Fail `noxx` — belum diselesaikan, tunggu Abam.
-- Baki lama (penuh di `main/reminders.md`): Telegram bridge (Phase 3), Ollama lokal PC opis (overdue), eWorks e-signature (jangan sync prod).
+- ~~c22b4f5 leaked key~~ — **SELESAI 2026-09-23**.
+- `CONTACT_EMAIL` di `.env` masih placeholder `contact@example.com`.
+- WorldCat/OCLC institutional access — Zuex kena semak dgn perpustakaan UiTM sendiri (bukan tindakan DIBA).
+- Full 39-sheet/~7800-baris real-data run belum dijalankan.
+- Baki lama (penuh di `main/reminders.md`): Telegram bridge, Ollama lokal PC opis, eWorks e-signature (jangan sync prod).

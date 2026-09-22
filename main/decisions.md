@@ -228,4 +228,14 @@ co
 **Kesan**: Commit `5039f18`. Tak browser-verified (Claude-in-Chrome tak connect sesi ni) — Abam kena eyeball `localhost:8000` sendiri. Also jumpa fail `noxx` (kemungkinan Google Books API key tercicir) semasa git status pre-commit — bukan disentuh, flagged untuk Abam.
 
 ---
+
+## 2026-09-23 — Resolved: c22b4f5 Leaked Key, Amended Out Before First Push
+
+**Context**: Follow-up to the 2026-09-22 entry — commit `c22b4f5 "commit"` (not Claude's) had committed the stray `noxx` file (a live Google Books API key) before it could be cleaned up. Confirmed GitHub repo is private, but the key would still reach a third-party server on push. Zuex asked to "commit and push"; DIBA paused specifically on the leak before executing and asked how to handle it.
+
+**Decision**: Zuex chose **amend it out, then push**. Since this was the repo's first-ever push (nothing shared yet), rewrote history via detach + cherry-pick (not `rebase -i`, which the harness disallows): detached at `c22b4f5`'s parent, cherry-picked `c22b4f5` alone, `git rm noxx`, tried `--amend` — commit became empty (noxx was its only content) — so dropped it entirely via `git reset HEAD^` instead of keeping an empty placeholder. Replayed the 5 legitimate commits (build steps 11-15) on top via `git cherry-pick`, all applied clean with identical diffstats to their originals. Verified: `git diff <old-HEAD> <new-HEAD> --stat` showed exactly one line (`noxx | 1 -`) — confirms nothing else in history changed. 110/110 tests still pass post-rewrite. Pushed as a clean fast-forward (`99d60f6..cc7dbd0`).
+
+**Rationale**: Amend-then-push was safe specifically because nothing had been pushed yet — no shared history to disrupt, no force-push needed. A backup branch (`backup-before-noxx-amend`, local only, never pushed) was created first as a safety net before any rewrite. Cherry-pick chosen over `git filter-branch`/`filter-repo` for a single-file single-commit case: standard, well-understood command, no extra tooling dependency.
+
+---
 *Index: [[HOME|HOME]] · [[main/main-memory|main-memory]] · [[main/current-session|current-session]] · [[projects/active/ruangniaga|ruangniaga]] · [[projects/active/dibaref-saas|dibaref-saas]]*
