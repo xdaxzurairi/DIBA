@@ -6,8 +6,11 @@
 **Apa jadi:**
 - Abam minta mula Build order step 1 untuk projek `book-finder` (ISBN parser + author normalisation), rujuk CLAUDE.md spec projek tersebut.
 - Search penuh `C:\Users\Administrator` — folder `book-finder` **tak wujud**, tiada CLAUDE.md dengan seksyen "Build order" dijumpai di mana-mana.
-- Tanya Abam macam mana nak proceed (lokasi lain? create fresh + Abam bagi spec? create fresh + DIBA infer spec dari contoh dalam prompt sahaja?) — soalan di-reject, Abam balas "tamat".
+- Tanya Abam macam mana nak proceed — soalan di-reject, Abam balas "tamat".
 
 **Follow-up terbuka:**
-- **book-finder**: lokasi projek + kandungan CLAUDE.md sebenar (Build order penuh, full "Broken ISBNs seen" list, "Author normalisation" formats) masih tak diketahui. Jangan scaffold/tulis kod tanpa spec ni — risiko tak match keperluan sebenar.
-- Baki lama (penuh di `main/reminders.md`): Telegram bridge (Phase 3), Ollama lokal PC opis (overdue), L4 integrations (Gmail/Calendar MCP — tinggal authenticate), Review #3 (output-style Proactive vs human-in-the-loop).
+- **book-finder** (PALING PENTING): lokasi projek + kandungan CLAUDE.md sebenar (Build order penuh, full "Broken ISBNs seen" list, "Author normalisation" formats) masih tak diketahui. Jangan scaffold/tulis kod tanpa spec ni — risiko tak match keperluan sebenar.
+- Telegram bridge (Phase 3): pending
+- Ollama lokal PC opis: overdue — follow up atau drop
+- L4 integrations (Gmail/Calendar MCP): tinggal authenticate
+- Review #3 (output-style Proactive vs human-in-the-loop): pending
