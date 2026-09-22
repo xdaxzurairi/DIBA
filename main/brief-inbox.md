@@ -61,3 +61,11 @@ Failed to authenticate: OAuth session expired and could not be refreshed
 [claude-code:unrecognized_model] {"model":"kimi-k2.7-code","query_source":"generate_session_title"}
 [claude-code:unrecognized_model] {"model":"kimi-k3[1m]","query_source":"sdk"}
 API Error: Request rejected (429) · Your account org-86faafe39e9548bf9473d168c928d7d0 <ak-fcmzydm6g63i11fp9i31> is suspended due to insufficient balance, please recharge your account or check your plan and billing details
+
+---
+
+## Weekly Review — 2026-09-20 15:11
+
+> ⚠️ scheduled run failed (exit 1). Output:
+
+Your organization has disabled Claude subscription access for Claude Code · Use an Anthropic API key instead, or ask your admin to enable access
