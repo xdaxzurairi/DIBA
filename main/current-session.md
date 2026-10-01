@@ -1,15 +1,14 @@
 # Current Session Recap
 
-**Tarikh:** 2026-09-23
-**Topik:** Book Finder (metadatabuku) — sesi panjang: redesign → backend hardening → real-data testing. Diary penuh di `daily-diary/current/2026-09-23.md`.
+**Tarikh:** 2026-10-01
+**Topik:** Auto-diary EOD (scheduled) — tiada sesi kerja aktif. Last active work: metadatabuku 2026-09-23.
 
-**Ringkasan:** 6 build step (10-15) siap dalam satu sesi: interface redesign penuh, completion pass, search-limit widening, title+author fallback (+ fix bug InputParser lama), verify-then-refallback loop untuk recovered ISBN, dan 3 bug SEBENAR jumpa+fix bila diuji dgn fail Excel sebenar UiTM (column-mapping banner-row, title_author verification gap, sentinel "n/a" jadi nama penulis palsu). Projek didaftar LRU pos #1 (sebelum ni tak wujud dlm tracking — naming confusion "book-finder" vs folder sebenar "metadatabuku" diselesaikan).
+**Ringkasan:** Scheduled auto-diary task berjalan pada 22:48 MYT. Tiada kerja baru hari ini. Projek `metadatabuku` masih di status selesai dari sesi 2026-09-23 — 6 build step (10-15), leak fix (`c22b4f5` removed), 110/110 test pass, push bersih ke main.
 
-**Status commit:** `cc7dbd0` = HEAD = `origin/main`, pushed. **SELESAI** — `c22b4f5` (leaked key) diamend keluar dari history (bukan sekadar file dibuang, tapi commit tu sendiri didrop sebab isi dia cuma noxx). 6 commit build step 10-15 di-cherry-pick semula ke history bersih, disahkan diff vs history lama cuma `noxx | 1 -` (tiada apa lain berubah), 110/110 test lepas, push fast-forward berjaya. Backup branch `backup-before-noxx-amend` (lokal sahaja, tak pernah push) kekal sebagai safety net. Rujuk `main/decisions.md` 2026-09-23 untuk detail penuh.
+**Status commit (last known):** `cc7dbd0` = HEAD = `origin/main`, pushed 2026-09-23. Diary 2026-10-01 created via scheduler.
 
 **Follow-up terbuka:**
-- ~~c22b4f5 leaked key~~ — **SELESAI 2026-09-23**.
-- `CONTACT_EMAIL` di `.env` masih placeholder `contact@example.com`.
-- WorldCat/OCLC institutional access — Zuex kena semak dgn perpustakaan UiTM sendiri (bukan tindakan DIBA).
-- Full 39-sheet/~7800-baris real-data run belum dijalankan.
-- Baki lama (penuh di `main/reminders.md`): Telegram bridge, Ollama lokal PC opis, eWorks e-signature (jangan sync prod).
+- `CONTACT_EMAIL` di `.env` masih placeholder `contact@example.com`
+- WorldCat/OCLC institutional access — Zuex kena semak dgn perpustakaan UiTM sendiri
+- Full 39-sheet/~7800-baris real-data run belum dijalankan
+- Baki lama (penuh di `main/reminders.md`): Telegram bridge, Ollama lokal PC opis, eWorks e-signature (jangan sync prod)
