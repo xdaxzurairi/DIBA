@@ -2,13 +2,13 @@
 *Episod spesifik: miss → fix → outcome.*
 *Format: ## [YYYY-MM-DD] Title*
 
-## 2026-07-15 — Write Tool-Fail Berulang untuk Diary + Session Memory
+## ~~2026-07-15 — Write Tool-Fail Berulang untuk Diary + Session Memory~~ [dibatalkan 2026-10-01: Write tak pernah gagal — capture-signal lama tangkap kandungan Write yang BERJAYA sebagai tool-fail]
 - **Miss:** Write gagal dua kali berturut untuk `daily-diary/current/2026-07-15.md` dan `main/current-session.md`. Hook captured kedua-dua sebagai tool-fail.
 - **Fix:** Fail akhirnya berjaya ditulis (sesi selesai normal). Punca: hook menangkap preview/attempt pertama Write sebelum retry berjaya.
 - **Outcome:** Diary dan session memory tersimpan, tetapi buffer ada 2 entry tool-fail yang technically resolved.
 - **Lesson:** Tool-fail untuk Write pada fail yang baru dibuat (tiada pre-read) adalah expected — akan berjaya pada retry atau attempt seterusnya. Jangan panic bila buffer ada Write fails selagi fail akhirnya wujud.
 
-## 2026-07-16 — SDD Batch Write Fails Semasa Department Architecture Implementation
+## ~~2026-07-16 — SDD Batch Write Fails Semasa Department Architecture Implementation~~ [dibatalkan 2026-10-01: sama — tiada Write gagal, semua entri false positive capture-signal]
 - **Miss:** Semasa SDD execution (15 tasks), pelbagai Write tool-fails berlaku — implementation plan, skill-manifest.json, dev-head/skill.md, legal-head/skill.md, contract-reviewer/skill.md, laporan subagent. Semua captured sebagai tool-fail dalam signal buffer.
 - **Fix:** Semua fail akhirnya berjaya dicipta dan implementation selesai (8 commits, finishing-a-development-branch verify). Pattern: subagent Write fails pada attempt pertama, berjaya pada attempt kedua tanpa intervention.
 - **Outcome:** Implementation lengkap, 60 skills tagged, 9 dept heads, 6 skills baru — semua committed dan pushed.
@@ -41,5 +41,6 @@
 ## 2026-07-21 — Large Agent Output Captured sebagai tool-fail (False Positive)
 - **Miss:** `capture-signal.js` captured output Agent explore yang berjaya sebagai `tool-fail` dalam signal-buffer.
 - **Fix:** Tiada fix diperlukan — ini false positive. Output Agent yang besar kadang trigger regex check dalam capture-signal.js walaupun operation berjaya.
+- **Selesai 2026-10-01:** punca sebenar dibaiki — capture-signal kini jalan pada PostToolUseFailure sahaja (tiada regex atas output berjaya).
 - **Outcome:** Buffer ada noise entry tapi ia tidak mengganggu operasi.
 - **Lesson:** Agent tool output boleh jadi false positive dalam signal-buffer. Verify dengan actual output/artifact, bukan buffer entry sahaja.

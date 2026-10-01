@@ -8,12 +8,12 @@
 - **Fact:** Untuk realtime events, guna webhook — bukan API polling
 
 ## [2026-07-16] ADODB+MSSQL — FETCH_NUM bukan FETCH_ASSOC
-- **Source:** tool-fail dari DIBA (Write capture)
+- **Source:** tool-fail dari DIBA (Write capture) — ⚠️ sumber tak sah (false positive capture-signal, 2026-10-01); fakta belum disahkan, verify sebelum guna
 - **Context:** Bekerja dengan ADODB pada MSSQL server — query return column names dalam case yang tidak konsisten
 - **Fact:** ADODB+MSSQL memulangkan nama kolum dalam case yang tidak dijamin (uppercase/lowercase bergantung driver). Guna FETCH_NUM untuk elak case mismatch.
 
 ## [2026-07-21] Ruflo Memory Import — JSON Format Mesti Wrapper Object
-- **Source:** tool-fail dari DIBA (ruflo integration)
+- **Source:** tool-fail dari DIBA (ruflo integration) — ⚠️ entri tool-fail asal mungkin false positive (2026-10-01); simptom "Entries: 0" kelihatan pemerhatian sebenar, sahkan semula pada ruflo 3.49
 - **Context:** `ruflo memory import -i batch.json` gagal dengan "Entries: 0" bila JSON adalah raw array
 - **Fact:** `ruflo memory import` mesti format `{ "entries": [...] }` sebagai wrapper object, bukan raw array `[...]`. Tanpa wrapper, ruflo parse 0 entries.
 

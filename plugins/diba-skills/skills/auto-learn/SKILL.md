@@ -33,6 +33,18 @@ Bila skill ini aktif, proses `main/signal-buffer.md` sepenuhnya — jangan tingg
 - [ ] Baca `main/signal-buffer.md` — format baris: `| [timestamp] | [type] | [raw signal] |`
 - [ ] Kosong → laporkan ringkas, stop di sini
 
+### Step 1.5: Signal Validation Gate (Lv.5)
+Buffer ditulis oleh hook automatik — jangan percaya bulat-bulat. Tapis dahulu, laporkan bilangan yang dibuang:
+
+| Signal | Lulus jika | Buang jika |
+|---|---|---|
+| `tool-fail` | Mesej rupa ralat sebenar (exit code, stack trace, "not found", permission) | Mesej rupa **kandungan fail/output** (`Write: <?php …`, `Grep: file.php-12- …`, `Agent: Now let me …`) — itu tool berjaya yang tersalah tangkap (bug capture-signal sebelum 2026-10-01) |
+| `tool-fail` (tunggal) | Berulang 2+ kali atau ada konteks sokongan | Satu kejadian tanpa konteks → simpan sebagai pemerhatian, **jangan** jadikan rule |
+| `new-folder` | Folder belum pernah diproses | Pendua path yang sama → gabung jadi satu; proses ikut bahagian *Absorbed → auto-learn-new-folder* di bawah, bukan facts/rules |
+| `correction` / setuju Abam | Sentiasa lulus — signal paling bernilai | — |
+
+**Retraction:** Bila signal terbukti palsu, cari entri dalam `library/learned/*.md` dan `learned-index.md` yang menyebut sumber sama → tanda `~~dibatalkan~~ [tarikh, sebab]` dan laporkan kepada Abam sebelum padam terus.
+
 ### Step 2: Klasifikasi Setiap Signal
 Untuk setiap baris, tentukan destinasi:
 
@@ -74,6 +86,7 @@ learned-index.md: [baris semasa]/80
 3. **Index ada had ketat 80 baris** — pointer sahaja, bukan dump kandungan
 4. **Jangan clear buffer sebelum confirm tulis berjaya**
 5. **Buffer kosong ≠ error** — laporkan terus, jangan reka signal
+6. **Validate sebelum learn** — setiap signal lalu Step 1.5; lesson dari signal hook automatik tanpa bukti ralat sebenar = pencemaran memori
 
 ---
 
@@ -102,3 +115,4 @@ Skill ni sekarang pusat **semua pembelajaran DIBA** — proses signal, instinct,
 - **Lv.2** — Proactive Mid-Session Flush: bila signal-buffer capai ambang (~15 baris) sebelum eod, auto-tawar proses awal, bukan tunggu explicit trigger. (Origin: 2026-07-31 — upskill batch Lv1-3→Lv4, arahan Abam)
 - **Lv.3** — Cross-Reference Dedup: semak rules.md/facts.md/cases.md merentas ketiga fail (bukan hanya fail sasaran) untuk elak overlap/kontradiksi antara kategori. (Origin: 2026-07-31 — upskill batch Lv1-3→Lv4, arahan Abam)
 - **Lv.4** — Forge-Skill Bridge (dua-hala): pattern rules.md berulang 3+ kali auto-trigger cadangan `forge-skill`, bukan hanya rujukan pasif dalam Integrasi table. (Origin: 2026-07-31 — upskill batch Lv1-3→Lv4, arahan Abam)
+- **Lv.5** — Signal Validation Gate + Retraction: tapis tool-fail palsu (kandungan fail tersalah tangkap), gabung new-folder pendua, tool-fail tunggal tak jadi rule; tanda `~~dibatalkan~~` lesson yang lahir dari signal palsu. (Origin: 2026-10-01 — audit jumpa 217 tool-fail palsu dari capture-signal lama + 412 new-folder (25 unik) dari git-monitor; cases.md/facts.md dah tercemar)
