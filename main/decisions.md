@@ -250,4 +250,14 @@ co
 **Kesan**: Commit `5a560a4` (hanya `getComplaints()` CUTI fix — `getComplaintById()` masih ada bug lama, flagged dalam commit message). Tak push (never auto-push). Scratchpad ada script sync (`sync_calendar_prod_to_dev.php`, `insert_calendar_into_dev.php`) kalau DEV CALENDAR kena refresh lagi di masa depan — guna pattern split read/write yang sama, jangan gabung balik.
 
 ---
+
+## 2026-10-13 — UAT e-Aduan v3: Interactive Artifact + Repo Doc (Not Word), All-Modules-Open for PDF Safety
+
+**Context**: Abam minta UAT rasmi penuh untuk ea_newv3 (2026-10-12), kemudian dwibahasa (BM/EN), kemudian hitam & putih + format PDF + pilihan jawapan checkbox (2026-10-13).
+
+**Decision**: (1) Guna Artifact (HTML interaktif, claude.ai) + `docs/*.md` repo sebagai dua bentuk utama — bukan `.docx` — sebab tiada Claude Docs connector disambung dalam sesi CLI ni, dan projek dah ada konvensyen `docs/*.md` sedia ada (SYSTEM-OVERVIEW, FLOW-ADUAN, CHECKLIST). (2) Status penjejakan kes ujian kekal `localStorage` per-pelayar sahaja (deraf peribadi) — bukan shared `db`/`room` capability Artifact walaupun tersedia dan nampak berguna untuk multi-penguji. (3) Bila diminta PDF, tukar semua 10 modul `<details>` kepada `open:true` lalai (bukan hanya modul 1 + harap event `beforeprint` fire semasa headless `--print-to-pdf`).
+
+**Rationale**: `.docx` dielakkan eksplisit oleh panduan Artifact tool sendiri melainkan diminta khusus; repo markdown lebih sesuai dengan konvensyen dokumentasi projek sedia ada dan version-controlled percuma. Shared live-tracking (capability `db`) ialah kerumitan *sebenar* untuk faedah yang Abam tak minta secara eksplisit — dokumen formal akhirnya kena dicetak & ditandatangan secara fizikal (satu rekod rasmi), bukan app live bersama; "selesaikan simple dulu, tambah kerumitan bila ada nilai sebenar" (CLAUDE.md Global Rule #7). All-modules-open untuk PDF disahkan perlu sebab tiada cara mudah verify visual (poppler/`pdftoppm` tak installed) — risiko senyap (kandungan hilang tanpa sebarang ralat) terlalu tinggi untuk bergantung pada andaian event yang tak disahkan; disahkan selepas tukar dengan baca struktur `/Pages /Kids` PDF terus (8 muka surat, saiz stream `/Contents` menaik pada muka surat lewat = kandungan 60 kes sebenar ada, bukan terpotong).
+
+---
 *Index: [[HOME|HOME]] · [[main/main-memory|main-memory]] · [[main/current-session|current-session]] · [[projects/active/ruangniaga|ruangniaga]] · [[projects/active/dibaref-saas|dibaref-saas]]*

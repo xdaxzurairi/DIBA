@@ -5,7 +5,7 @@
 
 | Pos | Project | Last Updated | Status |
 |-----|---------|--------------|--------|
-| 1 | **[ea_newv3 (e-Aduan v3)](./active/ea_newv3/diary/2026-09-30.md)** | 2026-09-30 | 🟢 Active |
+| 1 | **[ea_newv3 (e-Aduan v3)](./active/ea_newv3/diary/2026-10-13.md)** | 2026-10-13 | 🟢 Active |
 | 2 | **[BFMwebsite](./active/bfmwebsite/index.md)** | 2026-09-29 | 🟢 Active |
 | 3 | **[Book Finder (metadatabuku)](./active/metadatabuku/index.md)** | 2026-09-23 | 🟢 Active |
 | 4 | **[ScoutOps](./active/scoutops/index.md)** | 2026-09-15 | 🟢 Active |
@@ -20,4 +20,5 @@
 ---
 ## System Status
 - **Total Projects**: 7 (7 active + 0 archived)
-- **Last Updated**: 2026-09-30 — ea_newv3 naik ke LRU pos #1 (audit keselamatan, OTP e-mel, MinIO, tutup pendedahan .env). Digabung dengan remote: Book Finder (metadatabuku) pos #3 (2026-09-23), ScoutOps dikemas kini 2026-09-15.
+- **Last Updated**: 2026-10-13 — ea_newv3 pos #1 kekal (UAT penuh 60 kes/10 modul → dwibahasa → hitam&putih/checkbox/PDF). Baris lain belum disemak sesi ni (lihat tarikh masing-masing).
+- 2026-09-30 — ea_newv3 naik ke LRU pos #1 (audit keselamatan, OTP e-mel, MinIO, tutup pendedahan .env). Digabung dengan remote: Book Finder (metadatabuku) pos #3 (2026-09-23), ScoutOps dikemas kini 2026-09-15.
