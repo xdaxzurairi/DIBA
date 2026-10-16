@@ -67,10 +67,3 @@ if [ ! -f "$TODAY_FILE" ]; then
 else
     echo "DIBA: diary ready — $(basename "$TODAY_FILE")"
 fi
-
-# Ruflo memory sync (background, jangan block session start)
-XDIBAX_DIR="C:/Users/BSM/XDIBAX"
-if command -v ruflo &>/dev/null && [ -f "$XDIBAX_DIR/.claude-flow/hooks/memory-sync.js" ]; then
-    node "$XDIBAX_DIR/.claude-flow/hooks/memory-sync.js" &>/dev/null &
-    echo "DIBA: ruflo memory sync started (background)"
-fi
