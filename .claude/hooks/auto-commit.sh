@@ -28,10 +28,36 @@ case "$file_path_norm" in
 esac
 
 cd "$DIBA_DIR" || exit 0
-git add "$file_path_norm" 2>/dev/null
+
+# .git/index.lock gets grabbed by another tool watching this same working
+# tree (most likely Obsidian's git-sync plugin, since this vault is also
+# opened in Obsidian) — and has been observed sitting abandoned for minutes
+# with no process actually holding it (a crashed/killed sync, not real
+# contention). Wait briefly for a genuinely in-progress lock to clear; once
+# it's older than 10s, treat it as stale and clear it ourselves rather than
+# silently dropping the commit.
+git_retry() {
+    local tries=10 lock="$DIBA_DIR/.git/index.lock" age now mtime
+    while [ "$tries" -gt 0 ]; do
+        if timeout 5 "$@" 2>/dev/null; then return 0; fi
+        [ -f "$lock" ] || return 1
+        now=$(date +%s)
+        mtime=$(stat -c %Y "$lock" 2>/dev/null || echo "$now")
+        age=$((now - mtime))
+        if [ "$age" -ge 10 ]; then
+            rm -f "$lock" 2>/dev/null
+        else
+            sleep 0.5
+        fi
+        tries=$((tries - 1))
+    done
+    return 1
+}
+
+git_retry git add "$file_path_norm"
 if [ -n "$(git diff --cached --name-only 2>/dev/null)" ]; then
     short_name=$(basename "$file_path_norm")
     timestamp=$(date '+%Y-%m-%d %H:%M')
-    git commit -m "diba: auto-save $short_name ($timestamp)" --no-verify >/dev/null 2>&1
+    git_retry git commit -m "diba: auto-save $short_name ($timestamp)" --no-verify >/dev/null
 fi
 exit 0
