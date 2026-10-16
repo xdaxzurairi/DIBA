@@ -274,4 +274,11 @@ co
 **Rationale**: Pengajaran: pipe-test hook kena guna format input SEBENAR dari harness (file_path Windows-style dari tool_input, bukan format yang skrip sendiri compute), bukan format yang "sepatutnya" betul. Satu assumption yang tak disahkan (posix vs Windows path form) boleh buat satu hook "nampak lulus test" tapi gagal 100% dalam penggunaan sebenar — kena verify end-to-end dengan data sebenar, bukan data yang confirm bias sendiri.
 
 ---
+
+## 2026-10-16 — auto-commit.sh: bug KEDUA jumpa semasa live-fire test (double-slash)
+**Context**: Fix pertama (`\` → `/` per-char) masih tak cukup — JSON escape backslash sebagai `\\` (dua aksara), jadi gantian per-aksara tukar `\\` jadi `//` (double forward-slash), bukan `/` tunggal. Pattern case `$DIBA_DIR_WIN/main/*` (single-slash) tak match `C://Users//.../main/*` (double-slash). Jumpa bila live-fire test (bukan pipe-test manual) guna sentinel (`tee stdin ke /tmp` + trigger Edit sebenar via harness) — payload captured tunjuk file_path betul, tapi git status lepas tu still `??` (tak ter-add). Kesilapan dikesan sebab test "clean file" + "tak match" bagi output IDENTIK (exit 0, tiada commit) — tak cukup discriminative.
+**Decision**: Ganti gantian per-aksara dengan `tr -s '\\' '/'` (squeeze run backslash jadi SATU forward-slash). Disahkan dengan raw captured JSON payload sebenar (`/tmp/claude-hook-input.json` dari harness betul-betul, bukan payload craft sendiri) → match + `git add` + auto-commit `d0602bf diba: auto-save .hook-verify-test.md` jadi SEBENAR. Settings.json debug wrapper (`tee`) direvert balik ke command asal lepas confirm.
+**Rationale**: Live-fire end-to-end test (Write/Edit sebenar → tunggu git log) adalah SATU-SATUNYA cara nampak bug ni — static review + pipe-test guna payload craft sendiri dua-dua "lulus" walaupun hook betul-betul rosak. Untuk hook yang critical (auto-commit, auto-save), verification protocol kena sampai ke git log sebenar, bukan berhenti di "exit code 0 + tiada error".
+
+---
 *Index: [[HOME|HOME]] · [[main/main-memory|main-memory]] · [[main/current-session|current-session]] · [[projects/active/ruangniaga|ruangniaga]] · [[projects/active/dibaref-saas|dibaref-saas]]*
