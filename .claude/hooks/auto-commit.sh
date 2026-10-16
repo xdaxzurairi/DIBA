@@ -10,7 +10,12 @@ DIBA_DIR_WIN="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd -W 2>/dev/null 
 input=$(cat 2>/dev/null || true)
 [ -n "$input" ] || exit 0
 
-file_path=$(printf '%s' "$input" | sed -n 's/.*"file_path"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' | head -1)
+# Anchored to "tool_input":{"file_path":" specifically (not just any
+# "file_path" occurrence) — a bare match can land inside tool_response's
+# embedded diff/originalFile text instead, e.g. when the edited file's own
+# content mentions file_path (as this hook's commit history now does),
+# producing a garbled commit message from unrelated diff text.
+file_path=$(printf '%s' "$input" | sed -n 's/.*"tool_input":{"file_path":"\([^"]*\)".*/\1/p' | head -1)
 [ -n "$file_path" ] || exit 0
 
 # Claude Code reports file_path in native Windows form, JSON-escaped
