@@ -122,6 +122,8 @@ After completing ANY task, the AI automatically:
 | **No git repository** | Inform user: "No git repository found in this directory" |
 | **Multiple logical changes** | Split into separate commits for clean history |
 | **User says "undo last commit"** | Guide user with `git reset --soft HEAD~1` (keep changes staged) |
+| **PostToolUse auto-commit hook silently does nothing** | Check for a Windows-vs-posix path mismatch in `auto-commit.sh`'s `$DIBA_DIR` comparison — `tool_input.file_path` arrives in native Windows form (`C:\Users\...`), not git-bash's posix `pwd` form. Verify with a live Write/Edit + `git log`, not just a pipe-test with a self-crafted payload (a crafted payload can accidentally match the format the script expects instead of what the harness actually sends). |
+| **Hook's git add/commit silently fails, no error surfaced** | Check `.git/index.lock` — another tool working the same folder (e.g. Obsidian's git-sync plugin if the repo is also an open vault) can hold or abandon it. A lock older than ~10s with no owning process (`Get-Process`) is stale — clear it, don't just wait. The hook's own stderr redirect to `/dev/null` hides this, so check the lock file directly when commits mysteriously stop. |
 
 ### Submodule Awareness (Lv.4)
 
@@ -156,3 +158,4 @@ Track commit consistency:
 - **Lv.5** — Scope Guard: detect multi-concern commits, cadang split. (Origin: 2026-06-12)
 - **Lv.6** — Streak Tracking: commit consistency tracking + nudge + War Room integration. (Origin: 2026-06-12)
 - **Lv.7** — Vault Auto-Sync: DIBA vault auto-pushes to `origin` at session-end (best-effort, silent-fail, retry). Supersedes the blanket "never auto-push" for the vault only; code repos unchanged. (Origin: 2026-09-10 — DIBA ↔ Claude Code feature alignment; vault was 12 commits / 3 weeks unpushed)
+- **Lv.8** — Hook Reliability Hardening: `auto-commit.sh`/`session-end.sh` had silently committed nothing for ~2 months (Windows vs. posix path mismatch in the in-scope check — fixed with normalization + a Windows-form `$DIBA_DIR_WIN`), plus a `.git/index.lock` contention issue with Obsidian's git-sync plugin running against the same vault folder (fixed with stale-lock age detection + force-clear past 10s). Caught only by live-fire testing through the real harness, not pipe-tests with self-crafted payloads — see new Edge Cases rows above. (Origin: 2026-10-16/17 — `/update-config` session; full technical trail in `main/decisions.md`)
