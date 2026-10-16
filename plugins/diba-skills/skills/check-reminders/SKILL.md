@@ -72,6 +72,7 @@ When this skill activates, silently read `main/reminders.md`.
 | Multiple urgent items | Mention the most time-sensitive first |
 | Vague deadline ("soon") | Ask user to clarify, or save without deadline |
 | Duplicate reminder | Check existing Open items before adding; skip if duplicate |
+| Reminder text shows mojibake (`—`/`→` garbled, e.g. `�?"`) | The `UserPromptSubmit` hook (`memory-inject.ps1`) reads `main/reminders.md` with Windows PowerShell's default codepage, which mangles non-ASCII em-dashes/arrows in BOM-less UTF-8 files. Fix: `Get-Content -Encoding UTF8` + `[Console]::OutputEncoding = [System.Text.Encoding]::UTF8` in the hook, not in reminders.md itself. |
 
 ### Session Start — Follow-up Scan (Lv.2)
 
@@ -84,3 +85,4 @@ Pada session start (bersama briefing), baca `main/current-session.md`:
 - **Lv.2** -- Follow-up Scan: surface follow-up dari `current-session.md` pada session start. (Origin: 2026-05-22 — naikkan skill batch)
 - **Lv.3** -- Mid-Session Match: bukan hanya session start/end, kesan bila topik perbualan semasa match reminder terbuka dan surface on-the-fly. (Origin: 2026-07-31 — upskill batch Lv1-3→Lv4, arahan Abam)
 - **Lv.4** -- Weekly-Review Bridge: reminder overdue lama (14+ hari) auto-flag ke `weekly-review` STALLED audit tanpa Abam perlu run audit manual. (Origin: 2026-07-31 — upskill batch Lv1-3→Lv4, arahan Abam)
+- **Lv.5** -- Encoding Fix: `UserPromptSubmit` hook (`memory-inject.ps1`) yang surface Open reminders setiap prompt dah mangle em-dash/arrow sejak sekian lama (Windows PowerShell default codepage, bukan UTF-8) — nampak dalam reminder paling awal sesi 2026-10-16/17. Fixed kat hook, bukan kat data. (Origin: 2026-10-16/17 — `/update-config` session; full trail `main/decisions.md`)

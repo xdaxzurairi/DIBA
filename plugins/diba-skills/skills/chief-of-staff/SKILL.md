@@ -133,6 +133,7 @@ Satu pemilik untuk SEMUA brief — backward + forward:
 
 ### Auto session-start (sebelum respons pertama)
 1. Baca `main/current-session.md` — recap sesi lepas (1–2 baris) + follow-up terbuka
+   - ⚠ Ambil baris **`**Topik:**`**, bukan baris pertama fail (heading `# Current Session Recap` statik, bukan recap sebenar) — lihat Lv.8
 2. Baca `main/reminders.md` — kira Open items (skip jika kosong)
 3. Baca `projects/registry.md` — match workspace semasa; sebut projek jika jumpa
 4. Semak `daily-diary/current/*-fallback.md` terkini — catch-up Nemotron/local session jika ada
@@ -160,3 +161,4 @@ Time-aware: malam lewat + sesi panjang → selit nota rehat ringkas. "Brief penu
 - **Lv.5** — Evidence-Based Metrics: weekly review dari git log + diary + usage data. (Origin: 2026-07-04)
 - **Lv.6** — Limit-Aware Ops & EOD Gate: pre-limit handoff duty, EOD verify gate, discipline chain. (Origin: 2026-07-04)
 - **Lv.7** — Session-Start Brief & Greet Recall: absorb skill `session-briefing` (Lv.6 — recap, registry match, decision context, priority suggest) + greet mini-brief dari auto-idle-save-recall. Satu skill memiliki seluruh permukaan brief. (Origin: 2026-07-04 — konsolidasi arahan Abam, "skill redundant satukan")
+- **Lv.8** — Recap Extraction Fix: `UserPromptSubmit` hook (`memory-inject.ps1`) yang bekalkan "recap sesi lepas" rosak — ambil baris non-blank PERTAMA fail `current-session.md`, yang sentiasa heading statik `# Current Session Recap`, bukan topik sebenar. Setiap brief sesi (sejak hook ni wujud) dapat recap kosong/salah tanpa disedari. Fixed: skip baris `^#`, ambil baris `**Topik:**` khusus. (Origin: 2026-10-16/17 — `/update-config` session; full trail `main/decisions.md`)
