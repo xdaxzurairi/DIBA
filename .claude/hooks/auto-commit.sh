@@ -13,10 +13,12 @@ input=$(cat 2>/dev/null || true)
 file_path=$(printf '%s' "$input" | sed -n 's/.*"file_path"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' | head -1)
 [ -n "$file_path" ] || exit 0
 
-# Claude Code reports file_path in native Windows form (backslashes, e.g.
-# C:\Users\...), not git-bash's posix $DIBA_DIR (/c/Users/...) — normalize
-# slashes and match against both forms so the case below actually matches.
-file_path_norm="${file_path//\\//}"
+# Claude Code reports file_path in native Windows form, JSON-escaped
+# (C:\\Users\\... in the raw payload = C:\Users\... on disk), not git-bash's
+# posix $DIBA_DIR (/c/Users/...). A naive backslash->slash swap leaves the
+# doubled backslashes as doubled slashes (C://Users//...), which still
+# fails to match — collapse any run of backslashes to one forward slash.
+file_path_norm=$(printf '%s' "$file_path" | tr -s '\\' '/')
 
 # Only commit files inside DIBA memory dirs
 case "$file_path_norm" in
