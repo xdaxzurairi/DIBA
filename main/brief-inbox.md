@@ -69,3 +69,28 @@ API Error: Request rejected (429) · Your account org-86faafe39e9548bf9473d168c9
 > ⚠️ scheduled run failed (exit 1). Output:
 
 Your organization has disabled Claude subscription access for Claude Code · Use an Anthropic API key instead, or ask your admin to enable access
+
+---
+
+## Morning Brief — 2026-10-17 21:14
+
+**DIBA Morning Brief, Sabtu 2026-10-17**
+
+**Last session (2026-10-13):** ea_newv3 (e-Aduan v3) UAT. 60 cases across 10 modules, bilingual BM/EN, now black-and-white with checkboxes. `docs/UAT-ea_newv3.pdf` is 8 pages. Repo HEAD is `e476e62` and is not pushed.
+
+**Gap:** `current-session.md` stops at 10-13. The 10-16 and 10-17 diaries are empty headers, so I can't recap work from 10-14 to 10-17.
+
+**Urgent or overdue:**
+- **Overdue since 2026-07-07:** set up Ollama and `qwen2.5:3b` on the PC opis, then test `node scripts/diba-fallback-chat.js`. It matters because the scheduled brief has been failing.
+- **Scheduled brief is broken.** `main/brief-inbox.md` shows the last runs failing with exit 1. One error is a 429 "account suspended, insufficient balance". Another is "org has disabled Claude subscription access". `ANTHROPIC_API_KEY` is overriding the claude.ai login. Check which auth source `scripts/scheduled-brief.sh` uses.
+- **Telegram bridge** is still missing: no bot token, and `send-diary-telegram.js` isn't in the repo.
+- **eWorks e-signature:** do not sync prod.
+
+**Active projects (7/10):**
+- ea_newv3 is active at #1. BFMwebsite, Book Finder and ScoutOps are active.
+- Portal FMS, eWorks and ruangniaga are stale. ruangniaga hasn't been touched since 2026-05-14.
+
+**Focus today:**
+1. Before the real UAT, confirm the UAT environment URL with IT (`10.0.36.127` or `fmsdev.uitm.edu.my`) and fill in the Section 6.0 schedule dates.
+2. Fix the scheduled-brief auth so the 8am run works.
+3. The vault has uncommitted changes in 6 skill files and `scripts/ask-nemotron.js`. Review them and commit, or discard.
