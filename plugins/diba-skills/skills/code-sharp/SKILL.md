@@ -111,7 +111,7 @@ Standard tambahan ikut stack sebenar Abam:
 
 Sebelum edit merentas fail:
 - [ ] Grep semua caller/includer fail yang diubah (`grep -rn "nama_fungsi\|nama_fail"`)
-- [ ] Projek besar → query `project-map` (reverse dependency) ganti grep buta
+- [ ] Projek besar → query `repo-pack` map-only mode (reverse dependency) ganti grep buta
 - [ ] Senarai terkesan > 3 fail → report blast radius kepada Abam SEBELUM edit
 - [ ] Fungsi shared diubah → verify sekurang-kurangnya 1 caller selepas edit
 
@@ -156,7 +156,8 @@ Selepas verify pass → chain `auto-commit`; kod signifikan → chain `save-diar
 ## Level History
 - **Lv.1** — Base: pre-code checklist, minimum-impact principle, verify gate, drift table, API contract guard, mandatory rules. (Origin: 2026-06-08 — gap analysis audit skill DIBA)
 - **Lv.2** — Stack Presets: piawaian PHP procedural/MySQL/PWA/Supabase ikut projek sebenar Abam. (Origin: 2026-07-04 — batch upgrade Lv.6, arahan Abam)
-- **Lv.3** — Blast Radius: caller check wajib sebelum edit merentas fail; chain project-map. (Origin: 2026-07-04)
+- **Lv.3** — Blast Radius: caller check wajib sebelum edit merentas fail; chain repo-pack (map-only mode). (Origin: 2026-07-04)
 - **Lv.4** — Security Pass: sanitize/auth/credential check auto pada kod baru; report isu luar scope. (Origin: 2026-07-04)
 - **Lv.5** — Diff Discipline: satu problem satu diff, self-review, strip luar scope. (Origin: 2026-07-04)
 - **Lv.6** — Verify Matrix: verification spesifik ikut jenis perubahan + chain auto-commit/save-diary. (Origin: 2026-07-04)
+- **Lv.7** — Stale Reference Fix: dua rujukan `project-map` (skill ni dah diserap ke `repo-pack` map-only mode sejak spring-clean 2026-09-10) dikemas. Dikesan via health-check mekanikal, bukan incident sebenar. (Origin: 2026-10-17 — bulk audit selepas `/update-config` session)

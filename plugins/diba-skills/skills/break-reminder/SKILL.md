@@ -65,4 +65,5 @@ Contoh ayat:
 - **Lv.1** — Base: wellness trigger, script BM, mini checklist, safety tone.
 - **Lv.2** — Session Aware: jika `current-session.md` ada follow-up kritikal, ingatkan "satu task kecil" selepas rehat, bukan task berat. (Origin: 2026-05-22 — naikkan skill batch)
 - **Lv.3** — Signal Detection: auto-kesan tanda keletihan dari nada mesej/sesi panjang berterusan tanpa Abam explicitly minta diingatkan, tawar rehat proaktif. (Origin: 2026-07-31 — upskill batch Lv1-3→Lv4, arahan Abam)
-- **Lv.4** — Deep Work Sync: rehat align dengan `deep-work` shutdown ritual/focus session log, elak break memotong blok deep work di tengah sesi. (Origin: 2026-07-31 — upskill batch Lv1-3→Lv4, arahan Abam)
+- **Lv.4** — Deep Work Sync: rehat align dengan `chief-of-staff` shutdown ritual/focus session log, elak break memotong blok deep work di tengah sesi. (Origin: 2026-07-31 — upskill batch Lv1-3→Lv4, arahan Abam)
+- **Lv.5** — Stale Reference Fix: rujukan `deep-work` (diserap masuk `chief-of-staff` sejak spring-clean 2026-09-10) dikemas. Dikesan via health-check mekanikal, bukan incident sebenar. (Origin: 2026-10-17 — bulk audit selepas `/update-config` session)

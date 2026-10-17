@@ -52,7 +52,7 @@ Prompt cache: read ~10% harga input; cache write ~125%. FX lalai: **1 USD ≈ 4.
 ### Step 1: Gather
 - [ ] Anggar token sesi: input (fail dibaca + prompt) + output (respons)
 - [ ] Estimasi: ~1 token / 4 aksara, atau ~0.75 token / perkataan
-- [ ] Kenal pasti model digunakan (chain `smart-effort` tier jika ada)
+- [ ] Kenal pasti model digunakan (chain `diba-response` effort tier jika ada)
 - [ ] Kira tool call count sebagai proksi keamatan
 
 ### Step 2: Compute Cost
@@ -71,7 +71,7 @@ Prompt cache: read ~10% harga input; cache write ~125%. FX lalai: **1 USD ≈ 4.
 ```
 Usage — [sesi/tempoh]
 ────────────────────
-Model:   [model]  (tier: [smart-effort])
+Model:   [model]  (tier: [effort level])
 Tokens:  in ~[N] · out ~[N]  (tool calls: [N])
 Kos:     ~$[USD]  (~RM[MYR])
 Tempoh:  hari ini RM[X] · bulan ini RM[Y]
@@ -82,9 +82,9 @@ Kesan pola mahal & cadang jimat:
 
 | Pola | Kesan | Cadangan |
 |------|-------|----------|
-| Baca fail besar berulang | Input token tinggi | Chain `project-map` / targeted read |
+| Baca fail besar berulang | Input token tinggi | Chain `repo-pack` map-only / targeted read |
 | Output panjang berulang | Output token tinggi (5× input!) | Chain `token-guard` compact |
-| Model berat untuk task ringan | Kos 5–15× | Chain `smart-effort` → haiku |
+| Model berat untuk task ringan | Kos 5–15× | Chain `diba-response` effort tier → haiku |
 | Tiada cache reuse | Bayar penuh input | Kekalkan konteks stabil |
 
 ### Step 6: Confirm
@@ -121,9 +121,9 @@ Kesan pola mahal & cadang jimat:
 
 | Skill | Bila | Tindakan |
 |-------|------|----------|
-| `smart-effort` | Setiap sesi | Tier model = input untuk pengiraan kos |
+| `diba-response` | Setiap sesi | Tier effort model = input untuk pengiraan kos |
 | `token-guard` | Usage tinggi dikesan | Cadang compact mode untuk potong output token |
-| `project-map` | Baca fail berulang mahal | Ganti dengan query map |
+| `repo-pack` | Baca fail berulang mahal | Ganti dengan query map-only mode |
 | `claude-api` | Perlu kadar/pricing tepat | Rujuk model id + harga rasmi |
 | `save-diary` | Hujung sesi | Sertakan ringkasan usage dalam diari sesi berat |
 
@@ -177,6 +177,7 @@ Kos bersendirian tak bermakna — ukur nilai:
 - **Lv.4** — Budget Alerts: threshold 70/90/100% budget Abam. (Origin: 2026-07-04)
 - **Lv.5** — Efficiency Score: kos per artifact, flag sesi mahal tanpa output. (Origin: 2026-07-04)
 - **Lv.6** — Advisor Mode: feed weekly review + cadangan konkrit + anomali siasat. (Origin: 2026-07-04)
+- **Lv.7** — Stale Reference Fix: lima rujukan `smart-effort`/`project-map` (diserap masuk `diba-response`/`repo-pack` sejak spring-clean 2026-09-10) dikemas merentas Protocol/Edge Cases/Integrasi Skill. Dikesan via health-check mekanikal, bukan incident sebenar. (Origin: 2026-10-17 — bulk audit selepas `/update-config` session)
 
 ---
 *[[Feature/INDEX|Feature Index]] · [[HOME|HOME]] · [[main/main-memory|main-memory]]*

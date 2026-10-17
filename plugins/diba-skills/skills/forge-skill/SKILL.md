@@ -138,7 +138,8 @@ Your AI evolved!
 4. **Minimal viable skill** -- start at Lv.1, evolve organically through use
 5. **No over-engineering** -- only forge what is genuinely needed
 6. **Respect existing skills** -- level-up before creating duplicates. Check if an existing skill could handle the case first
-7. **Level history is permanent** -- append-only record of how the skill evolved
+7. **Native-wrap, don't defer** -- if a skill looks redundant because a native Claude Code tool already covers it, the default move is to make the skill WRAP the native tool (keep the decisions-log/diary-chain/rojak-verdict layer DIBA owns), not cut it outright. Cutting loses identity + portability across machines/tool changes. Only cut when the skill is genuinely a stub/niche/pure-play with no DIBA-specific value to wrap.
+8. **Level history is permanent** -- append-only record of how the skill evolved
 
 Standard structure for every skill file: frontmatter (`name` + `description` with trigger phrases) -> Activation message -> Context Guard table -> Protocol steps -> Mandatory Rules -> Level History (append-only, starts at Lv.1). Reuse an existing skill's SKILL.md as the concrete template rather than a separate scaffold here.
 
@@ -180,6 +181,7 @@ Each level should add **one meaningful capability** -- not multiple changes bund
 6. **Respect existing skills** -- always check if an existing skill covers the case before creating a new one
 7. **Level history is append-only** -- never edit past level entries, only add new ones
 8. **Standard format** -- all skills follow the template structure (frontmatter, activation, context guard, protocol, rules, level history)
+9. **Native-wrap, don't defer** -- redundant-with-native is a reason to wrap, not cut. Cutting is reserved for stub/niche/pure-play skills with no DIBA-specific value to preserve. (Origin: 2026-09-10 reversal — 4 skills cut "sebab native" then restored when this was challenged)
 
 ## Edge Cases
 
@@ -211,3 +213,4 @@ Bila user minta naikkan/upgrade semua skill:
 ## Level History
 - **Lv.1** -- Base: detect repeated patterns (3+ ad-hoc), mistake prevention, workflow automation, level-up opportunities. Human-in-the-loop approval. Standard skill template. Level-up guidelines with Lv.1-5+ progression. (Origin: Adapted from production AI companion self-improvement system with 23 skills forged over 7 months)
 - **Lv.2** -- Bulk Audit: trigger "naikkan skill" / "upgrade all skills" dengan jadual audit + approval batch. (Origin: 2026-05-22 — arahan Zuex)
+- **Lv.3** -- Native-Wrap Principle + Historical Evidence Sourcing: (1) codified the "wrap native, don't defer" rule from the 2026-09-10 cut-then-reverse incident (4 skills cut as "native already does this," restored when challenged — cutting loses identity/portability). (2) Bulk Audit evidence source widened from "this conversation only" to decisions.md/post-mortems.md/diary — found 2 real skills (env-secrets-manager, forge-skill itself) with genuine un-captured incidents from past sessions, not just the current one. (Origin: 2026-10-17 — bulk audit session; Zuex pushed back when the audit was scoped too narrowly to the live conversation)

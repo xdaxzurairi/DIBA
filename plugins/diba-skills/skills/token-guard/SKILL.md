@@ -192,7 +192,7 @@ Jangan interrupt kerja — satu baris sahaja, kemudian teruskan.
 | `orchestrate` | Orchestration panjang hampir overflow | Token guard aktif compact semasa orchestration |
 | `discipline` | Compact mode drift dari fokus asal | Context Lock semula scope dalam compact mode |
 | `save-diary` | Context reset sebelum diary sempat disave | Checkpoint serve sebagai proxy — save diary dulu |
-| `dispatching-parallel-agents` | Parallel agents cipta terlalu banyak context | Enforce targeted scope per agent |
+| `orchestrate` (parallel agents) | Parallel agents cipta terlalu banyak context | Enforce targeted scope per agent |
 
 ---
 
@@ -202,6 +202,7 @@ Jangan interrupt kerja — satu baris sahaja, kemudian teruskan.
 - **Lv.2** — Proactive Early Warning: auto-detect context hampir penuh melalui tool call count, large file reads, repeat queries — insert silent one-line warning sebelum Abam perasan. (Origin: Pattern Abam terkejut dengan context overflow, 2026-04-28)
 - **Lv.3** — Superultra: Frontmatter ditambah, activation message, Context Guard table dengan EXIT row, Protocol restructured kepada full checklist steps, Mandatory Rules dikembangkan kepada 8 peraturan, Edge Cases table 10 baris, Integrasi Skill table 6 baris, checkpoint format distandard. (2026-05-19)
 - **Lv.4** — Orchestrate Sync: bila orchestration panjang aktif dan checkpoint diperlukan, checkpoint auto-align dengan step/plan semasa `orchestrate` (rujuk mission + step in-progress terkini), supaya resume selepas context reset tak hilang jejak orchestration loop. (Origin: 2026-07-31 — upskill batch Lv1-3→Lv4, arahan Abam)
+- **Lv.5** — Stale Reference Fix: Edge Cases table rujuk `dispatching-parallel-agents` — skill ni dah diserap ke `orchestrate` sejak spring-clean 2026-09-10, rujukan tak dikemas masa tu. Dikesan via health-check mekanikal (grep nama skill deprecated merentas semua `SKILL.md`), bukan dari incident sebenar. (Origin: 2026-10-17 — bulk audit selepas `/update-config` session)
 
 
 ---
