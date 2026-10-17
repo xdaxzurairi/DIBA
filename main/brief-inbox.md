@@ -94,3 +94,37 @@ Your organization has disabled Claude subscription access for Claude Code · Use
 1. Before the real UAT, confirm the UAT environment URL with IT (`10.0.36.127` or `fmsdev.uitm.edu.my`) and fill in the Section 6.0 schedule dates.
 2. Fix the scheduled-brief auth so the 8am run works.
 3. The vault has uncommitted changes in 6 skill files and `scripts/ask-nemotron.js`. Review them and commit, or discard.
+
+---
+
+## Weekly Review — 2026-10-17 21:14
+
+**Weekly Review — 2026-10-17**
+
+**Wins**
+- ea_newv3: UAT 60 kes/10 modul siap. Dwibahasa, hitam-putih, checkbox, PDF 8 muka surat disahkan (commit `e476e62`).
+- eWorks "Jumlah Masa Tertangguh" dibaiki (`5a560a4`). CALENDAR DEV disync 3,144 baris dan disahkan dengan kiraan manual.
+- Hook DIBA dibaiki: `memory-inject` (encoding dan heading), `auto-commit.sh` (3 bug: path Windows, double-slash, stale `index.lock`) dan `session-end.sh`.
+- Housekeeping: dead code dibuang, 6 skill di-level up.
+
+**Stalled**
+- Portal FMS (kali terakhir dikemas kini 2026-08-05), eWorks (2026-07-29) dan ruangniaga (2026-05-14) semuanya 🔴 stale.
+- Setup Ollama di PC opis lewat sejak 2026-07-07, lebih 3 bulan.
+- Telegram bridge belum bermula: tiada bot token dan `send-diary-telegram.js` tiada dalam repo.
+- Scheduled brief: tiada entri berjaya dalam `brief-inbox.md` selepas 2026-09-10. Tiga run terakhir (09-14, 09-15, 09-20) gagal kerana auth dan billing.
+
+**Decisions pending**
+- Sahkan URL persekitaran UAT (`10.0.36.127` atau `fmsdev.uitm.edu.my`) dengan IT.
+- Isi tarikh Seksyen 6.0 sebelum UAT diedarkan.
+- ea_newv3 (3 commit UAT) dan DIBA vault (1 commit) belum di-push. Tunggu arahan Abam.
+- `getComplaintById()` masih ada bug CUTI yang sama. Edit disekat classifier dan belum diputuskan.
+
+**Post-mortem themes**
+- `post-mortems.md` kosong, tiada entri rasmi. Tema sebenar ada dalam `decisions.md`: hook "lulus test" tapi gagal live, dan pipe-test dengan payload craft sendiri memberi keyakinan palsu. Cadangan: log satu post-mortem rasmi.
+
+**Next-week priorities**
+1. Jalankan `scripts/register-scheduled-briefs.ps1` dan betulkan auth `claude -p`, supaya brief dan review berjalan semula.
+2. Tutup loop UAT ea_newv3: URL, tarikh, kemudian edar.
+3. Putuskan Portal FMS, eWorks dan ruangniaga: sambung atau arkib.
+4. Setup Ollama di PC opis.
+5. Bersihkan git: commit atau buang `scripts/ask-nemotron.js` dan `.diba-models.json`, dan selesaikan `conflict-files-obsidian-git.md`.
