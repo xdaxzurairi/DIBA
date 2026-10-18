@@ -289,3 +289,8 @@ co
 
 ---
 *Index: [[HOME|HOME]] · [[main/main-memory|main-memory]] · [[main/current-session|current-session]] · [[projects/active/ruangniaga|ruangniaga]] · [[projects/active/dibaref-saas|dibaref-saas]]*
+
+## 2026-10-18 — DIBA LIVE: terminal NPC dipacu oleh hook, bukan notifikasi manual
+**Context**: Abam nak terminal khas yang paparkan tugasan DIBA dan jaringan kerja seperti simulasi NPC. War Room sedia ada (browser, port 8765) bergantung pada DIBA panggil `bridge-notify.mjs` secara manual.
+**Decision**: Hook Claude Code (PreToolUse/PostToolUse/Subagent*/Stop/dll, async) tulis event ke `~/.claude/diba-live/events.jsonl`; TUI Node tanpa dependency (`live.js`) tail fail itu dan lukis staff xdibax sebagai NPC. Ditolak: sambung ke War Room browser (perlu server + notify manual, tak automatik), dan pakai Cursor/IDE panel (Abam mahu terminal).
+**Rationale**: Hook tangkap kerja sebenar tanpa DIBA perlu ingat untuk notify. Async supaya tak melambatkan tool call. Prompt dan command dipotong serta direduksi (token/password jadi ***) sebelum ditulis. Mapping tool→NPC ada di atas `live.js` (`route()`/`skillNpc()`) dan boleh diubah.
