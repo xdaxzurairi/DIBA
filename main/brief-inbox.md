@@ -128,3 +128,27 @@ Your organization has disabled Claude subscription access for Claude Code · Use
 3. Putuskan Portal FMS, eWorks dan ruangniaga: sambung atau arkib.
 4. Setup Ollama di PC opis.
 5. Bersihkan git: commit atau buang `scripts/ask-nemotron.js` dan `.diba-models.json`, dan selesaikan `conflict-files-obsidian-git.md`.
+
+---
+
+## Morning Brief — 2026-10-18 13:34
+
+**Selamat pagi, Abam — 2026-10-18**
+
+**Last session:** 2026-10-13, ea_newv3. UAT penuh (60 kes/10 modul) siap: dwibahasa, hitam & putih, checkbox, PDF 8 muka surat. HEAD `e476e62`, belum push. Diary 10-16 dan 10-17 kosong (stub sahaja). Kerja 10-17 hanya hook fixes dan 6 skill di-level up, ikut weekly review.
+
+**Urgent/overdue:** Tiada reminder bertarikh dalam 3 hari. Yang tertunggak:
+- Setup Ollama di PC opis: lewat sejak 2026-07-07, lebih 3 bulan.
+- Telegram bridge: tiada bot token, dan `send-diary-telegram.js` tiada dalam repo.
+
+**Projek aktif (7/10):**
+- ea_newv3 (pos #1): UAT menunggu URL dan tarikh.
+- BFMwebsite (09-29), Book Finder (09-23), ScoutOps (09-15): aktif.
+- Portal FMS (08-05), eWorks (07-29), ruangniaga (05-14): 🔴 stale. Putuskan sambung atau arkib.
+
+**Fokus hari ni:**
+1. **Tutup loop UAT ea_newv3.** Sahkan URL (`10.0.36.127` atau `fmsdev.uitm.edu.my`) dengan IT dan isi tarikh Seksyen 6.0, supaya UAT boleh diedarkan.
+2. **Bersihkan git vault.** Commit atau buang `scripts/ask-nemotron.js` dan `.diba-models.json`, dan selesaikan `conflict-files-obsidian-git.md`. Tiga commit UAT ea_newv3 dan commit vault belum di-push, tunggu arahan Abam.
+3. **Jalankan `scripts/register-scheduled-briefs.ps1`** kalau belum. Tiga run terakhir (09-14, 09-15, 09-20) gagal sebab auth dan billing.
+
+**Pending keputusan:** `getComplaintById()` masih ada bug CUTI yang sama, edit tersekat classifier. `post-mortems.md` masih kosong.
