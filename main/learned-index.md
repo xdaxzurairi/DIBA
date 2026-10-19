@@ -10,6 +10,8 @@
 - [2026-10-14] Mesin Abam tiada pdftoppm & winget (pemerhatian, sahkan semula)
 - [2026-10-14] XDIBAX projek baharu: office-sim, bsmwebsite, BFMwebsite (new-folder digabung)
 - [2026-10-16] eWorks tempoh siap sebenar: wr.action_period_m & masa_siap_tangguh_m (minit), rekod baharu sahaja, prod belum
+- [2026-10-19] Memory core tunggal = XDIBAX/DIBA; PAMC dipersarakan; hook perlu Git Bash (bash PowerShell = WSL kosong)
+- [2026-10-19] Robocopy exit 1 = berjaya (bukan tool-fail); folder baharu belum dibaca: scripts/diba-dash/, .claude-flow/policy/
 
 ## Cases
 - 2026-07-15 — Write fails untuk diary/session memory adalah noise; fail akhirnya berjaya ditulis
