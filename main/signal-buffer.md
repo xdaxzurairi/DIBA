@@ -86,13 +86,13 @@
 | [done] 2026-10-16 07:40 | new-folder | .claude-flow/policy/, bsmwebsite/, daily-diary/archived/2026-07/, daily-diary/archived/2026-08/, daily-diary/archived/2026-09/, main/BFMwebsite/ |
 | [done] 2026-10-16 07:49 | new-folder | .claude-flow/policy/, bsmwebsite/, daily-diary/archived/2026-07/, daily-diary/archived/2026-08/, daily-diary/archived/2026-09/, main/BFMwebsite/ |
 | [done] 2026-10-16T08:13:11 | tool-fail | Bash: Exit code 255 PHP Fatal error: Uncaught PDOException: SQLSTATE[42S22]: [Microsoft][ODBC Driver 17 for SQL Server][SQL Se |
-| 2026-10-19T00:10:26 | tool-fail | Glob: Ripgrep search timed out after 20 seconds. The search may have matched files but did not complete in time. Try searching |
-| 2026-10-19T00:13:53 | tool-fail | PowerShell: Exit code 1 == C:\Users\BSM\diba Mode LastWriteTime Name ---- ------------- ---- d---- 23/1/2026 5:02:13 PM Project-AI-M |
-| 2026-10-19T00:14:00 | tool-fail | PowerShell: Exit code 1 == scripts 2026-07-15 08:43 54927 ask-nemotron.js 2026-06-18 10:37 498 diba-broadcast.sh 2026-05-22 11:26 60 |
-| 2026-10-19 00:33 | new-folder | scripts/diba-dash/ |
-| 2026-10-19 00:47 | new-folder | scripts/diba-dash/adapters/ |
-| 2026-10-19 00:51 | new-folder | scripts/diba-dash/providers/ |
-| 2026-10-19 00:52 | new-folder | scripts/diba-dash/ui/ |
-| 2026-10-19 02:46 | new-folder | .claude-flow/policy/, bsmwebsite/, daily-diary/archived/2026-07/, daily-diary/archived/2026-08/, daily-diary/archived/2026-09/, main/BFMwebsite/ |
-| 2026-10-19T03:37:18 | tool-fail | PowerShell: Exit code 1 Dirs : 414 414 0 0 0 0 Files : 1670 1670 0 0 0 0 Dirs : 427 427 0 0 0 0 Files : 2083 2083 0 0 0 0 Dirs : 9 9 |
-| 2026-10-19T03:44:16 | tool-fail | PowerShell: Exit code 1 [31;1mInvoke-Expression: [31;1mA parameter cannot be found that matches parameter name 'File'.[0m |
+| [done] 2026-10-19T00:10:26 | tool-fail | Glob: Ripgrep search timed out after 20 seconds. The search may have matched files but did not complete in time. Try searching |
+| [done] 2026-10-19T00:13:53 | tool-fail | PowerShell: Exit code 1 == C:\Users\BSM\diba Mode LastWriteTime Name ---- ------------- ---- d---- 23/1/2026 5:02:13 PM Project-AI-M |
+| [done] 2026-10-19T00:14:00 | tool-fail | PowerShell: Exit code 1 == scripts 2026-07-15 08:43 54927 ask-nemotron.js 2026-06-18 10:37 498 diba-broadcast.sh 2026-05-22 11:26 60 |
+| [done] 2026-10-19 00:33 | new-folder | scripts/diba-dash/ |
+| [done] 2026-10-19 00:47 | new-folder | scripts/diba-dash/adapters/ |
+| [done] 2026-10-19 00:51 | new-folder | scripts/diba-dash/providers/ |
+| [done] 2026-10-19 00:52 | new-folder | scripts/diba-dash/ui/ |
+| [done] 2026-10-19 02:46 | new-folder | .claude-flow/policy/, bsmwebsite/, daily-diary/archived/2026-07/, daily-diary/archived/2026-08/, daily-diary/archived/2026-09/, main/BFMwebsite/ |
+| [done] 2026-10-19T03:37:18 | tool-fail | PowerShell: Exit code 1 Dirs : 414 414 0 0 0 0 Files : 1670 1670 0 0 0 0 Dirs : 427 427 0 0 0 0 Files : 2083 2083 0 0 0 0 Dirs : 9 9 |
+| [done] 2026-10-19T03:44:16 | tool-fail | PowerShell: Exit code 1 [31;1mInvoke-Expression: [31;1mA parameter cannot be found that matches parameter name 'File'.[0m |

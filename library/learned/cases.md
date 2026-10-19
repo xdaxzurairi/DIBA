@@ -49,3 +49,8 @@
 - **Miss:** `jumlah_masa_tertangguh()` menolak status Com terus, jadi aduan Siap sentiasa "Tiada Masa Tertangguh"; paparan jam dibundar ke hari (116 jam → "5 Hari") dan fallback lama muncul pada rekod tanpa minit. PWA juga sempat Fatal "undefined function" selepas edit `complaints.php`.
 - **Fix:** parameter `$kiraCom`; simpan minit tepat (2 lajur); rekod NULL papar "-"; fungsi PWA dibungkus `function_exists`.
 - **Lesson:** simpan nilai mentah (minit), format semasa paparan; semak `php -l` DAN panggil fungsi sebenar selepas edit.
+
+## 2026-10-19 — Skrip Gabungan Diary Gagal: `$A` Ditimpa `$a`
+- **Miss:** `merge-diary.ps1 -Apply` gagal dengan "A parameter cannot be found … 'File'" walaupun mod dry-run berjalan. Punca: `foreach ($a in $appended)` menimpa `$A` (laluan vault) kerana PowerShell tak sensitif huruf; `Get-ChildItem` kemudian menerima objek, bukan laluan.
+- **Fix:** tukar pembolehubah gelung kepada `$ap`; ralat ditangkap dengan `try/catch` + `$_.InvocationInfo.PositionMessage` untuk cari baris sebenar. Dua kes serupa: fungsi `H` (alias Get-History) dan kunci hash pendua.
+- **Lesson:** dry-run yang lulus tak jamin laluan Apply lulus — jalankan Apply pada data tiruan atau semak setiap cabang; lihat R014.

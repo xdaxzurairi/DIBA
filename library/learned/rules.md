@@ -61,3 +61,13 @@
 - **Rule:** Grep/Bash `grep -r` pada root share ditolak Abam; sasarkan fail/subfolder (lanjutan R008). Bila Abam tanya "nilai ni dari mana / data lama?", semak rekod dalam DB dev dahulu (cth 1295600 = NULL, bukan bug).
 - **Source:** tool use ditolak + soalan Abam 2026-10-16
 - **Confidence:** medium
+
+## R013 — Save-Diary, Auto-Commit dan Auto-Learn Mesti Berjalan Sendiri
+- **Rule:** Jangan tunggu Abam minta. Hook mesti kekal bersambung dalam `~/.claude/settings.json` (PostToolUse `Write|Edit` -> auto-commit.sh, SessionEnd -> session-end.sh, Stop -> stop-guard.js). Selepas kerja sebenar: save-diary, kemudian rantai auto-learn. Sahkan dengan `git log` (commit `diba: auto-save …`), bukan andaian.
+- **Source:** arahan Abam 2026-10-19 ("harus berjalan seperti diarahkan … abam nk diba evolve dgn pantas")
+- **Confidence:** high (arahan langsung; mekanisme diuji hidup)
+
+## R014 — PowerShell Tak Sensitif Huruf Besar/Kecil: Elak Pertembungan Nama
+- **Rule:** `$A` dan `$a` ialah pembolehubah sama (gelung `foreach ($a …)` menimpa `$A`); jangan namakan fungsi `H` (alias `Get-History`); kunci hashtable `'C:/x'` dan `'c:/x'` ialah pendua. Guna nama unik, fungsi berawalan kata kerja (`Get-…`), dan senarai pasangan bila perlu kunci berbeza huruf.
+- **Source:** 3 ralat sebenar dalam satu sesi 2026-10-19 (`Invoke-Expression … parameter 'File'`, `Cannot bind parameter 'Id'`, `Duplicate keys`)
+- **Confidence:** high (punca dibuktikan dan dibaiki)

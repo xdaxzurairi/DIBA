@@ -35,3 +35,15 @@
 ## [2026-10-16] Tempoh Siap Sebenar eWorks/PWA dalam Minit
 - **Source:** sesi eWorks 2026-10-16 (arahan Abam)
 - **Fact:** `wr.action_period_m` = round(abs((siap − date_requested) minit − cuti CALENDAR × 1440)); `wr.action_period` (jam) = round(minit/60); `wr.masa_siap_tangguh_m` = max(0, action_period_m − tempoh baik pulih minit), tanpa tolak cuti tambahan. Dikod di `tutup_arahan_kerja.php` & PWA `includes/tutup_ak_save.php`; paparan `format_tempoh_minit`. Hanya rekod baharu; ujian dev: 1295610 (5544), 1295601 (1841). Prod belum disalin.
+
+## [2026-10-19] Robocopy Exit Code 1 = Berjaya
+- **Source:** gabung memory core 2026-10-19 (robocopy 1670/2083/87 fail disalin, bilangan sepadan sumber)
+- **Fact:** Robocopy 0–7 = berjaya (1 = fail disalin); tool PowerShell melaporkan "Exit code 1" tetapi itu bukan ralat. Semak ringkasan `Files :` bukan exit code. capture-signal merekod ini sebagai tool-fail palsu (dibuang oleh gate Lv.5).
+
+## [2026-10-19] Memory Core Tunggal = XDIBAX/DIBA
+- **Source:** arahan "gabungkan memory core" 2026-10-19
+- **Fact:** Satu-satunya pusat memory: `C:/Users/BSM/XDIBAX/DIBA` (repo xdaxzurairi/DIBA). Project-AI-MemoryCore dipersarakan ke `C:/Users/BSM/diba-merge-backup-20261019/`. `bash` di PATH PowerShell ialah WSL kosong; hook Claude Code guna Git Bash (`C:\Program Files\Git\bin\bash.exe`) — ujian hook mesti guna yang kedua.
+
+## [2026-10-19] Folder Baharu Dikesan (Digabung)
+- **Source:** signal new-folder 2026-10-19 (5 baris, pendua digabung)
+- **Fact:** `scripts/diba-dash/` (adapters, providers, ui) dan `.claude-flow/policy/` ialah baharu dan belum dibaca — jalankan auto-learn-new-folder sebelum mengubahnya. `daily-diary/archived/2026-07..09/` dan `main/BFMwebsite/` hasil gabungan memory, bukan projek baharu.
