@@ -6,6 +6,12 @@ Portable hook layer — no machine-specific paths. `settings.json` resolves the 
 |---|---|---|---|
 | Skill installer | SessionStart | `session-start.sh` | Installs plugin skills (canonical), then Feature-layer skills as gap-fill only; removes deprecated skills (diba-recall, diba-operator, work-plan-execution) |
 | Auto-commit | PostToolUse (Write\|Edit) | `auto-commit.sh` | Commits edits under `main/`, `daily-diary/`, `projects/`, `plans/`, `company/` |
+| Session end | SessionEnd | `session-end.sh` | Commits any remaining memory changes, then pushes to `origin` when ahead (best-effort) |
+| Stop guard | Stop | `stop-guard.js` | If real work happened (Write/Edit outside memory dirs, or `git commit/push`) and today's diary was not updated after it, blocks the stop once and tells the model to run `save-diary` (+ `auto-learn` when >=3 signals are pending). Honours `stop_hook_active`, so it cannot loop. |
+
+`save-diary` and `auto-learn` themselves are model-side skills — a hook cannot write a session summary. `stop-guard.js` is what makes them reliable rather than optional.
+
+Wiring on a machine (user-level `~/.claude/settings.json`, absolute paths): SessionStart -> `session-start.sh`; PostToolUse `Write|Edit` -> `auto-commit.sh` (timeout 30); Stop -> `node stop-guard.js` (timeout 20); SessionEnd -> `session-end.sh` (timeout 40).
 
 ## Windows notes
 

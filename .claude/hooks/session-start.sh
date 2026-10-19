@@ -67,3 +67,14 @@ if [ ! -f "$TODAY_FILE" ]; then
 else
     echo "DIBA: diary ready — $(basename "$TODAY_FILE")"
 fi
+
+# --- Pending self-learning signals ---
+# Informational only: auto-learn itself is model-side (the stop-guard hook
+# enforces it after real work). This just surfaces the backlog at session start.
+SIGNAL_BUF="$DIBA_DIR/main/signal-buffer.md"
+if [ -f "$SIGNAL_BUF" ]; then
+    pending=$( { grep -E '^\|' "$SIGNAL_BUF" || true; } | { grep -vE '\[done\]|^\|[[:space:]]*-{2,}|timestamp[[:space:]]*\|[[:space:]]*type' || true; } | wc -l | tr -d ' ')
+    if [ "${pending:-0}" -gt 0 ]; then
+        echo "DIBA: $pending signal belum diproses — jalankan auto-learn bila sesuai"
+    fi
+fi
