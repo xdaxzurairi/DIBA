@@ -4,17 +4,18 @@
 | Workspace / Folder | Path Memory Projek |
 |---|---|
 | `//10.0.36.127/webs/ruangniaga` | `//10.0.36.127/webs/ruangniaga/admin/memory_core/` |
-| `//10.0.36.127/webs/pwa_eworks` | `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/projects/active/` |
-| `C:/Users/BSM/XDIBAX` | `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/main/` |
-| `C:/Apache24/htdocs/BFM2026` | `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/projects/active/bfm2026/` |
-| `C:/Users/BSM/XDIBAX/baseballfedarationmalaysia` | `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/projects/active/baseballfedarationmalaysia/` |
-| `//10.0.36.150/webs` | `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/projects/active/webs-150/` |
-| `//10.0.36.127/webs/eWorks` | `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/projects/active/eworks/` |
-| `C:/Apache24/htdocs/ruangniaga` | `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/projects/active/ruangniaga/` |
-| `//10.0.36.127/webs/ea_newv3` | `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/projects/active/ea_newv3/` |
+| `//10.0.36.127/webs/pwa_eworks` | `C:/Users/BSM/XDIBAX/DIBA/projects/active/` |
+| `C:/Users/BSM/XDIBAX` | `C:/Users/BSM/XDIBAX/DIBA/main/` |
+| `C:/Apache24/htdocs/BFM2026` | `C:/Users/BSM/XDIBAX/DIBA/projects/active/bfm2026/` |
+| `C:/Users/BSM/XDIBAX/baseballfedarationmalaysia` | `C:/Users/BSM/XDIBAX/DIBA/projects/active/baseballfedarationmalaysia/` |
+| `//10.0.36.150/webs` | `C:/Users/BSM/XDIBAX/DIBA/projects/active/webs-150/` |
+| `//10.0.36.127/webs/eWorks` | `C:/Users/BSM/XDIBAX/DIBA/projects/active/eworks/` |
+| `C:/Apache24/htdocs/ruangniaga` | `C:/Users/BSM/XDIBAX/DIBA/projects/active/ruangniaga/` |
+| `//10.0.36.127/webs/ea_newv3` | `C:/Users/BSM/XDIBAX/DIBA/projects/active/ea_newv3/` |
 | `C:/Users/BSM/XDIBAX/bijakbersama` | `C:/Users/BSM/.claude/projects/C--Users-BSM-XDIBAX/memory/project_bijakbersama.md` |
 
-| `C:/Users/BSM/xdibax/scoutops` | `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/projects/active/scoutops/` |
+| `C:/Users/BSM/xdibax/scoutops` | `C:/Users/BSM/XDIBAX/DIBA/projects/active/scoutops/` |
+| `C:/Users/BSM/XDIBAX/main/BFMwebsite` | `C:/Users/BSM/XDIBAX/DIBA/projects/active/bfmwebsite/` |
 
 ## Cara Tambah Projek Baru
 
@@ -29,4 +30,4 @@ Fail memory projek yang dicari (ikut urutan):
 3. `master-memory.md` atau `identity-core.md`
 
 ---
-*Dikemaskini: 2026-07-01*
+*Dikemaskini: 2026-10-19 (memory core digabung ke DIBA)*

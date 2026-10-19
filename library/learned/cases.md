@@ -44,3 +44,8 @@
 - **Selesai 2026-10-01:** punca sebenar dibaiki — capture-signal kini jalan pada PostToolUseFailure sahaja (tiada regex atas output berjaya).
 - **Outcome:** Buffer ada noise entry tapi ia tidak mengganggu operasi.
 - **Lesson:** Agent tool output boleh jadi false positive dalam signal-buffer. Verify dengan actual output/artifact, bukan buffer entry sahaja.
+
+## 2026-10-16 — Jumlah Masa Tertangguh Sentiasa "Tiada" & "5 Hari" pada Rekod Lama
+- **Miss:** `jumlah_masa_tertangguh()` menolak status Com terus, jadi aduan Siap sentiasa "Tiada Masa Tertangguh"; paparan jam dibundar ke hari (116 jam → "5 Hari") dan fallback lama muncul pada rekod tanpa minit. PWA juga sempat Fatal "undefined function" selepas edit `complaints.php`.
+- **Fix:** parameter `$kiraCom`; simpan minit tepat (2 lajur); rekod NULL papar "-"; fungsi PWA dibungkus `function_exists`.
+- **Lesson:** simpan nilai mentah (minit), format semasa paparan; semak `php -l` DAN panggil fungsi sebenar selepas edit.

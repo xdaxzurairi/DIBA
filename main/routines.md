@@ -68,8 +68,8 @@
 **Trigger:** Selesai task atau perubahan kod yang berjaya
 **Kekerapan:** Setiap sesi
 **Fail biasa diubah:**
-- `C:/Users/BSM/XDIBAX/daily-diary/current/YYYY-MM-DD.md`
-- `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/main/current-session.md`
+- `C:/Users/BSM/XDIBAX/DIBA/daily-diary/current/YYYY-MM-DD.md`
+- `C:/Users/BSM/XDIBAX/DIBA/main/current-session.md`
 **Langkah:**
 1. Invoke `save-diary`
 2. Skill akan cipta/append entry ke diary hari ini
@@ -103,6 +103,29 @@
 - Bahagian mapping: BOB→(BAN,MEC,ELE), BOI1→(INF CIV,LAN,MAJ), BOI2→(INF MEC,INF ELE,TEL), BPR→(PROJEK)
 **Tags:** #eworks #sql #mssql #laporan #php
 **Terakhir dijalankan:** 2026-05-25
+
+---
+
+## eWorks — Staf Pindah Kampus: Paparan Laporan Berubah/Hilang
+**Trigger:** Staf yang baru dipindahkan ke kampus lain laporkan paparan laporan eWorks berubah tak dijangka (cth: tab laporan hilang, tertukar ke laporan lain)
+**Kekerapan:** Ad-hoc, ikut proses pertukaran kampus staf
+**Fail biasa disemak:**
+- `afm_users` (kolum `group_3`) — DB FMSPROD, bukan fail kod
+- `menu.php` — tentukan tab laporan mana muncul ikut `group_3`
+- `page.php` — tentukan page mana boleh diakses ikut `group_3`
+**Langkah:**
+1. Dapatkan ID staf (`user_name`/`cf_id`) yang bermasalah
+2. Query `afm_users` untuk `group_3`, `site_id_list`, `ew_bahagian`, `ew_capaian` staf tu
+3. Banding dengan peer role sama (`role_name LIKE '...'`) di kampus sama — tentukan nilai `group_3` yang "normal" untuk role tu
+4. Semak `menu.php`/`page.php` untuk faham apa setiap nilai `group_3` bagi/sekat (tab "Bahagian" vs "BPF Kampus Negeri" dll)
+5. Kalau `group_3` tersalah (biasanya sebab proses pindah kampus set nilai default yang tak padan akses asal staf), `UPDATE afm_users SET group_3='X' WHERE user_name='ID'` — SELALU guna WHERE user_name spesifik + semak `Affected_Rows()`=1
+6. Minta staf logout & login semula (group_3 di-cache dalam session, hanya refresh lepas login baru)
+**Perangkap:**
+- Akses Bash/PowerShell terus ke DB PROD dari sesi Claude Code kena run oleh Abam sendiri (classifier sekat automatik walaupun read-only atau dah approve dalam chat)
+- `dbprodfms36128` (hostname DB prod) kadang tak resolve DNS dari PC pejabat — guna IP `10.0.36.128` sebagai fallback
+- Nilai `group_3` majoriti staf ialah 4 (akses terhad) — jangan andai nilai lain automatik salah, mesti banding dgn peer dulu
+**Tags:** #eworks #group_3 #pindah-kampus #akses-laporan #afm-users #data-fix
+**Terakhir dijalankan:** 2026-09-23
 
 ---
 

@@ -26,3 +26,38 @@
 - **Rule:** Pada Windows dengan obsidian-git, guna `post-commit` hook dalam `.git/hooks/` untuk trigger memory sync. Jangan guna `fs.watch` daemon — ia perlu proses background berterusan dan boleh mati tanpa notice. post-commit hook jalan automatik setiap kali obsidian-git commit (default 10 minit), zero maintenance.
 - **Source:** case 2026-07-21 (Obsidian-Ruflo Integration)
 - **Confidence:** low (1 instance)
+
+## R006 — Edit/Write: Baca Semula Fail Sebelum Edit (Stale Read)
+- **Rule:** Dua ralat berulang: "File has not been read yet" (Edit tanpa Read) dan "File content has changed since it was last read" (fail diubah selepas Read oleh Bash/linter/hook). Sentiasa Read fail dalam sesi yang sama sebelum Edit, dan Read semula jika Bash/skrip baru ubah fail itu.
+- **Source:** signal buffer 2026-10-05 (Edit, Edit, Write — stale), 2026-10-12 (Edit x2 — belum dibaca)
+- **Confidence:** high (5 kejadian, 3 hari berbeza)
+
+## R007 — Bash: Elak Aksara `'` Tak Berpasangan dalam Skrip Inline
+- **Rule:** "unexpected EOF while looking for matching `'`" berulang bila skrip panjang/multi-baris dimasukkan terus dalam `bash -c` atau mengandungi apostrof (cth. teks BM, kata ganti milik). Guna heredoc dengan penanda berkuot (`<<'EOF'`) atau tulis skrip ke fail (Write) dan jalankan fail itu.
+- **Source:** signal buffer 2026-10-05, 2026-10-12, 2026-10-14 (3 kejadian, baris ~28–153)
+- **Confidence:** high (3 kejadian, 3 hari berbeza)
+
+## R008 — Carian Fail di Network Share (UNC) / Folder Besar: Sempitkan Path
+- **Rule:** Grep/Glob pada `\10.0.36.127\webs\...` atau folder besar kerap timeout 20 saat ("Ripgrep search timed out"). Sempitkan `path` ke subfolder, tambah `glob`/`type`, atau elak `node_modules`/`vendor`; jangan retry carian yang sama.
+- **Source:** signal buffer 2026-10-05 (Grep, Glob), 2026-10-09 (Grep)
+- **Confidence:** medium (3 kejadian)
+
+## R009 — Grep Tool Boleh Gagal Kerana `rg` Tiada: Fallback ke Bash grep
+- **Rule:** "ENOENT ... uv_spawn 'rg'" / "EUNKNOWN uv_spawn" bermakna binari ripgrep tak tersedia dalam sesi itu. Jangan retry tool Grep; guna `grep -rn` melalui Bash (atau Glob+Read) untuk sesi tersebut.
+- **Source:** signal buffer 2026-10-12 (2 kejadian, EUNKNOWN 01:47 dan ENOENT 07:44)
+- **Confidence:** medium (2 kejadian, hari sama)
+
+## R010 — Medan Baharu: Rekod Lama Papar "-", Jangan Backfill/Fallback, Jangan Usik DB
+- **Rule:** Bila tambah lajur baharu (cth `wr.action_period_m`, `masa_siap_tangguh_m`), rekod lama (NULL) papar simbol "-" pada senarai. Jangan backfill, jangan fallback ke medan lama (jam/hari dibundar jadi "5 Hari" yang mengelirukan), jangan tukar nilai sedia ada dalam DB melainkan Abam minta. Perubahan paparan sahaja.
+- **Source:** arahan Abam 2026-10-16 ("yg lama tinggalkan", "jgn usik db.value yg ada dikekalkan, cuma paparan senarai papar -")
+- **Confidence:** high
+
+## R011 — eWorks/PWA: Dev Dahulu, Prod Hanya Selepas Abam Setuju
+- **Rule:** Edit di `\10.0.36.127` = dev sahaja. Salin ke prod (`\10.0.36.150\webs\eworks\`) hanya selepas Abam semak dev dan setuju. Sebelum salin: sahkan lajur DB baharu wujud di prod, `diff` dev vs prod. Jangan akses data prod tanpa kebenaran.
+- **Source:** arahan Abam 2026-10-16 ("hold dulu tggu sehingga user check di dev .jika setuju br salin ke prod")
+- **Confidence:** high
+
+## R012 — Jangan Sapu Root `\10.0.36.127\webs`; Verify Sumber Nilai Dalam DB Sebelum Andai Bug
+- **Rule:** Grep/Bash `grep -r` pada root share ditolak Abam; sasarkan fail/subfolder (lanjutan R008). Bila Abam tanya "nilai ni dari mana / data lama?", semak rekod dalam DB dev dahulu (cth 1295600 = NULL, bukan bug).
+- **Source:** tool use ditolak + soalan Abam 2026-10-16
+- **Confidence:** medium
