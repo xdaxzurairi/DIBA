@@ -37,3 +37,5 @@
 - R010 — Medan baharu: rekod lama papar "-", jangan backfill/fallback/usik DB
 - R011 — eWorks/PWA: dev dahulu, prod selepas Abam setuju (lajur wujud + diff)
 - R012 — Jangan sapu root UNC webs; semak data DB dahulu sebelum andai bug
+- R013 — Save-diary, auto-commit, auto-learn jalan sendiri; hook + stop-guard wajib kekal; sahkan dengan git log
+- R014 — PowerShell tak sensitif huruf: elak `$a` vs `$A`, fungsi `H`, kunci hash pendua
