@@ -22,6 +22,7 @@
 - 2026-07-21 — Obsidian-Ruflo sync: git post-commit hook > fs.watch daemon (Windows, zero maintenance)
 - 2026-07-21 — Agent explore output boleh jadi false positive dalam signal-buffer (captured tapi bukan error)
 - 2026-10-16 — Tertangguh Com sentiasa "Tiada" + "5 Hari" rekod lama; fix: $kiraCom, simpan minit, NULL papar "-"
+- 2026-10-19 — Skrip PS gagal sebab `$a` timpa `$A` (tak sensitif huruf); fix: nama gelung unik, try/catch cari baris
 
 ## Rules
 - R001 — Write tool-fail untuk fail baru: resolved automatik; verify dengan git, bukan buffer
