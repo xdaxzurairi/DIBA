@@ -81,7 +81,7 @@ Terima dan tindak balas ikut signal:
 
 - [ ] Extract inti idea dari konteks Live Mode semasa
 - [ ] Beri tajuk yang jelas, compressed, boleh ingat
-- [ ] Buka `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/main/mind-tree.md`
+- [ ] Buka `C:/Users/BSM/XDIBAX/DIBA/main/mind-tree.md`
 - [ ] Append seed baru dalam format:
 
 ```markdown
@@ -136,7 +136,7 @@ Terima dan tindak balas ikut signal:
 ### Step 5: Harvest (bila seed BLOOMING)
 
 - [ ] Tanya Abam: "Seed [tajuk] dah bloom — nak harvest ke library?"
-- [ ] Jika ya → buka `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/library/` dan tulis entry baru
+- [ ] Jika ya → buka `C:/Users/BSM/XDIBAX/DIBA/library/` dan tulis entry baru
 - [ ] Kemaskini status dalam mind-tree.md kepada `HARVESTED`
 - [ ] Trigger `log-decision` untuk rekod keputusan atau insight utama
 - [ ] Kekalkan seed asal dalam mind-tree.md sebagai archive — jangan padam

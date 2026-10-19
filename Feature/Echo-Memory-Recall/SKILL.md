@@ -51,10 +51,10 @@ Cari dalam urutan berikut:
 
 | Priority | Lokasi | Sebab |
 |----------|--------|-------|
-| 1 | `C:/Users/BSM/XDIBAX/daily-diary/current/*.md` | Entry terkini — paling relevan |
-| 2 | `C:/Users/BSM/XDIBAX/daily-diary/archived/YYYY-MM/*.md` | Bulan-bulan lepas |
-| 3 | `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/main/decisions.md` | Keputusan penting yang dilog |
-| 4 | `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/main/current-session.md` | Recap sesi terkini |
+| 1 | `C:/Users/BSM/XDIBAX/DIBA/daily-diary/current/*.md` | Entry terkini — paling relevan |
+| 2 | `C:/Users/BSM/XDIBAX/DIBA/daily-diary/archived/YYYY-MM/*.md` | Bulan-bulan lepas |
+| 3 | `C:/Users/BSM/XDIBAX/DIBA/main/decisions.md` | Keputusan penting yang dilog |
+| 4 | `C:/Users/BSM/XDIBAX/DIBA/main/current-session.md` | Recap sesi terkini |
 
 **Cara carian:**
 - [ ] Grep keyword dalam fail — cari dalam `### Session summary`, `### Key decisions`, `### Tags`

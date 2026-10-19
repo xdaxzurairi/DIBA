@@ -43,7 +43,7 @@ Then immediately execute Step 1 of Protocol.
 
 ### Step 1: Session Duration Probe
 
-- [ ] Baca diary hari ini: `C:/Users/BSM/XDIBAX/daily-diary/current/YYYY-MM-DD.md`
+- [ ] Baca diary hari ini: `C:/Users/BSM/XDIBAX/DIBA/daily-diary/current/YYYY-MM-DD.md`
 - [ ] Cari timestamp entry pertama hari ini
 - [ ] Estimate time elapsed sejak sesi bermula
 
@@ -109,7 +109,7 @@ Suggest tempoh rehat berdasarkan masa kerja:
 - [ ] Tawarkan recurring reminder pattern jika Abam setuju:
   - `"Nak saya ingatkan setiap 45–60 minit?"`
 - [ ] Jika Abam setuju → aktifkan auto-nudge mode untuk sesi ini
-- [ ] Log dalam `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/main/current-session.md` bahawa auto-nudge aktif
+- [ ] Log dalam `C:/Users/BSM/XDIBAX/DIBA/main/current-session.md` bahawa auto-nudge aktif
 
 ---
 

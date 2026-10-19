@@ -44,7 +44,7 @@ Then immediately execute Dynamic Library Scanning before any save operation.
 
 Sentiasa discover struktur library pada runtime — **jangan hardcode** sections atau entries:
 
-1. **Scan** `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/library/` untuk semua subdirectories (kecuali `formats/`) — ini adalah sections
+1. **Scan** `C:/Users/BSM/XDIBAX/DIBA/library/` untuk semua subdirectories (kecuali `formats/`) — ini adalah sections
 2. **Scan** setiap section untuk `*.md` files (kecuali README.md) — ini adalah entries
 3. **Count** jumlah entries dan sections secara dinamik
 4. **Report** struktur sebelum sebarang operasi save
@@ -132,10 +132,10 @@ Recommendation:
 | Colors, CSS, Tailwind, glassmorphism, fonts | `theme` |
 | CI/CD, deployment, pipelines, automation | `workflow` |
 
-- [ ] Load format template dari `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/library/formats/[section]-format.md`
+- [ ] Load format template dari `C:/Users/BSM/XDIBAX/DIBA/library/formats/[section]-format.md`
 - [ ] Apply template structure — ikut Required Fields, Section Order, dan Template skeleton
 - [ ] Kalau format file tidak wujud — guna generic markdown (title + overview + content + examples)
-- [ ] Write entry ke `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/library/[section]/[entry-name].md`
+- [ ] Write entry ke `C:/Users/BSM/XDIBAX/DIBA/library/[section]/[entry-name].md`
 - [ ] Verify fail berjaya ditulis
 
 ### Step 6: Commit Chain

@@ -108,7 +108,7 @@ Supaya `chief-of-staff` (session brief) dan `echo-recall` boleh rujuk tanpa baca
 **Hantar ke Telegram HANYA jika sesi berkaitan projek registered.**
 
 #### Projek Registered (send Telegram)
-Sesi yang melibatkan projek dalam `Project-AI-MemoryCore/projects/active/` — contoh: eWorks, DevAtlas, BFM, RuangNiaga, Webs-150, EA New v3, atau mana-mana projek yang didaftarkan.
+Sesi yang melibatkan projek dalam `DIBA/projects/active/` — contoh: eWorks, DevAtlas, BFM, RuangNiaga, Webs-150, EA New v3, atau mana-mana projek yang didaftarkan.
 
 #### Kerja XDIBAX Internal (SKIP Telegram)
 Sesi yang hanya melibatkan infrastruktur XDIBAX sendiri — contoh: war-room, skills, memory core, hooks, diary system, DIBA config, scripts. **Jangan send ke Telegram.**
@@ -116,7 +116,7 @@ Sesi yang hanya melibatkan infrastruktur XDIBAX sendiri — contoh: war-room, sk
 #### Cara tentukan
 Semak tag dan fail yang diubah dalam entry diary:
 - Jika fail yang diubah berada dalam path projek luar (contoh: `C:/Users/BSM/pwa_eworks/`, `C:/Apache24/htdocs/`, projek lain) → **SEND**
-- Jika fail yang diubah hanya dalam `C:/Users/BSM/XDIBAX/` (war-room, .claude, .cursor, .gemini, scripts, Project-AI-MemoryCore) → **SKIP**
+- Jika fail yang diubah hanya dalam `C:/Users/BSM/XDIBAX/` (war-room, .claude, .cursor, .gemini, scripts, DIBA) → **SKIP**
 - Jika mixed (ada projek + XDIBAX internal) → **SEND** (projek menang)
 
 #### Cara hantar (bila eligible)

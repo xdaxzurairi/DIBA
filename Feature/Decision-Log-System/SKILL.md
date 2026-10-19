@@ -14,7 +14,7 @@ description: "Auto-triggers when a non-obvious decision is made during conversat
 
 ## Activation
 
-When this skill activates, silently read `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/main/decisions.md`.
+When this skill activates, silently read `C:/Users/BSM/XDIBAX/DIBA/main/decisions.md`.
 
 - Jika user sedang log decision: capture dan confirm
 - Jika user cari past decisions: find dan present
@@ -66,7 +66,7 @@ Output bila log berjaya:
   **Rationale**: Kenapa — trade-offs, constraints, evidence, atau instinct
   ```
 
-- [ ] **APPEND** ke `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/main/decisions.md` (selepas last entry)
+- [ ] **APPEND** ke `C:/Users/BSM/XDIBAX/DIBA/main/decisions.md` (selepas last entry)
 - [ ] Confirm: "Logged decision: [title]"
 - [ ] Jangan edit entries lama — append-only tanpa pengecualian
 
@@ -74,7 +74,7 @@ Output bila log berjaya:
 
 ### On Searching Decisions
 
-- [ ] Baca `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/main/decisions.md`
+- [ ] Baca `C:/Users/BSM/XDIBAX/DIBA/main/decisions.md`
 - [ ] Search untuk keywords yang match query Abam
 - [ ] Present matching decision(s) dengan full context (Context + Decision + Rationale)
 - [ ] Jika tiada match: inform Abam dan offer to log new entry
@@ -115,7 +115,7 @@ Output bila log berjaya:
 4. **Non-obvious only** — skip trivial choices (guna git, formatting preferences)
 5. **Natural detection** — detect decision-worthy moments tanpa perlu explicit command
 6. **Domain prefix dalam tajuk** — format `[Domain]: [title]` untuk searchability
-7. **Absolute path** — sentiasa guna `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/main/decisions.md`
+7. **Absolute path** — sentiasa guna `C:/Users/BSM/XDIBAX/DIBA/main/decisions.md`
 8. **Reversal = new entry** — tukar keputusan? Append reversal entry, bukan edit lama
 9. **Auto-log autonomous decisions** — DIBA atau auto-worker membuat keputusan sendiri → log tanpa tanya
 10. **Confirm setiap log** — output "Logged decision: [title]" selepas append berjaya

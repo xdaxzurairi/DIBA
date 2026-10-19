@@ -117,7 +117,7 @@ Escalate ke Owner (Abam):
 - [ ] Keputusan strategic / budget / direction → WAJIB escalate ke Abam, JANGAN decide sendiri
 
 ### Step 6: Save Minutes
-- [ ] Tulis minit ke `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/projects/meetings/YYYY-MM-DD-meeting.md`
+- [ ] Tulis minit ke `C:/Users/BSM/XDIBAX/DIBA/projects/meetings/YYYY-MM-DD-meeting.md`
 - [ ] Format minit:
 
 ```markdown
@@ -165,7 +165,7 @@ Agenda: [topik]
 6. **Emergency marking konsisten** — kalau `emergency meeting`, URGENT mesti jelas dalam header dan summary
 7. **Action items mesti assigned** — setiap action item dalam summary mesti ada nama agent yang bertanggungjawab
 8. **Log-decision selepas meeting** — trigger `log-decision` untuk setiap keputusan yang dibuat dalam meeting
-9. **Path minit adalah absolute** — guna `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/projects/meetings/` bukan relative path
+9. **Path minit adalah absolute** — guna `C:/Users/BSM/XDIBAX/DIBA/projects/meetings/` bukan relative path
 10. **Confirm sebelum tutup** — bila meeting selesai, tanya Abam sama ada ada follow-up sebelum tutup sesi
 
 ---

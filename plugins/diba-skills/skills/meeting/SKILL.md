@@ -64,7 +64,7 @@ Selepas semua agent:
 3. Perkara yang perlu keputusan Zuex
 
 ### 6. Simpan Minit
-Simpan ke: `C:/Users/Administrator/xdibax/DIBA/projects/meetings/YYYY-MM-DD-meeting.md`
+Simpan ke: `projects/meetings/YYYY-MM-DD-meeting.md` (relatif kepada akar vault DIBA)
 
 ## Output Rules
 - Meeting ringkas — fokus output, bukan drama

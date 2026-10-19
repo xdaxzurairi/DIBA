@@ -60,7 +60,7 @@ Then immediately execute Step 1 of Protocol.
 ### Step 2: Load Session Memory
 
 - [ ] Semak idea yang telah di-generate dalam sesi semasa
-- [ ] Jika ada rekod dalam `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/main/current-session.md` → baca untuk avoid repeat
+- [ ] Jika ada rekod dalam `C:/Users/BSM/XDIBAX/DIBA/main/current-session.md` → baca untuk avoid repeat
 - [ ] Jika ada `dream-ideas.md` dalam projek → baca idea lama untuk avoid repeat
 - [ ] Catat idea yang perlu dielakkan dalam sesi ini
 
@@ -102,7 +102,7 @@ Then immediately execute Step 1 of Protocol.
   Mana idea yang menarik? Nak saya simpan ke diary atau dream-ideas.md?
   ```
 - [ ] Jika Abam pilih untuk simpan:
-  - Diary: trigger `save-diary` untuk append ke `C:/Users/BSM/XDIBAX/daily-diary/current/YYYY-MM-DD.md`
+  - Diary: trigger `save-diary` untuk append ke `C:/Users/BSM/XDIBAX/DIBA/daily-diary/current/YYYY-MM-DD.md`
   - dream-ideas.md: append ke fail dalam project root
   - Library: jika idea sangat kuat, suggest simpan ke library sebagai knowledge entry
 

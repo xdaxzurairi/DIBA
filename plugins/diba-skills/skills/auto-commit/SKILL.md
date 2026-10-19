@@ -127,7 +127,7 @@ After completing ANY task, the AI automatically:
 
 ### Submodule Awareness (Lv.4)
 
-Jika `git status` menunjukkan perubahan pada **submodule** (contoh `DIBA`, `Project-AI-MemoryCore`):
+Jika `git status` menunjukkan perubahan pada **submodule** (contoh `DIBA`):
 - Commit dalam repo submodule dahulu jika perlu, kemudian parent
 - Commit message sebut submodule path + ringkasan perubahan skill/memory
 

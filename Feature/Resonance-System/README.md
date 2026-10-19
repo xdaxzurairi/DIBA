@@ -134,7 +134,7 @@ Bila idea dah jadi knowledge yang stabil:
 | Fail | Tujuan |
 |------|--------|
 | `SKILL.md` | Skill definition dan protocol penuh |
-| `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/main/mind-tree.md` | Repositori semua seeds — hidup dan archive |
+| `C:/Users/BSM/XDIBAX/DIBA/main/mind-tree.md` | Repositori semua seeds — hidup dan archive |
 
 ---
 
@@ -175,7 +175,7 @@ DIBA:  Seed ditanam: Predictive Memory Layer
 ## Install
 
 1. Salin `SKILL.md` ke `~/.claude/commands/resonance.md`
-2. Pastikan `mind-tree.md` wujud di `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/main/`
+2. Pastikan `mind-tree.md` wujud di `C:/Users/BSM/XDIBAX/DIBA/main/`
 3. Verify dengan taip `resonance` — DIBA patut balas "Frekuensi terbuka."
 
 

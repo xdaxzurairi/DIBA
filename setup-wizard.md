@@ -56,7 +56,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts/diba-cursor-junction
 ```
 
 **Apa yang dibuat:**
-- Junction skill dari `Project-AI-MemoryCore/plugins/diba-skills/skills/` → `~/.cursor/skills/`
+- Junction skill dari `DIBA/plugins/diba-skills/skills/` → `~/.cursor/skills/`
 - Junction skill projek → `XDIBAX/.cursor/skills/`
 - Hard link rules DIBA → `XDIBAX/.cursor/rules/`
 - Sync skill `anchor` ke plugins (daripada `DIBA/Feature/Anchor-System/`)

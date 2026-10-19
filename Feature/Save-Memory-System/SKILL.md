@@ -53,10 +53,10 @@ Simpan ke fail memory yang sesuai mengikut jenis:
 
 | Type | Content | Fail |
 |------|---------|------|
-| `user` | Peranan, kepakaran, preference, gaya komunikasi | `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/main/user_*.md` |
-| `feedback` | Pembetulan dan pendekatan yang disahkan | `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/main/feedback_*.md` |
-| `project` | Keputusan, matlamat, constraints projek aktif | `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/main/project_*.md` |
-| `reference` | Sistem luar, path, URL, credentials struktur | `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/main/reference_*.md` |
+| `user` | Peranan, kepakaran, preference, gaya komunikasi | `C:/Users/BSM/XDIBAX/DIBA/main/user_*.md` |
+| `feedback` | Pembetulan dan pendekatan yang disahkan | `C:/Users/BSM/XDIBAX/DIBA/main/feedback_*.md` |
+| `project` | Keputusan, matlamat, constraints projek aktif | `C:/Users/BSM/XDIBAX/DIBA/main/project_*.md` |
+| `reference` | Sistem luar, path, URL, credentials struktur | `C:/Users/BSM/XDIBAX/DIBA/main/reference_*.md` |
 
 - [ ] Append atau kemaskini — **jangan overwrite** tanpa sebab kukuh
 - [ ] Semak fail sedia ada sebelum buat fail baru
@@ -137,7 +137,7 @@ Memory mungkin lapuk:
 4. **Jangan simpan yang trivial** — hanya maklumat yang genuinely penting merentas sesi
 5. **Confirm selepas save** — Abam perlu tahu apa yang disimpan
 6. **Audit staleness** bila skill dipanggil — jangan biarkan memory lapuk bertindak
-7. **Absolute path** mesti guna `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/main/` — bukan relative path
+7. **Absolute path** mesti guna `C:/Users/BSM/XDIBAX/DIBA/main/` — bukan relative path
 8. **Jangan save context sesi semasa** sebagai memory kekal — itu fungsi diary/checkpoint
 
 ---

@@ -94,7 +94,7 @@ Then immediately execute Step 1 of Protocol.
 - [ ] Pastikan **Pelajaran** adalah reusable — sesuatu yang berguna dalam konteks lain juga
 
 ### Step 5: Append to Log
-- [ ] Buka `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/main/post-mortems.md`
+- [ ] Buka `C:/Users/BSM/XDIBAX/DIBA/main/post-mortems.md`
 - [ ] Append entry baru di hujung fail — JANGAN edit atau padam entries lama
 - [ ] Verify entry berjaya ditulis
 - [ ] Catat domain projek dalam entry untuk future reference lookup
@@ -110,7 +110,7 @@ Then immediately execute Step 1 of Protocol.
 ## Domain Reference Behavior
 
 Bila memulakan kerja dalam domain yang ada post-mortem lalu:
-- [ ] Semak `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/main/post-mortems.md` untuk entries yang relevan
+- [ ] Semak `C:/Users/BSM/XDIBAX/DIBA/main/post-mortems.md` untuk entries yang relevan
 - [ ] Flag: "Peringatan: [lesson] — lihat post-mortem [tarikh]"
 - [ ] Jika jenis failure yang sama muncul 2+ kali — flag sebagai **recurring pattern**, escalate kepada Abam
 

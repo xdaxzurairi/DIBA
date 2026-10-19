@@ -49,7 +49,7 @@ Then immediately execute protocol.
 Jika LRU-Project-Management-System dipasang:
 
 - [ ] Semak project registry untuk workspace semasa
-- [ ] Load fail project memory dari `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/projects/active/`
+- [ ] Load fail project memory dari `C:/Users/BSM/XDIBAX/DIBA/projects/active/`
 - [ ] Extract: nama projek, status semasa, last activity, open issues
 - [ ] Jika tiada match dalam registry → skip ke Step 3
 

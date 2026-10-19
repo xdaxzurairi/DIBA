@@ -119,7 +119,7 @@ Draft siap — lulus untuk forge?
   - [ ] Save dan deploy semula ke commands
 
 ### Step 6: Update System Records
-- [ ] Kemaskini `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/main/current-session.md` — catat skill baru atau level-up
+- [ ] Kemaskini `C:/Users/BSM/XDIBAX/DIBA/main/current-session.md` — catat skill baru atau level-up
 - [ ] Trigger `log-decision` — rekod keputusan untuk create/level-up dengan rationale
 - [ ] Trigger `save-diary` — dokumentasi forge event dalam diary sesi
 

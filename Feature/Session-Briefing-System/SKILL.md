@@ -42,9 +42,9 @@ Baca semua sumber serentak:
 
 | Fail | Tujuan | Required |
 |------|--------|----------|
-| `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/main/current-session.md` | Recap sesi lepas | Ya |
-| `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/main/reminders.md` | Open reminder items | Optional |
-| `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/main/mind-tree.md` | Seeds aktif dari Resonance | Optional |
+| `C:/Users/BSM/XDIBAX/DIBA/main/current-session.md` | Recap sesi lepas | Ya |
+| `C:/Users/BSM/XDIBAX/DIBA/main/reminders.md` | Open reminder items | Optional |
+| `C:/Users/BSM/XDIBAX/DIBA/main/mind-tree.md` | Seeds aktif dari Resonance | Optional |
 | Project list file (LRU System) | Active project + idle health | Optional |
 | Current time | Klasifikasi time period | Optional |
 | `C:/Users/BSM/XDIBAX/diba-hub/data/inbox.json` | Queued tasks dari DIBA Hub | Optional |

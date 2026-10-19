@@ -13,7 +13,7 @@ description: "Auto-triggers at session start to review open reminders. Also trig
 
 ## Activation
 
-When this skill activates, silently read `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/main/reminders.md`.
+When this skill activates, silently read `C:/Users/BSM/XDIBAX/DIBA/main/reminders.md`.
 
 - Jika ada urgent/overdue items: mention secara natural dalam greeting
 - Jika tiada urgent items masa awal sesi: kekal senyap
@@ -43,7 +43,7 @@ When this skill activates, silently read `C:/Users/BSM/XDIBAX/Project-AI-MemoryC
 
 ### On Session Start
 
-- [ ] Baca `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/main/reminders.md`
+- [ ] Baca `C:/Users/BSM/XDIBAX/DIBA/main/reminders.md`
 - [ ] Parse bahagian `## Open` untuk semua active reminders
 - [ ] Semak deadlines: flag items yang due dalam 3 hari atau overdue
 - [ ] Jika ada urgent items: weave into greeting secara natural — jangan list robotically
@@ -63,7 +63,7 @@ When this skill activates, silently read `C:/Users/BSM/XDIBAX/Project-AI-MemoryC
   - "next week" → tarikh semasa + 7 hari
   - "Friday" → tarikh Friday minggu ini atau hadapan (yang lebih logik)
 - [ ] Semak Open section dahulu — jika duplicate, skip dan inform Abam
-- [ ] **APPEND** ke bahagian `## Open` dalam `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/main/reminders.md`
+- [ ] **APPEND** ke bahagian `## Open` dalam `C:/Users/BSM/XDIBAX/DIBA/main/reminders.md`
 - [ ] Confirm: "Added reminder: [title]"
 
 ---
@@ -80,7 +80,7 @@ When this skill activates, silently read `C:/Users/BSM/XDIBAX/Project-AI-MemoryC
 
 ### On Session End
 
-- [ ] Re-baca `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/main/reminders.md`
+- [ ] Re-baca `C:/Users/BSM/XDIBAX/DIBA/main/reminders.md`
 - [ ] Review setiap Open item terhadap kerja sesi ini
 - [ ] Move resolved items ke Completed dengan tarikh
 - [ ] Tambah follow-ups baru yang ditemui semasa sesi

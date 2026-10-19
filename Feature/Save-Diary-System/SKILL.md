@@ -37,7 +37,7 @@ Auto trigger: selepas setiap perubahan kod yang berjaya — tanpa perlu Abam min
 
 ### Step 1: Monthly Archive Check
 
-- [ ] Scan `C:/Users/BSM/XDIBAX/daily-diary/current/` untuk fail dari bulan sebelumnya
+- [ ] Scan `C:/Users/BSM/XDIBAX/DIBA/daily-diary/current/` untuk fail dari bulan sebelumnya
 - [ ] Untuk setiap fail di mana bulan != bulan semasa:
   - Cipta `daily-diary/archived/YYYY-MM/` jika belum wujud
   - Pindah fail ke `archived/YYYY-MM/`
@@ -114,7 +114,7 @@ Analisa sesi semasa dan tulis entry berstruktur:
 
 ### Step 6: Update current-session.md
 
-- [ ] Buka `C:/Users/BSM/XDIBAX/Project-AI-MemoryCore/main/current-session.md`
+- [ ] Buka `C:/Users/BSM/XDIBAX/DIBA/main/current-session.md`
 - [ ] Kemaskini dengan recap ringkas sesi ini:
   - Topik terakhir
   - Keputusan terakhir
