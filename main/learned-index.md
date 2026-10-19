@@ -1,5 +1,5 @@
 # DIBA Learned Index
-*Last updated: 2026-10-16*
+*Last updated: 2026-10-19*
 *Max 80 lines — oldest/lowest-confidence pruned bila penuh*
 
 ## Facts
