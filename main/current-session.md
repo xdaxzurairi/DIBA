@@ -1,9 +1,13 @@
 # Current Session Recap
 
-**Tarikh:** 2026-10-19 (terkini)
-**Topik:** Memory core digabung ke satu pusat (`XDIBAX/DIBA`) + auto-commit / session-end / stop-guard disambung. Diary: `daily-diary/current/2026-10-19.md`.
-**Keputusan:** PAMC dipindah ke `C:/Users/BSM/diba-merge-backup-20261019/`; signal-buffer PAMC (hidup) menang; `stop-guard.js` paksa save-diary (+ auto-learn) selepas kerja sebenar; hook dalam `~/.claude/settings.json` (backup di folder backup).
-**Follow-up:** commit config repo `xdibax-workspace`; padam salinan beku `XDIBAX/daily-diary/`; tukar rahsia ea_newv3 yang terdedah. (stop-guard sudah teruji hidup 14:46: menyekat sekali dan memaksa save-diary.)
+**Tarikh:** 2026-10-19 (EOD auto-diary)
+**Topik:** (1) Gabung memory core DIBA ke satu pusat + pasang semula hook auto-commit/session-end/stop-guard. (2) Control Room 3D — spec diluluskan + pelan 13 tugasan siap. Diary penuh: `daily-diary/current/2026-10-19.md`.
+**Keputusan:** PAMC dipindah ke backup; signal-buffer PAMC menang; stop-guard paksa save-diary + auto-learn; auto-learn jalankan 10 signal (R013+R014 ditambah). Cabang `feat/control-room` belum dicipta; cadangan: pelaksanaan Native.
+**Follow-up:**
+- Abam pilih kaedah pelaksanaan Control Room (Native dicadangkan) → buat cabang + mulakan Tugasan 1
+- Commit config repo `xdibax-workspace` (CLAUDE.md, .cursor, scripts, .claude-flow)
+- Padam salinan beku `XDIBAX/daily-diary/` (tunggu kebenaran Abam)
+- Tukar rahsia ea_newv3 yang terdedah (DB afm, MinIO, JWT_SECRET, Google secret)
 
 **Projek terkini — Control Room 3D (2026-10-19):** spec diluluskan + pelan 13 tugasan siap (`XDIBAX/docs/superpowers/{specs,plans}/2026-10-19-control-room*.md`). Roster tetap + tetamu, three.js + pelayan Node (SSE) memakai semula adapter `scripts/diba-dash`, aset Kenney CC0. **Menunggu Abam pilih kaedah pelaksanaan** (cadangan: Native); belum ada kod, cabang `feat/control-room` belum dicipta.
 
