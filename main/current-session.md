@@ -1,5 +1,12 @@
 # Current Session Recap
 
+**Tarikh:** 2026-10-19 (terkini)
+**Topik:** Memory core digabung ke satu pusat (`XDIBAX/DIBA`) + auto-commit / session-end / stop-guard disambung. Diary: `daily-diary/current/2026-10-19.md`.
+**Keputusan:** PAMC dipindah ke `C:/Users/BSM/diba-merge-backup-20261019/`; signal-buffer PAMC (hidup) menang; `stop-guard.js` paksa save-diary (+ auto-learn) selepas kerja sebenar; hook dalam `~/.claude/settings.json` (backup di folder backup).
+**Follow-up:** commit config repo `xdibax-workspace`; padam salinan beku `XDIBAX/daily-diary/`; tukar rahsia ea_newv3 yang terdedah; ujian hidup stop-guard di hujung sesi.
+
+---
+
 **Tarikh:** 2026-10-13
 **Topik:** ea_newv3 (e-Aduan v3) — UAT rasmi penuh (60 kes/10 modul) dibina 2026-10-12, dijadikan dwibahasa (BM/EN), kemudian ditukar hitam & putih + checkbox + PDF rasmi 2026-10-13. Diary penuh di `daily-diary/current/2026-10-12.md` dan `daily-diary/current/2026-10-13.md`.
 
