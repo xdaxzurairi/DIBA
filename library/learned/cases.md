@@ -54,3 +54,8 @@
 - **Miss:** `merge-diary.ps1 -Apply` gagal dengan "A parameter cannot be found … 'File'" walaupun mod dry-run berjalan. Punca: `foreach ($a in $appended)` menimpa `$A` (laluan vault) kerana PowerShell tak sensitif huruf; `Get-ChildItem` kemudian menerima objek, bukan laluan.
 - **Fix:** tukar pembolehubah gelung kepada `$ap`; ralat ditangkap dengan `try/catch` + `$_.InvocationInfo.PositionMessage` untuk cari baris sebenar. Dua kes serupa: fungsi `H` (alias Get-History) dan kunci hash pendua.
 - **Lesson:** dry-run yang lulus tak jamin laluan Apply lulus — jalankan Apply pada data tiruan atau semak setiap cabang; lihat R014.
+
+## 2026-10-20 — Nota Sesi Basi: Cabang "Menunggu Keputusan" Sebenarnya Sudah Di-merge
+- **Miss:** `current-session.md` kata `feat/control-room` menunggu pilihan merge/PR, tetapi worktree dan cabang tiada. Nota ditulis 09:10; merge fast-forward berlaku 09:37 tanpa nota dikemas kini. Cadangan "buka PR" hampir dibuat atas fakta basi.
+- **Fix:** `git reflog` + `git branch -a --contains <sha>` menunjukkan merge dan commit selamat. Nota dibetulkan.
+- **Lesson:** status git dalam nota sesi ialah tuntutan basi-mudah — sahkan dengan `git reflog`/`git worktree list` sebelum bertindak, dan kemas kini nota sebaik merge/buang cabang.
