@@ -1,6 +1,6 @@
 # Current Session Recap
 
-**Tarikh:** 2026-10-19 (terkini)
+**Tarikh:** 2026-10-19 (terkini; memory DIBA di-push `292de15` 2026-10-20 10:05)
 **Topik:** Memory core digabung ke satu pusat (`XDIBAX/DIBA`) + auto-commit / session-end / stop-guard disambung. Diary: `daily-diary/current/2026-10-19.md`.
 **Keputusan:** PAMC dipindah ke `C:/Users/BSM/diba-merge-backup-20261019/`; signal-buffer PAMC (hidup) menang; `stop-guard.js` paksa save-diary (+ auto-learn) selepas kerja sebenar; hook dalam `~/.claude/settings.json` (backup di folder backup).
 **Follow-up:** commit config repo `xdibax-workspace`; padam salinan beku `XDIBAX/daily-diary/`; tukar rahsia ea_newv3 yang terdedah. (stop-guard sudah teruji hidup 14:46: menyekat sekali dan memaksa save-diary.)
