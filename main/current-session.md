@@ -1,9 +1,9 @@
 # Current Session Recap
 
-**Tarikh:** 2026-10-19 (terkini; 11:05 2026-10-20: stop-guard dibetulkan (commit vault tak dikira kerja), belum di-commit; baki: rahsia ea_newv3, 11 Minor Control Room) ; 15:45 2026-10-20: .vscode/tasks.json auto-run Control Room (belum di-commit, belum diuji dalam VS Code); R015 ditambah ; 16:30 2026-10-20: /doctor — 19 skill + 42 plugin dimatikan, CLAUDE.md ditrim; baki: session-start.sh lambat (32s)
-**Topik:** Memory core digabung ke satu pusat (`XDIBAX/DIBA`) + auto-commit / session-end / stop-guard disambung. Diary: `daily-diary/current/2026-10-19.md`.
-**Keputusan:** PAMC dipindah ke `C:/Users/BSM/diba-merge-backup-20261019/`; signal-buffer PAMC (hidup) menang; `stop-guard.js` paksa save-diary (+ auto-learn) selepas kerja sebenar; hook dalam `~/.claude/settings.json` (backup di folder backup).
-**Follow-up:** commit config repo `xdibax-workspace`; padam salinan beku `XDIBAX/daily-diary/`; tukar rahsia ea_newv3 yang terdedah. (stop-guard sudah teruji hidup 14:46: menyekat sekali dan memaksa save-diary.)
+**Tarikh:** 2026-10-20 (auto-diary 22:48 KL)
+**Topik:** Control Room 3D selesai + merge, NPC berjalan, stop-guard dibaiki, VS Code auto-run, /doctor cleanup. Diary: `daily-diary/current/2026-10-20.md`.
+**Keputusan:** Control Room: merge fast-forward, tiada PR; NPC laluan rawak di lorong; stop-guard kecualikan vault commit; /doctor kekalkan 29 skill persona DIBA.
+**Follow-up:** Tukar rahsia ea_newv3 (SEGERA); commit stop-guard.js + .vscode/tasks.json + CLAUDE.md trim; sahkan plugin @synced; baiki session-start.sh lambat (32s).
 
 **Projek terkini — Control Room 3D (kemas kini 2026-10-20 09:55):** 13 tugasan SIAP + semakan akhir (0 Critical, 5 Important dibetulkan `e430d0e`, 11 Minor ditunda). **SUDAH di-merge** (fast-forward 09:37) ke `feat/diba-dash`, HEAD `e61336494`; cabang + worktree `feat/control-room` dibuang. Ujian 92/92, diba-dash 187/187. Jalankan: `cd scripts/control-room && npm start`. `feat/diba-dash` di-push ke `origin` (nnkmz/xdibax-workspace) 2026-10-20. Baki: 11 Minor ditunda. Diary: `2026-10-20.md`.
 
