@@ -39,3 +39,4 @@
 - R012 — Jangan sapu root UNC webs; semak data DB dahulu sebelum andai bug
 - R013 — Save-diary, auto-commit, auto-learn jalan sendiri; hook + stop-guard wajib kekal; sahkan dengan git log
 - R014 — PowerShell tak sensitif huruf: elak `$a` vs `$A`, fungsi `H`, kunci hash pendua
+- R015 — Bash skrip panjang berkutip -> "unexpected EOF"; tulis ke fail dahulu / heredoc <<'EOF'

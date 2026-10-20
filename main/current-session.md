@@ -1,6 +1,6 @@
 # Current Session Recap
 
-**Tarikh:** 2026-10-19 (terkini; 11:05 2026-10-20: stop-guard dibetulkan (commit vault tak dikira kerja), belum di-commit; baki: rahsia ea_newv3, 11 Minor Control Room)
+**Tarikh:** 2026-10-19 (terkini; 11:05 2026-10-20: stop-guard dibetulkan (commit vault tak dikira kerja), belum di-commit; baki: rahsia ea_newv3, 11 Minor Control Room) ; 15:45 2026-10-20: .vscode/tasks.json auto-run Control Room (belum di-commit, belum diuji dalam VS Code); R015 ditambah ; 16:30 2026-10-20: /doctor — 19 skill + 42 plugin dimatikan, CLAUDE.md ditrim; baki: session-start.sh lambat (32s)
 **Topik:** Memory core digabung ke satu pusat (`XDIBAX/DIBA`) + auto-commit / session-end / stop-guard disambung. Diary: `daily-diary/current/2026-10-19.md`.
 **Keputusan:** PAMC dipindah ke `C:/Users/BSM/diba-merge-backup-20261019/`; signal-buffer PAMC (hidup) menang; `stop-guard.js` paksa save-diary (+ auto-learn) selepas kerja sebenar; hook dalam `~/.claude/settings.json` (backup di folder backup).
 **Follow-up:** commit config repo `xdibax-workspace`; padam salinan beku `XDIBAX/daily-diary/`; tukar rahsia ea_newv3 yang terdedah. (stop-guard sudah teruji hidup 14:46: menyekat sekali dan memaksa save-diary.)
