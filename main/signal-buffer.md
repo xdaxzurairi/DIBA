@@ -99,3 +99,10 @@
 | [done] 2026-10-19T07:23:04 | tool-fail | PowerShell: Exit code 1 [31;1mInvoke-Expression: [31;1mMissing closing ')' in expression.[0m |
 | [done] 2026-10-19T09:00:12 | tool-fail | Read: File does not exist. Note: your current working directory is C:\Users\BSM\XDIBAX\.worktrees\control-room. |
 | [done] 2026-10-20T01:50:30 | tool-fail | Bash: Exit code 1 /usr/bin/bash: line 1: cd: C:/Users/BSM/XDIBAX/.worktrees/control-room: No such file or directory |
+| 2026-10-20T02:26:33 | tool-fail | Bash: Exit code 1 C:\Users\BSM\AppData\Local\Temp\claude\C--Users-BSM\17627c74-f1f9-44ca-8e5e-3e61334599dc\scratchpad\sgtest\r |
+| 2026-10-20T03:09:16 | tool-fail | Bash: Exit code 2 /usr/bin/bash: -c: line 143: unexpected EOF while looking for matching `'' |
+| 2026-10-20T03:10:39 | tool-fail | Bash: Exit code 2 /usr/bin/bash: -c: line 133: unexpected EOF while looking for matching `'' |
+| 2026-10-20T03:15:29 | tool-fail | Bash: Exit code 2 /usr/bin/bash: -c: line 130: unexpected EOF while looking for matching `'' |
+| 2026-10-20T03:43:05 | tool-fail | Bash: Exit code 2 /usr/bin/bash: -c: line 114: unexpected EOF while looking for matching `'' |
+| 2026-10-20T03:54:04 | tool-fail | Bash: Exit code 2 /usr/bin/bash: -c: line 104: unexpected EOF while looking for matching `'' |
+| 2026-10-20T04:07:34 | tool-fail | Bash: Exit code 1 /usr/bin/bash: eval: line 1: unexpected EOF while looking for matching `)' |
