@@ -5,7 +5,7 @@
 **Keputusan:** PAMC dipindah ke `C:/Users/BSM/diba-merge-backup-20261019/`; signal-buffer PAMC (hidup) menang; `stop-guard.js` paksa save-diary (+ auto-learn) selepas kerja sebenar; hook dalam `~/.claude/settings.json` (backup di folder backup).
 **Follow-up:** commit config repo `xdibax-workspace`; padam salinan beku `XDIBAX/daily-diary/`; tukar rahsia ea_newv3 yang terdedah. (stop-guard sudah teruji hidup 14:46: menyekat sekali dan memaksa save-diary.)
 
-**Projek terkini — Control Room 3D (2026-10-19):** spec diluluskan + pelan 13 tugasan siap (`XDIBAX/docs/superpowers/{specs,plans}/2026-10-19-control-room*.md`). Roster tetap + tetamu, three.js + pelayan Node (SSE) memakai semula adapter `scripts/diba-dash`, aset Kenney CC0. **Menunggu Abam pilih kaedah pelaksanaan** (cadangan: Native); belum ada kod, cabang `feat/control-room` belum dicipta.
+**Projek terkini — Control Room 3D (kemas kini 2026-10-20 09:10):** 13 tugasan SIAP + semakan akhir (0 Critical, 5 Important dibetulkan `e430d0e`, 11 Minor ditunda). Cabang `feat/control-room` (worktree `XDIBAX/.worktrees/control-room`, HEAD `e613364`, 15 commit atas `feat/diba-dash`). Ujian 92/92, diba-dash 187/187. Jalankan: `cd scripts/control-room && npm start`. **Menunggu Abam pilih: merge lokal / PR / simpan.** Pelayan latar dihentikan. Diary: `2026-10-20.md`.
 
 ---
 
