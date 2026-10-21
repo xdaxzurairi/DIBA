@@ -67,6 +67,17 @@ class HookTests(unittest.TestCase):
         (helpers / 'hook-handler.cjs').write_text(stub)
         (helpers / 'auto-memory-hook.mjs').write_text(stub)
         (helpers / 'session.cjs').write_text("if(process.argv[2]!=='end')process.exit(9);console.log('session persisted');")
+        result = self.run_hook('route', {'prompt': 'hi diba'}, script)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(json.loads(result.stdout), {'hookSpecificOutput': {
+            'hookEventName': 'UserPromptSubmit', 'additionalContext': 'helper status\n'
+        }})
+        (helpers / 'hook-handler.cjs').write_text("console.log('route failed');process.exit(1);")
+        result = self.run_hook('route', {}, script)
+        self.assertEqual(result.returncode, 1)
+        self.assertEqual(result.stdout, '')
+        self.assertIn('route failed', result.stderr)
+        (helpers / 'hook-handler.cjs').write_text(stub)
         for action in ['post-task', 'sync']:
             result = self.run_hook(action, {}, script)
             self.assertEqual(result.returncode, 0, result.stderr)

@@ -22,8 +22,15 @@ process.stdin.on('end', () => {
     cwd: workspace, windowsHide: true,
     env: { ...process.env, CLAUDE_PROJECT_DIR: workspace, RUFLO_NO_AUTO_ENABLE: '1' }
   });
+  // Codex expects a JSON envelope for prompt context, not Ruflo's text table.
+  if (action === 'route') {
+    if (!result.error && result.status === 0) {
+      console.log(JSON.stringify({ hookSpecificOutput: {
+        hookEventName: 'UserPromptSubmit', additionalContext: result.stdout || ''
+      } }));
+    } else if (result.stdout) process.stderr.write(result.stdout);
   // Stop/SubagentStop require JSON; helper status text is not a hook decision.
-  if (['sync', 'post-task'].includes(action)) {
+  } else if (['sync', 'post-task'].includes(action)) {
     if (result.stdout) process.stderr.write(result.stdout);
     if (!result.error && result.status === 0) console.log('{}');
   } else if (result.stdout) process.stdout.write(result.stdout);
