@@ -1,6 +1,14 @@
 # Current Session Recap
 
-**Tarikh:** 2026-10-21 14:45 (terkini)
+**Tarikh:** 2026-10-21 15:10 (terkini)
+**Topik:** sync salinan skill siap: 15 skill + diba-response (Department Routing jadi Lv.8 dalam sumber DIBA) + interaction-design disamakan ke semua salinan; sandaran di scratchpad. Diary: daily-diary/current/2026-10-21.md (entry 15:10).
+**Keputusan:** Abam setuju kedua-dua cadangan (Lv.8 + buang rujukan virtual-hq tergantung).
+**Fail terakhir diubah:** DIBA/plugins/diba-skills/skills/{diba-response,interaction-design}/SKILL.md; salinan skill G/projek/.agents/.cursor/.copilot.
+**Follow-up terbuka:** commit perubahan skill + evals + scripts (semak git diff); War-Room-System (padam/arkib); sahkan run berjadual esok 08:00.
+
+---
+
+**Tarikh:** 2026-10-21 14:45
 **Topik:** deep-research DIBA: settings global dibersihkan (5 allow sampah dibuang, write-status Post dipersempit); 15 skill bersarang dipindah ke skills/<nama>/SKILL.md (heads: disable-model-invocation); agen bandingkan 20 salinan skill sedang jalan. Diary: daily-diary/current/2026-10-21.md (entry 14:45).
 **Keputusan:** Abam "teruskan 1 dan 2". Sync skill tak timpa terus: sandar dahulu, bawa kandungan unik ke sumber (DIBA/plugins/diba-skills) sebelum sync.
 **Fail terakhir diubah:** ~/.claude/settings.json; XDIBAX/.claude/skills/* (15 dipindah); XDIBAX/CLAUDE.md.
