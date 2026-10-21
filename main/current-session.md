@@ -1,6 +1,14 @@
 # Current Session Recap
 
-**Tarikh:** 2026-10-21 15:10 (terkini)
+**Tarikh:** 2026-10-21 15:50 (terkini)
+**Topik:** eval 9 senario dijalankan (echo-recall 2/3, code-sharp 2/3 tak sah penuh, chief-of-staff 0/3); 3 skill dibaiki (cos Lv.9, echo-recall Lv.5, code-sharp Lv.8) + disync; 7 senario dijalankan semula, keputusan belum dinilai. Diary: daily-diary/current/2026-10-21.md (entry 15:50).
+**Keputusan:** Abam: "jalankan eval" dan "baiki skill yang gagal". Pepijat harness (`$` terpotong) dibetulkan; pencetus skill lemah (3/9 panggil skill).
+**Fail terakhir diubah:** DIBA/plugins/diba-skills/skills/{chief-of-staff,echo-recall,code-sharp}/SKILL.md (+ salinan); DIBA/CLAUDE.md router.
+**Follow-up terbuka:** nilai run semula (scratchpad eval-runs2) → skor akhir; commit semua perubahan; War-Room-System; sahkan run berjadual esok 08:00.
+
+---
+
+**Tarikh:** 2026-10-21 15:10
 **Topik:** sync salinan skill siap: 15 skill + diba-response (Department Routing jadi Lv.8 dalam sumber DIBA) + interaction-design disamakan ke semua salinan; sandaran di scratchpad. Diary: daily-diary/current/2026-10-21.md (entry 15:10).
 **Keputusan:** Abam setuju kedua-dua cadangan (Lv.8 + buang rujukan virtual-hq tergantung).
 **Fail terakhir diubah:** DIBA/plugins/diba-skills/skills/{diba-response,interaction-design}/SKILL.md; salinan skill G/projek/.agents/.cursor/.copilot.
