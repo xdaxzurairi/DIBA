@@ -1,0 +1,121 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"C:/Users/BSM/XDIBAX/.codex/hooks/ruflo-hook.cjs\" pre-bash",
+            "timeout": 15
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"C:/Users/BSM/XDIBAX/.codex/hooks/ruflo-hook.cjs\" post-edit",
+            "timeout": 15
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "matcher": "manual",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"C:/Users/BSM/XDIBAX/.codex/hooks/ruflo-hook.cjs\" sync",
+            "timeout": 15
+          }
+        ]
+      },
+      {
+        "matcher": "auto",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"C:/Users/BSM/XDIBAX/.codex/hooks/ruflo-hook.cjs\" sync",
+            "timeout": 15
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"C:/Users/BSM/XDIBAX/.codex/hooks/ruflo-hook.cjs\" session-restore",
+            "timeout": 15
+          },
+          {
+            "type": "command",
+            "command": "node \"C:/Users/BSM/XDIBAX/.codex/hooks/ruflo-hook.cjs\" import",
+            "timeout": 15
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"C:/Users/BSM/XDIBAX/.codex/hooks/ruflo-hook.cjs\" session-end",
+            "timeout": 3
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"C:/Users/BSM/XDIBAX/.codex/hooks/ruflo-hook.cjs\" route",
+            "timeout": 15
+          }
+        ]
+      }
+    ],
+    "SubagentStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"C:/Users/BSM/XDIBAX/.codex/hooks/ruflo-hook.cjs\" stats",
+            "timeout": 15
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"C:/Users/BSM/XDIBAX/.codex/hooks/ruflo-hook.cjs\" post-task",
+            "timeout": 15
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"C:/Users/BSM/XDIBAX/.codex/hooks/ruflo-hook.cjs\" sync",
+            "timeout": 15
+          }
+        ]
+      }
+    ]
+  }
+}

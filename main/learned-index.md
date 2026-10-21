@@ -42,3 +42,5 @@
 - R015 — Bash skrip panjang berkutip -> "unexpected EOF"; tulis ke fail dahulu / heredoc <<'EOF'
 - [2026-10-21] Brief/recall: vault sebenar XDIBAX/DIBA — ~/.claude/main & daily-diary = salinan beku (case 2026-10-21)
 - [2026-10-21] Skill domain + *-head kini di .claude/skills/<nama>/SKILL.md (bukan new/ departments/); sumber = DIBA/plugins/diba-skills/skills; eval di DIBA/evals
+
+- [2026-10-21] Codex hooks: timeout saat, SessionEnd <=3s, Stop JSON, trust semula /hooks; kes: library/learned/codex-hooks.md.

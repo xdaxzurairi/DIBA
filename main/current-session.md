@@ -1,5 +1,13 @@
 # Current Session Recap
 
+**Tarikh:** 2026-10-21 16:12 (Codex)
+**Topik:** Hook Codex global + projek dibaiki dan dipasang; 8 ujian lulus, semakan kod tiada blocker. SessionStart sebenar memuatkan topik terkini; Ruflo stats exit 0.
+**Keputusan:** Buang pendaftaran monitor/pixel yang failnya hilang; laluan memori ke DIBA; timeout dalam saat; Stop/SubagentStop JSON; PreCompact sync, SessionEnd simpan terus dalam had 3s. Trust tidak diubah.
+**Fail terakhir diubah:** ~/.codex/hooks.json + hooks/diba-hook.cjs; XDIBAX/.codex/hooks.json + hooks/ruflo-hook.cjs; sumber/ujian/installer dalam DIBA/patches/codex-*.
+**Follow-up terbuka:** Abam review/trust hook melalui /hooks, kemudian mula/resume sesi untuk uji lifecycle sebenar. Eval pusingan 3 masih terbuka.
+
+---
+
 **Tarikh:** 2026-10-21 16:30 (terkini)
 **Topik:** pembaikan pusingan 3 (code-sharp pencetus global + php -l; chief-of-staff Lv.10) diterapkan; eval penuh 9 senario berjalan di latar belakang, belum dinilai. Diary: daily-diary/current/2026-10-21.md (entry 16:30).
 **Keputusan:** Abam "setuju" cadangan 3-bahagian. Seksyen "DIBA code discipline" ditambah dalam ~/.claude/CLAUDE.md (tanya Abam kekal atau pindah).

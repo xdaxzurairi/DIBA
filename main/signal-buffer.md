@@ -126,3 +126,5 @@
 | [done] 2026-10-21T06:36:11 | tool-fail | Bash: Exit code 1 =========== manage-project 28,39d27 < ## Shared Sub-Procedures < < Digunakan oleh semua protokol di bawah -- |
 | [done] 2026-10-21T07:00:42 | tool-fail | Glob: Ripgrep search timed out after 20 seconds. The search may have matched files but did not complete in time. Try searching |
 | [done] 2026-10-21 07:01 | new-folder | .claude/skills/biz-head/, .claude/skills/compliance-check/, .claude/skills/contract-reviewer/, .claude/skills/design-head/, .claude/skills/dev-head/, .claude/skills/finance-head/, .claude/skills/financial-snapshot/, .claude/skills/hook-generator/, .claude/skills/invoice-chaser/, .claude/skills/legal-head/, .claude/skills/memory-head/, .claude/skills/mkt-head/, .claude/skills/ops-head/, .claude/skills/post-writer/, .claude/skills/social-head/ |
+
+| [done] 2026-10-21 16:12 | tool-fail | Node EPERM sandbox + quote Python SQL + path skill salah diselesaikan; lessons dalam library/learned/codex-hooks.md. |

@@ -1,0 +1,46 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Skill",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"C:/Users/BSM/.codex/hooks/diba-hook.cjs\" log-skill",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"C:/Users/BSM/.codex/hooks/diba-hook.cjs\" capture-signal",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"C:/Users/BSM/.codex/hooks/diba-hook.cjs\" git-monitor",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"C:/Users/BSM/.codex/hooks/diba-hook.cjs\" session-start",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}
