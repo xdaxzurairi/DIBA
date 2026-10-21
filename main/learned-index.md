@@ -44,3 +44,4 @@
 - [2026-10-21] Skill domain + *-head kini di .claude/skills/<nama>/SKILL.md (bukan new/ departments/); sumber = DIBA/plugins/diba-skills/skills; eval di DIBA/evals
 
 - [2026-10-21] Codex hooks: timeout saat, SessionEnd <=3s, Stop JSON, trust semula /hooks; kes: library/learned/codex-hooks.md.
+- [2026-10-21] Codex UserPromptSubmit: bungkus teks Ruflo dalam JSON additionalContext; 8 ujian lulus, fix 65a21bf (library/learned/codex-hooks.md).

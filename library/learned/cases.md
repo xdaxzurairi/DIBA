@@ -59,3 +59,14 @@
 - **Miss:** `current-session.md` kata `feat/control-room` menunggu pilihan merge/PR, tetapi worktree dan cabang tiada. Nota ditulis 09:10; merge fast-forward berlaku 09:37 tanpa nota dikemas kini. Cadangan "buka PR" hampir dibuat atas fakta basi.
 - **Fix:** `git reflog` + `git branch -a --contains <sha>` menunjukkan merge dan commit selamat. Nota dibetulkan.
 - **Lesson:** status git dalam nota sesi ialah tuntutan basi-mudah — sahkan dengan `git reflog`/`git worktree list` sebelum bertindak, dan kemas kini nota sebaik merge/buang cabang.
+
+## 2026-10-21 — Brief Chief-of-Staff Baca Vault Lama (~/.claude/main), Terlepas Loop Terkini
+- **Miss:** `/chief-of-staff` baca `~/.claude/main/*` dan `~/.claude/daily-diary` (beku sejak Jun/Jul, current-session Mei) lalu hampir ikut `XDIBAX/daily-diary` lama; vault sebenar `XDIBAX/DIBA` (diary 2026-10-21 ada 2 entry) tak dibaca. Brief terlepas open loop rahsia ea_newv3, laporan CIPHER+PULSE dan agenda 2 meeting; reminders "Open kosong" pun dari salinan basi.
+- **Fix:** Cari lokasi benar (`find XDIBAX/DIBA -name 2026-10-21.md`); diary + current-session dikemas kini di `XDIBAX/DIBA`.
+- **Lesson:** Brief/recall mesti mula dari `XDIBAX/DIBA/{main,daily-diary,projects}` (rujuk fact 2026-10-19). Nama folder sama (`main/`, `daily-diary/`) wujud di ~/.claude sebagai salinan beku — semak tarikh ubah suai fail sebelum percaya.
+
+## 2026-10-21 — Pemerhatian: 3 tool-fail tunggal (bukan rule)
+- **Miss:** (a) skrip ujian scratch Skeptic ralat baris 11 (kutip rosak dalam fixture), (b) `node` gagal "Cannot find module" kerana dijalankan dari cwd salah, (c) Glob menolak corak berkurungan `{a,b}` ("ripgrep rejected the pattern").
+- **Fix:** Fixture ditulis semula dengan alat Write, node dijalankan dengan laluan penuh, Glob diganti dua panggilan berasingan.
+- **Lesson:** Kejadian tunggal tanpa pengulangan, maka hanya pemerhatian (Signal Validation Gate Lv.5). Jadikan rule hanya jika berulang 2+ kali. Petunjuk awal: fixture berkutip berbilang baris lebih selamat ditulis dengan Write (selari R015).
+- [2026-10-21] Auto-learn: 2 signal Bash tool-fail (08:20:46Z, 08:23:40Z) hanya metadata, punca tidak diketahui. Signal folder 08:22:42Z pendua inventori sedia ada; EPERM Node diliputi library/learned/codex-hooks.md. Tiada rule baharu direka daripada metadata sahaja.

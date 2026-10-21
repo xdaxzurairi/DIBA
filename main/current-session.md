@@ -1,5 +1,19 @@
 # Current Session Recap
 
+**Tarikh:** 2026-10-21T16:27:14.0559936+08:00 (Codex)
+**Topik:** Diari sesi hook Codex disimpan; UserPromptSubmit JSON dibaiki dan prompt susulan berfungsi.
+**Keputusan:** Fix commit 65a21bf; 8 ujian lulus, reviewer tiada blocker. AgentDB Advanced Features dibaca sahaja. Auto-learn memproses 4 signal pending.
+**Fail terakhir diubah:** daily-diary/current/2026-10-21.md; main/current-session.md; main/signal-buffer.md; library/learned/{codex-hooks,cases}.md; main/learned-index.md.
+**Follow-up terbuka:** Eval pusingan 3 masih belum dinilai. Skrip tempoh sesi hanya membaca transcript Claude; tempoh Codex tidak disahkan.
+
+---
+**Tarikh:** 2026-10-21 16:24 (Codex)
+**Topik:** UserPromptSubmit invalid JSON dibaiki: teks route Ruflo dibungkus sebagai additionalContext.
+**Keputusan:** Adapter sumber dan terpasang disamakan; exit gagal dikekalkan, diagnostik ke stderr.
+**Verify:** 8 ujian lulus di luar sandbox; hook terpasang menghasilkan JSON sah; reviewer tiada blocker.
+**Follow-up terbuka:** Sahkan prompt UI tanpa ralat; AgentDB Advanced Features dibaca atas panggilan Abam, belum ada perubahan AgentDB diminta. Eval pusingan 3 kekal terbuka.
+
+---
 **Tarikh:** 2026-10-21 16:12 (Codex)
 **Topik:** Hook Codex global + projek dibaiki dan dipasang; 8 ujian lulus, semakan kod tiada blocker. SessionStart sebenar memuatkan topik terkini; Ruflo stats exit 0.
 **Keputusan:** Buang pendaftaran monitor/pixel yang failnya hilang; laluan memori ke DIBA; timeout dalam saat; Stop/SubagentStop JSON; PreCompact sync, SessionEnd simpan terus dalam had 3s. Trust tidak diubah.
@@ -227,3 +241,5 @@ Topik: Rekod lama papar "-" pada senarai Siap eWorks & PWA (2026-10-16)
 Keputusan: action_period_m / masa_siap_tangguh_m NULL → papar "-" (bukan 0, tiada fallback jam/hari); DB tidak disentuh; prod masih ditahan. 1295610 disahkan 5544 min.
 Fail terakhir diubah: eWorks/senarai_aduan.php, pwa_eworks/complaints.php (dev sahaja)
 Follow-up terbuka: Abam semak dev → deploy 4 fail ke prod (lajur wujud + diff dahulu); uji tutup aduan eWorks; aduan 1470117.
+
+

@@ -8,3 +8,4 @@
 - Node dalam sandbox Windows gagal lstat profil; ujian berjaya selepas escalation. Gunakan heredoc PowerShell untuk Python SQL, bukan quote bersarang.
 - Bukti: patches/test-codex-hooks.py (8 ujian), semakan skrip dipasang dan review agen.
 - Rujukan rasmi: https://developers.openai.com/codex/hooks
+- [2026-10-21] UserPromptSubmit: output route Ruflo ialah teks; adapter Codex mesti bungkus sebagai JSON hookSpecificOutput dengan hookEventName UserPromptSubmit dan additionalContext. Kejayaan dan kegagalan diuji; commit 65a21bf.
