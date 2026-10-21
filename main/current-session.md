@@ -1,6 +1,14 @@
 # Current Session Recap
 
-**Tarikh:** 2026-10-21 14:35 (terkini)
+**Tarikh:** 2026-10-21 14:45 (terkini)
+**Topik:** deep-research DIBA: settings global dibersihkan (5 allow sampah dibuang, write-status Post dipersempit); 15 skill bersarang dipindah ke skills/<nama>/SKILL.md (heads: disable-model-invocation); agen bandingkan 20 salinan skill sedang jalan. Diary: daily-diary/current/2026-10-21.md (entry 14:45).
+**Keputusan:** Abam "teruskan 1 dan 2". Sync skill tak timpa terus: sandar dahulu, bawa kandungan unik ke sumber (DIBA/plugins/diba-skills) sebelum sync.
+**Fail terakhir diubah:** ~/.claude/settings.json; XDIBAX/.claude/skills/* (15 dipindah); XDIBAX/CLAUDE.md.
+**Follow-up terbuka:** terima laporan agen 20 skill → sandar → sync/merge; War-Room-System (padam/arkib); sahkan run berjadual esok 08:00; commit evals/, scripts, skill dipindah.
+
+---
+
+**Tarikh:** 2026-10-21 14:35
 **Topik:** deep-research DIBA: 4 agen siap. Brief berjadual hidup (Task Scheduler 08:00 + Jumaat 16:00, permission dontAsk baca-sahaja); eval 3 skill dalam DIBA/evals; memori/reminders/decisions dibersihkan; siasatan settings + salinan skill siap, menunggu keputusan Abam. Diary: daily-diary/current/2026-10-21.md (entry 14:30).
 **Keputusan:** permission brief diketatkan (Abam). Telegram reminder DITANGGUH (Zapier MCP).
 **Fail terakhir diubah:** DIBA/scripts/scheduled-brief.sh, register-scheduled-briefs.ps1, DIBA/evals/*, main/reminders.md, main/decisions.md, memory (war_room, eworks_pwa, skill_upgrade, gitbash_hooks).
