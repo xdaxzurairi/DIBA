@@ -1,6 +1,14 @@
 # Current Session Recap
 
-**Tarikh:** 2026-10-21 14:15 (terkini)
+**Tarikh:** 2026-10-21 14:35 (terkini)
+**Topik:** deep-research DIBA: 4 agen siap. Brief berjadual hidup (Task Scheduler 08:00 + Jumaat 16:00, permission dontAsk baca-sahaja); eval 3 skill dalam DIBA/evals; memori/reminders/decisions dibersihkan; siasatan settings + salinan skill siap, menunggu keputusan Abam. Diary: daily-diary/current/2026-10-21.md (entry 14:30).
+**Keputusan:** permission brief diketatkan (Abam). Telegram reminder DITANGGUH (Zapier MCP).
+**Fail terakhir diubah:** DIBA/scripts/scheduled-brief.sh, register-scheduled-briefs.ps1, DIBA/evals/*, main/reminders.md, main/decisions.md, memory (war_room, eworks_pwa, skill_upgrade, gitbash_hooks).
+**Follow-up terbuka:** sahkan run berjadual esok 08:00; padam 5 entri allow sampah dalam ~/.claude/settings.json (baris 5,7,8,13,14) + sempitkan matcher PostToolUse write-status.js; sync salinan skill (20 berbeza); skill dalam new/ dan departments/ tak dimuat Claude Code (nama skill.md huruf kecil, bukan SKILL.md); folder DIBA/Feature/War-Room-System; commit evals/, scripts, guard-bash.js, format-on-edit.js, repo-setup/.
+
+---
+
+**Tarikh:** 2026-10-21 14:15
 **Topik:** deep-research DIBA lebih padu: BijakBersama digugurkan; pelan #2-#7 diluluskan, 4 agen berjalan (brief berjadual, eval, bersih memori, siasat settings/salinan skill); CLAUDE.md dipangkas. Diary: daily-diary/current/2026-10-21.md (entry 14:15).
 **Keputusan:** #1 rotasi rahsia diabaikan Abam. Jadual trigger: 9 skill tanpa fail dibuang, pendua digabung. Peraturan agen: lane bebas + baca-sahaja diutamakan.
 **Fail terakhir diubah:** XDIBAX/CLAUDE.md; DIBA/projects/registry.md; memory (project_bijakbersama dibuang).
