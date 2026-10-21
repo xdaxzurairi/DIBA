@@ -71,3 +71,8 @@
 - **Rule:** `$A` dan `$a` ialah pembolehubah sama (gelung `foreach ($a …)` menimpa `$A`); jangan namakan fungsi `H` (alias `Get-History`); kunci hashtable `'C:/x'` dan `'c:/x'` ialah pendua. Guna nama unik, fungsi berawalan kata kerja (`Get-…`), dan senarai pasangan bila perlu kunci berbeza huruf.
 - **Source:** 3 ralat sebenar dalam satu sesi 2026-10-19 (`Invoke-Expression … parameter 'File'`, `Cannot bind parameter 'Id'`, `Duplicate keys`)
 - **Confidence:** high (punca dibuktikan dan dibaiki)
+
+## R015 — Bash: Skrip Panjang Berbilang Baris Berkutip Gagal ("unexpected EOF"); Tulis Ke Fail Dahulu
+- **Rule:** Jangan hantar skrip panjang (100+ baris) berkutip tunggal/heredoc bersarang melalui `bash -c`; tulis ke fail skrip (Write) kemudian jalankan, atau guna heredoc berkutip `<<'EOF'` tanpa kutip tunggal dalam badan. Lebih-lebih lagi bila skrip mengandungi apostrof (`'`) dalam teks BM.
+- **Source:** 8 ralat `unexpected EOF while looking for matching` dalam sehari 2026-10-20 (02:26–06:04, beberapa sesi)
+- **Confidence:** high (berulang 8×, punca sama)

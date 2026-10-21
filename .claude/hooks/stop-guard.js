@@ -5,8 +5,10 @@
 // Stop hook CAN do is refuse to let the session go idle while there is unsaved
 // work, and tell the model exactly what to run. So:
 //   * real work this session (Write/Edit/NotebookEdit outside the memory dirs,
-//     or a git commit/push) AND today's diary not updated since the last such
-//     action  ->  block once with an instruction to run save-diary (+ auto-learn).
+//     or a git commit/push of code) AND today's diary not updated since the last
+//     such action  ->  block once with an instruction to run save-diary (+ auto-learn).
+//   * a git commit/push of the memory vault itself (diary/notes) is NOT work: it
+//     would demand a fresh diary entry, whose commit demands another — a loop.
 //   * `stop_hook_active` is honoured, so this can never loop: if the model
 //     still does not save, the second Stop is allowed through.
 // Self-locating (no machine paths); never throws — any failure is a silent no-op.
@@ -22,6 +24,13 @@ const NOISE = /\/scratchpad\/|\/appdata\/local\/temp\/|\/\.claude\/projects\/|\/
 const EDIT_TOOLS = /^(Write|Edit|MultiEdit|NotebookEdit)$/;
 const SHELL_TOOLS = /^(Bash|PowerShell)$/;
 const DELIVERY = /\bgit\s+(-C\s+\S+\s+)?(commit|push)\b/;
+const VAULT_N = norm(VAULT);
+// Penghantaran ke vault memory sendiri (diary/nota): arahan menyebut laluan vault, atau cwd berada dalam vault.
+const isVaultDelivery = (cmd, cwd) => {
+  const c = norm(cmd);
+  return c.includes(VAULT_N + '/') || c.includes(VAULT_N + ' ') || c.endsWith(VAULT_N)
+    || (!!cwd && (norm(cwd) === VAULT_N || norm(cwd).startsWith(VAULT_N + '/')));
+};
 const STUB_BYTES = 60;           // SessionStart creates a one-line stub (~40 B)
 const LEARN_PENDING_MIN = 3;     // chain auto-learn when this many signals wait
 const LEARN_BACKLOG_MIN = 15;    // nudge once per session even without code work
@@ -68,7 +77,8 @@ function run(input) {
         const fp = norm(c.input && (c.input.file_path || c.input.notebook_path));
         hit = !!fp && !NOISE.test(fp) && !MEMORY_DIRS.some((d) => fp.startsWith(d));
       } else if (SHELL_TOOLS.test(c.name)) {
-        hit = DELIVERY.test(String(c.input && c.input.command));
+        const cmd = String(c.input && c.input.command);
+        hit = DELIVERY.test(cmd) && !isVaultDelivery(cmd, o.cwd);
       }
       if (hit) { count++; if (ts > lastWork) lastWork = ts; }
     }
