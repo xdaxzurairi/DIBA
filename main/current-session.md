@@ -1,6 +1,14 @@
 # Current Session Recap
 
-**Tarikh:** 2026-10-21 12:50 (terkini)
+**Tarikh:** 2026-10-21 14:15 (terkini)
+**Topik:** deep-research DIBA lebih padu: BijakBersama digugurkan; pelan #2-#7 diluluskan, 4 agen berjalan (brief berjadual, eval, bersih memori, siasat settings/salinan skill); CLAUDE.md dipangkas. Diary: daily-diary/current/2026-10-21.md (entry 14:15).
+**Keputusan:** #1 rotasi rahsia diabaikan Abam. Jadual trigger: 9 skill tanpa fail dibuang, pendua digabung. Peraturan agen: lane bebas + baca-sahaja diutamakan.
+**Fail terakhir diubah:** XDIBAX/CLAUDE.md; DIBA/projects/registry.md; memory (project_bijakbersama dibuang).
+**Follow-up terbuka:** sintesis hasil 4 agen; sahkan brief berjadual berjalan; keputusan permission `__TRACKED_VAR__` / write-status.js; bandingkan salinan skill.
+
+---
+
+**Tarikh:** 2026-10-21 12:50
 **Topik:** repo-setup pada bijakbersama: P1-P4 lengkap (5 fail, belum commit); deny belum dibuktikan aktif. Diary: daily-diary/current/2026-10-21.md (entry 12:50).
 **Keputusan:** Tiada blok hooks dalam settings projek (guard global; formatter TIADA DIJUMPAI). Pembuktian deny perlu sesi baharu dari bijakbersama.
 **Fail terakhir diubah:** bijakbersama/.claude/settings.json (baharu), + .claude/rules/supabase-rls.md, CLAUDE.md, .gitignore, .worktreeinclude.
