@@ -1,5 +1,77 @@
 # Current Session Recap
 
+**Tarikh:** 2026-10-21 12:50 (terkini)
+**Topik:** repo-setup pada bijakbersama: P1-P4 lengkap (5 fail, belum commit); deny belum dibuktikan aktif. Diary: daily-diary/current/2026-10-21.md (entry 12:50).
+**Keputusan:** Tiada blok hooks dalam settings projek (guard global; formatter TIADA DIJUMPAI). Pembuktian deny perlu sesi baharu dari bijakbersama.
+**Fail terakhir diubah:** bijakbersama/.claude/settings.json (baharu), + .claude/rules/supabase-rls.md, CLAUDE.md, .gitignore, .worktreeinclude.
+**Follow-up terbuka:** P5/P6/P7 atau commit dahulu (tunggu Abam); sahkan deny dalam sesi baharu; baiki 3 isu KRITIKAL RLS/auth; commit bijakbersama + DIBA; deny/ask global DIBA; allow mysql.
+
+---
+
+**Tarikh:** 2026-10-21 12:35 (terkini)
+**Topik:** repo-setup pada bijakbersama: fail 1-4 siap (+ .claude/rules/supabase-rls.md); fail 5 settings.json menunggu ya. Diary: daily-diary/current/2026-10-21.md (entry 12:35).
+**Keputusan:** Rules hanya cegah kecacatan berulang, tak baiki kod sedia ada. settings.json projek dicadang skop bijakbersama sahaja.
+**Fail terakhir diubah:** bijakbersama/.claude/rules/supabase-rls.md (baharu), CLAUDE.md, .gitignore, .worktreeinclude (belum commit).
+**Follow-up terbuka:** ya untuk settings.json; baiki 3 isu KRITIKAL RLS/auth; commit bijakbersama + DIBA; deny/ask global DIBA; allow mysql.
+
+---
+
+**Tarikh:** 2026-10-21 12:20 (terkini)
+**Topik:** repo-setup pada bijakbersama: fail 1-3 siap (.gitignore, .worktreeinclude, CLAUDE.md gabung 38 baris); fail 4 rules/supabase-rls.md menunggu ya. Diary: daily-diary/current/2026-10-21.md (entry 12:20).
+**Keputusan:** Tiada perintah direka; DoD = lint + build; CLAUDE.md rujuk rules yang belum wujud, jangan commit sendirian.
+**Fail terakhir diubah:** bijakbersama/CLAUDE.md, .gitignore, .worktreeinclude (belum commit; sandaran .claude/backups/20261021-1152/).
+**Follow-up terbuka:** ya untuk rules/supabase-rls.md dan settings.json; baiki 3 isu KRITIKAL RLS/auth; commit bijakbersama + DIBA; deny/ask global DIBA; allow mysql.
+
+---
+
+**Tarikh:** 2026-10-21 12:05 (terkini)
+**Topik:** repo-setup dicuba pada bijakbersama: audit selesai, .gitignore + .worktreeinclude siap; CLAUDE.md gabung menunggu ya. Diary: daily-diary/current/2026-10-21.md (entry 12:05).
+**Keputusan:** Tiada perintah direka (test/typecheck/formatter TIADA DIJUMPAI). 3 isu KRITIKAL RLS/auth ditemui (disahkan baca baris), tidak dibaiki, dilaporkan.
+**Fail terakhir diubah:** bijakbersama/.gitignore, bijakbersama/.worktreeinclude (belum commit).
+**Follow-up terbuka:** ya untuk CLAUDE.md, rules/supabase-rls.md, settings.json bijakbersama; kerja berasingan baiki 3 isu KRITIKAL; commit bijakbersama + DIBA; deny/ask global DIBA; allow mysql.
+
+---
+
+**Tarikh:** 2026-10-21 11:50 (terkini)
+**Topik:** repo-setup: suntingan deny/ask global ditolak Abam; settings.json tidak berubah. Diary: daily-diary/current/2026-10-21.md (entry 11:50).
+**Keputusan:** Berhenti dan tanya apa yang perlu diubah. Sandaran settings.json.before-deny-ask-20261021-1124 sedia.
+**Fail terakhir diubah:** tiada (sandaran sahaja).
+**Follow-up terbuka:** maklum balas Abam atas cadangan deny/ask; allow mysql password_hash; commit repo DIBA.
+
+---
+
+**Tarikh:** 2026-10-21 11:40 (terkini)
+**Topik:** repo-setup: guard-bash diuji penuh, 106/106 lulus selepas pembetulan here-string dan ujian blok baharu. Diary: daily-diary/current/2026-10-21.md (entry 11:40).
+**Keputusan:** Pengecualian here-string tidak jadi pintasan (disahkan ujian). Hook global kekal aktif.
+**Fail terakhir diubah:** DIBA/.claude/hooks/guard-bash.test.js.
+**Follow-up terbuka:** deny/ask global (perlu ya); allow mysql password_hash (perlu ya); commit repo DIBA; fail sampah XDIBAX/.
+
+---
+
+**Tarikh:** 2026-10-21 11:30 (terkini)
+**Topik:** repo-setup: guard-bash disambung global (hidup, disahkan); pembetulan here-string PowerShell ditulis tetapi BELUM diuji. Diary: daily-diary/current/2026-10-21.md (entry 11:30).
+**Keputusan:** Skop ya = guard-bash sahaja. Abam hentikan kerja; hanya diary disimpan. Sandaran settings.json.before-guard-bash-20261021-1109.
+**Fail terakhir diubah:** ~/.claude/settings.json, DIBA/.claude/hooks/guard-bash.js (+ .test.js separa), memori project_repo_setup_skill.md.
+**Follow-up terbuka:** jalankan ujian guard-bash (104/104 tak terjamin); ujian blok here-string; deny/ask global; allow mysql password_hash; commit repo DIBA.
+
+---
+
+**Tarikh:** 2026-10-21 11:15 (terkini)
+**Topik:** repo-setup — guard-bash.js dikuatkan selepas serangan Skeptic (12 dapatan disahkan, 104/104 ujian lulus). Diary: `daily-diary/current/2026-10-21.md` (entry 11:15).
+**Keputusan:** Penghurai sedar-petikan; pintasan ditutup, positif palsu dibuang; had (escape bersarang 3 tahap, eval) dicatat jujur. settings.json global masih TIDAK diubah, tunggu "ya" Abam.
+**Fail terakhir diubah:** `DIBA/.claude/hooks/guard-bash.js` + `.test.js`, `DIBA/plugins/diba-skills/skills/repo-setup/SKILL.md` (+ salinan `~/.claude/skills/repo-setup/`).
+**Follow-up terbuka:** wiring guard ke settings global; buang allow mysql berisiko; commit repo DIBA; fail sampah XDIBAX/.
+
+---
+
+**Tarikh:** 2026-10-21 10:50 (terkini)
+**Topik:** repo-setup — prompt "Claude Code setup engineer" diadaptasi jadi skill DIBA + guard-bash.js + format-on-edit.js + code-reviewer-ro. Diary: `daily-diary/current/2026-10-21.md` (entry 10:50).
+**Keputusan:** Audit-dahulu/idempoten; guard-bash berlapis dengan deny (Read deny dipintas `cat .env`); settings.json global belum diubah, tunggu "ya" Abam. 48 ujian lulus; Skeptic (latar) cari pintasan.
+**Fail terakhir diubah:** `DIBA/plugins/diba-skills/skills/repo-setup/*`, `DIBA/.claude/hooks/{guard-bash,format-on-edit}.js` (+test, README), `~/.claude/agents/code-reviewer-ro.md`, `XDIBAX/CLAUDE.md`.
+**Follow-up terbuka:** wiring guard ke settings global; laporan Skeptic; buang allow mysql berisiko; bersihkan fail sampah XDIBAX/. (Follow-up eWorks di bawah masih terbuka.)
+
+---
+
 **Tarikh:** 2026-10-21 09:55 (terkini)
 **Topik:** eWorks — Tempoh Siap Sebenar / Masa Tertangguh kini dikira ikut masa skrin (HH:mm), saat dibuang. Diary: `daily-diary/current/2026-10-21.md` (entry 09:55).
 **Keputusan:** Aduan 1293921 (dev) disahkan dari DB + CALENDAR (cuti Kedah 6 hari); saat 27s dibuang oleh round() → Abam jangka 46 minit, putuskan "ikut masa screen". `action_period_m`/`masa_siap_tangguh_m` kini potong saat pada kedua-dua masa; response_period tak diubah; rekod lama tak diubah; dev sahaja, prod ditahan.

@@ -113,4 +113,13 @@
 | [done] 2026-10-20T06:42:29 | tool-fail | Bash: Exit code 1 server 4790 berhenti C:\Users\BSM\AppData\Local\Temp\claude\C--Users-BSM\ca46ec9b-8f81-45d8-8d55-77310f34aa1 |
 | [done] 2026-10-20T06:43:03 | tool-fail | PowerShell: Exit code 1 True [31;1mMethodInvocationException: [31;1mException calling "Matches" with "2" argument(s): "Value canno |
 | [done] 2026-10-20 07:41 | new-folder | .vscode/ |
-| 2026-10-21T00:36:22 | tool-fail | Bash: Exit code 2 /usr/bin/bash: -c: line 83: unexpected EOF while looking for matching `'' |
+| [done] 2026-10-21T00:36:22 | tool-fail | Bash: Exit code 2 /usr/bin/bash: -c: line 83: unexpected EOF while looking for matching `'' |
+| [done] 2026-10-21T01:20:12 | tool-fail | Glob: Ripgrep search timed out after 20 seconds. The search may have matched files but did not complete in time. Try searching |
+| [done] 2026-10-21T01:20:35 | tool-fail | PowerShell: Exit code 1 FMS-Prototype ---main ---diary ---active |
+| [done] 2026-10-21T01:21:03 | tool-fail | PowerShell: Exit code 1 Name LastWriteTime Length ---- ------------- ------ current-session.md 16/10/2026 10:56:38 AM 7484 decisions |
+| [done] 2026-10-21T01:27:33 | tool-fail | Grep: Ripgrep search timed out after 20 seconds. The search may have matched files but did not complete in time. Try searching |
+| [done] 2026-10-21T01:55:08 | tool-fail | Bash: Exit code 2 2026-10-12.md 2026-10-14.md 2026-10-16.md ls: cannot access 'Project-AI-MemoryCore/main': No such file or di |
+| [done] 2026-10-21T02:37:07 | tool-fail | Bash: Exit code 1 C:\Users\BSM\AppData\Local\Temp\claude\C--Users-BSM\70e655ee-f48b-4968-8b7f-139a6a304738\scratchpad\t.js:11  |
+| [done] 2026-10-21T02:46:18 | tool-fail | Bash: Exit code 1 node:internal/modules/cjs/loader:1228 throw err; ^ Error: Cannot find module 'C:\Users\BSM\AppData\Local\Tem |
+| [done] 2026-10-21T03:47:24 | tool-fail | Glob: Search failed — ripgrep rejected the pattern, glob, or file type without searching: rg: error parsing glob '{CLAUDE.md,A |
+| 2026-10-21T04:06:13 | tool-fail | Read: File does not exist. Note: your current working directory is C:\Users\BSM\XDIBAX\bijakbersama. Did you mean .env.local? |
