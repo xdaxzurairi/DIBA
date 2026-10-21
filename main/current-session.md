@@ -1,6 +1,14 @@
 # Current Session Recap
 
-**Tarikh:** 2026-10-21 08:35 (terkini)
+**Tarikh:** 2026-10-21 09:55 (terkini)
+**Topik:** eWorks — Tempoh Siap Sebenar / Masa Tertangguh kini dikira ikut masa skrin (HH:mm), saat dibuang. Diary: `daily-diary/current/2026-10-21.md` (entry 09:55).
+**Keputusan:** Aduan 1293921 (dev) disahkan dari DB + CALENDAR (cuti Kedah 6 hari); saat 27s dibuang oleh round() → Abam jangka 46 minit, putuskan "ikut masa screen". `action_period_m`/`masa_siap_tangguh_m` kini potong saat pada kedua-dua masa; response_period tak diubah; rekod lama tak diubah; dev sahaja, prod ditahan.
+**Fail terakhir diubah:** `eWorks/tutup_arahan_kerja.php` (~262-264), `pwa_eworks/includes/tutup_ak_save.php` (lepas baris 108). `php -l` lulus, belum diuji pelayar.
+**Follow-up terbuka:** uji tutup aduan di dev (eWorks + PWA); deploy 6 fail ke prod selepas Abam setuju (lajur DB prod, diff, .bak, hash); aduan 1470117 dari prod. Loop meeting pagi masih terbuka (rahsia ea_newv3, agenda 2 + minit).
+
+---
+
+**Tarikh:** 2026-10-21 08:35
 **Topik:** Meeting XDIBAX 10 agent (DIBA Chair) — round-table status + tindakan #1-#3 diluluskan Abam. Diary: `daily-diary/current/2026-10-21.md`.
 **Keputusan:** Meeting = DIBA Chair, semua 10 hadir. Commit batch tanpa push: `0b7ffc0ec` (XDIBAX: tasks.json + CLAUDE.md) dan `cb779a4` (DIBA: stop-guard + R015). Subagent CIPHER (kesan lokasi rahsia ea_newv3, baca sahaja) dan PULSE (ujian stop-guard, NPC pulang duduk, semak tasks.json) berjalan di latar.
 **Fail terakhir diubah:** `XDIBAX/CLAUDE.md`, `XDIBAX/.vscode/tasks.json`, `DIBA/.claude/hooks/stop-guard.js`, `DIBA/library/learned/rules.md`.
