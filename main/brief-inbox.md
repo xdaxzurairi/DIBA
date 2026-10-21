@@ -152,3 +152,27 @@ Your organization has disabled Claude subscription access for Claude Code · Use
 3. **Jalankan `scripts/register-scheduled-briefs.ps1`** kalau belum. Tiga run terakhir (09-14, 09-15, 09-20) gagal sebab auth dan billing.
 
 **Pending keputusan:** `getComplaintById()` masih ada bug CUTI yang sama, edit tersekat classifier. `post-mortems.md` masih kosong.
+
+---
+
+## Morning Brief — 2026-10-21 14:12
+
+Selamat pagi, Abam. Brief Rabu 2026-10-21:
+
+**Sesi lepas (12:50):** repo-setup pada bijakbersama siap P1-P4 (5 fail, belum commit). Deny belum dibuktikan aktif. Guard-bash global hidup, 106/106 ujian lulus.
+
+**Reminder terbuka:**
+- Telegram bridge (baki Phase 3): masih tiada bot token dan `send-diary-telegram.js`.
+- Setup Ollama di PC opis: tarikh 2026-07-07 sudah lepas jauh, jadi overdue.
+- eWorks e-signature: jangan sync prod.
+
+**Projek aktif:** ea_newv3 (pos #1, UAT terakhir 10-13). Stale: Portal FMS, eWorks, ruangniaga.
+
+**Fokus hari ini:**
+1. Buka sesi baharu dari bijakbersama untuk sahkan deny aktif.
+2. Baiki 3 isu KRITIKAL RLS/auth bijakbersama, kemudian commit bijakbersama dan DIBA.
+3. eWorks: uji tutup aduan di dev (eWorks dan PWA). Selepas itu deploy 6 fail ke prod bila Abam setuju.
+4. Putuskan sama ada nak P5/P6/P7 repo-setup, deny/ask global, dan allow mysql password_hash.
+5. Loop meeting pagi masih terbuka (rahsia ea_newv3, agenda 2 dan minit).
+
+**Lain-lain:** ada 1 signal belum diproses, jalankan auto-learn bila sesuai. Ada fail DIBA belum commit, termasuk hooks dan skill repo-setup.

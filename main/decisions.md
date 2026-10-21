@@ -29,8 +29,6 @@
 **Decision**: Install all 14 features at once (full system activation)
 **Rationale**: Zuex wants a fully functional system from day one — no partial installs
 
-co
-
 ---
 
 ## 2026-05-08 — Dahulukan Normalization Architecture untuk Global DIBA
@@ -93,13 +91,6 @@ co
 **Context**: Abam kata horizon sebulan terlalu lama untuk perkembangan DIBA dan mahu progression yang lebih cepat.
 **Decision**: Tukar cadence pertumbuhan DIBA kepada **7-day sprint** dengan review harian, bukannya plan sebulan penuh. Alternatif untuk kekalkan 30-day horizon ditangguhkan.
 **Rationale**: Sprint pendek memberi feedback lebih cepat, mengurangkan latency antara tindakan dan pembetulan, serta lebih selaras dengan daily operating loop DIBA.
-
----
-
-## 2026-05-11 — Roadmap Perkembangan DIBA 6 Fasa
-**Context**: Abam mahu unjuran perkembangan DIBA diterjemahkan menjadi pelaksanaan yang jelas dan segera.
-**Decision**: Gunakan roadmap 6 fasa: stabilkan core operator, kukuhkan memory/recall, naikkan delegation quality, tambah product insight, perluas automasi, kemudian capai strategic co-pilot. Alternatif untuk lompat terus ke automasi atau expansion role ditangguhkan.
-**Rationale**: DIBA mesti dibina dari teras operasi dahulu supaya setiap fasa selepas itu bertambah atas asas yang stabil. Ini mengurangkan drift, mengelakkan automasi yang prematur, dan memastikan growth memberi leverage sebenar.
 
 ---
 

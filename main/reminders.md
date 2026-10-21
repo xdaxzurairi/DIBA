@@ -4,8 +4,8 @@
 ## Open
 
 - **Setup local model kat PC opis (Isnin 2026-07-07):** Install Ollama + `ollama pull qwen2.5:3b`, kemudian test `node scripts/diba-fallback-chat.js` — fallback bila Claude limit. Opsyenal: set `OPENROUTER_API_KEY` untuk backend Nemotron cloud sekali. (Ditambah 2026-07-04 selepas merge PR #17)
-- **Phase 3 — Scheduled Loops (baki: Telegram sahaja):** (1) scheduled morning brief + (2) weekly review auto Jumaat — **SIAP 2026-09-10** via Windows Task Scheduler (`scripts/scheduled-brief.sh` → `main/brief-inbox.md`). Abam kena run sekali: `scripts/register-scheduled-briefs.ps1`. **Baki (3) Telegram bridge** — belum wujud: takde bot token, `scripts/send-diary-telegram.js` tak ada dalam repo. Penemuan 2026-09-10: cloud `/schedule` routine **tak boleh** akses vault lokal, jadi scheduled brief mesti local schtasks (bukan cloud). Rujuk `plans/DIBA-v3-Blueprint.md` Phase 3. (Diluluskan Abam 2026-07-05 — "loop engineering: automasi pencetus")
-- **Save diary → Telegram penuh (permanent):** Setiap save diary, hantar fail hari penuh via `scripts/send-diary-telegram.js`. IDE tidak relevan. Script ada **fallback plain text** bila Markdown parse gagal (underscore/path kod).
+- **Phase 3 — baki: Telegram bridge sahaja** (brief + weekly review sudah SIAP, lihat Completed 2026-09-10). Belum wujud: takde bot token, `scripts/send-diary-telegram.js` tak ada dalam repo. Rujuk `plans/DIBA-v3-Blueprint.md` Phase 3. (Diluluskan Abam 2026-07-05)
+- **Save diary → Telegram (DITANGGUH):** hasrat asal "setiap save diary hantar fail penuh via Telegram" dikekalkan sebagai hasrat, tapi `decisions.md` 2026-09-10 (baris 153) menangguh Telegram buat masa ni; custom script ditolak, calon ganti = Zapier MCP. Bukan lagi "permanent" — tiada tindakan sehingga Abam putuskan.
 - **eWorks e-signature:** End-to-end test Borang Arahan Kerja — **jangan sync prod** buat masa ini (keputusan 2026-06-11).
 
 ## Completed
