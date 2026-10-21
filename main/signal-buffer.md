@@ -123,3 +123,5 @@
 | [done] 2026-10-21T02:46:18 | tool-fail | Bash: Exit code 1 node:internal/modules/cjs/loader:1228 throw err; ^ Error: Cannot find module 'C:\Users\BSM\AppData\Local\Tem |
 | [done] 2026-10-21T03:47:24 | tool-fail | Glob: Search failed — ripgrep rejected the pattern, glob, or file type without searching: rg: error parsing glob '{CLAUDE.md,A |
 | 2026-10-21T04:06:13 | tool-fail | Read: File does not exist. Note: your current working directory is C:\Users\BSM\XDIBAX\bijakbersama. Did you mean .env.local? |
+| 2026-10-21T06:36:11 | tool-fail | Bash: Exit code 1 =========== manage-project 28,39d27 < ## Shared Sub-Procedures < < Digunakan oleh semua protokol di bawah -- |
+| 2026-10-21T07:00:42 | tool-fail | Glob: Ripgrep search timed out after 20 seconds. The search may have matched files but did not complete in time. Try searching |

@@ -176,3 +176,38 @@ Selamat pagi, Abam. Brief Rabu 2026-10-21:
 5. Loop meeting pagi masih terbuka (rahsia ea_newv3, agenda 2 dan minit).
 
 **Lain-lain:** ada 1 signal belum diproses, jalankan auto-learn bila sesuai. Ada fail DIBA belum commit, termasuk hooks dan skill repo-setup.
+
+---
+
+## Weekly Review — 2026-10-21 14:24
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+**Weekly Review — Rabu 2026-10-21**
+
+**Kemenangan minggu ini**
+- Hook auto-commit dibaiki: 3 bug berlapis (format path Windows, double-slash, `.git/index.lock` stale). Hook ini tak pernah berfungsi sejak Ogos. Kini ia disahkan live-fire (commit 1fd76c1, 303b1f3).
+- Hook `memory-inject` dibaiki (UTF-8 dan bug heading). CLI naik 2.1.272 → 2.1.301.
+- Memory digabung ke satu vault (4 sumber diary, main/library/projects). Satu sumber kebenaran.
+- `stop-guard` ditambah, dengan 7 ujian terasing dan peraturan R015. Skill baharu `repo-setup`, `facility-architecture` dan `cad-dwg-dxf`. 6 skill dinaikkan tahap.
+- DIBA LIVE (terminal NPC dipacu hook) siap dan auto-start bersama VS Code.
+
+**Projek terbengkalai**
+- Stale: Portal FMS (2026-08-05), eWorks (2026-07-29), ruangniaga (2026-05-14).
+- ScoutOps (09-15) dan BFMwebsite (09-29) mula perlahan. ea_newv3 aktif (terakhir 10-13).
+- `project-list.md` belum disegarkan sejak 10-13.
+
+**Keputusan tertunggak**
+- Telegram bridge: ditangguh. Calon pengganti Zapier MCP, tunggu Abam putuskan.
+- Ollama/qwen2.5:3b di PC opis: reminder 07-07, belum ditutup, sudah lebih 3 bulan.
+- eWorks e-signature: kekal jangan sync prod.
+
+**Tema post-mortem**
+- `post-mortems.md` kosong, tapi `decisions.md` ada pola jelas. "Nampak lulus" tak sama dengan "berfungsi": pipe-test guna data buatan sendiri, dan hook gagal senyap bila stderr dibuang. Rujuk entri 2026-10-16 (ketiga-tiganya).
+- Disyorkan tulis satu post-mortem rasmi untuk hook auto-commit.
+- 1 signal dalam buffer belum diproses.
+
+**Keutamaan minggu depan**
+1. Jalankan `auto-learn` untuk proses signal buffer dan tulis post-mortem hook.
+2. Putuskan nasib projek stale (arkib atau hidupkan semula): Portal FMS, eWorks, ruangniaga.
+3. Commit item belum track: `evals/`, `guard-bash.js`, `format-on-edit.js`, `repo-setup/`.
+4. Teruskan ea_newv3 (UAT → dwibahasa → PDF). Putuskan Telegram vs Zapier, dan tutup reminder Ollama.
