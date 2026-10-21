@@ -1,6 +1,14 @@
 # Current Session Recap
 
-**Tarikh:** 2026-10-21 15:50 (terkini)
+**Tarikh:** 2026-10-21 16:10 (terkini)
+**Topik:** eval pusingan 2: echo-recall Lv.6 (Gerbang Kabur) lulus er3; chief-of-staff 1/3; code-sharp 0/3 (skill tak dipicu). Diary: daily-diary/current/2026-10-21.md (entry 16:10).
+**Keputusan:** Abam: "baiki echo-recall sekali lagi". Baris router "hi diba" berkesan (chief-of-staff dipicu 3/3).
+**Fail terakhir diubah:** DIBA/plugins/diba-skills/skills/echo-recall/SKILL.md (+ salinan); library/learned, learned-index, signal-buffer.
+**Follow-up terbuka:** (tunggu Abam) router code-sharp + chief-of-staff pusingan 2 + jalankan semula eval; commit semua perubahan; War-Room-System; run berjadual esok 08:00.
+
+---
+
+**Tarikh:** 2026-10-21 15:50
 **Topik:** eval 9 senario dijalankan (echo-recall 2/3, code-sharp 2/3 tak sah penuh, chief-of-staff 0/3); 3 skill dibaiki (cos Lv.9, echo-recall Lv.5, code-sharp Lv.8) + disync; 7 senario dijalankan semula, keputusan belum dinilai. Diary: daily-diary/current/2026-10-21.md (entry 15:50).
 **Keputusan:** Abam: "jalankan eval" dan "baiki skill yang gagal". Pepijat harness (`$` terpotong) dibetulkan; pencetus skill lemah (3/9 panggil skill).
 **Fail terakhir diubah:** DIBA/plugins/diba-skills/skills/{chief-of-staff,echo-recall,code-sharp}/SKILL.md (+ salinan); DIBA/CLAUDE.md router.
