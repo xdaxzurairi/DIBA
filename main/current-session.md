@@ -1,5 +1,13 @@
 # Current Session Recap
 
+**Tarikh:** 2026-10-22 09:07 MYT (Codex ScoutOps)
+**Topik:** ScoutOps A1/A2/A3 dibaiki + PHP runtime build guard; commit cf9782d pada fix/security-20261022. 77 checks +2 stress cases lulus; lint94 fail; reviewer tiada blocker.
+**Keputusan:** Skop aplikasi dalam workspace. DB/live deployment belum disentuh. Migrasi018 mengekalkan global rows tanpa tenant dan revoke token lama; pengguna login semula; cron URL baharu per organisasi.
+**Fail terakhir diubah:** scoutops src/auth_helper.php, src/roster_{import,sync}.php, src/xlsx_reader.php, public/login.php, public/import/sheet_sync*.php, sql018/schema, composer, scripts/verify_php_runtime.php, tests dan docs/security-rollout-2026-10-22.md.
+**Follow-up terbuka:** Sahkan Vercel project + DB target (checkout tiada .vercel/project.json); approval migrasi/preview deployment; patched live PHP belum disahkan. Runtime vendor lama akan disekat oleh build guard.
+
+---
+
 **Tarikh:** 2026-10-22 09:10 (terkini)
 **Topik:** repo induk XDIBAX di-commit 5 kumpulan (182800411 sync skill, 6c2189e8b config, c15c6a5f2 padam beku, 6c30062c9 control-room, 21397b53a pointer DIBA); local, belum push. Diary: daily-diary/current/2026-10-22.md (entry 09:10).
 **Keputusan:** Abam "ya" pemadaman diary+.swarm; fail runtime, settings.local, scoutops, bijakbersama, main/BFMwebsite, .tmp-scoutops-php, PDF resume ditinggalkan.

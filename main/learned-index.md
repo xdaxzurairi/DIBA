@@ -48,3 +48,5 @@
 
 - [2026-10-22] Eval pusingan 3 9/9 (echo-recall, code-sharp, chief-of-staff Lv.10); commit DIBA f0e1b6c; facts.md.
 - [2026-10-22] Elak heredoc bersarang / `python - <<EOF || node -e` dalam satu Bash (tergantung 120s); guna Edit atau fail skrip (R015 diperkukuh; cases.md).
+
+- [2026-10-22] ScoutOps security fix cf9782d: tenant sync, auth fingerprint, streaming XLSX, PHP build guard; migration/deploy pending (library/learned/scoutops-security.md).
