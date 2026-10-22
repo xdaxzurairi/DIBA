@@ -211,3 +211,28 @@ Warning: no stdin data received in 3s, proceeding without it. If piping from a s
 2. Putuskan nasib projek stale (arkib atau hidupkan semula): Portal FMS, eWorks, ruangniaga.
 3. Commit item belum track: `evals/`, `guard-bash.js`, `format-on-edit.js`, `repo-setup/`.
 4. Teruskan ea_newv3 (UAT → dwibahasa → PDF). Putuskan Telegram vs Zapier, dan tutup reminder Ollama.
+
+---
+
+## Morning Brief — 2026-10-22 08:00
+
+Selamat pagi, Abam. Khamis, 2026-10-22.
+
+**Sesi lepas (2026-10-21, Codex):** Hook Codex dibaiki. JSON `UserPromptSubmit` diperbetulkan dalam commit 65a21bf, 8 ujian lulus dan reviewer tiada blocker. Diari hook disimpan dan signal diproses.
+
+**Overdue:**
+- Reminder setup Ollama dan `qwen2.5:3b` di PC opis bertarikh 2026-07-07, sudah lewat 107 hari (skor +30). Ia fallback bila Claude kena limit.
+
+**Top 3:**
+1. Tutup atau jadualkan reminder Ollama. Ia overdue, dan Abam boleh tutup terus kalau tak jadi pakai.
+2. Nilai eval pusingan 3 (9 senario, scratchpad eval-runs4). Ia carry-over dari sesi lepas (+4) dan baik code-sharp serta chief-of-staff Lv.10 masih belum disahkan.
+3. Commit perubahan skill, evals dan scripts yang belum di-commit (carry-over). Semak `git diff` dulu.
+
+**Radar:**
+- ea_newv3 (LRU #1) kali terakhir disentuh 2026-10-13, jadi sudah stalled lebih 7 hari. UAT penuh 60 kes sudah siap, dan baki kerja ialah hitam&putih, checkbox dan PDF.
+- War-Room-System masih menunggu keputusan padam atau arkib.
+- Run berjadual 08:00 ini ialah pengesahan pertama bahawa Task Scheduler berfungsi.
+
+**Watch-out:** Hook Codex belum diuji lifecycle sebenar. Abam perlu review dan trust melalui `/hooks` dulu.
+
+Cadangan: mula dengan eval pusingan 3 sebab ia sudah siap berjalan, tinggal dinilai, dan hasilnya menentukan sama ada perubahan skill boleh di-commit hari ini.
