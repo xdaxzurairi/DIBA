@@ -1,5 +1,13 @@
 # Current Session Recap
 
+**Tarikh:** 2026-10-22 09:25 (terkini)
+**Topik:** feat/diba-dash di-push (e2e4cf174..21397b53a); fail runtime ruflo/swarm di-ignore + dibuang dari index (commit local). Diary: daily-diary/current/2026-10-22.md (entry 09:25).
+**Keputusan:** memory.db/hnsw.* kekal tracked; commit ignore belum push (tiada arahan baharu).
+**Fail terakhir diubah:** XDIBAX/.gitignore; daily-diary/current/2026-10-22.md; main/current-session.md.
+**Follow-up terbuka:** push commit ignore; putuskan fail untracked XDIBAX (daily-diary/archived, BFMwebsite, scoutops, bijakbersama); credential.helper gh.exe (pilihan); brief berjadual 08:00.
+
+---
+
 **Tarikh:** 2026-10-22 09:07 MYT (Codex ScoutOps)
 **Topik:** ScoutOps A1/A2/A3 dibaiki + PHP runtime build guard; commit cf9782d pada fix/security-20261022. 77 checks +2 stress cases lulus; lint94 fail; reviewer tiada blocker.
 **Keputusan:** Skop aplikasi dalam workspace. DB/live deployment belum disentuh. Migrasi018 mengekalkan global rows tanpa tenant dan revoke token lama; pengguna login semula; cron URL baharu per organisasi.
