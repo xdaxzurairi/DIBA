@@ -47,3 +47,7 @@
 ## [2026-10-19] Folder Baharu Dikesan (Digabung)
 - **Source:** signal new-folder 2026-10-19 (5 baris, pendua digabung)
 - **Fact:** `scripts/diba-dash/` (adapters, providers, ui) dan `.claude-flow/policy/` ialah baharu dan belum dibaca — jalankan auto-learn-new-folder sebelum mengubahnya. `daily-diary/archived/2026-07..09/` dan `main/BFMwebsite/` hasil gabungan memory, bukan projek baharu.
+---
+## [2026-10-21] Susunan Skill Dikemas (Signal new-folder Digabung)
+- **Source:** signal new-folder 2026-10-21 07:01 (15 folder skill)
+- **Fact:** Skill domain (compliance-check, contract-reviewer, invoice-chaser, financial-snapshot, hook-generator, post-writer) dan 9 `*-head` dipindah dari `.claude/skills/new/` dan `departments/` ke `.claude/skills/<nama>/SKILL.md` (Claude Code hanya muat satu tahap; nama fail mesti `SKILL.md`). `*-head` ditanda `disable-model-invocation`. Sumber skill = `DIBA/plugins/diba-skills/skills/`; semua salinan disync 2026-10-21.

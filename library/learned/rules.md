@@ -40,8 +40,8 @@
 ## R008 — Carian Fail di Network Share (UNC) / Folder Besar: Sempitkan Path
 - **Rule:** Grep/Glob pada `\10.0.36.127\webs\...` atau folder besar kerap timeout 20 saat ("Ripgrep search timed out"). Sempitkan `path` ke subfolder, tambah `glob`/`type`, atau elak `node_modules`/`vendor`; jangan retry carian yang sama.
 - **Source:** signal buffer 2026-10-05 (Grep, Glob), 2026-10-09 (Grep)
-- **Confidence:** medium (3 kejadian)
-
+- **Source:** signal buffer 2026-10-05 (Grep, Glob), 2026-10-09 (Grep), 2026-10-21 (Glob, vault DIBA/folder besar; juga run eval headless)
+- **Confidence:** high (5+ kejadian)
 ## R009 — Grep Tool Boleh Gagal Kerana `rg` Tiada: Fallback ke Bash grep
 - **Rule:** "ENOENT ... uv_spawn 'rg'" / "EUNKNOWN uv_spawn" bermakna binari ripgrep tak tersedia dalam sesi itu. Jangan retry tool Grep; guna `grep -rn` melalui Bash (atau Glob+Read) untuk sesi tersebut.
 - **Source:** signal buffer 2026-10-12 (2 kejadian, EUNKNOWN 01:47 dan ENOENT 07:44)
@@ -74,5 +74,5 @@
 
 ## R015 — Bash: Skrip Panjang Berbilang Baris Berkutip Gagal ("unexpected EOF"); Tulis Ke Fail Dahulu
 - **Rule:** Jangan hantar skrip panjang (100+ baris) berkutip tunggal/heredoc bersarang melalui `bash -c`; tulis ke fail skrip (Write) kemudian jalankan, atau guna heredoc berkutip `<<'EOF'` tanpa kutip tunggal dalam badan. Lebih-lebih lagi bila skrip mengandungi apostrof (`'`) dalam teks BM.
-- **Source:** 8 ralat `unexpected EOF while looking for matching` dalam sehari 2026-10-20 (02:26–06:04, beberapa sesi)
-- **Confidence:** high (berulang 8×, punca sama)
+- **Source:** 9 ralat `unexpected EOF while looking for matching` dalam sehari 2026-10-20 (02:26–06:04, beberapa sesi)
+- **Confidence:** high (berulang 9×, punca sama; +1 2026-10-21 00:36)

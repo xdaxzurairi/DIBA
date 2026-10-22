@@ -1,5 +1,12 @@
 # Current Session Recap
 
+**Tarikh:** 2026-10-22 08:47 MYT (Codex)
+**Topik:** Audit PHP workspace sahaja atas arahan Abam; hanya ScoutOps mempunyai PHP (88 fail). CVE-2026-109618/109619 disahkan daripada php.net. Laporan: docs/php-security-audit-2026-10-22.md.
+**Keputusan:** Tiada kod/deploy/endpoint diubah. ScoutOps vercel-php@0.9.0 tidak membuktikan versi patch enjin; status runtime belum dapat dipastikan. Audit statik menemui global roster sync merentas tenant, cache sesi tidak revoked, dan XLSX tanpa had pengembangan/dimensi.
+**Follow-up terbuka:** Sahkan patch runtime deployment ScoutOps (PHP 8.5 >=8.5.12 atau bukti backport); baiki A1/A2/A3 selepas arahan. Server UiTM dikecualikan oleh Abam. Eval pusingan 3 masih terbuka.
+
+---
+
 **Tarikh:** 2026-10-21T16:27:14.0559936+08:00 (Codex)
 **Topik:** Diari sesi hook Codex disimpan; UserPromptSubmit JSON dibaiki dan prompt susulan berfungsi.
 **Keputusan:** Fix commit 65a21bf; 8 ujian lulus, reviewer tiada blocker. AgentDB Advanced Features dibaca sahaja. Auto-learn memproses 4 signal pending.
