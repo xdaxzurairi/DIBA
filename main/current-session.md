@@ -1,5 +1,11 @@
 # Current Session Recap
 
+**Tarikh:** 2026-10-22T15:16:52.5178962+08:00 (Control Room Mission Desk)
+**Topik:** Mission Desk siap dalam panel Task: carian/penapis kekal, butiran task, delegasi NPC dan fokus; skop bilik serta sambungan jelas.
+**Verify:** satu worker + reviewer;312/312 ujian lulus,6/6 fokus; P2 Escape/input diselesaikan; aset live4777/4782 disahkan, zoom/pokok kekal.
+**Follow-up:** Ctrl+Shift+R, buka Task(T) / Ctrl+K cari Misi. Visual browser belum disahkan (inventory kosong). Spec dan plan dalam scripts/control-room/docs/superpowers/.
+
+---
 **Tarikh:** 2026-10-22 14:41 MYT (Control Room)
 **Topik:** 4 pokok kecil berpasu di tepi laluan antara bilik, satu setiap baris berselang; had6. Kod campus.mjs sahaja.
 **Verify:** 4 ujian lulus + pemeriksaan 16 komponen bebas pertindihan bilik/lorong; modul baharu disajikan4782. Visual belum disahkan; Ctrl+Shift+R.
