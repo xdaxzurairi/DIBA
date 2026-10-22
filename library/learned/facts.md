@@ -51,3 +51,5 @@
 ## [2026-10-21] Susunan Skill Dikemas (Signal new-folder Digabung)
 - **Source:** signal new-folder 2026-10-21 07:01 (15 folder skill)
 - **Fact:** Skill domain (compliance-check, contract-reviewer, invoice-chaser, financial-snapshot, hook-generator, post-writer) dan 9 `*-head` dipindah dari `.claude/skills/new/` dan `departments/` ke `.claude/skills/<nama>/SKILL.md` (Claude Code hanya muat satu tahap; nama fail mesti `SKILL.md`). `*-head` ditanda `disable-model-invocation`. Sumber skill = `DIBA/plugins/diba-skills/skills/`; semua salinan disync 2026-10-21.
+
+- [2026-10-22] Eval DIBA pusingan 3: echo-recall 3/3, code-sharp 3/3, chief-of-staff 3/3 (cos2 bersyarat: mod don't-ask tolak langkah tulis EOD). Trend: pusingan 1 (2,2,0) -> 2 (3,0,1) -> 3 (3,3,3). Kecacatan kecil cos3/cs2 dibiar. Fail: DIBA/evals, commit f0e1b6c.

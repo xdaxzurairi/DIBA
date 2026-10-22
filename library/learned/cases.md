@@ -70,3 +70,8 @@
 - **Fix:** Fixture ditulis semula dengan alat Write, node dijalankan dengan laluan penuh, Glob diganti dua panggilan berasingan.
 - **Lesson:** Kejadian tunggal tanpa pengulangan, maka hanya pemerhatian (Signal Validation Gate Lv.5). Jadikan rule hanya jika berulang 2+ kali. Petunjuk awal: fixture berkutip berbilang baris lebih selamat ditulis dengan Write (selari R015).
 - [2026-10-21] Auto-learn: 2 signal Bash tool-fail (08:20:46Z, 08:23:40Z) hanya metadata, punca tidak diketahui. Signal folder 08:22:42Z pendua inventori sedia ada; EPERM Node diliputi library/learned/codex-hooks.md. Tiada rule baharu direka daripada metadata sahaja.
+
+## 2026-10-22 — Pemerhatian: Python cp1252, PowerShell exit 1 bukan ralat, heredoc bersarang tergantung
+- **Miss:** (a) skrip Python audit PHP gagal cetak aksara Unicode kerana stdout Windows cp1252; (b) PowerShell `Get-Process` tanpa padanan menamatkan perintah dengan exit 1 walaupun output sebenar betul (bukan kegagalan); (c) `python - <<EOF || node -e '...' <<EOF` bersarang dalam satu Bash tergantung sehingga timeout 120s (entri diary sudah tertulis, current-session belum).
+- **Fix:** (a) `sys.stdout.reconfigure(encoding="utf-8")`; (b) bungkus semakan pilihan dengan `try { ... } catch {}` atau abaikan exit; (c) kemas kini fail dengan alat Edit, bukan heredoc bersarang.
+- **Lesson:** Kejadian tunggal, hanya pemerhatian (Signal Validation Gate Lv.5). (c) memperkukuh R015: skrip berkutip panjang atau heredoc bersarang tulis ke fail / guna Edit. 5 signal new-folder (inventori salinan skill .agents/.claude) digabung jadi satu: sync skill, sudah tercatat dalam CLAUDE.md.
