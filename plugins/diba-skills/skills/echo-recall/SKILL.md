@@ -15,6 +15,14 @@ description: 'Search and recall past sessions, decisions, and project memory wit
 
 When this skill activates, output nothing — terus execute protocol.
 
+## Gerbang Kabur (SEBELUM apa-apa Read/Grep — termasuk Step 0)
+
+Baca soalan Abam dahulu. Jika ia hanya kata ganti/generik tanpa petunjuk projek, sistem, fail atau masa ("bug tu", "isu tu", "benda tu", "yang hari tu", "the bug", "that thing"):
+- **JANGAN** Read, Grep, Glob atau panggil alat lain — soalan ini dijawab tanpa alat.
+- **JANGAN** senarai calon atau teka apa yang dimaksudkan; contoh kategori pun tak perlu.
+- Balas **soalan clarify sahaja**: projek mana? / kira-kira bila? / apa yang berlaku?
+- "Bug tu" ≠ "bug login minggu lepas" — yang kedua ada petunjuk, terus ke Step 1.
+
 ---
 
 ## Context Guard
@@ -54,7 +62,7 @@ Untuk soalan recall biasa (bukan workspace loading), skip ke Step 1.
   - Tarikh atau period masa jika disebut
   - Nama keputusan atau feature
 - [ ] Susun keywords dari yang paling spesifik ke paling umum
-- [ ] Jika soalan kabur → skip ke Step 5 (Ask User)
+- [ ] Jika soalan kabur — hanya kata ganti/generik tanpa petunjuk projek, sistem atau masa (cth "bug tu", "isu tu", "benda tu", "the bug") → **BERHENTI**: jangan Grep, jangan senarai calon, jangan teka. Balas dengan soalan clarify sahaja (Step 5)
 
 ---
 
@@ -168,7 +176,7 @@ Selepas recall berjaya:
 2. **Jangan fabricate** — tiada bukti = nyatakan tiada rekod, bukan reka
 3. **Narrate, bukan dump** — output sebagai bahasa semula jadi, bukan raw search result
 4. **Max 3 matches** — jika lebih, tunjuk yang paling relevan sahaja
-5. **Ask bila kabur** — soalan kabur = minta clarify, bukan assume
+5. **Ask bila kabur** — soalan kabur = minta clarify SAHAJA, bukan assume: tiada carian dahulu, tiada senarai calon, tiada "paling mungkin maksud Abam ialah…"
 6. **Stop bila cukup** — jangan teruskan carian merentasi semua fail jika match dah jumpa
 7. **Truth-first** — uncertain match lebih baik dari confident fabrication
 8. **Path portable** — semua carian relatif kepada vault; tiada hardcoded machine path
@@ -192,7 +200,7 @@ Selepas recall berjaya:
 
 | Situation | Behavior |
 |-----------|----------|
-| Keyword terlalu umum (cth: "the bug") | Tanya Abam untuk spesifik dulu |
+| Keyword terlalu umum (cth: "the bug", "bug tu", "isu tu", "benda tu") | Tanya Abam spesifik dulu — tiada Grep, tiada senarai calon, tiada tekaan. Beza: ada petunjuk ("bug login minggu lepas") → cari dahulu |
 | Match dalam arkib bulan yang lama | Paparkan — nyatakan tarikh dengan jelas |
 | Beberapa match yang sama relevan | Tunjuk semua (max 3), tanya Abam mana yang dimaksudkan |
 | Soalan tentang sesi sebelum diary dipasang | Nyatakan had — diary bermula dari [tarikh pertama dalam current/] |
@@ -223,3 +231,5 @@ Selepas recall berjaya:
 - **Lv.2** — Superultra: keyword extraction explicit, search priority table dengan decisions.md dan current-session.md, Post-Recall Follow-Up, output quality table, edge cases, integrasi skill lengkap. (2026-05-19)
 - **Lv.3** — Consolidation: absorb diba-recall (Step 0 workspace recall via `projects/registry.md`); repair unresolved merge conflict yang committed dalam fail ini; semua hardcoded `C:/Users/...` path ditukar kepada path relatif vault. (Origin: CTO Phase 2, 2026-07-04)
 - **Lv.4** — Link Traversal: Step 6 — 2-hop wikilink/rujukan traversal untuk soalan hubungan (kuasa Graph RAG atas markdown, tanpa graph DB); had disiplin max 2 hop × 5 fail; rantaian bukti dinyatakan dalam naratif. (Origin: 2026-07-04 — keputusan "tiada graph DB, guna yang ada lebih padu", lihat decisions.md)
+- **Lv.6** — Gerbang Kabur: larangan alat untuk soalan kabur dipindah ke atas protokol (sebelum Step 0), kerana run semula eval er3 masih Read + Grep sebelum bertanya walaupun Lv.5 ada di Step 1. (Origin: 2026-10-21 — arahan Abam "baiki echo-recall sekali lagi")
+- **Lv.5** — Vague-Query Hard Stop: kata ganti kabur ("bug tu", "isu tu") dibalas soalan clarify sahaja — tiada Grep, tiada calon, tiada tekaan; contoh Melayu ditambah. Punca: eval 2026-10-21 er3 gagal (carian + teka `getComplaintById()` sebelum tanya). (Origin: 2026-10-21 — arahan Abam "baiki skill yang gagal")

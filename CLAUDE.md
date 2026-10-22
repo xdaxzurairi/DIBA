@@ -19,7 +19,8 @@ Zuex (Zurairi), UiTM — PHP/MySQL, PWA/React, Supabase. Rojak Malay/English, ca
 
 | Abam says | Skill / action |
 |---|---|
-| "morning brief" / "agenda" / "eod" / "weekly review" | chief-of-staff |
+| "hi diba" / "morning brief" / "agenda" / "eod" / "wrap up" / "weekly review" | chief-of-staff (panggil skill — jangan jawab dari ingatan) |
+| tulis / edit / betulkan kod apa-apa | code-sharp (langkah pertama, sebelum Read/Edit) |
 | "save" / "save memory" | save-memory |
 | "save diary" | save-diary |
 | "commit" / "push" | auto-commit |

@@ -1,0 +1,44 @@
+{
+  "_nota": "TEMPLATE untuk skill repo-setup. Buang kunci _nota/_hook sebelum tulis ke .claude/settings.json. JSON tak benarkan komen; penjelasan satu-baris setiap peraturan ada dalam SKILL.md bahagian 'Jadual penjelasan'.",
+  "permissions": {
+    "allow": [
+      "<ISI: hanya perintah yang DIJUMPAI dalam repo (package.json scripts, Makefile, composer.json...). Kosong jika tiada.>"
+    ],
+    "ask": [
+      "Bash(git push:*)",
+      "Bash(git branch -D:*)",
+      "Bash(npm install:*)",
+      "Bash(npm i:*)",
+      "Bash(pnpm add:*)",
+      "Bash(pnpm install:*)",
+      "Bash(yarn add:*)",
+      "Bash(pip install:*)",
+      "Bash(composer require:*)",
+      "Bash(composer install:*)",
+      "Bash(rm:*)",
+      "PowerShell(Remove-Item:*)"
+    ],
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(./**/.env)",
+      "Read(./**/.env.*)",
+      "Read(./secrets/**)",
+      "Read(./**/secrets/**)"
+    ]
+  },
+  "_hook": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash|PowerShell",
+        "hooks": [{ "type": "command", "command": "node \"C:/Users/BSM/XDIBAX/DIBA/.claude/hooks/guard-bash.js\"", "timeout": 10 }]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [{ "type": "command", "command": "node \"C:/Users/BSM/XDIBAX/DIBA/.claude/hooks/format-on-edit.js\" <ISI ext: js,ts,css> <ISI formatter repo, contoh: npx prettier --write>. Hanya jika config formatter DIJUMPAI; jika tiada: BUANG blok PostToolUse ini." }]
+      }
+    ]
+  }
+}

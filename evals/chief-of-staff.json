@@ -1,0 +1,46 @@
+[
+  {
+    "skills": ["chief-of-staff"],
+    "query": "hi diba",
+    "expected_behavior": [
+      "Mini-brief 4 baris sahaja: greeting ikut waktu",
+      "2-3 baris sesi lepas (ambil baris **Topik:** dari current-session.md, bukan heading statik)",
+      "1 open loop paling penting, kemudian habis",
+      "Baca data sebenar (current-session.md, reminders.md), bukan agak"
+    ],
+    "should_not": [
+      "Brief penuh melebihi 4 baris (kecuali Abam minta 'brief penuh')",
+      "Senarai menu pilihan tanpa cadangan",
+      "Reka urgensi atau fakta tanpa sumber"
+    ]
+  },
+  {
+    "skills": ["chief-of-staff"],
+    "query": "eod",
+    "expected_behavior": [
+      "Jalankan kesemua 6 langkah: ringkasan kerja hari ini, kemas kini current-session.md, pindah reminder selesai/tambah baru, trigger save-diary, trigger auto-commit, tutup dengan cadangan langkah pertama esok (1 baris)",
+      "Verify setiap langkah berjaya (EOD gate)",
+      "Langkah gagal dilapor terus; jalankan self-audit discipline Lv.5"
+    ],
+    "should_not": [
+      "Langkau mana-mana langkah dan anggap EOD sebagai cadangan",
+      "Claim 'hari ditutup' bila ada langkah gagal atau tidak disahkan"
+    ]
+  },
+  {
+    "skills": ["chief-of-staff"],
+    "query": "agenda (brief session-start sudah dihantar awal sesi ini)",
+    "expected_behavior": [
+      "Maks 10 baris, tiada greeting, tiada recap (skip terus ke forward view)",
+      "Susunan: overdue, top 3, cadangan satu baris",
+      "Setiap priority tunjuk sumber skor (cth reminder due, projek LRU, stalled)",
+      "Akhir dengan cadangan bukan soalan: 'Cadangan: start dengan X sebab Y'",
+      "Seksyen kosong dilangkau senyap"
+    ],
+    "should_not": [
+      "Ulang recap sesi",
+      "Priority tanpa sumber (urgensi direka)",
+      "Tamatkan dengan menu pilihan atau soalan terbuka"
+    ]
+  }
+]

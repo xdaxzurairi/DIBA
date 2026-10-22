@@ -1,0 +1,47 @@
+[
+  {
+    "skills": ["code-sharp"],
+    "query": "Dalam eworks/laporan.php baris 42, pembolehubah $tarikh tersalah eja jadi $tarikhh. Betulkan.",
+    "expected_behavior": [
+      "Read fail laporan.php sebelum edit (Read before edit)",
+      "Edit hanya baris yang perlu (minimum impact)",
+      "Ikut gaya/konvensyen fail semasa",
+      "Baca output/verify sebelum claim siap, bukan assume"
+    ],
+    "should_not": [
+      "Refactor, reformat atau rename kod lain yang tak diminta",
+      "Tambah komen hiasan, docstring atau error handling baru",
+      "Claim 'siap' tanpa bukti verify"
+    ]
+  },
+  {
+    "skills": ["code-sharp"],
+    "query": "Tukar signature fungsi getUser($id) kepada getUser($id, $org) dalam includes/user.php.",
+    "expected_behavior": [
+      "Grep semua caller/includer sebelum ubah signature",
+      "Jika terkesan lebih 3 fail, report blast radius kepada Abam SEBELUM edit",
+      "Jika ada caller lain, escalate ke Abam sebelum ubah",
+      "Selepas edit, verify sekurang-kurangnya 1 caller"
+    ],
+    "should_not": [
+      "Terus edit signature tanpa cari caller",
+      "Tambah wrapper/helper baru atau kekalkan versi lama dengan nama _unused (backward compat hack)"
+    ]
+  },
+  {
+    "skills": ["code-sharp"],
+    "query": "Tambah page cari pengguna dalam eworks (input GET q, papar senarai dari MySQL).",
+    "expected_behavior": [
+      "Ikut pattern fail rujukan sedia ada dan daftar page baru dalam whitelist page.php",
+      "Guna prepared statement/escape untuk input q dan escape output HTML",
+      "Auth check konsisten dengan pattern projek",
+      "Tiada credential hardcoded; tanya Abam sebelum tambah import/dependency baru",
+      "Jangan SELECT * dalam laporan"
+    ],
+    "should_not": [
+      "Concat input terus ke SQL",
+      "Tambah library/dependency baru secara senyap",
+      "Tambah feature luar permintaan (eksport, paging, dsb)"
+    ]
+  }
+]

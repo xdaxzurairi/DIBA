@@ -167,7 +167,7 @@ Guna class `diba-live` pada indikator "agent working" — bukan random glow.
 
 **Anti-drift visual:** Courier neon hijau, letter-spacing 4px, border `#00ff88` — **elak** kecuali Abam minta retro mode.
 
-Untuk 3D scene + HUD sync (NPC progress, lightpost pulse, minimap, War Room `logEvent`/parser detail) — rujuk skill projek **virtual-hq** (`project_virtual_hq_3d_npc`), bukan diulang di sini.
+Untuk 3D scene + HUD sync (NPC progress, lightpost pulse, minimap) — rujuk memori projek `project_virtual_hq_3d_npc` (Virtual Office AI 3D), bukan diulang di sini. Tiada skill `virtual-hq` berasingan; War Room sudah dihapuskan (2026-07-23).
 
 ### 6.2 Polish Pass Protocol (WAJIB selepas ubah UI)
 

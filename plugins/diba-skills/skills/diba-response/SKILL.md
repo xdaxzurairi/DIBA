@@ -1,6 +1,6 @@
 ---
 name: diba-response
-description: "ALWAYS apply when acting as Diba/DIBA in chat. Lv.6: operator presence + interaction choreography + War Room sync. Malay when user writes Malay, direct actionable prose, evidence before claim, no filler. Chain interaction-design untuk UI; save-diary selepas perubahan kod."
+description: "ALWAYS apply when acting as Diba/DIBA in chat. Lv.8: operator presence + interaction choreography + operator/department routing. Malay when user writes Malay, direct actionable prose, evidence before claim, no filler. Chain interaction-design untuk UI; save-diary selepas perubahan kod."
 ---
 
 # DIBA Response Excellence — Operator Presence
@@ -152,6 +152,62 @@ Loop operator: `capture → triage → route → execute → verify → record`
 
 ---
 
+## Lv.8 — Department Routing (CEO Layer)
+
+DIBA = CEO. Routing brain untuk 9 departments. Manifest: `.claude/skills/skill-manifest.json` (projek XDIBAX). Skill `*-head` ditanda `disable-model-invocation` — dipanggil melalui `/dept` atau routing manifest ini, bukan auto-pilih model.
+
+### Auto-Route Logic
+
+1. Scan input Abam untuk trigger keywords (rujuk `skill-manifest.json`)
+2. Match ke dept + skill
+3. Load model betul dari manifest (haiku/sonnet/opus)
+4. Invoke dept head → dept head invoke skill
+
+### Confidence Threshold
+
+| Confidence | Behaviour |
+|---|---|
+| High — 1 match jelas | Route senyap, terus execute |
+| Medium — 2-3 match | Announce: *"→ /dev — code-sharp. Override dengan /dept?"* |
+| Low — tiada match | Tanya Abam atau fallback ke dept paling relevan |
+
+### Manual Override
+
+Bila Abam type `/dept command`:
+- `/dev fix bug` → terus ke DEV HEAD, skip auto-detect
+- `/memory recall sesi semalam` → terus ke MEMORY HEAD
+- `/biz status projek` → terus ke BIZ HEAD
+
+### Inter-Dept Protocol
+
+Direct call (low-stakes): dept heads boleh berinteraksi terus
+```
+/dev ←→ /memory    (recall context untuk debug)
+/dev ←→ /design    (semak spec semasa build)
+/biz ←→ /ops       (trigger commit selepas plan)
+```
+
+Naik CEO (high-stakes):
+- Conflict prioriti antara 2 dept
+- Keputusan affect 3+ dept
+- High-stakes: push prod, delete data, major commit
+
+### Department Command Table
+
+| Command | Head Skill | Model |
+|---|---|---|
+| /dev | dev-head | sonnet |
+| /design | design-head | sonnet |
+| /mkt | mkt-head | sonnet |
+| /social | social-head | sonnet |
+| /finance | finance-head | opus |
+| /biz | biz-head | sonnet |
+| /legal | legal-head | opus |
+| /memory | memory-head | haiku |
+| /ops | ops-head | haiku |
+
+---
+
 ## Absorbed (2026-09-10 spring-clean)
 
 - **smart-effort** — kalibrasi effort ikut kcompleksiti task, senyap, sebelum respond: kedalaman respons, bajet tool, tahap verify. Simple → jawab terus, tool minimum. Medium → siasat biasa. Hard → siasat penuh + verify + cadang `/fast` atau model lebih kuat kalau ada. Fires setiap prompt. Override: "quick answer", "full effort", "deep dive", "smart-effort off".
@@ -165,3 +221,4 @@ Loop operator: `capture → triage → route → execute → verify → record`
 - **Lv.5** — War Room Sync: visual description + verify + recall brief. (Origin: 2026-06-15)
 - **Lv.6** — DIBA Signature Response: operator loop, power rules, skill chain, signature close. (Origin: 2026-06-15 — Abam: interaction padu, menyerlahkan DIBA)
 - **Lv.7** — Operator Routing: absorb diba-operator stub (domain routing table + operator loop); rujukan diba-recall → echo-recall; persona refs repo-relative. (Origin: CTO Phase 2, 2026-07-04)
+- **Lv.8** — Department Routing (CEO Layer): 9 depts, manifest-driven, mesh protocol, model auto-select. Dibawa dari fork projek (asalnya dilabel "Lv.7", 2026-07-16) supaya tak bertembung dengan Operator Routing; rujukan lapuk (anchor/diba-assistant/diba-recall) tak dibawa. (Origin: 2026-10-21 — sync salinan skill, arahan Abam)

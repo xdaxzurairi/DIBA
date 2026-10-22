@@ -39,7 +39,7 @@ Bila skill ini aktif, enforce silently tanpa pengumuman — terus apply standard
 
 ### Prinsip Teras
 1. **Penyelesaian paling mudah yang cukup** — Mulakan dengan yang paling simple yang solve problem
-2. **Edit terkecil** — Sentuh hanya baris yang perlu; jangan reformat blok tidak berkaitan
+2. **Edit terkecil** — Sentuh hanya baris yang perlu; jangan reformat blok tidak berkaitan. Dalam baris yang disentuh pun, tukar token yang salah sahaja (`old_string` minimum) — kekalkan spasi, pemisah dan operator sekeliling seperti asal
 3. **Tiada comment hiasan** — Hanya komen bila logic tidak self-evident
 4. **Tiada docstring/type annotation baru** pada kod yang tidak diubah
 5. **Jangan skip hooks** (`--no-verify`) melainkan Abam minta eksplisit
@@ -58,6 +58,7 @@ Sebelum kata "siap", "done", atau "fixed":
 - [ ] Jika ada test: jalankan atau verify secara manual
 - [ ] Jika JS/DOM interaction diubah: confirm tiada regression visual
 - [ ] Jika SQL diubah: verify query syntax dan data tidak rosak
+- [ ] Jika PHP diubah: jalankan `php -l <fail>` — CUBA dahulu sebelum kata tiada alat. Jika benar-benar tak boleh dijalankan, lapor "tak disahkan: sebab" dan jangan claim siap
 
 **Jangan claim siap berdasarkan assumption — hanya berdasarkan bukti.**
 
@@ -72,6 +73,7 @@ Sebelum kata "siap", "done", atau "fixed":
 | Over-abstraction | Helper baru untuk satu guna | Inline sahaja |
 | Silent expansion | Tambah import/dependency baru tanpa tanya | Report ke Abam dahulu |
 | Verify skip | Claim siap tanpa baca output | Semak output sebenar dulu |
+| Had tersirat | Tambah `LIMIT`, default atau cap yang tak diminta | Buang, atau tanya Abam dahulu |
 
 ---
 
@@ -161,3 +163,4 @@ Selepas verify pass → chain `auto-commit`; kod signifikan → chain `save-diar
 - **Lv.5** — Diff Discipline: satu problem satu diff, self-review, strip luar scope. (Origin: 2026-07-04)
 - **Lv.6** — Verify Matrix: verification spesifik ikut jenis perubahan + chain auto-commit/save-diary. (Origin: 2026-07-04)
 - **Lv.7** — Stale Reference Fix: dua rujukan `project-map` (skill ni dah diserap ke `repo-pack` map-only mode sejak spring-clean 2026-09-10) dikemas. Dikesan via health-check mekanikal, bukan incident sebenar. (Origin: 2026-10-17 — bulk audit selepas `/update-config` session)
+- **Lv.8** — Eval Fixes: edit token-sahaja (kekal spasi sekeliling), `php -l` wajib dicuba, drift "had tersirat" (LIMIT tak diminta). Punca: eval 2026-10-21 code-sharp 2/3 (cs1 ubah spasi + tak cuba php -l; cs3 tambah LIMIT 50). (Origin: 2026-10-21 — arahan Abam "baiki skill yang gagal")

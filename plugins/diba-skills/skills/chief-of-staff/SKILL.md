@@ -64,13 +64,27 @@ Compressed brief: overdue → top 3 → one-line recommendation. No greeting.
 5. **Next week** — top 3 + any reminder landing next week.
 6. Offer: "Nak aku update project list / archive yang stalled?"
 
+## Output Contract (keras — gagal eval 2026-10-21 bila longgar)
+
+| Mod | Had keras | Dilarang |
+|---|---|---|
+| "hi diba" (greet) | **4 baris**: greeting · 2-3 baris sesi lepas (dari `**Topik:**`) · 1 open loop paling penting. Habis. | seksyen berasingan, lebih 1 flag, reminder lama, soalan penutup |
+| `agenda` | **≤10 baris** termasuk Radar; tiada greeting, tiada recap | seksyen kosong ("tiada…"), perenggan Cadangan lebih 2 baris |
+| semua brief | tamat dengan **pernyataan**: "Cadangan: X sebab Y." | tamat dengan soalan atau menu ("Nak saya…?", tawaran commit) |
+
+- Draf dulu, **kira baris**, potong sebelum hantar. Lebih had = gagal.
+- **Greet:** sebut hanya apa yang ada dalam `**Topik:**` / `**Follow-up terbuka:**` / reminders yang dibaca. Dilarang menyebut status git, fail "belum commit", hooks, skill atau bilangan signal melainkan sumbernya dibaca dalam run ini. "Sesi lepas" = 2-3 baris (topik + keputusan utama).
+- **Overdue ikut tarikh:** reminder bertarikh lepas daripada hari ini = overdue (+10/hari, cap 30) dan jadi priority #1 — kira dari tarikh hari ini, bukan dari teks "tiada deadline". Jangan tulis "tiada overdue" tanpa semak setiap tarikh dalam Open.
+- **Bilangan** (entri, fail, hari) hanya boleh disebut jika dikira daripada fail yang dibaca; kalau tak pasti, tinggalkan angka.
+- Setiap fakta dalam brief mesti datang dari fail yang **dibaca dalam run ini** (current-session, reminders, dll). Jangan petik status git, bilangan signal atau fakta lain yang tak dibaca.
+
 ## Rules
 
 1. **Recommend, don't enumerate** — Abam wants a call + tradeoff, not a menu.
 2. **Priorities are earned** — every priority cites its source (reminder due date, project momentum, staleness). No invented urgency.
 3. **Skip empty sections silently** — a short brief is a good brief.
 4. **One brief per session** — session-start brief already delivered → later "agenda"/"brief" calls skip recap, straight to forward view.
-5. **EOD is a checklist, not a suggestion** — all 6 steps run unless Abam stops it.
+5. **EOD is a checklist, not a suggestion** — all 6 steps run unless Abam stops it. Output WAJIB satu baris status per langkah: `1 Ringkasan: OK` · `2 current-session: OK|GAGAL <sebab>` · `3 Reminders: …` · `4 save-diary: …` · `5 auto-commit: …` · `6 Esok: <cadangan 1 baris>` · `Discipline Lv.5: OK|GAGAL <sebab>`. Langkah yang tak boleh dijalankan (mod baca-sahaja, hook gagal, tiada kebenaran) ditulis `GAGAL: sebab` — **tak dilangkau senyap**. Langkah 6 sentiasa ditulis. Semua OK baru kata "hari ditutup"; selain itu "EOD belum siap".
 6. **Rojak natural** — this is DIBA talking, not a report generator.
 
 ## Integrasi Skill
@@ -154,6 +168,8 @@ Time-aware: malam lewat + sesi panjang → selit nota rehat ringkas. "Brief penu
 - **deep-work** — struktur masa untuk kerja mendalam. Triggers: "time block hari ni", "susun deep work", "berapa banyak shallow work minggu ni", "focus session", "shutdown ritual". Beza dari brief prioriti (fungsi teras chief-of-staff) — ni khusus time-blocking + shutdown ritual hujung hari. Surface bila Abam minta susun jadual fokus.
 
 ## Level History
+- **Lv.10** — Greet/agenda patch: greet tak boleh petik git/hooks/skill/signal tanpa sumber, "sesi lepas" 2-3 baris; overdue dikira ikut tarikh (reminder lepas tarikh = priority #1); bilangan mesti dikira. Punca: eval pusingan 2 chief-of-staff 1/3 (cos1 petik git status tak dibaca; cos3 salah anggap reminder Ollama 106 hari lewat sebagai "tiada deadline"). (Origin: 2026-10-21 — arahan Abam "setuju")
+- **Lv.9** — Output Contract + EOD status line: had baris keras (greet 4, agenda 10), larang soalan penutup/seksyen kosong, fakta mesti bersumber dalam run; EOD wajib satu baris status per langkah (GAGAL dilapor, tak dilangkau senyap). Punca: eval 2026-10-21 chief-of-staff 0/3. (Origin: 2026-10-21 — arahan Abam "baiki skill yang gagal")
 - **Lv.1** — Base: morning brief, agenda, EOD wrap, weekly review; priority derivation rules; EOD checklist. (Origin: CTO build 2026-07-04 — DIBA v3 Phase 1)
 - **Lv.2** — Priority Scoring: skor deterministic dengan sumber dicite. (Origin: 2026-07-04 — batch upgrade Lv.6, arahan Abam)
 - **Lv.3** — Routines Integration: surface routine + perangkap dalam brief. (Origin: 2026-07-04)

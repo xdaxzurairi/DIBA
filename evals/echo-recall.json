@@ -1,0 +1,44 @@
+[
+  {
+    "skills": ["echo-recall"],
+    "query": "Diba ingat tak keputusan kita pasal graph DB untuk memory?",
+    "expected_behavior": [
+      "Search dahulu: soalan keputusan spesifik, semak main/decisions.md dahulu, kemudian daily-diary (current/ lalu archived/); learned-index.md jika dimuat sebagai konteks sesi",
+      "Jawab naratif dalam bahasa semula jadi dengan tarikh dan keputusan, bukan dump hasil carian",
+      "Nyatakan sumber (decisions vs diary vs sesi semasa)",
+      "Maks 3 match, berhenti bila cukup"
+    ],
+    "should_not": [
+      "Jawab tanpa carian",
+      "Dump baris fail mentah (path:line)",
+      "Reka tarikh, keputusan atau petikan"
+    ]
+  },
+  {
+    "skills": ["echo-recall"],
+    "query": "Ingat tak masa kita setup Kubernetes cluster untuk eWorks?",
+    "expected_behavior": [
+      "Cari dahulu dalam diary dan decisions.md",
+      "Bila tiada bukti: nyatakan 'tak jumpa catatan' dan jangan andaikan pernah buat",
+      "Beri jalan ke depan: tanya hari/projek mana, atau tawar semak lokasi lain",
+      "Nyatakan uncertain, bukan confident palsu"
+    ],
+    "should_not": [
+      "Fabricate tarikh, keputusan atau sesi",
+      "Jawab 'tak tahu' sahaja tanpa tawar clarify"
+    ]
+  },
+  {
+    "skills": ["echo-recall"],
+    "query": "Diba ingat tak bug tu?",
+    "expected_behavior": [
+      "Kenal pasti keyword terlalu kabur ('bug tu')",
+      "Minta Abam spesifik dahulu (projek mana / kira-kira bila / apa berlaku) dan bukan assume",
+      "Beri jalan untuk narrow down, bukan senyap"
+    ],
+    "should_not": [
+      "Teka bug tertentu lalu naratifkan",
+      "Imbas seluruh vault tanpa had"
+    ]
+  }
+]
