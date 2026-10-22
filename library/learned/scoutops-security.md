@@ -5,7 +5,12 @@
 - Global multi-tenant sync settings cannot be safely assigned by updated_by; preserve unassigned rows, revoke legacy tokens, provision per-tenant settings explicitly.
 - PHP session user attributes must not bypass DB revalidation. Per-request caching plus credential/role/org fingerprint revokes stale sessions without a schema change.
 - Limit XML expansion AND structure before allocation; streaming XMLReader avoids building a hostile DOM. Stress cases passed under64MiB with PHP-recorded peak16MiB.
-- Evidence: scoutops commit cf9782d, 69 PHP checks +8 PostgreSQL checks +2 memory stress cases, 94 PHP lint passes. Production remains unchanged/unverified.
+- Evidence: scoutops commit cf9782d, 69 PHP checks +8 PostgreSQL checks +2 memory stress cases, 94 PHP lint passes. Production rollout verified 22 October 2026; details in scoutops/docs/security-rollout-2026-10-22.md.
+- Both ScoutOps domains (scoutops-navy.vercel.app and baseballfederationmalaysia.vercel.app) now serve PHP8.5.12, verified in actual HTTP responses and uncached build logs. The separate Next.js BFM website was not changed.
+- Live schema already had organization_id, yet old code read settings globally. Migration alone would not revoke the assigned-but-exposed token: cutover matched its snapshot ID+token and cleared it once. One settings row retained, zero active tokens at cutover; tenant admins must regenerate organization-specific cron URLs.
+- Live isolated two-tenant smoke passed19 checks including CSV/XLSX imports and disable/demotion revocation;6 public checks passed across both domains. Test business data removed and temporary Vercel bypass revoked. Existing live FK lacked cascade, so explicit child cleanup was necessary.
+- Affected-table snapshot and operator SQL/results are under ScoutOps .vercel/rollout with user-only ACL, excluded from Git/deployments; not a full DB backup. Never publish/restore legacy token contents.
+- Source master f71d309 pushed; final GitHub auto-deploys READY: dpl_7FvaHXJ96uqTwhmFNwLtDLkRgAhB / dpl_EFKW6U77vwBxVLQ4C4PBUJypPcnr. Public aliases and PHP8.5.12 login200 rechecked after auto-deployment.
 - Tools: PHP8.5.12 official SHA256-verified portable binary and PGlite test-only modules in XDIBAX/.tmp-scoutops-php; not application dependencies.
 - Tool lessons: enable openssl for Composer; set Python stdout UTF-8 before printing source with Unicode; use cwd-relative paths consistently. Composer schema has an informational missing-license warning; no licensing declaration was invented.
 - New-folder signals below are inventory observations, not proof that those folders were audited or deployed. Repeated runtime artifact alerts need separate noise-filter work, outside this fix.

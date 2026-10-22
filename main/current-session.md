@@ -1,5 +1,13 @@
 # Current Session Recap
 
+**Tarikh:** 2026-10-22 11:29 MYT (ScoutOps produksi)
+**Topik:** ScoutOps production security rollout selesai; master GitHub f71d309. Kedua-dua domain live mengesahkan PHP8.5.12.
+**Keputusan:** Migration018 + revoke token snapshot tepat; satu row dikekalkan, tiada token aktif selepas cutover.19 smoke checks dua tenant +6 public checks lulus; data ujian dibersih, bypass Vercel ditutup.
+**Fail terakhir diubah:** scoutops/docs/security-rollout-2026-10-22.md; library/learned/scoutops-security.md.
+**Follow-up terbuka:** Login semula; tenant admin review sheet URL dan generate cron URL organisasi baharu; external scheduler tidak dikonfigurasi tanpa aksesnya. Backup affected-table sahaja di scoutops/.vercel/rollout (ACL restricted).
+
+---
+
 **Tarikh:** 2026-10-22 09:25 (terkini)
 **Topik:** feat/diba-dash di-push (e2e4cf174..21397b53a); fail runtime ruflo/swarm di-ignore + dibuang dari index (commit local). Diary: daily-diary/current/2026-10-22.md (entry 09:25).
 **Keputusan:** memory.db/hnsw.* kekal tracked; commit ignore belum push (tiada arahan baharu).
