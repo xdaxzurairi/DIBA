@@ -1,9 +1,10 @@
 # Registers the two DIBA scheduled-brief tasks in Windows Task Scheduler.
-# Run once:  ! powershell -ExecutionPolicy Bypass -File C:\Users\Administrator\xdibax\DIBA\scripts\register-scheduled-briefs.ps1
+# Run once:  ! powershell -ExecutionPolicy Bypass -File C:\Users\BSM\XDIBAX\DIBA\scripts\register-scheduled-briefs.ps1
 # Re-running is safe (tasks are replaced). To remove: see bottom of this file.
 
 $bash = 'C:\Program Files\Git\bin\bash.exe'
-$script = '/c/Users/Administrator/xdibax/DIBA/scripts/scheduled-brief.sh'
+$winScript = Join-Path $PSScriptRoot 'scheduled-brief.sh'
+$script = '/' + $winScript.Substring(0,1).ToLower() + $winScript.Substring(2).Replace('\','/')   # C:\a\b -> /c/a/b
 
 function New-BriefTask($name, $mode, $trigger) {
     $action  = New-ScheduledTaskAction -Execute $bash -Argument "-lc `"$script $mode`""

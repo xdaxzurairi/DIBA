@@ -9,6 +9,9 @@ Portable hook layer — no machine-specific paths. `settings.json` resolves the 
 | Session end | SessionEnd | `session-end.sh` | Commits any remaining memory changes, then pushes to `origin` when ahead (best-effort) |
 | Stop guard | Stop | `stop-guard.js` | If real work happened (Write/Edit outside memory dirs, or `git commit/push`) and today's diary was not updated after it, blocks the stop once and tells the model to run `save-diary` (+ `auto-learn` when >=3 signals are pending). Honours `stop_hook_active`, so it cannot loop. |
 
+| Bash guard | PreToolUse (Bash\|PowerShell) | `guard-bash.js` | Exit 2 on `rm -rf` / `Remove-Item -Recurse -Force` / `rd /s` against non-safe targets (`node_modules`, `dist`, … and the session scratchpad are allowed) and on shell reads of `.env` / `secrets/` (`deny Read` alone is bypassed by `cat .env`). Fail-open on internal error. Tests: `node --test guard-bash.test.js`. **Not wired by default** — added per repo by the `repo-setup` skill. |
+| Format on edit | PostToolUse (Edit\|Write) | `format-on-edit.js <ext,..> <cmd>` | Runs the repo's formatter on the edited file; never blocks. Wired per repo by `repo-setup`, only when a formatter config exists. |
+
 `save-diary` and `auto-learn` themselves are model-side skills — a hook cannot write a session summary. `stop-guard.js` is what makes them reliable rather than optional.
 
 Wiring on a machine (user-level `~/.claude/settings.json`, absolute paths): SessionStart -> `session-start.sh`; PostToolUse `Write|Edit` -> `auto-commit.sh` (timeout 30); Stop -> `node stop-guard.js` (timeout 20); SessionEnd -> `session-end.sh` (timeout 40).

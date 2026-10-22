@@ -1,0 +1,168 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"C:\\Users\\BSM\\projects\\diba-monitor\\.worktrees\\diba-visual-monitoring\\hooks\\write-status.js\""
+          }
+        ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"C:\\Users\\BSM\\.pixel-agents\\hooks\\claude-hook.js\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PermissionRequest": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"C:\\Users\\BSM\\.pixel-agents\\hooks\\claude-hook.js\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Skill",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node 'C:\\Users\\BSM\\.codex\\hooks\\log-skill.js'"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node 'C:\\Users\\BSM\\.codex\\hooks\\capture-signal.js'"
+          }
+        ]
+      },
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node 'C:\\Users\\BSM\\.codex\\hooks\\git-monitor.js'"
+          }
+        ]
+      },
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"C:\\Users\\BSM\\projects\\diba-monitor\\.worktrees\\diba-visual-monitoring\\hooks\\write-status.js\""
+          }
+        ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"C:\\Users\\BSM\\.pixel-agents\\hooks\\claude-hook.js\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash 'C:\\Users\\BSM\\.codex\\hooks\\session-start.sh'"
+          }
+        ]
+      },
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"C:\\Users\\BSM\\projects\\diba-monitor\\.worktrees\\diba-visual-monitoring\\hooks\\write-status.js\""
+          }
+        ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"C:\\Users\\BSM\\.pixel-agents\\hooks\\claude-hook.js\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"C:\\Users\\BSM\\.pixel-agents\\hooks\\claude-hook.js\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "SubagentStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"C:\\Users\\BSM\\.pixel-agents\\hooks\\claude-hook.js\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"C:\\Users\\BSM\\.pixel-agents\\hooks\\claude-hook.js\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"C:\\Users\\BSM\\projects\\diba-monitor\\.worktrees\\diba-visual-monitoring\\hooks\\write-status.js\""
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"C:\\Users\\BSM\\.pixel-agents\\hooks\\claude-hook.js\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}

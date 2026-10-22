@@ -6,8 +6,8 @@
 #   DIBA Morning Brief  -> daily  08:00  ->  scheduled-brief.sh morning
 #   DIBA Weekly Review  -> Fri    16:00  ->  scheduled-brief.sh weekly
 #
-# Runs only while Abam is logged on (no stored credentials). Full vault access:
-# the DIBA SessionStart / UserPromptSubmit hooks fire normally, so the brief
+# Runs only while Abam is logged on (no stored credentials). Alat claude dihadkan
+# kepada baca-sahaja (lihat OUT=). Hook DIBA masih jalan: the DIBA SessionStart / UserPromptSubmit hooks fire normally, so the brief
 # has memory + reminders + projects context. session-end.sh auto-commits the
 # updated inbox file.
 #
@@ -38,7 +38,11 @@ esac
 
 cd "$DIBA_DIR" || exit 1
 
-OUT="$(timeout 600 claude -p "$PROMPT" --permission-mode bypassPermissions 2>&1)"
+# Baca-sahaja: skrip ini sendiri yang tulis ke inbox, claude cuma perlu jana teks.
+# dontAsk menolak apa-apa di luar senarai (Write/Edit/Bash lain), jadi arahan
+# terselit dalam fail memory tak boleh dilaksana. git read-only utk weekly wins.
+OUT="$(timeout 600 claude -p "$PROMPT" --permission-mode dontAsk \
+  --allowedTools "Read,Glob,Grep,Bash(git log *),Bash(git status *),Bash(git diff *)" 2>&1)"
 RC=$?
 
 {
