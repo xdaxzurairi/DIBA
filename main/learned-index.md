@@ -1,5 +1,5 @@
 # DIBA Learned Index
-*Last updated: 2026-10-19*
+*Last updated: 2026-10-22*
 *Max 80 lines — oldest/lowest-confidence pruned bila penuh*
 
 ## Facts
@@ -32,7 +32,7 @@
 - R005 — Obsidian-Ruflo bridge: guna post-commit hook (.git/hooks/), bukan daemon watcher
 - R006 — Edit/Write: Read dahulu & Read semula jika fail diubah Bash/linter (stale read)
 - R007 — Bash: elak `'` tak berpasangan dalam skrip inline; guna heredoc 'EOF' atau fail skrip
-- R008 — Grep/Glob di UNC share/folder besar timeout; sempitkan path & glob
+- R008 — Grep/Glob di UNC share/folder besar timeout; sempitkan path & glob (+2026-10-22)
 - R009 — Grep tool gagal bila `rg` tiada; fallback `grep -rn` melalui Bash
 - R010 — Medan baharu: rekod lama papar "-", jangan backfill/fallback/usik DB
 - R011 — eWorks/PWA: dev dahulu, prod selepas Abam setuju (lajur wujud + diff)
@@ -50,3 +50,8 @@
 - [2026-10-22] Elak heredoc bersarang / `python - <<EOF || node -e` dalam satu Bash (tergantung 120s); guna Edit atau fail skrip (R015 diperkukuh; cases.md).
 
 - [2026-10-22] ScoutOps security fix cf9782d: tenant sync, auth fingerprint, streaming XLSX, PHP build guard; migration/deploy pending (library/learned/scoutops-security.md).
+
+- R016 — Python Windows: `sys.stdout.reconfigure(utf-8)`; `python -I` tak boleh buka UNC, guna PowerShell StreamReader/salin dahulu
+- [2026-10-22] Dev=10.0.36.127, prod=10.0.36.150; fms.uitm.edu.my=proksi 10.0.34.74; PHP2shell ditampal 8.3.36 kedua-dua (facts.md)
+- [2026-10-22] Webshell "Pawang" dir.php dalam ppm (dev+prod), 0 akses dalam log, belum disekat (facts.md)
+- 2026-10-22 — Tampal PHP Windows: 4 DLL curl ke Apache24\bin + 2 DLL sqlsrv ke ext + betulkan error_log (cases.md)

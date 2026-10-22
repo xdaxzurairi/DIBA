@@ -1,5 +1,17 @@
 # Current Session Recap
 
+**Tarikh:** 2026-10-22 14:41 MYT (Control Room)
+**Topik:** 4 pokok kecil berpasu di tepi laluan antara bilik, satu setiap baris berselang; had6. Kod campus.mjs sahaja.
+**Verify:** 4 ujian lulus + pemeriksaan 16 komponen bebas pertindihan bilik/lorong; modul baharu disajikan4782. Visual belum disahkan; Ctrl+Shift+R.
+
+---
+**Tarikh:** 2026-10-22 14:02 MYT (NPC Control Room)
+**Topik:** Dua instance live: 4782 PID11856 sejak 20/10 masih backend lama tanpa Codex/rooms; 4777 PID29700 sudah terkini.
+**Tindakan:** Restart hanya 4782 kepada kod semasa (PID1148). Kedua-dua snapshot kini claude/codex/daemon=true, 11 rooms, DIBA working; SSE4782 disahkan membawa event Claude dan Codex. 27 ujian adapter/state/motion/integration lulus di luar sandbox.
+**Had:** URL yang Abam guna belum dijawab; browser inventory kosong, visual belum disahkan. Hard refresh diperlukan untuk tab lama. Task utama dipetakan DIBA; roster lain aktif ikut subagent sebenar. Tiada kod diubah.
+
+---
+
 **Tarikh:** 2026-10-22 11:29 MYT (ScoutOps produksi)
 **Topik:** ScoutOps production security rollout selesai; master GitHub f71d309. Kedua-dua domain live mengesahkan PHP8.5.12.
 **Keputusan:** Migration018 + revoke token snapshot tepat; satu row dikekalkan, tiada token aktif selepas cutover.19 smoke checks dua tenant +6 public checks lulus; data ujian dibersih, bypass Vercel ditutup.
