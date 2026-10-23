@@ -63,4 +63,4 @@
 
 - 2026-10-23 — eWorks perf: join `CAST` kedua-dua belah + scope `OR EXISTS wrcf` (wr 1.18 juta) = 7-13 s; guna `w.wr_id = TRY_CAST(n.wr_id AS INT)` -> 24-43 ms; ukur dengan skrip CLI dahulu (cases.md)
 - [2026-10-23] `db()` ada dalam includes/functions.php:12; skrip CLI require config.php+database.php+functions.php. Chrome javascript_tool putus 45 s: guna setTimeout + window.__var (cases.md)
-- [2026-10-23] eWorks hero dashboard (index.php:122) = RComplaints "Jumlah permohonan", bukan jumlah semua status; tanpa skop 1,184,236 vs R 1,003 (facts.md)
+- [2026-10-23] eWorks hero dashboard (index.php:122) = RComplaints "Jumlah permohonan", bukan jumlah semua status; tanpa skop 1,184,236 vs R 1,003; pautan hero -> complaints.php?status=R (facts.md)
