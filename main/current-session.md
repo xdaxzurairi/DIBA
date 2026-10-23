@@ -1,5 +1,12 @@
 # Current Session Recap
 
+**Tarikh:** 2026-10-23T14:29:00+08:00 (eWorks/fmsdev server)
+**Topik:** Apache2.4 tak start: IIS (W3SVC) rebut port 80 selepas reboot; W3SVC di-disable, Apache jalan. Dashboard dilajukan (get_unread_count, get_notifications, getComplaintTotalsFromList). Hero dashboard kini papar Permohonan (status R) sahaja, bukan jumlah semua status (Abam).
+**Fail terakhir diubah:** index.php (hero RComplaints + label "Jumlah permohonan", belum commit), includes/functions.php (belum commit), api/get_unread_count.php (94afa75), api/get_notifications.php (5ae8082)
+**Follow-up:** Abam refresh dashboard, hero patut sama dengan kad Permohonan (dijangka 1,003 untuk akaun tanpa skop); commit index.php + hunk getComplaintTotalsFromList dalam functions.php (asingkan daripada kerja Redis/dashboard korporat), index wrcf(cf_id), rotate error.log 13 GB.
+
+---
+
 **Tarikh:** 2026-10-22T16:15:39+08:00 (Control Room tingkap)
 **Topik:** Semua bilik projek diberi4 tingkap/bukaan sebenar, bingkai krim/palang biru/kaca lut cahaya; parity dengan studio utama atas teguran Abam.
 **Verify:** satu worker + reviewer;24/24 ujian berkaitan lulus,12 gaya diperiksa. P2 bufferGPU disposal selesai, shared geometry selamat; tiada blocker. Modul live4777/4782 disahkan.
