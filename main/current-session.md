@@ -1,5 +1,18 @@
 # Current Session Recap
 
+**Tarikh:** 2026-10-22T16:15:39+08:00 (Control Room tingkap)
+**Topik:** Semua bilik projek diberi4 tingkap/bukaan sebenar, bingkai krim/palang biru/kaca lut cahaya; parity dengan studio utama atas teguran Abam.
+**Verify:** satu worker + reviewer;24/24 ujian berkaitan lulus,12 gaya diperiksa. P2 bufferGPU disposal selesai, shared geometry selamat; tiada blocker. Modul live4777/4782 disahkan.
+**Follow-up:** Ctrl+Shift+R; visual browser belum disahkan. Fail campus.mjs + campus.windows.test.mjs. Commit7626f9db3; runner PowerShell Access denied dipulih melalui cmd + fail mesej commit.
+
+---
+
+**Tarikh:** 2026-10-22T15:34:53.8427324+08:00 (Control Room mini-map)
+**Topik:** Peta kampus siap: bounds sebenar, status projek/ralat, bilik dipilih, klik/papan kekunci ke bilik; Studio utama global dilabel jelas.
+**Verify:** satu worker + reviewer;318/318 ujian lulus,6/6 fokus, tiada blocker; aset live4777/4782 disahkan. Mission Desk/zoom/pokok kekal.
+**Follow-up:** Ctrl+Shift+R, buka Peta kampus sebelah pemilih bilik. Visual browser/native focus belum diuji (iab unavailable).
+
+---
 **Tarikh:** 2026-10-22T15:16:52.5178962+08:00 (Control Room Mission Desk)
 **Topik:** Mission Desk siap dalam panel Task: carian/penapis kekal, butiran task, delegasi NPC dan fokus; skop bilik serta sambungan jelas.
 **Verify:** satu worker + reviewer;312/312 ujian lulus,6/6 fokus; P2 Escape/input diselesaikan; aset live4777/4782 disahkan, zoom/pokok kekal.
