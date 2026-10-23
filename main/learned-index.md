@@ -1,5 +1,5 @@
 # DIBA Learned Index
-*Last updated: 2026-10-22*
+*Last updated: 2026-10-23*
 *Max 80 lines — oldest/lowest-confidence pruned bila penuh*
 
 ## Facts
@@ -55,3 +55,11 @@
 - [2026-10-22] Dev=10.0.36.127, prod=10.0.36.150; fms.uitm.edu.my=proksi 10.0.34.74; PHP2shell ditampal 8.3.36 kedua-dua (facts.md)
 - [2026-10-22] Webshell "Pawang" dir.php dalam ppm (dev+prod), 0 akses dalam log, belum disekat (facts.md)
 - 2026-10-22 — Tampal PHP Windows: 4 DLL curl ke Apache24\bin + 2 DLL sqlsrv ke ext + betulkan error_log (cases.md)
+
+- R017 — Delegasi task: satu worker, skop+konteks minimum, Diba koordinasi (rules.md)
+- R018 — Parity kemudahan asas studio utama vs semua bilik projek (rules.md)
+- [2026-10-23] Dev 10.0.36.127: Apache2.4 (c:\apache24, 80/443) + Apache-SSO (E:, 8084/9443); IIS W3SVC disabled; Get-WinEvent/CIM remote disekat, guna sc.exe (facts.md)
+- 2026-10-23 — Apache tak start tanpa log = port 80 dirampas IIS; semak header Server dahulu (cases.md)
+
+- 2026-10-23 — eWorks perf: join `CAST` kedua-dua belah + scope `OR EXISTS wrcf` (wr 1.18 juta) = 7-13 s; guna `w.wr_id = TRY_CAST(n.wr_id AS INT)` -> 24-43 ms; ukur dengan skrip CLI dahulu (cases.md)
+- [2026-10-23] `db()` ada dalam includes/functions.php:12; skrip CLI require config.php+database.php+functions.php. Chrome javascript_tool putus 45 s: guna setTimeout + window.__var (cases.md)
