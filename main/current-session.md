@@ -2,7 +2,7 @@
 
 **Tarikh:** 2026-10-23T16:58:00+08:00 (eWorks/fmsdev server)
 **Topik:** Apache2.4 tak start: IIS (W3SVC) rebut port 80 selepas reboot; W3SVC di-disable, Apache jalan. Dashboard dilajukan (get_unread_count, get_notifications, getComplaintTotalsFromList). Hero dashboard kini papar Permohonan (status R) sahaja, bukan jumlah semua status (Abam); pautan hero kini "Lihat senarai permohonan" ke complaints.php?status=R.
-**Fail terakhir diubah:** index.php (hero RComplaints + label "Jumlah permohonan", belum commit), includes/functions.php (belum commit), api/get_unread_count.php (94afa75), api/get_notifications.php (5ae8082)
+**Fail terakhir diubah:** index.php (hero RComplaints + label "Jumlah permohonan" + pautan $dashboardPermohonanHref, belum commit), includes/functions.php (belum commit), api/get_unread_count.php (94afa75), api/get_notifications.php (5ae8082)
 **Follow-up:** Abam refresh dashboard, hero patut sama dengan kad Permohonan (dijangka 1,003 untuk akaun tanpa skop); commit index.php + hunk getComplaintTotalsFromList dalam functions.php (asingkan daripada kerja Redis/dashboard korporat), index wrcf(cf_id), rotate error.log 13 GB.
 
 ---
