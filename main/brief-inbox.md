@@ -236,3 +236,33 @@ Selamat pagi, Abam. Khamis, 2026-10-22.
 **Watch-out:** Hook Codex belum diuji lifecycle sebenar. Abam perlu review dan trust melalui `/hooks` dulu.
 
 Cadangan: mula dengan eval pusingan 3 sebab ia sudah siap berjalan, tinggal dinilai, dan hasilnya menentukan sama ada perubahan skill boleh di-commit hari ini.
+
+---
+
+## Morning Brief — 2026-10-23 08:00
+
+**Brief Pagi — Jumaat, 2026-10-23**
+
+**Sesi lepas (22/10):**
+- Control Room: semua bilik projek kini ada 4 tingkap sebenar, parity dengan studio utama. Ujian 24/24 lulus. Visual browser belum disahkan, jadi buat Ctrl+Shift+R.
+- Mission Desk dan mini-map kampus siap, 312/312 dan 318/318 ujian lulus.
+- ScoutOps: security rollout produksi selesai, master `f71d309`. PHP 8.5.12 disahkan live di kedua-dua domain.
+- Repo induk XDIBAX sudah di-commit dalam 5 kumpulan.
+
+**Reminder terbuka (tiada yang overdue):**
+- Telegram bridge (Phase 3) ditangguh. Tiada tindakan sehingga Abam putuskan.
+- eWorks e-signature: jangan sync prod.
+
+**Follow-up tertunggak dari 22/10:**
+- Push commit `.gitignore` dan `feat/diba-dash` (ahead 7). Belum diarahkan.
+- Putuskan fail untracked XDIBAX: `daily-diary/archived`, `BFMwebsite`.
+- ScoutOps: login semula. Tenant admin perlu semak sheet URL dan generate cron URL baharu. External scheduler belum dikonfigurasi.
+- 8 signal belum diproses. Jalankan `auto-learn`.
+
+**Projek aktif (7/10):** ea_newv3 (13/10) ialah yang terbaru. BFMwebsite, Book Finder dan ScoutOps masih hijau. Portal FMS, eWorks dan ruangniaga stale.
+
+**Fokus hari ini:**
+1. Sahkan visual Control Room dalam browser.
+2. Selesaikan push dan fail untracked XDIBAX.
+3. Tutup follow-up ScoutOps (cron URL dan scheduler).
+4. Jumaat 16:00: weekly review berjadual.
