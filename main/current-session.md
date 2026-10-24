@@ -1,5 +1,12 @@
 # Current Session Recap
 
+**Tarikh:** 2026-10-24T17:21:00+08:00 (XDIBAX, dual agent VS Code)
+**Topik:** `xdibax` = dual agent dalam terminal VS Code: Claude Code (backend) di terminal semasa + OpenAI Codex (frontend) di pane sebelah, folder kerja sama, arahan peranan masing-masing. Sambungan VS Code `xdibax.dual-agent` buka pane melalui fail permintaan (bukan URI); skrip di `XDIBAX/scripts/xdibax-dual/`; fungsi `xdibax` dalam profil PowerShell.
+**Verify:** E2E dalam VS Code sebenar (profil asing): pane split, peranan dan cwd UNC lulus; teks peranan Codex persis dalam `codex debug prompt-input`; laluan sandar diuji. Belum: VS Code utama Abam (Reload Window sekali) dan panggilan model Claude sebenar.
+**Follow-up:** Abam Reload Window, terminal baharu, taip `xdibax` dalam folder projek; commit `scripts/xdibax-dual/` (untracked); item eWorks lama kekal (commit index.php + hunk functions.php, klik pautan hero, cadangan pembetulan stop-guard).
+
+---
+
 **Tarikh:** 2026-10-24T07:27:00+08:00 (eWorks/fmsdev server)
 **Topik:** Apache2.4 tak start: IIS (W3SVC) rebut port 80 selepas reboot; W3SVC di-disable, Apache jalan. Dashboard dilajukan (get_unread_count, get_notifications, getComplaintTotalsFromList). Hero dashboard kini papar Permohonan (status R) sahaja, bukan jumlah semua status (Abam); pautan hero kini "Lihat senarai permohonan" ke complaints.php?status=R.
 **Fail terakhir diubah:** index.php (hero RComplaints + label "Jumlah permohonan" + pautan $dashboardPermohonanHref, belum commit), includes/functions.php (belum commit), api/get_unread_count.php (94afa75), api/get_notifications.php (5ae8082)
