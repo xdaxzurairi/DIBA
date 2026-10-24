@@ -65,5 +65,5 @@
 - [2026-10-23] `db()` ada dalam includes/functions.php:12; skrip CLI require config.php+database.php+functions.php. Chrome javascript_tool putus 45 s: guna setTimeout + window.__var (cases.md)
 - [2026-10-23] eWorks hero dashboard (index.php:122) = RComplaints "Jumlah permohonan", bukan jumlah semua status; tanpa skop 1,184,236 vs R 1,003; pautan hero -> complaints.php?status=R (facts.md)
 - 2026-10-24 — stop-guard sekat walau diary sudah disimpan: sesi lintas tengah malam, guard cari diary tarikh semasa (stop-guard.js:88-90); buat entry ringkas di fail hari baharu (cases.md)
-- [2026-10-24] xdibax = dual agent VS Code: Claude backend (terminal semasa) + Codex frontend (pane split melalui sambungan xdibax.dual-agent + fail permintaan); skrip XDIBAX/scripts/xdibax-dual/; ubah extension -> install.ps1 + Reload Window (facts.md)
+- [2026-10-24] xdibax = dual agent VS Code: Claude backend (terminal semasa) + Codex frontend (pane split melalui sambungan xdibax.dual-agent 0.1.1 + fail permintaan; perintah terminal.split, bukan parentTerminal); skrip XDIBAX/scripts/xdibax-dual/; ubah extension -> install.ps1 + Reload Window (facts.md)
 - 2026-10-24 — Uji sambungan VS Code: Code.exe --extensionTestsPath + profil asing + ejen palsu; peranan Codex semak guna codex debug prompt-input tanpa model (cases.md)
