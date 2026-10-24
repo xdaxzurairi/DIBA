@@ -266,3 +266,40 @@ Cadangan: mula dengan eval pusingan 3 sebab ia sudah siap berjalan, tinggal dini
 2. Selesaikan push dan fail untracked XDIBAX.
 3. Tutup follow-up ScoutOps (cron URL dan scheduler).
 4. Jumaat 16:00: weekly review berjadual.
+
+---
+
+## Weekly Review — 2026-10-23 16:00
+
+**Semakan Mingguan DIBA — Jumaat 2026-10-23**
+
+**Kemenangan minggu ini**
+- ScoutOps: pemulihan keselamatan dan cutover produksi disahkan (`77efdf5`, `9bf3447`).
+- Hook baharu: `stop-guard` (paksa save-diary + auto-learn), `guard-bash`, `format-on-edit`. `auto-commit.sh` dibaiki, termasuk pengesanan lock stale.
+- Skill eval pusingan 3 lulus 9/9; chief-of-staff naik Lv.10.
+- Semakan keselamatan PHP workspace XDIBAX siap (2026-10-22).
+- DIBA LIVE (terminal NPC) berjalan dan auto-start bersama VS Code.
+- Reminder Ollama ditutup. Memory Project-AI-MemoryCore digabung ke vault DIBA.
+
+**Projek terhenti**
+- ruangniaga: tiada kemas kini sejak 2026-05-14 (±162 hari).
+- eWorks: 2026-07-29 (±86 hari).
+- Portal FMS: 2026-08-05 (±79 hari).
+- Cadangan: putuskan sama ada setiap satu dikemas kini, diparkir SOMEDAY, atau diarkib.
+- ea_newv3 pos #1 dan aktif. Entri terakhir 2026-10-13 (UAT 60 kes). Tiada entri baharu sejak itu dalam `project-list.md`.
+
+**Keputusan belum selesai**
+- Telegram bridge (Phase 3): ditangguh sejak 2026-09-10. Calon ganti ialah Zapier MCP. Abam perlu putuskan sama ada diteruskan atau ditutup.
+- eWorks e-signature: kekal "jangan sync prod". Tiada tarikh semakan.
+- Tiada keputusan baharu yang tergantung dalam `decisions.md` selain dua item di atas.
+
+**Tema post-mortem**
+- `post-mortems.md` masih kosong. Pelajaran sebenar minggu ini ada dalam `decisions.md`: ujian hook mesti sampai ke `git log` sebenar, dan `.git/index.lock` stale perlu dikesan ikut umur. Cadangan: tulis satu post-mortem ringkas untuk bug auto-commit (tiga lapisan).
+- Buffer isyarat ada 4 baris yang belum diproses. Jalankan auto-learn.
+
+**Keutamaan minggu depan**
+1. Triage projek stale (ruangniaga, eWorks, Portal FMS): sambung, parkir, atau arkib.
+2. Sambung ea_newv3 selepas UAT, ikut susunan dwibahasa → hitam&putih/checkbox/PDF.
+3. Proses buffer isyarat dan tulis post-mortem auto-commit.
+
+Ini ringkasan brief projek. Audit GTD 10 kawasan penuh tidak dijalankan, kerana tiada permintaan eksplisit.
