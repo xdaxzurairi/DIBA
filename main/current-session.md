@@ -1,5 +1,54 @@
 # Current Session Recap
 
+**Tarikh:** 2026-10-24T20:43:00+08:00 (PWA eWorks push)
+**Topik:** b82a54f (tempoh siap sebenar) di-push ke origin/master (3a62bda..b82a54f). Semua kerja eWorks sesi ini sudah di-push; hanya fail diary uncommitted.
+**Follow-up:** sahkan dashboard + senarai Siap dalam pelayar; uji tutup AK sebenar; composer install predis sebelum Redis; stop-guard lintas tengah malam.
+
+---
+
+**Tarikh:** 2026-10-24T20:16:00+08:00 (PWA eWorks)
+**Topik:** Fitur tempoh siap sebenar (complaints.php + tutup_ak_save.php) di-commit b82a54f pada master pwa_eworks, belum push. Kini hanya fail diary uncommitted.
+**Follow-up:** push b82a54f; sahkan dashboard + senarai Siap dalam pelayar; uji tutup AK sebenar; composer install predis sebelum Redis; stop-guard lintas tengah malam.
+
+---
+
+**Tarikh:** 2026-10-24T20:10:00+08:00 (PWA eWorks push)
+**Topik:** master pwa_eworks di-push ke origin (682e076..3a62bda): dashboard korporat + dua commit laju notifikasi. Tiada commit tertinggal.
+**Follow-up:** sahkan dashboard dalam pelayar; composer install predis sebelum Redis; commit tempoh siap sebenar (complaints.php, tutup_ak_save.php); stop-guard lintas tengah malam.
+
+---
+
+**Tarikh:** 2026-10-24T20:02:00+08:00 (PWA eWorks)
+**Topik:** Dashboard korporat (hero Permohonan + ilustrasi kampus + cache Redis pilihan) di-commit 3a62bda pada master pwa_eworks (21 fail), belum push. Ujian cache dikemas kini (2->1 SQL). complaints.php + tutup_ak_save.php (tempoh siap sebenar) kekal uncommitted.
+**Follow-up:** push 3a62bda; sahkan visual dashboard + klik pautan hero; composer install predis sebelum hidupkan Redis; commit fitur tempoh siap; stop-guard lintas tengah malam.
+
+---
+
+**Tarikh:** 2026-10-24T19:58:00+08:00 (XDIBAX, push)
+**Topik:** feat/diba-dash di-push ke origin (nnkmz/xdibax-workspace), 8 commit termasuk xdibax-dual (753ee85e1) dan xdibax registry (89f7d4def). Tiada commit tertinggal.
+**Follow-up:** item eWorks lama (commit index.php + hunk functions.php, stop-guard lintas tengah malam); uji xdibax <nama>/-Daftar sebenar; opsyen semak credential.helper gh.exe.
+
+---
+
+**Tarikh:** 2026-10-24T19:55:00+08:00 (XDIBAX, commit xdibax.ps1)
+**Topik:** xdibax.ps1 (projek berdaftar: <nama>, -Daftar, -Senarai) di-commit 89f7d4def pada feat/diba-dash; bersama 753ee85e1, kedua-duanya belum push.
+**Follow-up:** Abam putuskan cabang/push; uji xdibax pwa_eworks dan -Daftar; item eWorks lama kekal (commit index.php + hunk functions.php, stop-guard lintas tengah malam).
+
+---
+
+**Tarikh:** 2026-10-24T19:53:00+08:00 (XDIBAX, xdibax registry)
+**Topik:** xdibax kini: `xdibax <nama>` buka projek berdaftar, `xdibax -Daftar [nama]` daftar folder semasa, `xdibax -Senarai` (guna DIBA/projects/registry.md). xdibax.ps1 diubah, belum commit.
+**Follow-up:** Abam uji dari folder lain; commit xdibax.ps1; 753ee85e1 belum push; item eWorks lama kekal.
+
+---
+
+**Tarikh:** 2026-10-24T19:46:00+08:00 (XDIBAX, xdibax global)
+**Topik:** xdibax kini arahan global: shim `xdibax.cmd` dalam %APPDATA%\npm (cmd, Windows PowerShell 5.1, pwsh jumpa). Luar VS Code, Codex dalam tetingkap pwsh berasingan. Dual pane VS Code sudah disahkan Abam; scripts di-commit 753ee85e1 (feat/diba-dash, belum push).
+**Fail terakhir diubah:** C:\Users\BSM\AppData\Roaming\npm\xdibax.cmd
+**Follow-up:** Abam uji xdibax dari cmd/Windows Terminal (folder bukan UNC); push/pilih cabang 753ee85e1; item eWorks lama (commit index.php + hunk functions.php, klik pautan hero, stop-guard lintas tengah malam).
+
+---
+
 **Tarikh:** 2026-10-24T19:42:00+08:00 (XDIBAX, dual agent VS Code)
 **Topik:** `xdibax` kini berfungsi: dua pane (Claude backend + Codex frontend) disahkan Abam selepas Reload Window. Ralat akhir "pwsh.exe does not exist" dibetulkan (laluan penuh pwsh dalam fail permintaan; sambungan 0.1.2). `scripts/xdibax-dual/` di-commit 753ee85e1 pada cabang feat/diba-dash (belum push).
 **Fail terakhir diubah:** XDIBAX/scripts/xdibax-dual/xdibax.ps1, vscode-ext/extension.js, vscode-ext/package.json

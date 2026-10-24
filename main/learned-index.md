@@ -68,3 +68,6 @@
 - [2026-10-24] xdibax = dual agent VS Code: Claude backend (terminal semasa) + Codex frontend (pane split melalui sambungan xdibax.dual-agent 0.1.1 + fail permintaan; perintah terminal.split, bukan parentTerminal); skrip XDIBAX/scripts/xdibax-dual/; ubah extension -> install.ps1 + Reload Window (facts.md)
 - 2026-10-24 — Uji sambungan VS Code: Code.exe --extensionTestsPath + profil asing + ejen palsu; peranan Codex semak guna codex debug prompt-input tanpa model (cases.md)
 - 2026-10-24 — E2E sambungan VS Code: induk mesti dicipta melalui UI + semak visual (parentTerminal tak memecah terminal pengguna); `code -n` dari shell alat Claude mewarisi CLAUDE_CODE_* (cases.md)
+- 2026-10-24 — VS Code terminal.split: config.executable guna laluan penuh pwsh ("pwsh.exe does not exist"); UI senyap + log bersih -> minta tangkapan skrin Abam (cases.md)
+- 2026-10-24 — Commit separa repo kotor: semak fail rujukan di-track + jalankan ujian; dashboard korporat di-commit penuh 3a62bda (cases.md)
+- [2026-10-24] R019 skop kabur: tanya sebelum cipta fail luar repo; semak git log @{u}..HEAD sebelum push (rules.md). xdibax global: xdibax.cmd, xdibax <nama>/-Daftar/-Senarai (facts.md); token Telegram tiada
