@@ -2,7 +2,7 @@
 
 **Tarikh:** 2026-10-24T17:21:00+08:00 (XDIBAX, dual agent VS Code)
 **Topik:** `xdibax` = dual agent dalam terminal VS Code: Claude Code (backend) di terminal semasa + OpenAI Codex (frontend) di pane sebelah, folder kerja sama, arahan peranan masing-masing. Sambungan VS Code `xdibax.dual-agent` buka pane melalui fail permintaan (bukan URI); skrip di `XDIBAX/scripts/xdibax-dual/`; fungsi `xdibax` dalam profil PowerShell.
-**Verify:** E2E dalam VS Code sebenar (profil asing): pane split, peranan dan cwd UNC lulus; teks peranan Codex persis dalam `codex debug prompt-input`; laluan sandar diuji. Belum: VS Code utama Abam (Reload Window sekali) dan panggilan model Claude sebenar.
+**Verify:** E2E dalam VS Code sebenar (profil asing): pane split, peranan dan cwd UNC lulus; teks peranan Codex persis dalam `codex debug prompt-input`; laluan sandar diuji. Larian sebenar (Claude dan Codex sebenar) dalam tetingkap VS Code baharu disahkan visual, tangkapan skrin dihantar; pembetulan 0.1.1 (terminal.split, bukan parentTerminal). Belum: VS Code utama Abam (Reload Window; tetingkap lama masih 0.1.0) dan panggilan model Claude sebenar.
 **Follow-up:** Abam Reload Window, terminal baharu, taip `xdibax` dalam folder projek; commit `scripts/xdibax-dual/` (untracked); item eWorks lama kekal (commit index.php + hunk functions.php, klik pautan hero, cadangan pembetulan stop-guard).
 
 ---
