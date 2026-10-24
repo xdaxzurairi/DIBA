@@ -67,3 +67,4 @@
 - 2026-10-24 — stop-guard sekat walau diary sudah disimpan: sesi lintas tengah malam, guard cari diary tarikh semasa (stop-guard.js:88-90); buat entry ringkas di fail hari baharu (cases.md)
 - [2026-10-24] xdibax = dual agent VS Code: Claude backend (terminal semasa) + Codex frontend (pane split melalui sambungan xdibax.dual-agent 0.1.1 + fail permintaan; perintah terminal.split, bukan parentTerminal); skrip XDIBAX/scripts/xdibax-dual/; ubah extension -> install.ps1 + Reload Window (facts.md)
 - 2026-10-24 — Uji sambungan VS Code: Code.exe --extensionTestsPath + profil asing + ejen palsu; peranan Codex semak guna codex debug prompt-input tanpa model (cases.md)
+- 2026-10-24 — E2E sambungan VS Code: induk mesti dicipta melalui UI + semak visual (parentTerminal tak memecah terminal pengguna); `code -n` dari shell alat Claude mewarisi CLAUDE_CODE_* (cases.md)
