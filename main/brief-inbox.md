@@ -303,3 +303,35 @@ Cadangan: mula dengan eval pusingan 3 sebab ia sudah siap berjalan, tinggal dini
 3. Proses buffer isyarat dan tulis post-mortem auto-commit.
 
 Ini ringkasan brief projek. Audit GTD 10 kawasan penuh tidak dijalankan, kerana tiada permintaan eksplisit.
+
+---
+
+## Morning Brief — 2026-10-24 08:00
+
+**Brief pagi Sabtu, 2026-10-24**
+
+**Sesi lepas (23/10, server eWorks/fmsdev):** Apache tak start sebab IIS (W3SVC) rebut port 80 selepas reboot. W3SVC sudah di-disable dan Apache jalan. Dashboard dilajukan (`get_unread_count`, `get_notifications`, `getComplaintTotalsFromList`). Hero dashboard kini papar Permohonan (status R) sahaja. Jumlah 1,003 disahkan Abam.
+
+**Mendesak / tertunggak:**
+- `index.php` dan hunk `getComplaintTotalsFromList` dalam `includes/functions.php` **belum commit**. Asingkan hunk itu daripada kerja Redis/dashboard korporat.
+- Klik "Lihat senarai permohonan" belum diuji. Sahkan `complaints.php?status=R` papar status R sahaja.
+- `error.log` 13 GB perlu di-rotate. Index `wrcf(cf_id)` pun belum dibuat.
+- 2 signal dalam `signal-buffer.md` belum diproses (`auto-learn`).
+
+**Reminder Open:**
+- Telegram bridge (Phase 3): ditangguh, calon ganti Zapier MCP. Tiada tindakan.
+- eWorks e-signature: **jangan sync prod**.
+
+**Projek aktif (7/10):**
+- 🟢 ea_newv3 (kemas kini terakhir 13/10), BFMwebsite, Book Finder, ScoutOps.
+- 🔴 Stale: Portal FMS, eWorks, ruangniaga.
+
+**Follow-up lain yang masih terbuka:**
+- ScoutOps: tenant admin perlu review sheet URL dan generate cron URL organisasi baharu.
+- Control Room: Ctrl+Shift+R, kemudian sahkan visual di browser.
+- XDIBAX: putuskan fail untracked (`daily-diary/archived`, `BFMwebsite`) dan push commit `.gitignore`.
+
+**Fokus hari ini:**
+1. Uji pautan senarai R, kemudian commit `index.php` dan hunk `functions.php`.
+2. Rotate `error.log` dan tambah index `wrcf(cf_id)`.
+3. Jalankan `auto-learn` untuk signal tertunggak.
