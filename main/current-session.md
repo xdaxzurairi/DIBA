@@ -1,5 +1,11 @@
 # Current Session Recap
 
+**Tarikh:** 2026-10-24T19:42:00+08:00 (XDIBAX, dual agent VS Code)
+**Topik:** `xdibax` kini berfungsi: dua pane (Claude backend + Codex frontend) disahkan Abam selepas Reload Window. Ralat akhir "pwsh.exe does not exist" dibetulkan (laluan penuh pwsh dalam fail permintaan; sambungan 0.1.2). `scripts/xdibax-dual/` di-commit 753ee85e1 pada cabang feat/diba-dash (belum push).
+**Fail terakhir diubah:** XDIBAX/scripts/xdibax-dual/xdibax.ps1, vscode-ext/extension.js, vscode-ext/package.json
+**Follow-up:** pilih cabang/push commit 753ee85e1; item eWorks lama kekal (commit index.php + hunk functions.php, klik pautan hero, pembetulan stop-guard lintas tengah malam).
+
+---
 **Tarikh:** 2026-10-24T18:26:00+08:00 (XDIBAX, dual agent VS Code)
 **Topik:** `xdibax` = dual agent dalam terminal VS Code: Claude Code (backend) di terminal semasa + OpenAI Codex (frontend) di pane sebelah, folder kerja sama, arahan peranan masing-masing. Sambungan VS Code `xdibax.dual-agent` buka pane melalui fail permintaan (bukan URI); skrip di `XDIBAX/scripts/xdibax-dual/`; fungsi `xdibax` dalam profil PowerShell.
 **Verify:** E2E dalam VS Code sebenar (profil asing): pane split, peranan dan cwd UNC lulus; teks peranan Codex persis dalam `codex debug prompt-input`; laluan sandar diuji. Larian sebenar (Claude dan Codex sebenar) dalam tetingkap VS Code baharu disahkan visual, tangkapan skrin dihantar; pembetulan 0.1.1 (terminal.split, bukan parentTerminal). Belum: VS Code utama Abam (Reload Window; tetingkap lama masih 0.1.0) dan panggilan model Claude sebenar.
