@@ -1,5 +1,11 @@
 # Current Session Recap
 
+**Tarikh:** 2026-10-25T00:00:00+08:00 (auto-diary EOD)
+**Topik:** Auto-diary scheduled EOD run — tiada sesi interaktif baharu. Diary 2026-10-25 dijana. Sesi terakhir aktif: 2026-10-24 (PWA eWorks push, b82a54f di-push ke origin/master).
+**Follow-up:** Sahkan dashboard + senarai Siap (PWA eWorks); uji tutup AK sebenar; composer install predis; stop-guard lintas tengah malam; xdibax dari cmd; BFMwebsite scoresheet DEMO-2.
+
+---
+
 **Tarikh:** 2026-10-24T20:43:00+08:00 (PWA eWorks push)
 **Topik:** b82a54f (tempoh siap sebenar) di-push ke origin/master (3a62bda..b82a54f). Semua kerja eWorks sesi ini sudah di-push; hanya fail diary uncommitted.
 **Follow-up:** sahkan dashboard + senarai Siap dalam pelayar; uji tutup AK sebenar; composer install predis sebelum Redis; stop-guard lintas tengah malam.
