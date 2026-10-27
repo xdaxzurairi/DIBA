@@ -335,3 +335,27 @@ Ini ringkasan brief projek. Audit GTD 10 kawasan penuh tidak dijalankan, kerana 
 1. Uji pautan senarai R, kemudian commit `index.php` dan hunk `functions.php`.
 2. Rotate `error.log` dan tambah index `wrcf(cf_id)`.
 3. Jalankan `auto-learn` untuk signal tertunggak.
+
+---
+
+## Morning Brief — 2026-10-25 08:00
+
+**Brief Pagi — Ahad, 2026-10-25**
+
+**Sesi lepas (24 Okt, ~20:43):** Kerja PWA eWorks sudah di-push ke origin (b82a54f, tempoh siap sebenar; dashboard korporat dan dua commit laju notifikasi). Kerja xdibax pula siap: dual agent (Claude backend + Codex frontend) disahkan, xdibax global, dan registry projek. Semuanya di-push pada `feat/diba-dash`. Hanya fail diary, learned dan signal-buffer yang belum di-commit.
+
+**Reminder:** Tiada yang overdue atau urgent.
+- Telegram bridge (baki Phase 3) belum bermula. Tiada bot token, dan Telegram ditangguh sejak 2026-09-10.
+- eWorks e-signature: jangan sync prod.
+
+**Projek aktif (7/10):** ea_newv3 (pos #1, kemas kini terakhir 13 Okt), BFMwebsite, Book Finder dan ScoutOps masih Active. Portal FMS, eWorks (rekod projek) dan ruangniaga berstatus Stale.
+
+**Fokus hari ini:**
+1. Sahkan dalam pelayar: dashboard korporat, pautan hero "Lihat senarai permohonan" (`complaints.php?status=R`), dan senarai Siap yang guna tempoh siap sebenar.
+2. Uji tutup AK sebenar.
+3. Jalankan `composer install` untuk predis sebelum hidupkan Redis.
+4. Betulkan stop-guard.js: ia semak diary tarikh semasa sahaja, jadi ada false positive bila sesi lintas tengah malam.
+5. Uji `xdibax <nama>` dan `-Daftar` sebenar, kemudian pilih cabang untuk `feat/diba-dash`.
+6. Ada 3 signal belum diproses. Jalankan auto-learn bila sesuai.
+
+Rotate `error.log` eWorks (13 GB) kekal sebagai tugasan tertangguh.

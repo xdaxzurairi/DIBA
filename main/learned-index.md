@@ -70,4 +70,4 @@
 - 2026-10-24 — E2E sambungan VS Code: induk mesti dicipta melalui UI + semak visual (parentTerminal tak memecah terminal pengguna); `code -n` dari shell alat Claude mewarisi CLAUDE_CODE_* (cases.md)
 - 2026-10-24 — VS Code terminal.split: config.executable guna laluan penuh pwsh ("pwsh.exe does not exist"); UI senyap + log bersih -> minta tangkapan skrin Abam (cases.md)
 - 2026-10-24 — Commit separa repo kotor: semak fail rujukan di-track + jalankan ujian; dashboard korporat di-commit penuh 3a62bda (cases.md)
-- [2026-10-24] R019 skop kabur: tanya sebelum cipta fail luar repo; semak git log @{u}..HEAD sebelum push (rules.md). xdibax global: xdibax.cmd, xdibax <nama>/-Daftar/-Senarai (facts.md); token Telegram tiada
+- [2026-10-24] R019 skop kabur: tanya sebelum cipta fail luar repo; semak git log @{u}..HEAD sebelum push (rules.md). xdibax global: xdibax.cmd, xdibax <nama>/-Daftar/-Senarai (facts.md); token Telegram tiada- [2026-10-25] Chrome MCP tak lepasi halaman ralat hos dev (sijil/rangkaian); hos dev = fmsdev.uitm.edu.my; minta tangkapan skrin Abam selepas 2-3 gagal (cases.md, facts.md)
