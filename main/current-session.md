@@ -1,5 +1,41 @@
 # Current Session Recap
 
+**Tarikh:** 2026-10-28 (PWA eWorks laporan carta siap)
+**Topik:** Carta 41 laporan native (PPF 5, Bahagian 28, BPF 8) disahkan dan dikomit 903612d; commit lain 4320d18, 85140ce. Belum push.
+**Follow-up:** push; keputusan terbuka (skop akaun, lap_inisiatifstaf_bahagian, lap_crafperson, tarikh akhir `<=`, penapis Bahagian, unit RM carta kos).
+
+---
+
+**Tarikh:** 2026-10-28 (PWA eWorks laporan carta)
+**Topik:** Kontrak carta (nrChart) + renderCharts siap; 4 agent isi carta 45 laporan bercarta lama (PPF 5, Bahagian ~33, BPF 8) + ujian pelayar. Commit sebelum ini 4320d18/85140ce; carta belum dikomit.
+**Follow-up:** terima laporan agent, probe + ujian, commit carta; keputusan terbuka (skop akaun dll.).
+
+---
+
+**Tarikh:** 2026-10-28T13:20:00+08:00 (PWA eWorks laporan native)
+**Topik:** 4 agent siap; 80 builder native berfungsi; Negeri/Kampus berlebihan dibuang; cascade penapis; commit 4320d18 (backend) + 85140ce (frontend), belum push.
+**Follow-up:** keputusan Abam (skop akaun, carta, lap_inisiatifstaf_bahagian, lap_crafperson, tarikh akhir `<=`, Bahagian backlog); push; uji pelayar sesi sebenar.
+
+---
+
+**Tarikh:** 2026-10-28 (PWA eWorks laporan native)
+**Topik:** API report_native + paparan umum (report-native.js) disambung ke registry Codex; 4 agent selari semak PPF/Bahagian/BPF+Aset/ujian pelayar (hasil belum diterima). Belum commit.
+**Follow-up:** terima laporan agent, jalankan semula probe+ujian; commit; keputusan skop akaun & carta; P0 tarikh akhir.
+
+---
+
+**Tarikh:** 2026-10-28T11:42:00+08:00 (PWA eWorks laporan kumpulan 5)
+**Topik:** Paparan backlog_tempoh/backlog_terperinci dibina (guna semula laporan-paparan.html), penapis eWorks lama + pager; fail-closed skop kosong; ujian pelayar 72 lulus. Belum commit.
+**Follow-up:** commit; P0 tarikh akhir `<=` dan penapis Bahagian; BPF backlog pending; token Telegram.
+
+---
+
+**Tarikh:** 2026-10-28T11:24:00+08:00 (PWA eWorks laporan)
+**Topik:** Plan Codex laporan: tambah formula_version/generated_at/notes di api/report_data.php (+ reports_group6.php) dan paparan nota di laporan-paparan. Lulus php -l/node --check; belum uji pelayar; tiada commit.
+**Follow-up:** Abam putuskan P0 (tarikh akhir <=, fail-closed skop kosong, penapis Bahagian); uji pelayar; commit.
+
+---
+
 **Tarikh:** 2026-10-24T20:43:00+08:00 (PWA eWorks push)
 **Topik:** b82a54f (tempoh siap sebenar) di-push ke origin/master (3a62bda..b82a54f). Semua kerja eWorks sesi ini sudah di-push; hanya fail diary uncommitted.
 **Follow-up:** sahkan dashboard + senarai Siap dalam pelayar; uji tutup AK sebenar; composer install predis sebelum Redis; stop-guard lintas tengah malam.
