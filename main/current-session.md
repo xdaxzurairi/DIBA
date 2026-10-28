@@ -1,8 +1,9 @@
 # Current Session Recap
 
-**Tarikh:** 2026-10-28 (PWA eWorks laporan carta siap)
-**Topik:** Carta 41 laporan native (PPF 5, Bahagian 28, BPF 8) disahkan dan dikomit 903612d; commit lain 4320d18, 85140ce. Belum push.
-**Follow-up:** push; keputusan terbuka (skop akaun, lap_inisiatifstaf_bahagian, lap_crafperson, tarikh akhir `<=`, penapis Bahagian, unit RM carta kos).
+**Tarikh:** 2026-10-28 (EOD — PWA eWorks laporan native selesai)
+**Topik:** 80 builder native berfungsi (PPF 5, Bahagian ~28, BPF 8, Aset); carta 41 laporan siap. Fail-closed skop kosong, penapis Negeri/Kampus berlebihan dibuang, cascade penapis. Tiga commit: 4320d18 (backend), 85140ce (frontend), 903612d (carta). Belum push.
+**Fail terakhir:** `daily-diary/current/2026-10-28.md` (Evening Update), `main/current-session.md`
+**Follow-up:** push 3 commit bila diminta; keputusan terbuka (skop akaun per baris, lap_inisiatifstaf_bahagian, lap_crafperson, tarikh akhir `<=`, penapis Bahagian, unit RM carta kos); Telegram token.
 
 ---
 
