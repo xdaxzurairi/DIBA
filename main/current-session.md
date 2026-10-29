@@ -426,3 +426,9 @@ Fail terakhir diubah: eWorks/senarai_aduan.php, pwa_eworks/complaints.php (dev s
 Follow-up terbuka: Abam semak dev → deploy 4 fail ke prod (lajur wujud + diff dahulu); uji tutup aduan eWorks; aduan 1470117.
 
 
+
+## Recap 2026-10-28 16:11 (pwa_eworks, BACKEND)
+- Topik: lookup select untuk lap_crafperson/lap_inisiatifstaf (idbangunan, idseksyen, idkerosakan) dan lap_demerit_kontraktor (no_sykt).
+- Keputusan: guna nrChoiceFilter + nrOptions; kampus crafperson dari cf.site_id staf.
+- Fail: includes/reports_native_bpf.php, includes/reports_native_ppf.php (belum dikomit).
+- Follow-up: sahkan crafperson live; bandingkan dengan eWorks lama.
