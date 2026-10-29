@@ -359,3 +359,35 @@ Ini ringkasan brief projek. Audit GTD 10 kawasan penuh tidak dijalankan, kerana 
 6. Ada 3 signal belum diproses. Jalankan auto-learn bila sesuai.
 
 Rotate `error.log` eWorks (13 GB) kekal sebagai tugasan tertangguh.
+
+---
+
+## Morning Brief — 2026-10-29 08:00
+
+**Brief pagi — Khamis, 2026-10-29**
+
+**Sesi lepas (28 Okt, PWA eWorks):** Carta 41 laporan native siap dan disahkan (PPF 5, Bahagian 28, BPF 8). Commit `903612d`, `4320d18` (backend) dan `85140ce` (frontend). **Semuanya belum di-push.**
+
+**Reminder:** Tiada yang lewat tempoh.
+- Telegram bridge (Phase 3): belum ada bot token. Ditangguh sehingga Abam putuskan.
+- eWorks e-signature: jangan sync prod.
+
+**Projek aktif (7/10):**
+- ea_newv3 (e-Aduan v3): terkini, kemas kini 13 Okt.
+- BFMwebsite, Book Finder dan ScoutOps: aktif tetapi tiada kerja sejak 15 Sep–29 Sep.
+- Portal FMS, eWorks (rekod LRU) dan ruangniaga: ditanda stale.
+- Rekod eWorks dalam LRU stale (29 Jul), sedangkan kerja sebenar sedang rancak. Baris itu patut dikemas kini.
+
+**Fokus hari ini:**
+1. Push 3 commit eWorks ke origin dan uji laporan dalam pelayar dengan sesi sebenar.
+2. Putuskan keputusan terbuka laporan:
+   - skop akaun
+   - `lap_inisiatifstaf_bahagian`
+   - `lap_crafperson`
+   - tarikh akhir `<=` (P0)
+   - penapis Bahagian
+   - unit RM carta kos
+3. Perkara kecil yang tertunggak:
+   - 1 signal belum diproses dalam buffer, jalankan `auto-learn`.
+   - Stop-guard lintas tengah malam.
+   - `composer install predis` sebelum Redis dihidupkan.

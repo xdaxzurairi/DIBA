@@ -432,3 +432,26 @@ Follow-up terbuka: Abam semak dev → deploy 4 fail ke prod (lajur wujud + diff 
 - Keputusan: guna nrChoiceFilter + nrOptions; kampus crafperson dari cf.site_id staf.
 - Fail: includes/reports_native_bpf.php, includes/reports_native_ppf.php (belum dikomit).
 - Follow-up: sahkan crafperson live; bandingkan dengan eWorks lama.
+
+## Recap 2026-10-29 08:05 (pwa_eworks, BACKEND)
+- Topik: baiki zon aset (alias id/label) + komit penapis select laporan.
+- Keputusan: komit 4c1efa0 (core/bpf/ppf/aset); bahagian.php ditinggalkan.
+- Follow-up: push; skop bukan-kumpulan-5 crafperson; banding eWorks lama.
+
+## Recap 2026-10-29 14:35 (pwa_eworks, BACKEND)
+- Topik: lap_responaction_b lambat/kosong; backend pantas, punca belum jumpa; log masa ditambah pada api/report_native.php.
+- Fail: api/report_native.php (belum dikomit).
+- Follow-up: data Network/log pelayan daripada Abam; komit log; push 4c1efa0.
+
+## Recap 2026-10-29 14:50 (pwa_eworks, BACKEND)
+- Topik: tajuk laporan seragam Title Case via nrTitle() dalam reports_native_core.php.
+- Fail: includes/reports_native_core.php, api/report_native.php (belum dikomit).
+- Follow-up: komit; push 4c1efa0; punca lambat lap_responaction_b; tajuk menu = kerja Codex.
+
+## Recap 2026-10-29 14:55 (pwa_eworks, BACKEND)
+- Topik: komit f9ab1aa (nrTitle + log API); 4c1efa0 dan f9ab1aa belum push.
+- Follow-up: push bila diminta; punca lambat lap_responaction_b.
+
+## Recap 2026-10-29 15:00 (pwa_eworks, BACKEND)
+- Topik: push 6 komit ke origin/master (605a8af..f9ab1aa) berjaya.
+- Follow-up: punca lambat lap_responaction_b menunggu data Network/log pelayan.
