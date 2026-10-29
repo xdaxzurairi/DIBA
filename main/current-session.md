@@ -455,3 +455,17 @@ Follow-up terbuka: Abam semak dev → deploy 4 fail ke prod (lajur wujud + diff 
 ## Recap 2026-10-29 15:00 (pwa_eworks, BACKEND)
 - Topik: push 6 komit ke origin/master (605a8af..f9ab1aa) berjaya.
 - Follow-up: punca lambat lap_responaction_b menunggu data Network/log pelayan.
+
+## Recap 2026-10-29 16:30 (RuangNiaga)
+- Topik: deck pembentangan pengurusan (Artifact, 29 slaid, tangkapan skrin fmsdev) + token API MyCard/FMS dipindah ke `$_ENV` dalam navbar.php dan webservice.php.
+- Fail: ruangniaga/admin/includes/navbar.php, ruangniaga/admin/webservice.php (php -l lulus, belum commit).
+- Follow-up: sahkan gambar profil di fmsdev; tukar token; punca ralat cabutan_kehadiran_data.php; kemas kini slaid risiko; commit.
+
+## Recap 2026-10-29 16:45 (RuangNiaga)
+- Topik: ujian fmsdev (avatar lalai, Daftar Kehadiran HTTP 200 + "Ralat:" kosong) dan commit 2c0842d token ke .env.
+- Fail: ruangniaga/admin/includes/navbar.php, ruangniaga/admin/webservice.php (dikomit, belum push).
+- Follow-up: sahkan .env + deploy di fmsdev; tukar token; respons/error_log kehadiran; kemas kini slaid risiko; push.
+
+## Recap 2026-10-29 17:00 (RuangNiaga)
+- Topik: dokumen Markdown penuh sistem eRuangNiaga (docs/DOKUMENTASI_SISTEM_ERUANGNIAGA.md, belum commit).
+- Follow-up: Abam pilih Artifact / Word-PDF / commit; kaji SQL bercantum rentetan penyewa/keputusan_*.php, pautan signup, SSL_VERIFYPEER; sahkan token .env; ralat Daftar Kehadiran.

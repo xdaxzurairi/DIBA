@@ -73,3 +73,4 @@
 - [2026-10-24] R019 skop kabur: tanya sebelum cipta fail luar repo; semak git log @{u}..HEAD sebelum push (rules.md). xdibax global: xdibax.cmd, xdibax <nama>/-Daftar/-Senarai (facts.md); token Telegram tiada- [2026-10-25] Chrome MCP tak lepasi halaman ralat hos dev (sijil/rangkaian); hos dev = fmsdev.uitm.edu.my; minta tangkapan skrin Abam selepas 2-3 gagal (cases.md, facts.md)
 - [2026-10-27] Grep tool tamat masa di UNC eWorks (381 fail): guna `grep -il` via Bash + glob; laporan lama `lap_list_ppf.php`, capaian `page.php` per group_3 (facts.md)
 - 2026-10-27 — Chrome ke IP = ralat sijil, guna fmsdev + Abam log masuk; skrip panjang guna Write bukan heredoc Bash (cases.md)
+- [2026-10-29] RuangNiaga: http->https redirect; sesi admin hanya di fmsdev.uitm.edu.my; 2 Chrome -> AskUserQuestion + select_browser; token MyCard/FMS di .env (facts.md)
