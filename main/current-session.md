@@ -455,3 +455,8 @@ Follow-up terbuka: Abam semak dev → deploy 4 fail ke prod (lajur wujud + diff 
 ## Recap 2026-10-29 15:00 (pwa_eworks, BACKEND)
 - Topik: push 6 komit ke origin/master (605a8af..f9ab1aa) berjaya.
 - Follow-up: punca lambat lap_responaction_b menunggu data Network/log pelayan.
+
+## Recap 2026-10-29 EOD (auto-diary)
+- Topik: diary 2026-10-29 disimpan; 6 commit pushed (4c1efa0 penapis select, f9ab1aa nrTitle+log).
+- Fail terakhir: daily-diary/current/2026-10-29.md; api/report_native.php; includes/reports_native_core.php.
+- Follow-up terbuka: lap_responaction_b lambat (data Network/log dari Abam); crafperson bukan-kumpulan-5; uji pelayar PPF/Bahagian/BPF.
