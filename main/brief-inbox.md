@@ -391,3 +391,20 @@ Rotate `error.log` eWorks (13 GB) kekal sebagai tugasan tertangguh.
    - 1 signal belum diproses dalam buffer, jalankan `auto-learn`.
    - Stop-guard lintas tengah malam.
    - `composer install predis` sebelum Redis dihidupkan.
+
+---
+
+## Morning Brief — 2026-10-30 08:00
+
+Selamat pagi Abam. Hari ni Jumaat, 30 Okt.
+**Sesi lepas (29/10):** Untuk pwa_eworks, 6 komit dah di-push (605a8af..f9ab1aa). Untuk RuangNiaga, token MyCard/FMS dah dipindah ke `$_ENV` (2c0842d, belum push). Dokumentasi sistem penuh pun dah ditulis tapi belum commit.
+**Overdue:** Tiada. Ada 3 reminder Open, semuanya tanpa tarikh akhir.
+**Top 3:**
+1. **ea_newv3 UAT** (skor 11: LRU #1 +6, tak disentuh 17 hari +5). URL UAT sebenar dan tarikh dalam Jadual 6.0 masih placeholder.
+2. **BFMwebsite PR #16** (skor 9: LRU #2 +4, tak disentuh 31 hari +5). Uji scoresheet DEMO-2, buang data DEMO dari prod, lepas tu merge.
+3. **RuangNiaga** (carry-over +4). Sahkan `.env` fmsdev, tukar 2 token yang dah terdedah, cari punca "Ralat:" di Daftar Kehadiran, dan push 2c0842d.
+**Menunggu Abam:** Laporan lap_responaction_b masih lambat. Aku perlukan data F12 Network atau log PHP fmsdev untuk cari punca.
+**Radar:** project-list LRU dah basi. Kali terakhir dikemas kini 13/10, dan RuangNiaga serta eWorks masih bertanda Stale walaupun ada kerja 28–29/10.
+**Radar:** Reminder eWorks e-signature Open sejak 11/6 tanpa progress. Kena pilih: buat, jadualkan, atau tutup.
+**Watch-out:** Ada dua isu keselamatan baharu dalam RuangNiaga yang belum dikaji. Satu, SQL dibina dengan cantum rentetan dalam `keputusan_accept.php` dan `keputusan_expired.php`. Dua, `SSL_VERIFYPEER=false` dalam `navbar.php`.
+Cadangan: start dengan tukar token RuangNiaga sebab token tu dah terdedah dalam kod, git dan perbualan. ea_newv3 skor lebih tinggi, tapi tak ada risiko aktif.
