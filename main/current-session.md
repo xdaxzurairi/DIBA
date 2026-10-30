@@ -469,3 +469,9 @@ Follow-up terbuka: Abam semak dev → deploy 4 fail ke prod (lajur wujud + diff 
 ## Recap 2026-10-29 17:00 (RuangNiaga)
 - Topik: dokumen Markdown penuh sistem eRuangNiaga (docs/DOKUMENTASI_SISTEM_ERUANGNIAGA.md, belum commit).
 - Follow-up: Abam pilih Artifact / Word-PDF / commit; kaji SQL bercantum rentetan penyewa/keputusan_*.php, pautan signup, SSL_VERIFYPEER; sahkan token .env; ralat Daftar Kehadiran.
+
+## Recap 2026-10-30 08:25 (XDIBAX, xdibax dual agent)
+- Topik: pane Codex frontend tak terbuka; punca = perlumbaan permulaan (sambungan aktif ~19 s selepas VS Code dibuka, permintaan terlepas).
+- Keputusan: sambungan 0.1.3 (activation `*` + proses permintaan sedia ada), xdibax.ps1 tunggu 12 s, profil `xdibax @args`; dipasang, belum commit.
+- Fail: XDIBAX/scripts/xdibax-dual/{xdibax.ps1, vscode-ext/extension.js, vscode-ext/package.json}, Documents/PowerShell/Microsoft.PowerShell_profile.ps1.
+- Follow-up: Reload Window + uji buka VS Code semula; terminal kosong tambahan semasa ujian; commit bila diminta.
