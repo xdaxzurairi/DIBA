@@ -1,9 +1,9 @@
 # Current Session Recap
 
-**Tarikh:** 2026-10-30 (xdibax dual agent)
-**Topik:** Pane asal kosong selepas split Codex di VS Code; Claude sebenarnya jalan. Tambah jeda 1.5 s dalam xdibax.ps1 (belum diuji).
-**Fail terakhir diubah:** XDIBAX/scripts/xdibax-dual/xdibax.ps1
-**Follow-up:** Abam uji; jika gagal paksa repaint dalam extension.js; commit scripts/xdibax-dual.
+**Tarikh:** 2026-10-30 (auto-diary EOD)
+**Topik:** xdibax dual-agent — tiga isu diselesaikan: (1) sambungan 0.1.3 baiki perlumbaan permulaan, (2) `--no-alt-screen` hapus kod tetikus dalam Codex (disahkan Abam), (3) jeda 1.5 s selepas split (belum diuji). Tiada commit hari ini.
+**Fail terakhir diubah:** XDIBAX/scripts/xdibax-dual/{xdibax.ps1,agent.ps1,vscode-ext/extension.js,vscode-ext/package.json}
+**Follow-up:** Abam uji kes lengkap (buka VS Code semula + `xdibax`); commit scripts/xdibax-dual bila OK; jika pane masih kosong → paksa repaint extension.js.
 
 ---
 
