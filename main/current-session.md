@@ -475,3 +475,8 @@ Follow-up terbuka: Abam semak dev → deploy 4 fail ke prod (lajur wujud + diff 
 - Keputusan: sambungan 0.1.3 (activation `*` + proses permintaan sedia ada), xdibax.ps1 tunggu 12 s, profil `xdibax @args`; dipasang, belum commit.
 - Fail: XDIBAX/scripts/xdibax-dual/{xdibax.ps1, vscode-ext/extension.js, vscode-ext/package.json}, Documents/PowerShell/Microsoft.PowerShell_profile.ps1.
 - Follow-up: Reload Window + uji buka VS Code semula; terminal kosong tambahan semasa ujian; commit bila diminta.
+
+## Recap 2026-10-30 08:40 (XDIBAX, xdibax Codex tetikus)
+- Topik: kod tetikus masuk ke input Codex 0.165 (alternate screen + ConPTY Win10 dalam VS Code).
+- Keputusan: agent.ps1 frontend guna `codex --no-alt-screen`; belum disahkan visual, belum commit.
+- Follow-up: Abam buka semula pane Codex dan sahkan; commit bila diminta.
