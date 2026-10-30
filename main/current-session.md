@@ -1,5 +1,12 @@
 # Current Session Recap
 
+**Tarikh:** 2026-10-30 (xdibax dual agent)
+**Topik:** Pane asal kosong selepas split Codex di VS Code; Claude sebenarnya jalan. Tambah jeda 1.5 s dalam xdibax.ps1 (belum diuji).
+**Fail terakhir diubah:** XDIBAX/scripts/xdibax-dual/xdibax.ps1
+**Follow-up:** Abam uji; jika gagal paksa repaint dalam extension.js; commit scripts/xdibax-dual.
+
+---
+
 **Tarikh:** 2026-10-28 (PWA eWorks laporan carta siap)
 **Topik:** Carta 41 laporan native (PPF 5, Bahagian 28, BPF 8) disahkan dan dikomit 903612d; commit lain 4320d18, 85140ce. Belum push.
 **Follow-up:** push; keputusan terbuka (skop akaun, lap_inisiatifstaf_bahagian, lap_crafperson, tarikh akhir `<=`, penapis Bahagian, unit RM carta kos).
