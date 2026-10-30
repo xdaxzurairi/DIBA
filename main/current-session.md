@@ -480,3 +480,4 @@ Follow-up terbuka: Abam semak dev → deploy 4 fail ke prod (lajur wujud + diff 
 - Topik: kod tetikus masuk ke input Codex 0.165 (alternate screen + ConPTY Win10 dalam VS Code).
 - Keputusan: agent.ps1 frontend guna `codex --no-alt-screen`; belum disahkan visual, belum commit.
 - Follow-up: Abam buka semula pane Codex dan sahkan; commit bila diminta.
+- 09:15: pane Codex baharu (09:12, --no-alt-screen) dibuka via sambungan; Abam sahkan "dah papar". Baki: Reload Window + uji buka VS Code semula (0.1.3); commit.
